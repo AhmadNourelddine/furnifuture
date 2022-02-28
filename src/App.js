@@ -7,6 +7,7 @@ import HomeCarousel from "./components/carousel";
 import About from "./pages/about";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
+          <Route exact path="/dashboard" element={<Dashboard/>} />
           </Routes>
         </div>
       }
