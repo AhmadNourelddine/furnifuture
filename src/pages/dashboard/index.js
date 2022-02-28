@@ -22,10 +22,9 @@ const Dashboard = ()=> {
     let object={
       "name":name,
       "email" : email,
-      "password": password,
-      "password_confirmation": Cpassword
+      "password": password
     }
-    await fetch("http://127.0.0.1:8000/api/auth/register",{
+    await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
