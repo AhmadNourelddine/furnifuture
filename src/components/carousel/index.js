@@ -24,11 +24,11 @@ const HomeCarousel = (props)=>{
     function Item(props)
     {
         return (
-            <Card sx={{ maxWidth: 500, margin:"5%" }}>
+            <Card sx={{ maxWidth: 700, margin:"5% auto" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                height="200"
                 image= {image}
                 alt="green iguana"
               />
