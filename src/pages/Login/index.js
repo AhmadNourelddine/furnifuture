@@ -13,6 +13,8 @@ const Login = ()=> {
   const [password,setPassword]= useState('');
   const [redirect, setRedirect]= useState(false);
 
+  let Navigate = useNavigate()
+
   const logIn = async()=>{
     console.log(email+password)
     let object={
@@ -32,8 +34,12 @@ const Login = ()=> {
             setRedirect(true)
             console.log(result)
           })
+      if(redirect)
+      {
+        Navigate('/dashboard')
+      }
   }
-  
+
   return (
     <div className='login-form'>
     <h1>Sign In</h1>
