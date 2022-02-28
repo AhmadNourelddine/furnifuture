@@ -11,6 +11,7 @@ const Login = ()=> {
 
   const [email,setEmail]= useState('');
   const [password,setPassword]= useState('');
+  const [redirect, setRedirect]= useState(false);
 
   const logIn = async()=>{
     console.log(email+password)
@@ -23,13 +24,16 @@ const Login = ()=> {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        credentials: 'include', 
         method: "POST",
         body: JSON.stringify(object)
     })
           .then((response)=>response.json())
-          .then((result)=>console.log(result))
+          .then((result)=>{
+            setRedirect(true)
+            console.log(result)
+          })
   }
+  
   return (
     <div className='login-form'>
     <h1>Sign In</h1>
