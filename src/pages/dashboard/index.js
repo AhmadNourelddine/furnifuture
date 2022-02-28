@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 
 
-const DashBoard = ()=> {
+const Dashboard = ()=> {
 
   const [name,setName]= useState('');
   const [email,setEmail]= useState('');
@@ -36,12 +36,11 @@ const DashBoard = ()=> {
           .then((response)=>response.json())
           .then((result)=>{
             console.log(result)
-            Navigate('/login')
           })
   }
   return (
     <div className='signup-form'>
-    <h1>Sign Up</h1>
+    <h1>Update Profile Info</h1>
     <TextField id="outlined-basic" label="Name" variant="outlined" 
     onChange = {e=>setName(e.target.value)}/>
 
@@ -54,7 +53,7 @@ const DashBoard = ()=> {
    <TextField id="outlined-basic" label="Confirm Password" variant="outlined" 
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={signup} variant="contained">Sign Up</Button>
+    <Button onClick={signup} variant="contained">Update</Button>
     </div>
 
   );
