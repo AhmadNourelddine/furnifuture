@@ -13,18 +13,18 @@ import Footer from "../footer";
 const HomeCarousel = (props)=>{
     var items = [
         {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!"
+            name: "Furniture For Your Home",
+            description: "View and find what you want"
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!"
+            name: "Sell Your Furniture Easily",
+            description: "Quick and Easy way to sell and find your customers"
         }
     ]
     function Item(props)
     {
         return (
-            <Card sx={{ maxWidth: 700, margin:"5% auto" }}>
+            <Card sx={{ maxWidth: 700, margin:"5% auto 0% auto" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
