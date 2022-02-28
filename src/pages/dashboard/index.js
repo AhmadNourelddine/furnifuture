@@ -14,7 +14,7 @@ const Dashboard = ()=> {
   const [password,setPassword]= useState('');
   const [Cpassword,setCpassword]= useState('');
 
-  let token = window.localStorage.getItem('token')
+  let token = window.localStorage.getItem('authToken')
   let Navigate = useNavigate()
 
   const update = async()=>{
@@ -24,12 +24,13 @@ const Dashboard = ()=> {
       "name":name,
       "email" : email,
       "password": password,
+      "password_confirmation": Cpassword
     }
     await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
         headers: {
-          'Authorization': 'Bearer'+token,
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+token
         },
         method: "POST",
         body: JSON.stringify(object)
