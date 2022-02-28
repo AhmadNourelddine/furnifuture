@@ -32,6 +32,8 @@ const Login = ()=> {
           .then((response)=>response.json())
           .then((result)=>{
             setRedirect(true)
+            let token = result['access_token']
+            window.localStorage.setItem('authToken', token)
             console.log(result)
           })
       if(redirect)
