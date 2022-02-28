@@ -16,13 +16,13 @@ const Dashboard = ()=> {
 
   let Navigate = useNavigate()
 
-  const signup = async()=>{
+  const update = async()=>{
 
     console.log(email+password)
     let object={
       "name":name,
       "email" : email,
-      "password": password
+      "password": password,
     }
     await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
         headers: {
@@ -52,7 +52,7 @@ const Dashboard = ()=> {
    <TextField id="outlined-basic" label="Confirm Password" variant="outlined" 
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={signup} variant="contained">Update</Button>
+    <Button onClick={update} variant="contained">Update</Button>
     </div>
 
   );
