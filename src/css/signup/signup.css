@@ -4,4 +4,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #F7F3E3;
+}
+#signup-box{
+    padding:1% 5% 3%;
+    border-radius:30px;
+    box-shadow:rgb(0 0 0 / 50%) -8px 10px;
+}
+#signup-btn{
+    margin-top:5%;
+    background-color:#2B2118;
+    color:white;
+}
+#outlined-basic{
+    background-color: white;
+    margin: 1%;
 }
