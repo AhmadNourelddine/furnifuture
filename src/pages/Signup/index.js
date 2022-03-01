@@ -44,20 +44,20 @@ const SignUp = ()=> {
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='signup-form' id="signup-box">
-    <h1>Sign Up</h1>
-    <TextField id="outlined-basic" label="Name" variant="outlined" margin="normal"
+    <p id="sign-up">Create An Account</p>
+    <TextField id="outlined-basic" label="Name" variant="outlined" margin="dense"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" margin="normal"
+    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" margin="normal"
+    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense"
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="normal"
+   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense"
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={signup} variant="contained" id="signup-btn">Sign Up</Button>
+    <Button onClick={signup} variant="contained" id="signup-btn" fullWidth>Sign Up</Button>
     </Box>
 
     </Box>
