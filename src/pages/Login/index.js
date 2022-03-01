@@ -5,6 +5,7 @@ import {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
+import Box from "@material-ui/core/box";
 
 
 const Login = ()=> {
@@ -43,16 +44,17 @@ const Login = ()=> {
   }
 
   return (
-    <div className='login-form'>
+
+    <Box className='login-form' >
     <h1>Sign In</h1>
-    <TextField id="outlined-basic" label="UserName" variant="outlined" 
+    <TextField id="outlined-basic" label="UserName" variant="outlined" style={{margin:"1%"}}
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" 
-    onChange = {e=>setPassword(e.target.value)}/>
+    <TextField id="outlined-basic" label="Password" variant="outlined" style={{margin:"1%"}} 
+    onChange = {e=>setPassword(e.target.value)} />
 
     <Button onClick={logIn} variant="contained">Log In</Button>
-    </div>
+    </Box>
 
   );
 }
