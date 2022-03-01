@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
+import Box from "@material-ui/core/box";
 
 
 const SignUp = ()=> {
@@ -40,22 +41,26 @@ const SignUp = ()=> {
           })
   }
   return (
-    <div className='signup-form'>
+    <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+
+    <Box className='signup-form' id="signup-box">
     <h1>Sign Up</h1>
-    <TextField id="outlined-basic" label="Name" variant="outlined" style={{margin:"1%"}}
+    <TextField id="outlined-basic" label="Name" variant="outlined" margin="normal"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" style={{margin:"1%"}}
+    <TextField id="outlined-basic" label="Email" variant="outlined" margin="normal"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" style={{margin:"1%"}}
+    <TextField id="outlined-basic" label="Password" variant="outlined" margin="normal"
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" style={{margin:"1%"}}
+   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="normal"
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={signup} variant="contained">Sign Up</Button>
-    </div>
+    <Button onClick={signup} variant="contained" id="signup-btn">Sign Up</Button>
+    </Box>
+
+    </Box>
 
   );
 }
