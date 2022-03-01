@@ -5,20 +5,33 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
-import image from "../../assets/furniFuture-logo.png";
-import Footer from "../footer"; 
+import image1 from "../../assets/furniFuture-logo.png"; 
+import image2 from "../../assets/carousel-item1.jpg";
+import image3 from "../../assets/carousel-item2.jpg";
+import image4 from "../../assets/carousel-item3.jpg";
 
 
 const HomeCarousel = (props)=>{
     var items = [
         {
             name: "Furniture For Your Home",
-            description: "View and find what you want"
+            description: "View and find what you want",
+            image:image1
         },
         {
             name: "Sell Your Furniture Easily",
-            description: "Quick and Easy way to sell and find your customers"
+            description: "Quick and Easy way to sell and find your customers",
+            image:image2
+        },
+        {
+            name: "Find Your Best Option",
+            description: "Easy way to find what you want",
+            image:image3
+        },
+        {
+            name: "The Best Option For You",
+            description: "Provides easy to use solutions",
+            image:image4
         }
     ]
     function Item(props)
@@ -29,7 +42,7 @@ const HomeCarousel = (props)=>{
               <CardMedia
                 component="img"
                 height="300"
-                image= {image}
+                image= {props.item.image}
                 alt="green iguana"
               />
               <CardContent>
