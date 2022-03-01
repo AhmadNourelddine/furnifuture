@@ -6,8 +6,15 @@
     align-items: center;
     background-color: #F7F3E3;
 }
+#sign-up{
+    font-size: 200%;
+    font-weight: 700;
+    margin: 1% auto 10% auto;
+    max-width: fit-content;
+    text-align: center;
+}
 #signup-box{
-    padding:1% 5% 3%;
+    padding:1% 5% 2%;
     border-radius:30px;
     box-shadow:rgb(0 0 0 / 50%) -8px 10px;
 }
