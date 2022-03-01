@@ -5,7 +5,7 @@ const About = ()=>{
     return(
         <div>
 
-        <HomeCarousel />
+        <HomeCarousel/>
         <Footer />
                     
         </div>
