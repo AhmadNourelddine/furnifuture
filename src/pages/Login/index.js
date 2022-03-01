@@ -45,15 +45,20 @@ const Login = ()=> {
 
   return (
 
-    <Box className='login-form' >
-    <h1>Sign In</h1>
-    <TextField id="outlined-basic" label="UserName" variant="outlined" style={{margin:"1%"}}
+    <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+
+    <Box className='login-form' id="signin-box">
+    <p id="sign-in">Sign In To Your Account</p>
+    <TextField id="outlined-basic" label="UserName" variant="outlined" margin="normal"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" style={{margin:"1%"}} 
+    <TextField id="outlined-basic" label="Password" variant="outlined" margin="normal" 
     onChange = {e=>setPassword(e.target.value)} />
 
-    <Button onClick={logIn} variant="contained">Log In</Button>
+    <Button onClick={logIn} variant="contained" fullWidth id="signin-btn">
+      Log In</Button>
+    </Box>
+
     </Box>
 
   );
