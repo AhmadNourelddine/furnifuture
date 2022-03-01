@@ -45,7 +45,7 @@ const HomeCarousel = (props)=>{
                 image= {props.item.image}
                 alt="green iguana"
               />
-              <CardContent>
+              <CardContent style={{backgroundColor:"#F7F3E3"}}>
                 <Typography gutterBottom variant="h5" component="div">
                 {props.item.name}
                 </Typography>
