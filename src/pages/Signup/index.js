@@ -42,16 +42,16 @@ const SignUp = ()=> {
   return (
     <div className='signup-form'>
     <h1>Sign Up</h1>
-    <TextField id="outlined-basic" label="Name" variant="outlined" 
+    <TextField id="outlined-basic" label="Name" variant="outlined" style={{margin:"1%"}}
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" 
+    <TextField id="outlined-basic" label="Email" variant="outlined" style={{margin:"1%"}}
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" 
+    <TextField id="outlined-basic" label="Password" variant="outlined" style={{margin:"1%"}}
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" 
+   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" style={{margin:"1%"}}
     onChange = {e=>setCpassword(e.target.value)}/>
 
     <Button onClick={signup} variant="contained">Sign Up</Button>
