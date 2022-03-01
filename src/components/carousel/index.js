@@ -24,11 +24,11 @@ const HomeCarousel = (props)=>{
     function Item(props)
     {
         return (
-            <Card sx={{ maxWidth: 700, margin:"5% auto 0% auto" }}>
+            <Card sx={{ maxWidth: 700, margin:"auto" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="200"
+                height="300"
                 image= {image}
                 alt="green iguana"
               />
@@ -45,13 +45,12 @@ const HomeCarousel = (props)=>{
         );
     }
     return (
-        <div>
+        <div  style={{margin:"3%"}}>
         <Carousel>
             {
                 items.map( (item, i) => <Item key={i} item={item} /> )
             }
         </Carousel>
-        <Footer />
         </div>
 
     )
