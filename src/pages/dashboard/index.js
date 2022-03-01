@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
+import Box from "@material-ui/core/box";
 
 
 const Dashboard = ()=> {
@@ -41,22 +42,26 @@ const Dashboard = ()=> {
           })
   }
   return (
-    <div className='signup-form'>
-    <h1>Update Profile Info</h1>
-    <TextField id="outlined-basic" label="Name" variant="outlined" 
+    <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+
+    <Box className='signup-form' id="signup-box">
+    <p id="sign-up">Update Account Info</p>
+    <TextField id="outlined-basic" label="Name" variant="outlined" margin="dense"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" 
+    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" 
+    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense"
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" 
+   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense"
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={update} variant="contained">Update</Button>
-    </div>
+    <Button onClick={update} variant="contained" id="signup-btn" fullWidth>Update</Button>
+    </Box>
+ 
+    </Box>
 
   );
 }
