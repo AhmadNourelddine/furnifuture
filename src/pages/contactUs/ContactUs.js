@@ -18,16 +18,15 @@ const ContactUs = ()=> {
 
   const send = async()=>{
 
-    console.lo(message)
+    console.log(message)
     let object={
         "email": email,
         "message": message
     }
-    await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
+    await fetch("http://127.0.0.1:8000/api/auth/contact-us-message",{
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+token
         },
         method: "POST",
         body: JSON.stringify(object)
