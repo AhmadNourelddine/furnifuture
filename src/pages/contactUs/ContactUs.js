@@ -12,6 +12,7 @@ const ContactUs = ()=> {
 
   const [email,setEmail]= useState('');       
   const [message,setMessage]= useState('');
+  const [subject,setSubject]= useState('');
 
   let token = window.localStorage.getItem('authToken')
   let Navigate = useNavigate()
@@ -21,7 +22,8 @@ const ContactUs = ()=> {
     console.log(message)
     let object={
         "email": email,
-        "message": message
+        "message": message,
+        "subject": subject
     }
     await fetch("http://127.0.0.1:8000/api/auth/contact-us-message",{
         headers: {
@@ -46,9 +48,11 @@ const ContactUs = ()=> {
 
     <Box className='signup-form' id="signup-box">
     <p id="sign-up">Feel Free To Contact Us</p>
-    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
+    <TextField className="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/> 
-    <TextField multiline={true} rows={5} id="outlined-basic" label="Message" variant="outlined" margin="dense"
+    <TextField className="outlined-basic" label="Subject" variant="outlined" margin="dense"
+    onChange = {e=>setSubject(e.target.value)}/>
+    <TextField multiline={true} rows={5} className="outlined-basic" label="Message" variant="outlined" margin="dense"
     onChange = {e=>setMessage(e.target.value)}/>
 
     <Button onClick={send} variant="contained" id="signup-btn"  margin="dense" fullWidth>Send</Button>
