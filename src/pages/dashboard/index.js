@@ -46,16 +46,16 @@ const Dashboard = ()=> {
 
     <Box className='signup-form' id="signup-box">
     <p id="sign-up">Update Account Info</p>
-    <TextField id="outlined-basic" label="Name" variant="outlined" margin="dense"
+    <TextField className="outlined-basic" label="Name" variant="outlined" margin="dense"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
+    <TextField className="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
+    <TextField className="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense" type="password"
+   <TextField className="outlined-basic" label="Confirm Password" variant="outlined" margin="dense" type="password"
     onChange = {e=>setCpassword(e.target.value)}/>
 
     <Button onClick={update} variant="contained" id="signup-btn" fullWidth>Update</Button>

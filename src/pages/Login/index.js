@@ -49,10 +49,10 @@ const Login = ()=> {
 
     <Box className='login-form' id="signin-box">
     <p id="sign-in">Sign In To Your Account</p>
-    <TextField id="outlined-basic" label="Email" variant="outlined" margin="normal"
+    <TextField className="outlined-basic" label="Email" variant="outlined" margin="normal"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
+    <TextField className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
     onChange = {e=>setPassword(e.target.value)} />
 
     <Button onClick={logIn} variant="contained" fullWidth id="signin-btn">
