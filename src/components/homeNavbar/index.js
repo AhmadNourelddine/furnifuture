@@ -19,14 +19,14 @@ import websiteLogo from '../../assets/furniFuture-logo.png';
 const Navbar = () => {
 
     return(
-        <AppBar position="static" color="transparent" id="app-bar">
+        <AppBar position="static" color="inherit" id="app-bar">
         <Container>
           <Toolbar disableGutters >
 
-          <IconButton sx={{ p: 0 }}>
+          <IconButton component={Link} to="/about" sx={{ p: 0 }} size="large" >
 
                 <Avatar alt="website Logo" srcSet={websiteLogo} />
-                <Typography  sx={{mx:2}}>FurniFuture</Typography>
+                <Typography  sx={{mx:2, color: 'white'}}>FurniFuture</Typography>
               </IconButton>
               
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} 
@@ -34,7 +34,7 @@ const Navbar = () => {
               
               <Button component={Link} to="/about" className="toolbar-btn" color="inherit"
                 key="about"
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
               >
                 ABOUT
               </Button>
@@ -42,7 +42,7 @@ const Navbar = () => {
           
               <Button component={Link} to="/login" className="toolbar-btn" color="inherit"
                 key="signin"
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
               >
                 SIGNIN
               </Button>
@@ -50,7 +50,7 @@ const Navbar = () => {
               
               <Button component={Link} to="/signup" className="toolbar-btn" color="inherit"
                 key="signup"
-                sx={{ my: 2, color: 'black', display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
               >
                 SIGNUP
               </Button>
