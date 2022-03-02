@@ -10,6 +10,7 @@ import Box from "@material-ui/core/box";
 
 const ContactUs = ()=> {
 
+  const [email,setEmail]= useState('');       
   const [message,setMessage]= useState('');
 
   let token = window.localStorage.getItem('authToken')
@@ -19,6 +20,7 @@ const ContactUs = ()=> {
 
     console.lo(message)
     let object={
+        "email": email,
         "message": message
     }
     await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
@@ -45,7 +47,9 @@ const ContactUs = ()=> {
 
     <Box className='signup-form' id="signup-box">
     <p id="sign-up">Feel Free To Contact Us</p>
-    <TextField id="outlined-basic" label="Name" variant="outlined" margin="dense"
+    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
+    onChange = {e=>setEmail(e.target.value)}/>
+    <TextField id="outlined-basic" label="Message" variant="outlined" margin="dense"
     onChange = {e=>setMessage(e.target.value)}/>
 
     <Button onClick={send} variant="contained" id="signup-btn" fullWidth>Send</Button>
