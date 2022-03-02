@@ -58,7 +58,7 @@ const HomeCarousel = (props)=>{
         );
     }
     return (
-        <div  style={{margin:"5%"}}>
+        <div  style={{padding:"5%", margin:"2% 10%", boxShadow:"rgb(0 0 0 / 50%) 0 20px 20px 0px"}}>
         <Carousel>
             {
                 items.map( (item, i) => <Item key={i} item={item} /> )
