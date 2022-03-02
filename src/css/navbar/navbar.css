@@ -8,4 +8,9 @@
 .toolbar-btn{
     color:white;
     text-decoration: none;
+    margin:auto 3% !important;
+}
+
+.toolbar-btn:hover{
+    opacity: 0.6;
 }
