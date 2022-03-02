@@ -37,7 +37,7 @@ const ContactUs = ()=> {
   }
 
   const cancel = async()=>{
-    Navigate('/dashboard')
+    Navigate('/about')
   }
 
   return (
@@ -50,7 +50,7 @@ const ContactUs = ()=> {
 
     <Button onClick={send} variant="contained" id="signup-btn" fullWidth>Send</Button>
     <Button onClick={cancel} variant="contained" id="signup-btn" fullWidth>Cancel</Button>
-    
+
     </Box>
  
     </Box>
