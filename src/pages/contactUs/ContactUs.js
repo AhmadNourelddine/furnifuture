@@ -10,22 +10,16 @@ import Box from "@material-ui/core/box";
 
 const ContactUs = ()=> {
 
-  const [name,setName]= useState('');
-  const [email,setEmail]= useState('');
-  const [password,setPassword]= useState('');
-  const [Cpassword,setCpassword]= useState('');
+  const [message,setMessage]= useState('');
 
   let token = window.localStorage.getItem('authToken')
   let Navigate = useNavigate()
 
-  const update = async()=>{
+  const send = async()=>{
 
-    console.log(email+password)
+    console.lo(message)
     let object={
-      "name":name,
-      "email" : email,
-      "password": password,
-      "password_confirmation": Cpassword
+        "message": message
     }
     await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
         headers: {
@@ -41,24 +35,22 @@ const ContactUs = ()=> {
             console.log(result)
           })
   }
+
+  const cancel = async()=>{
+    Navigate('/dashboard')
+  }
+
   return (
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='signup-form' id="signup-box">
-    <p id="sign-up">Update Account Info</p>
+    <p id="sign-up">Feel Free To Contact Us</p>
     <TextField id="outlined-basic" label="Name" variant="outlined" margin="dense"
-    onChange = {e=>setName(e.target.value)}/>
+    onChange = {e=>setMessage(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
-    onChange = {e=>setEmail(e.target.value)}/>
-
-    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense"
-    onChange = {e=>setPassword(e.target.value)}/>
-
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense"
-    onChange = {e=>setCpassword(e.target.value)}/>
-
-    <Button onClick={update} variant="contained" id="signup-btn" fullWidth>Update</Button>
+    <Button onClick={send} variant="contained" id="signup-btn" fullWidth>Send</Button>
+    <Button onClick={cancel} variant="contained" id="signup-btn" fullWidth>Cancel</Button>
+    
     </Box>
  
     </Box>
