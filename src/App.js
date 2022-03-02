@@ -2,8 +2,6 @@
 import React from 'react';
 import Main from "./layout/Main";
 import {Routes, Route} from 'react-router-dom';
-import Navbar from "./components/homeNavbar";
-import HomeCarousel from "./components/carousel";
 import About from "./pages/about";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
