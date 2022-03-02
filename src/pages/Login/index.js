@@ -1,7 +1,7 @@
 
 import React from 'react';
 import "../../css/login/login.css";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
@@ -13,15 +13,27 @@ const Login = ()=> {
   const [email,setEmail]= useState('');
   const [password,setPassword]= useState('');
   const [redirect, setRedirect]= useState(false);
+  
+  let Navigate = useNavigate();
+  
+  useEffect(() => {
 
-  let Navigate = useNavigate()
+    if(redirect)
+    {
+      Navigate('/dashboard')
+    }
+  },[redirect]);
+
+ 
 
   const logIn = async()=>{
+
     console.log(email+password)
     let object={
       "email" : email,
       "password": password
     }
+
     await fetch("http://127.0.0.1:8000/api/auth/login",{
         headers: {
           'Accept': 'application/json',
@@ -37,10 +49,6 @@ const Login = ()=> {
             window.localStorage.setItem('authToken', token)
             console.log(result)
           })
-      if(redirect)
-      {
-        Navigate('/dashboard')
-      }
   }
 
   return (

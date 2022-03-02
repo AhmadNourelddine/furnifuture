@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import "../../css/signup/signup.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useEffect } from "react-router-dom";
 import {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
@@ -14,8 +14,16 @@ const SignUp = ()=> {
   const [email,setEmail]= useState('');
   const [password,setPassword]= useState('');
   const [Cpassword,setCpassword]= useState('');
+  const [redirect,setRedirect]= useState(false);
 
   let Navigate = useNavigate()
+  useEffect(() => {
+
+    if(redirect)
+    {
+      Navigate('/login')
+    }
+  },[redirect]);
 
   const signup = async()=>{
 
@@ -36,8 +44,8 @@ const SignUp = ()=> {
     })
           .then((response)=>response.json())
           .then((result)=>{
+            setRedirect(true)
             console.log(result)
-            Navigate('/login')
           })
   }
   return (
