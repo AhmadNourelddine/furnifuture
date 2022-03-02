@@ -48,11 +48,11 @@ const ContactUs = ()=> {
     <Box className='signup-form' id="signup-box">
     <p id="sign-up">Feel Free To Contact Us</p>
     <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
-    onChange = {e=>setEmail(e.target.value)}/>
-    <TextField id="outlined-basic" label="Message" variant="outlined" margin="dense"
+    onChange = {e=>setEmail(e.target.value)}/> 
+    <TextField multiline={true} rows={5} id="outlined-basic" label="Message" variant="outlined" margin="dense"
     onChange = {e=>setMessage(e.target.value)}/>
 
-    <Button onClick={send} variant="contained" id="signup-btn" fullWidth>Send</Button>
+    <Button onClick={send} variant="contained" id="signup-btn"  margin="dense" fullWidth>Send</Button>
     <Button onClick={cancel} variant="contained" id="signup-btn" fullWidth>Cancel</Button>
 
     </Box>
