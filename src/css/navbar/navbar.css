@@ -1,18 +1,11 @@
 
 #app-bar{
-    color:black;
+    background-color: #6F1A07;
+    color:white;
     text-decoration: none;
-}
-
-.Link{
-    text-decoration: none;
-}
-
-.Button{
-    color:black;
 }
 
 .toolbar-btn{
-    color:black;
+    color:white;
     text-decoration: none;
 }
