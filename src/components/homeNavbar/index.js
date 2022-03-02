@@ -44,7 +44,7 @@ const Navbar = () => {
                 key="signin"
                 sx={{ my: 2, display: 'block' }}
               >
-                SIGNIN
+                SIGN IN
               </Button>
             
               
@@ -52,7 +52,7 @@ const Navbar = () => {
                 key="signup"
                 sx={{ my: 2, display: 'block' }}
               >
-                SIGNUP
+                SIGN UP
               </Button>
               
           </Box>
