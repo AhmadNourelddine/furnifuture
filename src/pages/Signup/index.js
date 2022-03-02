@@ -51,10 +51,10 @@ const SignUp = ()=> {
     <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense"
+    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense"
+   <TextField id="outlined-basic" label="Confirm Password" variant="outlined" margin="dense" type="password"
     onChange = {e=>setCpassword(e.target.value)}/>
 
     <Button onClick={signup} variant="contained" id="signup-btn" fullWidth>Sign Up</Button>
