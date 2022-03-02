@@ -1,8 +1,8 @@
 
 import * as React from 'react';
 import "../../css/signup/signup.css";
-import { useNavigate, useEffect } from "react-router-dom";
-import {useState} from 'react';
+import { useNavigate } from "react-router-dom";
+import {useState, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
