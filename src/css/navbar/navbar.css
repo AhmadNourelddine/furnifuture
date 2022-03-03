@@ -4,11 +4,13 @@
     color:white;
     text-decoration: none;
 }
-
+#toolbar-container{
+    max-width: none;
+}
 .toolbar-btn{
     color:white;
     text-decoration: none;
-    margin:auto 3% !important;
+    margin:auto 2% !important;
 }
 
 .toolbar-btn:hover{
