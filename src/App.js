@@ -15,20 +15,12 @@ function App() {
       { 
         <div>
           <Routes>
-          <Route exact path="/" element={<About/>} />
+          <Route exact path="/*" element={<About/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
-          {/* <Route exact path="/dashboard" element={<Dashboard/>} /> */}
           <Route exact path="/contact-us" element={<ContactUs/>} />
-          <Route
-            path="/dashboard"
-            element={
-              <RequireAuth redirectTo="/dashboard">
-                <Dashboard />
-              </RequireAuth>
-            }
-      />
+          <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       }
@@ -36,10 +28,5 @@ function App() {
   );
 }
 
-function RequireAuth({ children, redirectTo }) {
-  let Navigate = useNavigate();
-  let isAuthenticated = window.localStorage.getItem('authToken');
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
-}
 
 export default App;
