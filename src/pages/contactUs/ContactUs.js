@@ -2,7 +2,7 @@
 import * as React from 'react';
 import "../../css/signup/signup.css";
 import { useNavigate } from "react-router-dom";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
@@ -13,9 +13,17 @@ const ContactUs = ()=> {
   const [email,setEmail]= useState('');       
   const [message,setMessage]= useState('');
   const [subject,setSubject]= useState('');
+  const [redirect, setRedirect]= useState(false);
 
-  let token = window.localStorage.getItem('authToken')
   let Navigate = useNavigate()
+  
+  useEffect(() => {
+
+    if(redirect)
+    {
+      Navigate('/dashboard')
+    }
+  },[redirect]);
 
   const send = async()=>{
 
@@ -25,7 +33,7 @@ const ContactUs = ()=> {
         "message": message,
         "subject": subject
     }
-    await fetch("http://127.0.0.1:8000/api/auth/contact-us-message",{
+    await fetch("http://127.0.0.1:8000/api/contact-us-message",{
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -35,6 +43,7 @@ const ContactUs = ()=> {
     })
           .then((response)=>response.json())
           .then((result)=>{
+            setRedirect(true)
             console.log(result)
           })
   }
@@ -52,7 +61,7 @@ const ContactUs = ()=> {
     onChange = {e=>setEmail(e.target.value)}/> 
     <TextField className="outlined-basic" label="Subject" variant="outlined" margin="dense"
     onChange = {e=>setSubject(e.target.value)}/>
-    <TextField multiline={true} rows={5} className="outlined-basic" label="Message" variant="outlined" margin="dense"
+    <TextField fullWidth multiline={true} rows={5} className="outlined-basic" label="Message" variant="outlined" margin="dense"
     onChange = {e=>setMessage(e.target.value)}/>
 
     <Button onClick={send} variant="contained" id="signup-btn"  margin="dense" fullWidth>Send</Button>
