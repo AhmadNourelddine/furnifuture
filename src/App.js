@@ -3,7 +3,7 @@ import React from 'react';
 import Main from "./layout/Main";
 import {Routes, Route} from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import About from "./pages/about";
+import About from "./pages/aboutpage";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Dashboard from "./pages/dashboard";
@@ -16,7 +16,7 @@ function App() {
         <div>
           <Routes>
           <Route exact path="/*" element={<About/>} />
-          <Route exact path="/about" element={<About/>} />
+          <Route exact path="/aboutpage" element={<About/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
