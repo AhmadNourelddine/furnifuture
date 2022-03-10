@@ -33,7 +33,7 @@ const Navbar = () => {
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} 
               style={{display:"flex", justifyContent:"flex-end"}}>
               
-              <Button component={Link} to="/aboutpage" className="toolbar-btn" color="inherit"
+              <Button component={Link} to="/about" className="toolbar-btn" color="inherit"
                 key="about"
                 sx={{ my: 2, display: 'block' }}
               >
