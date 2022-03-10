@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Dashboard from "./pages/dashboard";
 import ContactUs from './pages/contactUs/ContactUs';
+import Buy from './pages/buy';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
           <Route exact path="/*" element={<About/>} />
           <Route exact path="/about" element={<About/>} />
+          <Route exact path="/buy" element={<Buy/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />

@@ -1,0 +1,43 @@
+
+.buy-page{
+    background-color: #ECDCCF;
+    height: 100vh;
+}
+.buy-page-title{
+
+    font-size: 3rem !important;
+    padding: 3% 2% 2% 5% !important;
+    font-weight: 700 !important;
+}
+.buy-furniture-search{
+    margin: auto 2rem;
+    display: flex;
+    flex-direction: row;
+    background-color: #D4C6BA;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.buy-search-bar{
+    width: 50%;
+    margin: 2rem 1rem ;
+}
+.ForwardRef-searchIconButton-17{
+    display: none !important;
+}
+.buy-search-category{
+    width: 20%;
+    border-radius: 10px;
+    margin: 2rem 0;
+    background-color: white;
+    padding: auto 1rem;
+}
+.buy-search-btn{
+    width: 15%;
+    border-radius: 10px !important;
+    margin: auto 1rem !important;
+    height: 3rem;
+    align-self: center;
+    color:white !important;
+    background-color: #D86544 !important;
+}
