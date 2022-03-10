@@ -13,7 +13,7 @@ const Footer = ()=>{
     }
 
     return(
-        <div style={{ width:"100%", backgroundColor:"black", color:"white"}}>
+        <div style={{ width:"100%", backgroundColor:"#6F1A07", color:"white"}}>
            <div style={{padding:"2%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
            <Typography onClick={navigateContactUs} id="contact-us">Contact Us</Typography>
             <Typography>Email</Typography>
