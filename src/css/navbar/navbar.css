@@ -7,12 +7,31 @@
 #toolbar-container{
     max-width: none;
 }
+#toolbar-furnifuture{
+    font-weight: 700;
+    font-size: 70%;
+    color: #D86544;
+}
 .toolbar-btn{
     color:white;
     text-decoration: none;
-    margin:auto 2% !important;
+    margin:auto 1% !important;
 }
-
+#toolbar-signin{
+    margin:auto 1% auto 4% !important;
+    font-weight: 400;
+    font-size: 80%;
+}
+#line-between{
+    border: solid white 1px;
+}
+#toolbar-signup{
+    margin:auto 1% auto 0% !important;
+    font-weight: 400;
+    font-size: 80%;
+}
 .toolbar-btn:hover{
-    opacity: 0.6;
+    /* opacity: 0.6; */
+    font-weight: 900 !important;
+    font-size: 90% !important;
 }

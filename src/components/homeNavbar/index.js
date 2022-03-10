@@ -26,34 +26,55 @@ const Navbar = () => {
           <IconButton component={Link} to="/about" sx={{ p: 0 }} size="large" >
 
                 <Avatar alt="website Logo" srcSet={websiteLogo} />
-                <Typography  sx={{mx:2, color: 'white'}}>FurniFuture</Typography>
+                <Typography  sx={{mx:2, color: 'white'}} id="toolbar-furnifuture">
+                  FurniFuture</Typography>
               </IconButton>
               
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} 
               style={{display:"flex", justifyContent:"flex-end"}}>
               
-              <Button component={Link} to="/about" className="toolbar-btn" color="inherit"
+              <Button component={Link} to="/aboutpage" className="toolbar-btn" color="inherit"
                 key="about"
                 sx={{ my: 2, display: 'block' }}
               >
                 ABOUT
               </Button>
-            
-          
+
               <Button component={Link} to="/login" className="toolbar-btn" color="inherit"
+                key="signin"
+                sx={{ my: 2, display: 'block' }}
+              >
+                BUY
+              </Button>
+
+              <Button component={Link} to="/login" className="toolbar-btn" color="inherit"
+                key="signin"
+                sx={{ my: 2, display: 'block' }}
+              >
+                SELL
+              </Button>
+            
+              <Button component={Link} to="/login" className="toolbar-btn" color="inherit"
+                key="signin"
+                sx={{ my: 2, display: 'block' }}
+              >
+                Delivery
+              </Button>
+
+              <Button component={Link} to="/login" className="toolbar-btn" id="toolbar-signin" color="inherit"
                 key="signin"
                 sx={{ my: 2, display: 'block' }}
               >
                 SIGN IN
               </Button>
-            
-              
-              <Button component={Link} to="/signup" className="toolbar-btn" color="inherit"
+              <div id="line-between"></div>
+              <Button component={Link} to="/signup" className="toolbar-btn" id="toolbar-signup" color="inherit"
                 key="signup"
                 sx={{ my: 2, display: 'block' }}
               >
                 SIGN UP
               </Button>
+
               
           </Box>
               </Toolbar>
