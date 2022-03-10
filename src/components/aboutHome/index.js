@@ -8,7 +8,7 @@ const AboutHome = ()=>{
         <div id='about-page-home'>
             <div id='about-welcome'>
                 <Typography className="about-welcome-to-the">WELCOME TO THE </Typography>
-                <Typography className="about-welcome-furnifuture">FURNIFUTURE </Typography>
+                <Typography className="about-welcome-furnifuture">&nbsp; FURNIFUTURE </Typography>
             </div>
             <div id='about-getstarted'>
                 <div id='about-buy-sell-getstarted'>
