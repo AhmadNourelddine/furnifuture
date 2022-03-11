@@ -1,0 +1,82 @@
+.sell-page{
+    background-color: #ECDCCF;
+    height: max-content;
+}
+.sell-page-title{
+
+    font-size: 3rem !important;
+    padding: 3% 2% 2% 2rem !important;
+    font-weight: 700 !important;
+}
+
+.sell-page-form{
+    margin: 2rem 2rem 0;
+    height: max-content;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; */
+    background-color: #D4C6BA;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.sell-page-inputs-and-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sell-page-form-col1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+.sellpage-input-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2rem;
+}
+.sellpage-input-row-textinput{
+    background-color: gray;
+    color: white !important;
+    border-radius: 10px;
+    margin: 0 2rem !important;
+}
+/* .sellpage-input-row-description{
+    height: 4rem;
+    background-color: gray;
+    color: white !important;
+    border-radius: 10px;
+    margin: 0 2rem !important;
+} */
+.sell-page-form-col2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.sellpage-image{
+    height: 20rem;
+    width: 30rem;
+    border-radius: 10px;
+    background-color: gray;
+
+}
+
+.sellpage-upload-image-section{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start !important;
+    align-items: stretch;
+}
