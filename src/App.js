@@ -11,6 +11,7 @@ import ContactUs from './pages/contactUs/ContactUs';
 import Buy from './pages/buy';
 import Sell from './pages/sell';
 import Delivery from './pages/delivery';
+import CreateShippingProfile from './pages/create-shipping-profile/create-shipping-profile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/create-shipping-profile" element={<CreateShippingProfile/>} />
           </Routes>
         </div>
       }
