@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/sell/sell.css';
 
@@ -33,6 +33,7 @@ const Sell = ()=>{
                     </div>
                     <div className='sell-page-form-col2'>
                         <div className='sellpage-image'></div>
+                        <Divider sx={{my:3}} light/>
                         <div className='sellpage-upload-image-section'>
                             <Button></Button>
                             <Typography>Upload Image</Typography>

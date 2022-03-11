@@ -18,7 +18,7 @@ const Delivery = ()=>{
                     Create Your Delivery Profile
                     </Typography>
 
-                <Button size='large' className='deliverypage-create-deliveryprofile-btn' sx={{mx:2}}>Create</Button>
+                <Button style={{padding:'0.5rem 2rem'}} size='large' className='deliverypage-create-deliveryprofile-btn' sx={{mx:2}}>Create</Button>
                 </div>
 
             <div className='buy-furniture-search'>
