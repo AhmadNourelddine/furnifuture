@@ -54,7 +54,7 @@ const Navbar = () => {
                 SELL
               </Button>
             
-              <Button component={Link} to="/login" className="toolbar-btn" color="inherit"
+              <Button component={Link} to="/delivery" className="toolbar-btn" color="inherit"
                 key="signin"
                 sx={{ my: 2, display: 'block' }}
               >
