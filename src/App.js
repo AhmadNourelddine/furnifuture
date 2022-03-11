@@ -9,6 +9,7 @@ import SignUp from "./pages/Signup";
 import Dashboard from "./pages/dashboard";
 import ContactUs from './pages/contactUs/ContactUs';
 import Buy from './pages/buy';
+import Sell from './pages/sell';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/*" element={<About/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/buy" element={<Buy/>} />
+          <Route exact path="/sell" element={<Sell/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
