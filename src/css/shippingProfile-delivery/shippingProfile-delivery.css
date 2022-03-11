@@ -1,0 +1,24 @@
+
+.shipping-profile-delivery-card{
+    padding: 0 2rem;
+}
+
+.avatar-and-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shippingprofile-info-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shippingprofile-delivery-save{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

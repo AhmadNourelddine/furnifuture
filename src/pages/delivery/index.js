@@ -4,6 +4,7 @@ import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
 import FurnitureItem from '../../components/furnitureItem';
+import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
 
 const Delivery = ()=>{
 
@@ -44,11 +45,12 @@ const Delivery = ()=>{
                     Search
                 </Button>
             </div>
-            <div className='buy-page-items'>
-            <FurnitureItem />
-            <FurnitureItem />
-            <FurnitureItem />
-            <FurnitureItem />
+            <div className='delivery-page-items'>
+            <ShippingProfileCard/>
+            <ShippingProfileCard/>
+            <ShippingProfileCard/>
+            <ShippingProfileCard/>
+            <ShippingProfileCard/>
             </div>
             
         </div>
