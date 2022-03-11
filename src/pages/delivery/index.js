@@ -13,8 +13,12 @@ const Delivery = ()=>{
     return(
         <div className='buy-page'>
             <div className='deliverypage-title-section'>
-                <Typography className='buy-page-title'>Create Your Delivery Profile</Typography>
-                <Button>Create</Button>
+
+                <Typography className='buy-page-title'>
+                    Create Your Delivery Profile
+                    </Typography>
+
+                <Button size='large' className='deliverypage-create-deliveryprofile-btn' sx={{mx:2}}>Create</Button>
                 </div>
 
             <div className='buy-furniture-search'>
