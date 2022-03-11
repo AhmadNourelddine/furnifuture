@@ -3,6 +3,7 @@ import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/buy/buy.css';
+import FurnitureItem from '../../components/furnitureItem';
 
 const Buy = ()=>{
 
@@ -30,6 +31,13 @@ const Buy = ()=>{
                     Search
                 </Button>
             </div>
+            <div className='buy-page-items'>
+            <FurnitureItem />
+            <FurnitureItem />
+            <FurnitureItem />
+            <FurnitureItem />
+            </div>
+            
         </div>
     );
 }

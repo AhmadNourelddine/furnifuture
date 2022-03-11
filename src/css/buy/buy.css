@@ -1,7 +1,7 @@
 
 .buy-page{
     background-color: #ECDCCF;
-    height: 100vh;
+    height: max-content;
 }
 .buy-page-title{
 
@@ -40,4 +40,13 @@
     align-self: center;
     color:white !important;
     background-color: #D86544 !important;
+}
+.buy-page-items{
+    margin: 2rem 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #D4C6BA;
+    border-radius: 10px;
+    justify-content: center;
 }

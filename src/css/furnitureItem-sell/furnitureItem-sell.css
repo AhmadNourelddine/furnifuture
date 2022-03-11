@@ -1,0 +1,17 @@
+.sell-furniture-item-date{
+    font-weight: 100;
+    font-size: 150%;
+    padding: 2rem 0;
+}
+
+.sell-furniture-item-price{
+    font-weight: 900;
+}
+
+.sell-furniture-item-button{
+    height: 2rem;
+    width: 8rem;
+    background-color: #5094AA;
+    color: white;
+    border-radius: 5px;
+}
