@@ -5,7 +5,7 @@
 }
 
 .sell-furniture-item-price{
-    font-weight: 900;
+    font-weight: 900 !important;
 }
 
 .sell-furniture-item-button{
