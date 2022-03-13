@@ -33,6 +33,7 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
+
     /**
      * Register a User.
      *
@@ -43,6 +44,34 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user = User::create(array_merge(
+                    $validator->validated(),
+                    ['password' => bcrypt($request->password)],
+                ));
+
+
+        return response()->json([
+            'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
+    }
+
+    /**
+     * Register a Shipping User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function registerShipping(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|min:6',
+            'phone_number' => 'required|string|between:2,100',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -59,6 +88,7 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
+
 
     /**
      * Log the user out (Invalidate the token).
