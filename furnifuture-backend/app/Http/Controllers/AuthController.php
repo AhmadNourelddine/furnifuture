@@ -54,7 +54,9 @@ class AuthController extends Controller
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)],
+                    ['user_products'=>[]],
                     ['saved_products'=>[]],
+                    ['saved_shipping'=>[]],
                 ));
 
 
