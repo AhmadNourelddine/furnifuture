@@ -9,31 +9,6 @@ use Validator;
 
 class CartController extends Controller
 {
-    public function sellProduct(Request $request){
-
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|between:2,100',
-            'description' => 'required|string|max:100',
-            'location' => 'required|string|max:100',
-            'phone_number' => 'required|string|max:100',
-            'category' => 'required|string',
-            'price' => 'required|numeric',
-            'image' => 'string',
-        ]);
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-        
-        $product = Product::create(array_merge(
-                    $validator->validated(),
-                ));
-
-
-        return response()->json([
-            'message' => 'Product successfully created',
-            'product' => $product
-        ], 201);
-    }
 
     public function saveProduct(Request $request)
     {
