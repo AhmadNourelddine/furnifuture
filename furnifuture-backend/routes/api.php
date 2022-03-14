@@ -26,7 +26,9 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
 
+Route::post('/sell-product', [CartController::class, 'sellProduct']);
 Route::post('/saveProduct-toCart', [CartController::class, 'saveProduct']);
+Route::post('/removeProduct-fromCart', [CartController::class, 'removeProduct']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
