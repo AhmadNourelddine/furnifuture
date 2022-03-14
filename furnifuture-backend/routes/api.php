@@ -27,7 +27,9 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
 
+Route::post('/search-product', [ProductController::class, 'searchProduct']);
 Route::post('/sell-product', [ProductController::class, 'sellProduct']);
+Route::post('/edit-product', [ProductController::class, 'editProduct']);
 Route::post('/saveProduct-toCart', [CartController::class, 'saveProduct']);
 Route::post('/removeProduct-fromCart', [CartController::class, 'removeProduct']);
 Route::post('/user-products', [ProductController::class, 'getUserProducts']);
