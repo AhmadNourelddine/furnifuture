@@ -15,7 +15,7 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register','registerShipping',]]);
     }
     /**
      * Get a JWT via given credentials.
@@ -54,6 +54,7 @@ class AuthController extends Controller
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)],
+                    ['saved_products'=>[]],
                 ));
 
 
@@ -75,7 +76,7 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed|min:6',
             'phone_number' => 'required|string|between:2,100',
             'location' => 'required|string',
-            'vehicle_load' => 'required|float',
+            'vehicle_load' => 'required|numeric',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -84,6 +85,7 @@ class AuthController extends Controller
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)],
+                    ['is_shipping'=>true],
                 ));
 
 
