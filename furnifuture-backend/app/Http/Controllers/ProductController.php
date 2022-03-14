@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 use Validator;
 
 class ProductController extends Controller
@@ -99,13 +100,14 @@ class ProductController extends Controller
     //  return response()->json([$product,"success"=>true]);
     // }
 
-    public function getCartProducts(Request $request)
+    function getUserProducts(Request $request)
     {
-        $user_id = $request->input('user_id');
+        $user_id = $request->get('user_id');
         $user = User::find($user_id);
-        $savedProducts_ids = $user->saved_products;
-        $savedProducts = Product::find($cartProducts_ids);
-        return response()->json([$savedProducts]);
+        $userProducts_ids = $user->user_products;
+        $userProducts = Product::find($userProducts_ids);
+
+        return response()->json(["user_products"=>$userProducts]);
     }
 
     public function allProducts()
