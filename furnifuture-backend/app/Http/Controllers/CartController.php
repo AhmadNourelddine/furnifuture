@@ -48,22 +48,13 @@ class CartController extends Controller
         
     }
 
-    function getUserProducts(Request $request)
+    public function getCartProducts(Request $request)
     {
-        $user_id = $request->get('user_id');
+        $user_id = $request->input('user_id');
         $user = User::find($user_id);
-        $userProducts_ids = $user->user_products;
-        $userProducts = Product::find($userProducts_ids);
-
-        return response()->json([$userProducts]);
+        $savedProducts_ids = $user->saved_products;
+        $savedProducts = Product::find($cartProducts_ids);
+        return response()->json(["saved_products"=>$savedProducts]);
     }
 
-    function getUserCartProducts(Request $request)
-    {
-        $user = User::find('6227e0604a0b3c034f18b28c');
-        $userProducts_ids = $user->user_products;
-        $userProducts = Product::find($userProducts_ids);
-
-        return response()->json([$userProducts]);
-    }
 }
