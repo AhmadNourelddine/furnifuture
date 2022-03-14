@@ -9,7 +9,7 @@ use Validator;
 
 class ProductController extends Controller
 {
-        public function sellProduct(Request $request){
+    public function sellProduct(Request $request){
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|string',
@@ -43,7 +43,7 @@ class ProductController extends Controller
         ], 201);
     }
 
-    public function updateProduct(Request $request){
+    public function editProduct(Request $request){
 
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|string',
@@ -72,33 +72,6 @@ class ProductController extends Controller
         ], 201);
     }
     
-    // public function editProduct(Request $request)
-    // {    
-    //  $validator = Validator::make($request->all(), [
-    //      'title' => 'required|string',
-    //      'description' => 'required|string',
-    //      'category' => 'required|string',
-    //      'location' => 'required|string',
-    //      'phone_number' => 'required|string',
-    //      'price' => 'required|numeric',
-    //  ]);
- 
-     
-    //  if($validator->fails()){
-    //      return response()->json($validator->errors()->toJson(), 400);
-    //  }
-
-    // $product = Product::find($request->input('product_id'));
-    // $product->name = $request->input('name');
-    // $product->description = $request->input('description');
-    // $product->category = $request->input('category');
-    // $product->location = $request->input('location');
-    // $product->phone_number = $request->input('phone_number');
-    // $product->price = $request->input('price');
-    // $product->save();
-
-    //  return response()->json([$product,"success"=>true]);
-    // }
 
     function getUserProducts(Request $request)
     {
@@ -108,6 +81,20 @@ class ProductController extends Controller
         $userProducts = Product::find($userProducts_ids);
 
         return response()->json(["user_products"=>$userProducts]);
+    }
+
+    public function searchProduct(Request $request){
+        
+        $search_term = $request->input('search');
+        $results = Product::where('title','LIKE',"%$search_term%")->get();
+        return response()->json([$results]);
+    }
+
+    public function searchShipping(Request $request){
+        
+        $search_term = $request->input('search');
+        $results = User::where('location','LIKE',"%$search_term%")->get();
+        return response()->json([$results]);
     }
 
     public function allProducts()
@@ -121,6 +108,7 @@ class ProductController extends Controller
         $product_id = $request->input('product_id');
         $product = Product::find($product_id);
         $product->delete();
+        // needs removing from user_products
         return response()->json(['status'=>'product deleted successfully']);
     }
 }
