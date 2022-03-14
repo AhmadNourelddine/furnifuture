@@ -57,9 +57,26 @@ class ProductController extends Controller
      return response()->json([$product,"success"=>true]);
     }
 
+    public function getCartProducts(Request $request)
+    {
+        $user_id = $request->input('user_id');
+        $user = User::find($user_id);
+        $savedProducts_ids = $user->saved_products;
+        $savedProducts = Product::find($cartProducts_ids);
+        return response()->json([$savedProducts]);
+    }
+
     public function allProducts()
     {
         $products = Product::all();
         return response()->json([$products]);
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        $product_id = $request->input('product_id');
+        $product = Product::find($product_id);
+        $product->delete();
+        return response()->json(['status'=>'product deleted successfully']);
     }
 }
