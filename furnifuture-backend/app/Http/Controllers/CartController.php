@@ -57,4 +57,13 @@ class CartController extends Controller
         return response()->json(["saved_products"=>$savedProducts]);
     }
 
+    public function getCartShipping(Request $request)
+    {
+        $user_id = $request->input('user_id');
+        $user = User::find($user_id);
+        $savedShipping_ids = $user->saved_shipping;
+        $savedShipping = User::find($savedShipping_ids);
+        return response()->json(["saved_shiiping"=>$savedShipping]);
+    }
+
 }
