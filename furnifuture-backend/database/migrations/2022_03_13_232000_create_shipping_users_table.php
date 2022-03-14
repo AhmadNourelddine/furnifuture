@@ -20,7 +20,7 @@ class CreateShippingUsersTable extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->string('location');
-            $table->string('vehicle_load');
+            $table->float('vehicle_load');
             $table->boolean('is_shipping_user');
             $table->rememberToken();
             $table->timestamps();
