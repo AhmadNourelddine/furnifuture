@@ -21,6 +21,7 @@ class Product extends Model
         'location',
         'phone_number',
         'price',
-        'image'
+        'image',
+        'user_id',
     ];
 }
