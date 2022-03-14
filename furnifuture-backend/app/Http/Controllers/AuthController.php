@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Shipping_User;
+use Illuminate\Validation\Rule;
 use Validator;
 
 class AuthController extends Controller
@@ -72,6 +74,8 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
             'phone_number' => 'required|string|between:2,100',
+            'location' => 'required|string',
+            'vehicle_load' => 'required|float',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
@@ -89,6 +93,76 @@ class AuthController extends Controller
         ], 201);
     }
 
+            /**
+     * update User profile.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function updateProfile(Request $request)
+    {
+        if (Auth::check())
+        {
+            $user = Auth::user();
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|between:2,100',
+                'email' => ['required','string','email','max:100', Rule::unique('users')->ignore($user->id)],
+                'password' => 'required|string|confirmed|min:6',
+            ]);
+
+            if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+            }
+            
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+            return response()->json([
+                'message' => 'User successfully updated',
+                'user' => $user
+            ], 201);
+
+        }
+    }
+            /**
+     * update shipping user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+     public function updateProfileShipping(Request $request)
+        {
+            if (Auth::check())
+            {
+                $user = Auth::user();
+    
+                $validator = Validator::make($request->all(), [
+                    'name' => 'required|string|between:2,100',
+                    'email' => ['required','string','email','max:100', Rule::unique('users')->ignore($user->id)],
+                    'password' => 'required|string|confirmed|min:6',
+                    'phone_number' => 'required|string|between:2,100',
+                    'location' => 'required|string',
+                    'vehicle_load' => 'required|float',
+                ]);
+    
+                if($validator->fails()){
+                    return response()->json($validator->errors()->toJson(), 400);
+                }
+                
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+    
+                return response()->json([
+                    'message' => 'User successfully updated',
+                    'user' => $user
+                ], 201);
+    
+            }
+        }
 
     /**
      * Log the user out (Invalidate the token).
