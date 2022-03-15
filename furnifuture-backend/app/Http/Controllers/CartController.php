@@ -37,15 +37,27 @@ class CartController extends Controller
     public function removeProduct(Request $request)
     {
         $user_id = $request->get('user_id');
-        // $product_id = $request->get('product_id');
+        $product_id = $request->get('product_id');
         $user = User::find($user_id);
         $array = $user->saved_products;
-        unset($array["hi"]);
+        unset($array[array_search($product_id,$array)]);
         $user->saved_products = $array;
         $user->save();
-        // return response()->json(["status"=>"removed product successfully"]);
-        return $user;
-        
+        return response()->json(["status"=>"removed product successfully",
+                                  "user"=>$user]);  
+    }
+
+    public function removeShipping(Request $request)
+    {
+        $user_id = $request->get('user_id');
+        $shipping_id = $request->get('shipping_id');
+        $user = User::find($user_id);
+        $array = $user->saved_shippings;
+        unset($array[array_search($shipping_id,$array)]);
+        $user->saved_shippings = $array;
+        $user->save();
+        return response()->json(["status"=>"removed shipping successfully",
+                                  "user"=>$user]);  
     }
 
     public function getCartProducts(Request $request)
