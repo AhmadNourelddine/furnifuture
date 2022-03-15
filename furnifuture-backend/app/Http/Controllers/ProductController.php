@@ -86,7 +86,10 @@ class ProductController extends Controller
     public function searchProduct(Request $request){
         
         $search_term = $request->input('search');
-        $results = Product::where('title','LIKE',"%$search_term%")->get();
+        $results = Product::where('title','LIKE','%'.$search_term.'%')
+                            ->orWhere('description', 'LIKE', '%'.$search_term.'%')
+                            ->orWhere('category', 'LIKE', '%'.$search_term.'%' )     
+                            ->get();
         return response()->json([$results]);
     }
 
