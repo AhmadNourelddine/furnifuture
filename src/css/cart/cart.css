@@ -28,8 +28,9 @@
 }
 
 .cart-page-navbar-btn{
+    width: 10rem !important;
     padding:0.5rem 1rem !important;
-    background-color: #B4A89E !important;
+    /* background-color: #B4A89E !important; */
     margin: auto 1rem !important;
     color: white !important;
 }
