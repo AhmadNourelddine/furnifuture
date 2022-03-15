@@ -1,7 +1,14 @@
+.sell-furniture-item-date-location{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 0;
+}
+
 .sell-furniture-item-date{
     font-weight: 100;
     font-size: 150%;
-    padding: 2rem 0;
 }
 
 .sell-furniture-item-price{
