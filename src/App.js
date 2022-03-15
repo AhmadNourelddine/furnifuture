@@ -12,6 +12,7 @@ import Buy from './pages/buy';
 import Sell from './pages/sell';
 import Delivery from './pages/delivery';
 import CreateShippingProfile from './pages/create-shipping-profile/create-shipping-profile';
+import Cart from './pages/cart';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/buy" element={<Buy/>} />
           <Route exact path="/sell" element={<Sell/>} />
           <Route exact path="/delivery" element={<Delivery/>} />
+          <Route exact path="/cart" element={<Cart/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
