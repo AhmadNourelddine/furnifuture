@@ -33,17 +33,10 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/saveProduct-toCart', 'saveProduct');
     Route::post('/saveShipping-toCart', 'saveShipping');
     Route::post('/removeProduct-fromCart', 'removeProduct');
+    Route::post('/removeShipping-fromCart', 'removeShipping');
     Route::post('/get-products', 'getCartProducts');
     Route::post('/get-shipping', 'getCartShipping');
 });
-
-// Route::post('/search-product', [ProductController::class, 'searchProduct']);
-// Route::post('/sell-product', [ProductController::class, 'sellProduct']);
-// Route::post('/edit-product', [ProductController::class, 'editProduct']);
-// Route::post('/user-products', [ProductController::class, 'getUserProducts']);
-// Route::post('/saveProduct-toCart', [CartController::class, 'saveProduct']);
-// Route::post('/removeProduct-fromCart', [CartController::class, 'removeProduct']);
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
