@@ -23,6 +23,7 @@ Route::group([
 
 Route::controller(ProductController::class)->group(function () {
     Route::post('/search-product', 'searchProduct');
+    Route::post('/search-shipping', 'searchShipping');
     Route::post('/sell-product', 'sellProduct');
     Route::post('/edit-product', 'editProduct');
     Route::post('/user-products', 'getUserProducts');
