@@ -5,6 +5,7 @@ import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
 import FurnitureItem from '../../components/furnitureItem';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
+import { Link } from 'react-router-dom';
 
 const Delivery = ()=>{
 
@@ -18,7 +19,10 @@ const Delivery = ()=>{
                     Create Your Delivery Profile
                     </Typography>
 
-                <Button style={{padding:'0.5rem 2rem'}} size='large' className='deliverypage-create-deliveryprofile-btn' sx={{mx:2}}>Create</Button>
+                <Button component={Link} to="/create-shipping-profile" 
+                        style={{padding:'0.5rem 2rem'}} size='large' 
+                        className='deliverypage-create-deliveryprofile-btn' 
+                        sx={{mx:2}}>Create</Button>
                 </div>
 
             <div className='buy-furniture-search'>
