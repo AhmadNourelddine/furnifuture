@@ -25,9 +25,15 @@ export default function FurnitureItem() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Typography>
 
-          <Typography className="sell-furniture-item-date" variant="h5" component="div" color="text.secondary">
-            Date
+          <div className="sell-furniture-item-date-location">         
+            
+           <Typography className="sell-furniture-item-location" variant="h6" component="div" color="text.secondary">
+            location
           </Typography>
+
+          <Typography className="sell-furniture-item-date" variant="h6" component="div" color="text.secondary">
+            Date
+          </Typography></div>
 
         </div>
       </CardActionArea>
@@ -36,7 +42,7 @@ export default function FurnitureItem() {
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
             Price
           </Typography>
-        <Button className="sell-furniture-item-button" size="small" color="primary" style={{padding:"auto", margin:"auto"}}>
+        <Button className="sell-furniture-item-button" size="small" color="primary" style={{padding:"auto"}}>
           Save
         </Button>
       </div>
