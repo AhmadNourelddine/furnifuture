@@ -37,7 +37,7 @@ const Delivery = ()=>{
                     // options={top100Films}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
-                        //  {...params} 
+                         {...params} 
                          label="Location" />}
                     />
                      <Autocomplete className='buy-search-category'
@@ -46,7 +46,7 @@ const Delivery = ()=>{
                     // options={top100Films}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
-                        //  {...params} 
+                         {...params} 
                          label="Vehicle Load" />}
                     />
                 <Button className='buy-search-btn'>

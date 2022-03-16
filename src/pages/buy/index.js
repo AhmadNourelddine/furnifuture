@@ -24,8 +24,9 @@ const Buy = ()=>{
                     // options={top100Films}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
-                        //  {...params} 
-                         label="Movie" />}
+                        className="buy-page-search-category-textfield"
+                         {...params} 
+                         label="Category" />}
                     />
                 <Button className='buy-search-btn'>
                     Search
