@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
@@ -10,6 +10,29 @@ import { Link } from 'react-router-dom';
 const Delivery = ()=>{
 
     const [search, setSearch]= useState('');
+    const [data, setData]= useState([]);
+
+    const getRandomShippings = async()=>{
+
+        await fetch("http://127.0.0.1:8000/api/random-shippings",{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            method: "POST",
+        })
+              .then((response)=> response.json())
+              .then((result)=>{
+                  setData(result)
+                //   console.log(result)
+              })
+              .catch(e=>{console.log(e)})
+    }
+
+    useEffect(() => {
+            getRandomShippings();
+            console.log(data);
+    },);
 
     return(
         <div className='buy-page'>
@@ -54,11 +77,16 @@ const Delivery = ()=>{
                 </Button>
             </div>
             <div className='delivery-page-items'>
-            <ShippingProfileCard/>
-            <ShippingProfileCard/>
-            <ShippingProfileCard/>
-            <ShippingProfileCard/>
-            <ShippingProfileCard/>
+            {            
+                data.map((item)=>
+                <ShippingProfileCard 
+                name = {item.name} 
+                phone_number = {item.phone_number}
+                location = {item.location}
+                vehicle_load = {item.vehicle_load}
+                />
+                ) 
+            }
             </div>
             
         </div>
