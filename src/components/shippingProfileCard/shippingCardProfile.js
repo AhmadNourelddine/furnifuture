@@ -6,12 +6,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
 
-const ShippingProfileCard = ()=>{
+const ShippingProfileCard = (props)=>{
 
      return(   <Card className='shipping-profile-delivery-card' sx={{mx:5, my:3}}>
                 <Box sx={{mx:2, my:3}} className='avatar-and-name'>
                 <Avatar variant='square'>PP</Avatar>
-                <Typography variant='h1' fontSize='large' sx={{mx:2}}>User Name</Typography>
+                <Typography variant='h1' fontSize='large' sx={{mx:2}}>{props.name}</Typography>
                 </Box>
                 <Divider light/>
 
@@ -19,15 +19,15 @@ const ShippingProfileCard = ()=>{
 
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
                 <Avatar><LocalPhoneIcon/></Avatar>
-                <Typography sx={{mx:2}}>Phone Number</Typography>
+                <Typography sx={{mx:2}}>{props.phone_number}</Typography>
                 </Box>
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
                 <Avatar><LocationOnIcon/></Avatar>
-                <Typography sx={{mx:2}}>Location</Typography>
+                <Typography sx={{mx:2}}>{props.location}</Typography>
                 </Box>
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
                 <Avatar><LocalShippingIcon/></Avatar>
-                <Typography sx={{mx:2}}>Vehicle Load</Typography>
+                <Typography sx={{mx:2}}>{props.vehicle_load}</Typography>
                 </Box>
 
                 </Box>
