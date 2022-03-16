@@ -5,11 +5,32 @@ import { TextField } from '@material-ui/core';
 import '../../css/buy/buy.css';
 import FurnitureItem from '../../components/furnitureItem';
 
+
+
 const Buy = ()=>{
 
     const [search, setSearch]= useState('');
+    const [data, setData]= useState([]);
+
+    const getRandomProducts = async()=>{
+
+        await fetch("http://127.0.0.1:8000/api/random-products",{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            method: "POST",
+        })
+              .then((response)=> response.json())
+              .then((result)=>{
+                  setData(result[0])
+                  console.log('called me')
+              })
+              .catch(e=>{console.log(e)})
+    }
 
     return(
+
         <div className='buy-page'>
             <Typography className='buy-page-title'>Find Furniture</Typography>
             <div className='buy-furniture-search'>
@@ -20,7 +41,7 @@ const Buy = ()=>{
                  />
                  <Autocomplete className='buy-search-category'
                     disablePortal
-                    id="combo-box-demo"
+                    // id="combo-box-demo"
                     // options={top100Films}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
@@ -33,10 +54,17 @@ const Buy = ()=>{
                 </Button>
             </div>
             <div className='buy-page-items'>
-            <FurnitureItem />
-            <FurnitureItem />
-            <FurnitureItem />
-            <FurnitureItem />
+            {            
+                data.map((item)=>
+                <FurnitureItem 
+                title = {item['title']} 
+                description = {item.description}
+                location = {item.location}
+                price = {item.price}
+                date={item.created_at}
+                />
+                ) 
+            }
             </div>
             
         </div>
