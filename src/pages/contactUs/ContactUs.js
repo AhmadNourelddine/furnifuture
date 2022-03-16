@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import "../../css/signup/signup.css";
+import "../../css/contactUs/contactUs.css";
 import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
@@ -50,18 +51,18 @@ const ContactUs = ()=> {
 
   const cancel = async()=>{
     Navigate('/about')
-  }
+  }  
 
   return (
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='signup-form' id="contact-us-box">
-    <p id="sign-up">Feel Free To Contact Us</p>
+    <p id="contact-us">Feel Free To Contact Us</p>
     <TextField className="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/> 
     <TextField className="outlined-basic" label="Subject" variant="outlined" margin="dense"
     onChange = {e=>setSubject(e.target.value)}/>
-    <TextField fullWidth multiline={true} rows={5} className="outlined-basic" variant="outlined" margin="dense"
+    <TextField fullWidth multiline={true} rows={5} label="Message" className="outlined-basic" variant="outlined" margin="dense"
     onChange = {e=>setMessage(e.target.value)}/>
 
     <Button onClick={send} variant="contained" id="signup-btn"  margin="dense" fullWidth>Send</Button>
