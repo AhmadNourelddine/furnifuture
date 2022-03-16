@@ -106,6 +106,12 @@ class ProductController extends Controller
         return response()->json([$products]);
     }
 
+    public function allShippings()
+    {
+        $shippings = User::all()->where('is_shipping','=','true');
+        return response()->json([$shippings]);
+    }
+
     public function deleteProduct(Request $request)
     {
         $product_id = $request->input('product_id');
