@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
@@ -65,8 +66,8 @@ class CartController extends Controller
         $user_id = $request->input('user_id');
         $user = User::find($user_id);
         $savedProducts_ids = $user->saved_products;
-        $savedProducts = Product::find($cartProducts_ids);
-        return response()->json(["saved_products"=>$savedProducts]);
+        $savedProducts = Product::find($savedProducts_ids);
+        return response()->json([$savedProducts]);
     }
 
     public function getCartShipping(Request $request)
@@ -75,7 +76,7 @@ class CartController extends Controller
         $user = User::find($user_id);
         $savedShipping_ids = $user->saved_shipping;
         $savedShipping = User::find($savedShipping_ids);
-        return response()->json(["saved_shiiping"=>$savedShipping]);
+        return response()->json([$savedShipping]);
     }
 
 }
