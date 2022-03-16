@@ -19,19 +19,29 @@
 }
 
 .buy-search-bar{
+    border-radius: 10px !important;
     width: 50%;
     margin: 2rem 1rem ;
 }
+
 .ForwardRef-searchIconButton-17{
     display: none !important;
 }
+
 .buy-search-category{
-    width: 20%;
+    margin-right: 1rem !important;
+    width: 15%;
     border-radius: 10px;
     margin: 2rem 0;
     background-color: white;
-    padding: auto 1rem;
+    padding: 0 1rem !important;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
+
+.buy-page-search-category-textfield{
+   
+}
+
 .buy-search-btn{
     width: 15%;
     border-radius: 10px !important;
