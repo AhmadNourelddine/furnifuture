@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
@@ -24,10 +24,14 @@ const Buy = ()=>{
               .then((response)=> response.json())
               .then((result)=>{
                   setData(result[0])
-                  console.log('called me')
+                  console.log(result)
               })
               .catch(e=>{console.log(e)})
     }
+
+    useEffect(() => {
+            getRandomProducts();
+    },[]);
 
     return(
 
@@ -57,7 +61,7 @@ const Buy = ()=>{
             {            
                 data.map((item)=>
                 <FurnitureItem 
-                title = {item['title']} 
+                title = {item.title} 
                 description = {item.description}
                 location = {item.location}
                 price = {item.price}
