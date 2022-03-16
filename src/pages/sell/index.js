@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Divider, Typography } from '@mui/material';
+import { Button, CardMedia, Divider, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
+import img from '../../assets/furniFuture-logo.png';
 
 const Sell = ()=>{
 
@@ -16,26 +18,32 @@ const Sell = ()=>{
                     <div className='sell-page-form-col1'>
                         <div className='sellpage-input-row'>
                             <Typography>Product Name</Typography>
-                            <TextField className='sellpage-input-row-textinput'></TextField>
+                            <TextField className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Product Name</Typography>
-                        <TextField className='sellpage-input-row-textinput'></TextField>
+                        <TextField className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                         </div>
                         <div className='sellpage-input-row'>
                             <Typography>Product Name</Typography>
-                            <TextField className='sellpage-input-row-textinput'></TextField>
+                            <TextField className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Description</Typography>
-                        <TextField multiline={true} rows={5} className='sellpage-input-row-textinput'></TextField>
+                        <TextField multiline={true} rows={5} className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense" />
                         </div>
                     </div>
                     <div className='sell-page-form-col2'>
-                        <div className='sellpage-image'></div>
+                        <div className='sellpage-image'>
+                        <CardMedia
+                        component="img"
+                        height='100%'
+                        image={img}
+                        alt="furniture"
+                        /></div>
                         <Divider sx={{my:3}} light/>
                         <div className='sellpage-upload-image-section'>
-                            <Button></Button>
+                            <Button><CameraAltIcon color="error"/></Button>
                             <Typography>Upload Image</Typography>
                             </div>
                     </div>
