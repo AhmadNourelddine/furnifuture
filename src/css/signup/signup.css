@@ -4,23 +4,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F7F3E3;
+    background-color: #ECDCCF;
 }
 #sign-up{
     font-size: 200%;
     font-weight: 700;
     margin: 1% auto 10% auto;
     max-width: fit-content;
-    text-align: center;
+    text-align: left;
 }
 #signup-box{
     padding:1% 5% 2%;
     border-radius:30px;
-    box-shadow:rgb(0 0 0 / 50%) -8px 10px;
+    box-shadow:rgb(0 0 0 / 50%) 0px 6px 12px;
 }
 #signup-btn{
-    margin-top:5%;
-    background-color:#2B2118;
+    margin-top:8%;
+    background-color:#304451;
     color:white;
 }
 .outlined-basic{
