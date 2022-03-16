@@ -7,13 +7,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
+Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/registerShipping', [AuthController::class, 'registerShipping']);
+    Route::post('/register-shipping', [AuthController::class, 'registerShipping']);
     Route::post('/update-profile', [AuthController::class, 'updateProfile']);
     Route::post('/update-shipping-profile', [AuthController::class, 'updateProfileShipping']);
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -28,6 +25,8 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('/edit-product', 'editProduct');
     Route::post('/user-products', 'getUserProducts');
     Route::post('/delete-product', 'deleteProduct');
+    Route::post('/random-products', 'allProducts');
+    Route::post('/random-shippings', 'allShippings');
 });
 
 Route::controller(CartController::class)->group(function () {
