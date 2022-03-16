@@ -2,10 +2,11 @@
 import React from 'react';
 import "../../css/login/login.css";
 import {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
+import { Typography } from '@material-ui/core';
 
 
 const Login = ()=> {
@@ -20,7 +21,7 @@ const Login = ()=> {
 
     if(redirect)
     {
-      Navigate('/dashboard')
+      Navigate('/about');
     }
   },[redirect]);
 
@@ -44,10 +45,10 @@ const Login = ()=> {
     })
           .then((response)=>response.json())
           .then((result)=>{
-            setRedirect(true)
-            let token = result['access_token']
-            window.localStorage.setItem('authToken', token)
-            console.log(result)
+            setRedirect(true);
+            let token = result['access_token'];
+            window.localStorage.setItem('authToken', token);
+            console.log(result);
           })
   }
 
@@ -65,7 +66,10 @@ const Login = ()=> {
 
     <Button onClick={logIn} variant="contained" fullWidth id="signin-btn">
       Log In</Button>
+      <Typography className='sign-in-page-sign-up-link'>Don’t have an Account? <Button component={Link} to="/signup">Sign Up</Button> </Typography>
     </Box>
+
+  
 
     </Box>
 
