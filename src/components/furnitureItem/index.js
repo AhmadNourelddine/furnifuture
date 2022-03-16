@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import '../../css/furnitureItem-sell/furnitureItem-sell.css';
 import img from '../../assets/furniFuture-logo.png';
 
-export default function FurnitureItem() {
+export default function FurnitureItem(props) {
   return (
     <Card sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
       <CardActionArea style={{display:"flex", flexDirection:"column"}}>
@@ -19,20 +19,20 @@ export default function FurnitureItem() {
         />
         <div style={{padding:"1rem 2rem"}}>
           <Typography style={{fontWeight:"900"}} gutterBottom variant="h5" component="div">
-            Furniture Title
+            {props.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          {props.description}
           </Typography>
 
           <div className="sell-furniture-item-date-location">         
             
            <Typography className="sell-furniture-item-location" variant="h6" component="div" color="text.secondary">
-            location
+           {props.location}
           </Typography>
 
           <Typography className="sell-furniture-item-date" variant="h6" component="div" color="text.secondary">
-            Date
+          {props.date}
           </Typography></div>
 
         </div>
@@ -40,7 +40,7 @@ export default function FurnitureItem() {
       <div style={{padding: "0 2rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
 
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
-            Price
+         {props.price}
           </Typography>
         <Button className="sell-furniture-item-button" size="small" color="primary" style={{padding:"auto"}}>
           Save
