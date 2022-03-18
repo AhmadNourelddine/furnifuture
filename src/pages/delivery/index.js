@@ -12,6 +12,7 @@ const Delivery = ()=>{
     const [search, setSearch]= useState('');
     const [data, setData]= useState([]);
 
+
     const getRandomShippings = async()=>{
 
         await fetch("http://127.0.0.1:8000/api/random-shippings",{
@@ -24,15 +25,16 @@ const Delivery = ()=>{
               .then((response)=> response.json())
               .then((result)=>{
                   setData(result)
-                //   console.log(result)
+                  console.log(Array(result))
               })
               .catch(e=>{console.log(e)})
     }
 
     useEffect(() => {
+
             getRandomShippings();
-            console.log(data);
-    },);
+
+            },);
 
     return(
         <div className='buy-page'>
@@ -77,15 +79,16 @@ const Delivery = ()=>{
                 </Button>
             </div>
             <div className='delivery-page-items'>
-            {            
-                data.map((item)=>
+            {   
+                Object.keys(data).map((key)=>
                 <ShippingProfileCard 
-                name = {item.name} 
-                phone_number = {item.phone_number}
-                location = {item.location}
-                vehicle_load = {item.vehicle_load}
+                name = {data[key].name} 
+                phone_number = {data[key].phone_number}
+                location = {data[key].location}
+                vehicle_load = {data[key].vehicle_load}
                 />
-                ) 
+                )
+
             }
             </div>
             
