@@ -96,9 +96,9 @@ class UserController extends Controller
                 return response()->json($validator->errors()->toJson(), 400);
             }
             
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->input('password'));
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
             $user->save();
 
             return response()->json([
@@ -128,9 +128,9 @@ class UserController extends Controller
                     return response()->json($validator->errors()->toJson(), 400);
                 }
                 
-                $user->name = $request->input('name');
-                $user->email = $request->input('email');
-                $user->password = bcrypt($request->input('password'));
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
                 $user->save();
     
                 return response()->json([
