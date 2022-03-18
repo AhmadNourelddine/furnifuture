@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
@@ -10,6 +11,8 @@ use Validator;
 class ProductController extends Controller
 {
     public function sellProduct(Request $request){
+
+        $user = Auth::User();
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|string',
@@ -30,8 +33,6 @@ class ProductController extends Controller
                     $validator->validated(),
                 ));
 
-        $user_id = $request->get('user_id');
-        $user = User::find($user_id);
         $array = $user->user_products;
         array_push($array,$product->id);
         $user->user_products = $array;
@@ -60,7 +61,7 @@ class ProductController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         
-        $product_id = $request->get('product_id');
+        $product_id = $request->product_id;
         $product = Product::find($product_id);
         $product->update(array_merge(
                     $validator->validated(),
@@ -75,8 +76,7 @@ class ProductController extends Controller
 
     function getUserProducts(Request $request)
     {
-        $user_id = $request->get('user_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
         $userProducts_ids = $user->user_products;
         $userProducts = Product::find($userProducts_ids);
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
 
     public function searchShipping(Request $request){
         
-        $search_term = $request->input('search');
+        $search_term = $request->search;
         $results = User::where('location','LIKE',"%$search_term%")->get();
         return response()->json([$results]);
     }
@@ -109,12 +109,12 @@ class ProductController extends Controller
     public function allShippings()
     {
         $shippings = User::all()->where('is_shipping','=','true');
-        return response()->json([$shippings]);
+        return response()->json($shippings);
     }
 
     public function deleteProduct(Request $request)
     {
-        $product_id = $request->input('product_id');
+        $product_id = $request->product_id;
         $product = Product::find($product_id);
         $product->delete();
         // needs removing from user_products
