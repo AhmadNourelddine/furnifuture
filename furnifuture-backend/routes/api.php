@@ -2,42 +2,85 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
 
-Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/register-shipping', [AuthController::class, 'registerShipping']);
-    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
-    Route::post('/update-shipping-profile', [AuthController::class, 'updateProfileShipping']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+Route::group(['middleware' => ['auth:api']], function () {
+    
+    Route::group(['prefix' => 'user'], function () {
+
+        Route::controller(UserController::class)->group(function () {  
+        Route::post('/update-profile', 'updateProfile')->name('update-profile');
+        Route::post('/update-shipping-profile', 'updateProfileShipping')->name('update-shipping-profile');
+        Route::post('/logout', 'logout')->name('logout');
+        Route::post('/refresh', 'refresh')->name('refresh');
+        Route::get('/profile', 'userProfile')->name('user-profile');
+       });  
+
+       Route::group(['prefix' => 'product'], function () {
+        Route::controller(ProductController::class)->group(function () {  
+            Route::post('/sell', 'sellProduct')->name('sell-product');
+            Route::post('/edit', 'editProduct')->name('edit-product');
+            Route::post('/created', 'getUserProducts')->name('user-products');
+            Route::post('/delete', 'deleteProduct')->name('delete-product');
+        });
+       });
+
+        Route::group(['prefix' => 'cart'], function () {
+
+          Route::controller(CartController::class)->group(function () {  
+            Route::post('/saveProduct', 'saveProduct')->name('save-product');
+            Route::post('/saveShipping', 'saveShipping')->name('save-shipping');
+            Route::post('/removeProduct', 'removeProduct')->name('remove-product');
+            Route::post('/removeShipping', 'removeShipping')->name('remove-shipping');
+            Route::post('/get-products', 'getCartProducts')->name('get-products');
+            Route::post('/get-shipping', 'getCartShipping')->name('get-shipping');
+          });
+        });
+
+    });
+
+
 });
 
-Route::controller(ProductController::class)->group(function () {
-    Route::post('/search-product', 'searchProduct');
-    Route::post('/search-shipping', 'searchShipping');
-    Route::post('/sell-product', 'sellProduct');
-    Route::post('/edit-product', 'editProduct');
-    Route::post('/user-products', 'getUserProducts');
-    Route::post('/delete-product', 'deleteProduct');
-    Route::post('/random-products', 'allProducts');
-    Route::post('/random-shippings', 'allShippings');
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('/login', [UserController::class, 'login']);
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/register-shipping', [UserController::class, 'registerShipping']);
 });
 
-Route::controller(CartController::class)->group(function () {
-    Route::post('/saveProduct-toCart', 'saveProduct');
-    Route::post('/saveShipping-toCart', 'saveShipping');
-    Route::post('/removeProduct-fromCart', 'removeProduct');
-    Route::post('/removeShipping-fromCart', 'removeShipping');
-    Route::post('/get-products', 'getCartProducts');
-    Route::post('/get-shipping', 'getCartShipping');
-});
+Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::group(['prefix' => 'auth'], function () {
+//     Route::post('/login', [UserController::class, 'login']);
+//     Route::post('/register', [UserController::class, 'register']);
+//     Route::post('/register-shipping', [UserController::class, 'registerShipping']);
+//     Route::post('/update-profile', [UserController::class, 'updateProfile']);
+//     Route::post('/update-shipping-profile', [UserController::class, 'updateProfileShipping']);
+//     Route::post('/logout', [UserController::class, 'logout']);
+//     Route::post('/refresh', [UserController::class, 'refresh']);
+//     Route::get('/user-profile', [UserController::class, 'userProfile']);    
+// });
+
+// Route::controller(ProductController::class)->group(function () {
+//     Route::post('/search-product', 'searchProduct');
+//     Route::post('/search-shipping', 'searchShipping');
+//     Route::post('/sell-product', 'sellProduct');
+//     Route::post('/edit-product', 'editProduct');
+//     Route::post('/user-products', 'getUserProducts');
+//     Route::post('/delete-product', 'deleteProduct');
+//     Route::post('/random-products', 'allProducts');
+//     Route::post('/random-shippings', 'allShippings');
+// });
+
+// Route::controller(CartController::class)->group(function () {
+//     Route::post('/saveProduct-toCart', 'saveProduct');
+//     Route::post('/saveShipping-toCart', 'saveShipping');
+//     Route::post('/removeProduct-fromCart', 'removeProduct');
+//     Route::post('/removeShipping-fromCart', 'removeShipping');
+//     Route::post('/get-products', 'getCartProducts');
+//     Route::post('/get-shipping', 'getCartShipping');
+// });
+
