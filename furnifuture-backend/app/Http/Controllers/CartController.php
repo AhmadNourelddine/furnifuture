@@ -13,9 +13,8 @@ class CartController extends Controller
 
     public function saveProduct(Request $request)
     {
-        $user_id = $request->get('user_id');
-        $product_id = $request->get('product_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
+        $product_id = $request->product_id;
         $array = $user->saved_products;
         array_push($array,$product_id);
         $user->saved_products = $array;
@@ -25,9 +24,8 @@ class CartController extends Controller
 
     public function saveShipping(Request $request)
     {
-        $user_id = $request->get('user_id');
-        $shipping_id = $request->get('shipping_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
+        $shipping_id = $request->shipping_id;
         $array = $user->saved_shipping;
         array_push($array,$shipping_id);
         $user->saved_shipping = $array;
@@ -37,9 +35,8 @@ class CartController extends Controller
 
     public function removeProduct(Request $request)
     {
-        $user_id = $request->get('user_id');
-        $product_id = $request->get('product_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
+        $product_id = $request->product_id;
         $array = $user->saved_products;
         unset($array[array_search($product_id,$array)]);
         $user->saved_products = $array;
@@ -50,9 +47,8 @@ class CartController extends Controller
 
     public function removeShipping(Request $request)
     {
-        $user_id = $request->get('user_id');
-        $shipping_id = $request->get('shipping_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
+        $shipping_id = $request->shipping_id;
         $array = $user->saved_shippings;
         unset($array[array_search($shipping_id,$array)]);
         $user->saved_shippings = $array;
@@ -63,8 +59,7 @@ class CartController extends Controller
 
     public function getCartProducts(Request $request)
     {
-        $user_id = $request->input('user_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
         $savedProducts_ids = $user->saved_products;
         $savedProducts = Product::find($savedProducts_ids);
         return response()->json([$savedProducts]);
@@ -72,8 +67,7 @@ class CartController extends Controller
 
     public function getCartShipping(Request $request)
     {
-        $user_id = $request->input('user_id');
-        $user = User::find($user_id);
+        $user = Auth::User();
         $savedShipping_ids = $user->saved_shipping;
         $savedShipping = User::find($savedShipping_ids);
         return response()->json([$savedShipping]);
