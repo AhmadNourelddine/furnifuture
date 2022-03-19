@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => ['auth:api']], function () {
@@ -35,8 +35,8 @@ Route::group(['middleware' => ['auth:api']], function () {
             Route::post('/saveShipping', 'saveShipping')->name('save-shipping');
             Route::post('/removeProduct', 'removeProduct')->name('remove-product');
             Route::post('/removeShipping', 'removeShipping')->name('remove-shipping');
-            Route::post('/get-products', 'getCartProducts')->name('get-products');
-            Route::post('/get-shipping', 'getCartShipping')->name('get-shipping');
+            Route::get('/get-products', 'getCartProducts')->name('get-products');
+            Route::get('/get-shipping', 'getCartShipping')->name('get-shipping');
           });
         });
 
@@ -52,6 +52,9 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
+Route::get('/random-products', [ProductController::class, 'allProducts'])->name('all-products');
+Route::get('/random-shippings', [ProductController::class, 'allShippings'])->name('all-shippings');
+
 
 // Route::group(['prefix' => 'auth'], function () {
 //     Route::post('/login', [UserController::class, 'login']);
