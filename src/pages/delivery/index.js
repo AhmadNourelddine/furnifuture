@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
@@ -15,26 +16,20 @@ const Delivery = ()=>{
 
     const getRandomShippings = async()=>{
 
-        await fetch("http://127.0.0.1:8000/api/random-shippings",{
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: "POST",
-        })
-              .then((response)=> response.json())
-              .then((result)=>{
-                  setData(result)
-                  console.log(Array(result))
-              })
-              .catch(e=>{console.log(e)})
+        await axios.get('http://127.0.0.1:8000/api/random-shippings')
+        .then((response)=>{
+                setData(response.data)
+                console.log(response)
+            })
+        .catch(e=>{console.log(e)})
+
     }
 
     useEffect(() => {
 
             getRandomShippings();
 
-            },);
+            },[]);
 
     return(
         <div className='buy-page'>
