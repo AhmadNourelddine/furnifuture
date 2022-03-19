@@ -9,7 +9,7 @@ import img from '../../assets/furniFuture-logo.png';
 
 export default function FurnitureItem(props) {
   return (
-    <Card sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
+    <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
       <CardActionArea style={{display:"flex", flexDirection:"column"}}>
         <CardMedia style={{padding:"2rem 5rem"}}
           component="img"
@@ -21,17 +21,17 @@ export default function FurnitureItem(props) {
           <Typography style={{fontWeight:"900"}} gutterBottom variant="h5" component="div">
             {props.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography className='content-box' variant="body2" color="text.secondary">
           {props.description}
           </Typography>
 
           <div className="sell-furniture-item-date-location">         
             
-           <Typography className="sell-furniture-item-location" variant="h6" component="div" color="text.secondary">
+           <Typography className="sell-furniture-item-location content-box" variant="h6" component="div" color="text.secondary">
            {props.location}
           </Typography>
 
-          <Typography className="sell-furniture-item-date" variant="h6" component="div" color="text.secondary">
+          <Typography className="sell-furniture-item-date content-box" variant="h6" component="div" color="text.secondary">
           {props.date}
           </Typography></div>
 
@@ -42,7 +42,7 @@ export default function FurnitureItem(props) {
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
          {props.price}
           </Typography>
-        <Button className="sell-furniture-item-button" size="small" color="primary" style={{padding:"auto"}}>
+        <Button className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
           Save
         </Button>
       </div>
