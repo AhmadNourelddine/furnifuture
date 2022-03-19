@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../../css/navbar/navbar.css';
 import {Link} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
@@ -15,9 +16,35 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import websiteLogo from '../../assets/furniFuture-logo.png';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Navbar = () => {
+
+    const[token, setToken]= useState('');
+    let authtoken = window.localStorage.getItem('authToken');
+
+    console.log(token);
+
+    const logOut = async()=>{
+
+      window.localStorage.removeItem('authToken');
+      setToken('');
+
+      await axios.post('http://127.0.0.1:8000/api/user/logout',{
+          headers: {"Authorization" : `Bearer ${token}`},
+      })
+      .then((response)=>{
+              window.localStorage.removeItem('authToken');
+              console.log(response)
+          })
+      .catch(e=>{console.log(e)})
+
+  }
+
+  useEffect(()=>{setToken(window.localStorage.getItem('authToken'))},[])
 
     return(
         <AppBar position="static" color="inherit" id="app-bar">
@@ -63,12 +90,15 @@ const Navbar = () => {
               </Button>
 
 
+              {!token && 
+              <Box style={{display:"flex"}}>
               <Button component={Link} to="/login" className="toolbar-btn" id="toolbar-signin" color="inherit"
                 key="signin"
                 sx={{ my: 2, display: 'block' }}
               >
                 SIGN IN
               </Button>
+              
               <div id="line-between"></div>
               <Button component={Link} to="/signup" className="toolbar-btn" id="toolbar-signup" color="inherit"
                 key="signup"
@@ -76,6 +106,23 @@ const Navbar = () => {
               >
                 SIGN UP
               </Button>
+              </Box>
+              }
+
+              {token && 
+              <Box style={{display:"flex"}}>
+              <Box component={Link} to="/cart" className="toolbar-btn">
+                <ShoppingCartIcon/>
+              </Box>
+              <Box component={Link} to="/dashboard" className="toolbar-btn">
+                <AccountCircleIcon/>
+              </Box>
+              <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
+                <LogoutIcon/>
+              </Box>
+              </Box>
+              }
+              
 
               
           </Box>
