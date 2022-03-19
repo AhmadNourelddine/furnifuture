@@ -15,20 +15,23 @@
 .toolbar-btn{
     color:white;
     text-decoration: none;
-    margin:auto 1% !important;
+    margin:0 1rem !important;
 }
 #toolbar-signin{
     margin:auto 1% auto 4% !important;
     font-weight: 400;
     font-size: 80%;
+    white-space: nowrap;
 }
 #line-between{
     border: solid white 1px;
+    margin: 0.5rem 0;
 }
 #toolbar-signup{
     margin:auto 1% auto 0% !important;
     font-weight: 400;
     font-size: 80%;
+    white-space: nowrap;
 }
 .toolbar-btn:hover{
     /* opacity: 0.6; */
