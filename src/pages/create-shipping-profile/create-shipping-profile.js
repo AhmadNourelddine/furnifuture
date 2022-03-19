@@ -53,8 +53,8 @@ const CreateShippingProfile = ()=>{
                 </Box>
 
                 <Box className='deliveryprofile-cancel-create-btns'>
-                    <Button style={{color:'white', backgroundColor:'#D86544'}}>Cancel</Button>
-                    <Button sx={{mx:2}} style={{color:'white', backgroundColor:'#5094AA'}}>Create</Button>
+                    <Button style={{color:'white ', backgroundColor:'#D86544'}}>Cancel</Button>
+                    <Button sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>Create</Button>
                 </Box>
 
             </Container>
