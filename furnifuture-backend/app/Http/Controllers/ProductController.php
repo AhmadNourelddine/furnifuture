@@ -15,13 +15,12 @@ class ProductController extends Controller
         $user = Auth::User();
 
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|string',
             'title' => 'required|string|between:2,100',
             'description' => 'required|string|max:100',
             'location' => 'required|string|max:100',
             'phone_number' => 'required|string|max:100',
             'category' => 'required|string',
-            'price' => 'required|numeric',
+            'price' => 'required|string',
             'image' => 'string',
         ]);
 
@@ -31,6 +30,7 @@ class ProductController extends Controller
         
         $product = Product::create(array_merge(
                     $validator->validated(),
+                    ["user_id"=>$user->id],
                 ));
 
         $array = $user->user_products;
