@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
@@ -7,31 +8,24 @@ import FurnitureItem from '../../components/furnitureItem';
 
 
 
-const Buy = ()=>{
+const Buy = ()=>{ 
 
     const [search, setSearch]= useState('');
     const [data, setData]= useState([]);
 
     const getRandomProducts = async()=>{
 
-        await fetch("http://127.0.0.1:8000/api/random-products",{
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            method: "POST",
-        })
-              .then((response)=> response.json())
-              .then((result)=>{
-                  setData(result[0])
-                  console.log(result)
-              })
-              .catch(e=>{console.log(e)})
+        await axios.get('http://127.0.0.1:8000/api/random-products')
+            .then((response)=>{
+                    setData(response.data[0])
+                    console.log(response)
+                })
+            .catch(e=>{console.log(e)})
     }
 
     useEffect(() => {
             getRandomProducts();
-    },);
+    },[]);
 
     return(
 
