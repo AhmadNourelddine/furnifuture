@@ -33,7 +33,7 @@ const ShippingProfileCard = (props)=>{
                 </Box>
 
                 <Box sx={{mx:2, my:3}} className='shippingprofile-delivery-save'>
-                    <Button style={{backgroundColor:'#D86544'}}>Save</Button>
+                    <Button style={{color: 'white', backgroundColor: '#D86544'}}>Save</Button>
                 </Box>
         </Card>
      );
