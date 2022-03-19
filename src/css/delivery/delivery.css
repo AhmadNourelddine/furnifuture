@@ -59,6 +59,8 @@
     background-color: #D86544 !important;
 }
 .delivery-page-items{
+    height: 100vh;
+    overflow-y: scroll;
     margin: 2rem 2rem 0;
     display: flex;
     flex-direction: row;
