@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import axios from 'axios';
 import "../../css/signup/signup.css";
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react';
@@ -15,32 +16,28 @@ const Dashboard = ()=> {
   const [password,setPassword]= useState('');
   const [Cpassword,setCpassword]= useState('');
 
-  let token = window.localStorage.getItem('authToken')
-  let Navigate = useNavigate()
+  let token = window.localStorage.getItem('authToken');
 
   const update = async()=>{
 
     console.log(email+password)
-    let object={
+    let info={
       "name":name,
       "email" : email,
       "password": password,
       "password_confirmation": Cpassword
     }
-    await fetch("http://127.0.0.1:8000/api/auth/update-profile",{
+    await axios.post("http://127.0.0.1:8000/api/user/update-profile", info, {
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
           'Authorization': 'Bearer '+token
         },
-        method: "POST",
-        body: JSON.stringify(object)
     })
-          .then((response)=>response.json())
-          .then((result)=>{
-            console.log(result)
+          .then((response)=>console.log(response))
+          .catch((err)=>{
+            console.log(err)
           })
   }
+  
   return (
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
