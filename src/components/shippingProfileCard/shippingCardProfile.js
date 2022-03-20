@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import { Card, Avatar, Typography, Divider, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -7,6 +8,41 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
 
 const ShippingProfileCard = (props)=>{
+
+    let token = window.localStorage.getItem('authToken');
+
+  const[save, setSave]= useState(false);
+
+  const[shipping, setBuy]= useState(false);
+  const[cart, setCart]= useState(false);
+
+  useEffect(()=>{
+                 if(props.btn === 'save'){setBuy(true)}
+                 else if (props.btn === 'remove'){setCart(true)}
+                },[]);
+
+  let key = {"product_id": props.id,};
+
+  const clcikedButton = async()=>{
+    if(props.btn === 'save'){
+      await axios.post('http://127.0.0.1:8000/api/user/cart/saveShipping',key,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+    })
+    .then((resp)=>{
+      setSave(true);
+      console.log(resp);})
+    .catch((err)=>{console.log(err)})
+    }
+    else if(props.btn === 'remove'){
+      await axios.post('http://127.0.0.1:8000/api/user/cart/removeShipping',key,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+    })
+    .then((resp)=>{
+      // window.location.reload(false)
+      console.log(resp);})
+    .catch((err)=>{console.log(err)})
+    }
+  }
 
      return(   <Card className='shipping-profile-delivery-card' sx={{mx:5, my:3}}>
                 <Box sx={{mx:2, my:3}} className='avatar-and-name'>
@@ -33,7 +69,11 @@ const ShippingProfileCard = (props)=>{
                 </Box>
 
                 <Box sx={{mx:2, my:3}} className='shippingprofile-delivery-save'>
-                    <Button style={{color: 'white', backgroundColor: '#D86544'}}>Save</Button>
+                    <Button onClick={clcikedButton}
+                     style={{color: 'white', backgroundColor: '#D86544'}}>
+                         {shipping && (save? 'saved' : props.btn)}
+                         {cart && 'remove'}
+                    </Button>
                 </Box>
         </Card>
      );
