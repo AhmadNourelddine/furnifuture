@@ -10,9 +10,23 @@ import { Link } from 'react-router-dom';
 
 const Delivery = ()=>{
 
-    const [search, setSearch]= useState('');
-    const [data, setData]= useState([]);
+    const[searching, setSearching]= useState(false);
 
+    const [search, setSearch]= useState('');
+    const [location, setLocation]= useState('');
+    const [vehicle_load, setVehicle_load]= useState('');
+
+    const [data, setData]= useState([]);
+    const [result, setResult]= useState([]);
+
+    let object = {
+        "search":search,
+        "location": location,
+        "vehicle_load": vehicle_load
+    };
+
+    let locations = ["Beirut", "Saida", "Nabateye", "Zahle"];
+    let Vehicle_loads = ["500", "1000", "1500", "2000"];
 
     const getRandomShippings = async()=>{
 
@@ -23,6 +37,16 @@ const Delivery = ()=>{
             })
         .catch(e=>{console.log(e)})
 
+    }
+    const searchShipping = async()=>{
+
+        await axios.post('http://127.0.0.1:8000/api/search-shipping', object)
+            .then((response)=>{
+                    setResult(response.data[0]);
+                    setSearching(true);
+                    console.log(response);
+                })
+            .catch(e=>{console.log(e)})
     }
 
     useEffect(() => {
@@ -53,28 +77,28 @@ const Delivery = ()=>{
                  />
                  <Autocomplete className='buy-search-category'
                     disablePortal
-                    // id="combo-box-demo"
-                    // options={top100Films}
+                    options={locations}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
                          {...params} 
                          label="Location" />}
+                    onChange = {(event, value)=>{value && setLocation(value)}}
                     />
                      <Autocomplete className='buy-search-category'
                     disablePortal
-                    // id="combo-box-demo"
-                    // options={top100Films}
+                    options={Vehicle_loads}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField
                          {...params} 
                          label="Vehicle Load" />}
+                    onChange = {(event, value)=>{value && setVehicle_load(value)}}
                     />
-                <Button className='buy-search-btn'>
+                <Button onClick = {searchShipping} className='buy-search-btn'>
                     Search
                 </Button>
             </div>
             <div className='delivery-page-items'>
-            {   
+            {!searching &&  
                 Object.keys(data).map((key)=>
                 <ShippingProfileCard 
                 key = {data[key]._id}
@@ -84,9 +108,31 @@ const Delivery = ()=>{
                 location = {data[key].location}
                 vehicle_load = {data[key].vehicle_load}
                 btn = 'save'
-                />
-                )
-
+                />)
+            }
+             {/* {searching && 
+                 result.map((item)=>
+                 <ShippingProfileCard 
+                 key = {item._id}
+                 id = {item._id}
+                 name = {item.name} 
+                 location = {item.location}
+                 vehicle_load = {item.vehicle_load}
+                 phone_number={item.phone_number}
+                 btn='save'
+                 />) 
+            } */}
+            {searching &&  
+                Object.keys(result).map((key)=>
+                <ShippingProfileCard 
+                key = {data[key]._id}
+                id = {data[key]._id}
+                name = {data[key].name} 
+                phone_number = {data[key].phone_number}
+                location = {data[key].location}
+                vehicle_load = {data[key].vehicle_load}
+                btn = 'save'
+                />)
             }
             </div>
             
