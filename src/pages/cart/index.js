@@ -68,19 +68,25 @@ const Cart = ()=>{
             <div className='buy-page-items'>
             {toggle &&  savedProducts.map((item)=>
                 <FurnitureItem 
+                key = {item._id}
+                id = {item._id}
                 title = {item['title']} 
                 description = {item.description}
                 location = {item.location}
                 price = {item.price}
                 date={item.created_at}
+                btn = 'remove'
                 />
                 ) }
             {!toggle &&  savedShipping.map((item)=>
                 <ShippingProfileCard 
+                key = {item._id}
+                id = {item._id}
                 name = {item.name} 
                 phone_number = {item.phone_number}
                 location = {item.location}
                 vehicle_load = {item.vehicle_load}
+                btn = 'remove'
                 />
                 ) }
             </div>

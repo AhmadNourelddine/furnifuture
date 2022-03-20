@@ -55,11 +55,14 @@ const Buy = ()=>{
             {            
                 data.map((item)=>
                 <FurnitureItem 
+                key = {item._id}
+                id = {item._id}
                 title = {item.title} 
                 description = {item.description}
                 location = {item.location}
                 price = {item.price}
                 date={item.created_at}
+                btn='save'
                 />
                 ) 
             }
