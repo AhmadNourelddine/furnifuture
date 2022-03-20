@@ -85,10 +85,11 @@ class ProductController extends Controller
 
     public function searchProduct(Request $request){
         
-        $search_term = $request->input('search');
+        $search_term = $request->search;
+        $category = $request->category;
         $results = Product::where('title','LIKE','%'.$search_term.'%')
                             ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-                            ->orWhere('category', 'LIKE', '%'.$search_term.'%' )     
+                            ->orWhere('category', 'LIKE', '%'.$category.'%' )     
                             ->get();
         return response()->json([$results]);
     }
@@ -96,7 +97,27 @@ class ProductController extends Controller
     public function searchShipping(Request $request){
         
         $search_term = $request->search;
-        $results = User::where('location','LIKE',"%$search_term%")->get();
+        $location = $request->location;
+        $vehicle_load = $request->vehicle_load;
+
+        $results = User::all()->where('is_shipping','=','true')
+                                ->where('name','=',$search_term);
+                        // ->where(function($query) use($search_term, $location, $vehicle_load){
+                        //                     $query->where('name','=',$search_term)
+                        //                         ->orWhere('email','=',$search_term)
+                        //                         ->orWhere('location','=',$location)
+                        //                         ->orWhere('vehicle_load','=',$vehicle_load)
+                        //                         ->get();
+                        //                 });
+                        
+                        // ->where(function ($query) use($search_term, $location, $vehicle_load){
+                        //     $query->where('name','LIKE','%'.$search_term.'%')
+                        //           ->orWhere('email','LIKE','%'.$search_term.'%')
+                        //           ->orWhere('location','LIKE','%'.$location.'%')
+                        //           ->orWhere('vehicle_load','LIKE','%'.$vehicle_load.'%');
+                        // })
+                        // ->get();
+                        
         return response()->json([$results]);
     }
 
