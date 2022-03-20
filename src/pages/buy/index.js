@@ -52,6 +52,7 @@ const Buy = ()=>{
                 })
             .catch(e=>{console.log(e)})
     }
+    
     useEffect(() => {
             getRandomProducts();
     },[]);

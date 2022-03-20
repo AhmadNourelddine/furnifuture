@@ -41,6 +41,7 @@ export default function FurnitureItem(props) {
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
+      // window.location.reload(false)
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
