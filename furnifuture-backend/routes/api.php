@@ -54,6 +54,8 @@ Route::group(['prefix' => 'auth'], function () {
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
 Route::get('/random-products', [ProductController::class, 'allProducts'])->name('all-products');
 Route::get('/random-shippings', [ProductController::class, 'allShippings'])->name('all-shippings');
+Route::post('/search-products', [ProductController::class, 'searchProduct'])->name('search-products');
+Route::post('/search-shipping', [ProductController::class, 'searchShipping'])->name('search-shipping');
 
 
 // Route::group(['prefix' => 'auth'], function () {
