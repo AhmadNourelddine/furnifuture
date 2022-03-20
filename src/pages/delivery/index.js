@@ -77,10 +77,13 @@ const Delivery = ()=>{
             {   
                 Object.keys(data).map((key)=>
                 <ShippingProfileCard 
+                key = {data[key]._id}
+                id = {data[key]._id}
                 name = {data[key].name} 
                 phone_number = {data[key].phone_number}
                 location = {data[key].location}
                 vehicle_load = {data[key].vehicle_load}
+                btn = 'save'
                 />
                 )
 
