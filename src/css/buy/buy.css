@@ -62,3 +62,15 @@
     border-radius: 10px;
     justify-content: center;
 }
+
+.MuiInputLabel-formControl{
+    top: calc(50% - 28px) !important;
+}
+
+.css-1q60rmi-MuiAutocomplete-endAdornment{
+    top: calc(50% - 28px) !important;
+}
+
+.MuiInput-underline:before{
+    border-bottom: none !important;
+}
