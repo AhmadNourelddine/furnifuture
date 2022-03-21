@@ -15,6 +15,8 @@ const Profile = ()=>{
     const [data, setData]= useState([]);
 
     let token = window.localStorage.getItem('authToken');
+    let user_name = window.localStorage.getItem('user_name');
+    let email = window.localStorage.getItem('user_email');
     
     const getRandomProducts = async()=>{
 
@@ -39,8 +41,8 @@ const Profile = ()=>{
             <Box className='profile-page-info'>
                 <Box><AccountCircleIcon sx={{fontSize:150}}/></Box>
                 <Box className='profile-page-name-email'>
-                    <Typography fontWeight={900} fontSize={50}>User Name</Typography>
-                    <Typography fontWeight={100} fontSize={30}>User Email</Typography>
+                    <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{email}</Typography>
                 </Box>
                 <Box  component={Link} to="/dashboard" className='profile-page-edit'><ManageAccountsIcon sx={{fontSize:45}}/> </Box>
                 </Box>
