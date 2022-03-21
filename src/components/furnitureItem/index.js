@@ -5,12 +5,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import '../../css/furnitureItem-sell/furnitureItem-sell.css';
 import img from '../../assets/furniFuture-logo.png';
 import CheckIcon from '@mui/icons-material/Check';
+import EditIcon from '@mui/icons-material/Edit';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function FurnitureItem(props) {
+
+  let navigate = useNavigate();
 
   let token = window.localStorage.getItem('authToken');
 
@@ -23,10 +27,26 @@ export default function FurnitureItem(props) {
   useEffect(()=>{
                  if(props.btn === 'save'){setBuy(true)}
                  else if (props.btn === 'remove'){setCart(true)}
-                 else {setProfile(true)}
+                 else {setProfile(true)
+                }
                 },[]);
 
   let key = {"product_id": props.id,};
+
+  const updateItem = ()=>{
+    let item={
+      "title":props.title,
+      "description":props.description,
+      "location":props.location,
+      "category":props.category,
+      "phone_number":props.phone_number,
+      "date":props.date,
+      "price":props.price,
+      "sell-btn": props.sell_btn,
+    };
+    window.localStorage.setItem('product',JSON.stringify(item));
+      navigate("/sell");
+  }
 
   const clcikedButton = async()=>{
     if(props.btn === 'save'){
@@ -51,6 +71,14 @@ export default function FurnitureItem(props) {
   return (
     <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
       <CardActionArea style={{display:"flex", flexDirection:"column"}}>
+
+        {profile && 
+        <Box style={{alignSelf:"flex-end"}}>
+          <EditIcon onClick={updateItem}
+          //  component={Link} to="/sell"
+           sx={{fontSize:30}}/>
+          </Box>}
+
         <CardMedia style={{padding:"2rem 5rem"}}
           component="img"
           height="140"
