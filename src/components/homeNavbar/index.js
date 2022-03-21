@@ -24,7 +24,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Navbar = () => {
 
     const[token, setToken]= useState('');
-    let authtoken = window.localStorage.getItem('authToken');
 
     console.log(token);
 
@@ -114,7 +113,7 @@ const Navbar = () => {
               <Box component={Link} to="/cart" className="toolbar-btn">
                 <ShoppingCartIcon/>
               </Box>
-              <Box component={Link} to="/dashboard" className="toolbar-btn">
+              <Box component={Link} to="/profile" className="toolbar-btn">
                 <AccountCircleIcon/>
               </Box>
               <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
