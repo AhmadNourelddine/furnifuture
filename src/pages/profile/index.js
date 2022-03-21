@@ -55,9 +55,12 @@ const Profile = ()=>{
                 title = {item.title} 
                 description = {item.description}
                 location = {item.location}
+                category = {item.category}
+                phone_number = {item.phone_number}
                 price = {item.price}
                 date={item.created_at}
                 btn='delete'
+                sell_btn='update'
                 />) 
             }
             </div>
