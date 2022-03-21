@@ -1,0 +1,37 @@
+
+.profile-page{
+    background-color: #ECDCCF;
+    height: max-content;
+}
+.profile-page-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 2rem ;
+    padding-top: 2rem ;
+}
+
+.profile-page-name-email{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile-page-edit{
+    align-self: flex-start;
+    padding: 0 2rem;
+}
+
+.profile-page-items{
+    height: 100vh;
+    overflow-y: scroll;
+    margin: 2rem 2rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #D4C6BA;
+    border-radius: 10px;
+    justify-content: center;
+}
