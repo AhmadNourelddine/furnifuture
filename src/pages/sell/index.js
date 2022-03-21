@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useLocation} from 'react-router-dom';
 import axios from 'axios';
 import { Button, CardMedia, Divider, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
@@ -8,7 +9,7 @@ import img from '../../assets/furniFuture-logo.png';
 
 const Sell = ()=>{
 
-    const [search, setSearch]= useState('');
+    const [update, setUpdate]= useState(false);
 
     const [title, setTitle]= useState('');
     const [description, setDescription]= useState('');
@@ -18,6 +19,11 @@ const Sell = ()=>{
     const [phoneNb, setPhoneNb]= useState('');
 
     let token = window.localStorage.getItem('authToken');
+    let passedData = window.localStorage.getItem('product');
+
+    let productUpdate = JSON.parse(passedData);
+
+    console.log(productUpdate);
 
     let item ={
         "title": title,
@@ -30,15 +36,27 @@ const Sell = ()=>{
 
     const sellProduct = async()=>{
 
+       if(!update){
         await axios.post('http://127.0.0.1:8000/api/user/product/sell',item,{
             headers: {"Authorization" : `Bearer ${token}`} 
         })
         .then((resp)=>{console.log(resp)})
         .catch((err)=>{console.log(err)})
+       }
+       else {
+        await axios.post('http://127.0.0.1:8000/api/user/product/edit',item,{
+            headers: {"Authorization" : `Bearer ${token}`} 
+        })
+        .then((resp)=>{console.log(resp)})
+        .catch((err)=>{console.log(err)})
+       }
     }
+
+    useEffect(()=>{if(productUpdate){setUpdate(true)}},[]);
 
     return(
         <div className='sell-page'>
+           
             <Typography className='sell-page-title'>Sell Furniture</Typography>
             
             <div className='sell-page-form'>
@@ -46,32 +64,38 @@ const Sell = ()=>{
                     <div className='sell-page-form-col1'>
                         <div className='sellpage-input-row'>
                             <Typography>Title</Typography>
-                            <TextField onChange={(e)=>{setTitle(e.target.value)}}
+                            <TextField defaultValue={productUpdate && productUpdate.title}
+                             onChange={(e)=>{setTitle(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Price</Typography>
-                        <TextField onChange={(e)=>{setPrice(e.target.value)}} 
+                        <TextField defaultValue={productUpdate && productUpdate.price}
+                         onChange={(e)=>{setPrice(e.target.value)}} 
                          className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                         </div>
                         <div className='sellpage-input-row'>
                             <Typography>Category</Typography>
-                            <TextField onChange={(e)=>{setCategory(e.target.value)}}
+                            <TextField defaultValue={productUpdate && productUpdate.category}
+                             onChange={(e)=>{setCategory(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Location</Typography>
-                            <TextField onChange={(e)=>{setLocation(e.target.value)}}
+                            <TextField defaultValue={productUpdate && productUpdate.location}
+                             onChange={(e)=>{setLocation(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Phone Number</Typography>
-                            <TextField onChange={(e)=>{setPhoneNb(e.target.value)}}
+                            <TextField defaultValue={productUpdate && productUpdate.phone_number}
+                             onChange={(e)=>{setPhoneNb(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Description</Typography>
-                        <TextField onChange={(e)=>{setDescription(e.target.value)}}
+                        <TextField defaultValue={productUpdate && productUpdate.description} 
+                         onChange={(e)=>{setDescription(e.target.value)}}
                          multiline={true} rows={5} className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense" />
                         </div>
                     </div>
@@ -90,8 +114,9 @@ const Sell = ()=>{
                             </div>
                         <div>
                         <Button onClick={sellProduct}
-
-                         sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>Create</Button>
+                         sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>
+                        {update? 'Update' : 'Create'}
+                        </Button>
                         </div>
                     </div>
             
