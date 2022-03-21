@@ -2,7 +2,6 @@
 import React from 'react';
 import Main from "./layout/Main";
 import {Routes, Route} from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import About from "./pages/about";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
@@ -13,6 +12,7 @@ import Sell from './pages/sell';
 import Delivery from './pages/delivery';
 import CreateShippingProfile from './pages/create-shipping-profile/create-shipping-profile';
 import Cart from './pages/cart';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/sell" element={<Sell/>} />
           <Route exact path="/delivery" element={<Delivery/>} />
           <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/profile" element={<Profile/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
