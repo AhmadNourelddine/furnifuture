@@ -18,10 +18,12 @@ export default function FurnitureItem(props) {
 
   const[buy, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
+  const[profile, setProfile]= useState(false);
 
   useEffect(()=>{
                  if(props.btn === 'save'){setBuy(true)}
                  else if (props.btn === 'remove'){setCart(true)}
+                 else {setProfile(true)}
                 },[]);
 
   let key = {"product_id": props.id,};
@@ -84,6 +86,7 @@ export default function FurnitureItem(props) {
          className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
           {buy && (save? 'saved' : props.btn)}
           {cart && 'remove'}
+          {profile && 'delete'}
         </Button>
       </div>
     </Card>
