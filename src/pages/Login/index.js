@@ -48,6 +48,8 @@ const Login = ()=> {
             setRedirect(true);
             let token = result['access_token'];
             window.localStorage.setItem('authToken', token);
+            window.localStorage.setItem('user_name', result.user['name']);
+            window.localStorage.setItem('user_email', result.user['email']);
             console.log(result);
           })
   }
