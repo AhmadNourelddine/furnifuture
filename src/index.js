@@ -3,13 +3,17 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import store from './app/store.js';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
 
+  <Provider store={store}>
   <Router>
     <App />
   </Router>
+  </Provider>
 
 ,
   document.getElementById('root')
