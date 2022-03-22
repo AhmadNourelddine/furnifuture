@@ -7,7 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
 import { Typography } from '@material-ui/core';
-
+import { useSelector, useDispatch } from 'react-redux';
+import loggedIn from '../../redux/actions/logIn.js'; 
 
 const Login = ()=> {
 
@@ -15,8 +16,9 @@ const Login = ()=> {
   const [password,setPassword]= useState('');
   const [redirect, setRedirect]= useState(false);
   
-  let Navigate = useNavigate();
-  
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
 
     if(redirect)
@@ -45,12 +47,13 @@ const Login = ()=> {
     })
           .then((response)=>response.json())
           .then((result)=>{
-            setRedirect(true);
             let token = result['access_token'];
             window.localStorage.setItem('authToken', token);
             window.localStorage.setItem('user_name', result.user['name']);
             window.localStorage.setItem('user_email', result.user['email']);
             console.log(result);
+            dispatch(loggedIn());
+            setRedirect(true);
           })
   }
 
@@ -66,7 +69,8 @@ const Login = ()=> {
     <TextField className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
     onChange = {e=>setPassword(e.target.value)} />
 
-    <Button onClick={logIn} variant="contained" fullWidth id="signin-btn">
+    <Button onClick={logIn}
+     variant="contained" fullWidth id="signin-btn">
       Log In</Button>
       <Typography className='sign-in-page-sign-up-link'>Don’t have an Account? <Button component={Link} to="/signup">Sign Up</Button> </Typography>
     </Box>
