@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../css/navbar/navbar.css';
 import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,31 +20,41 @@ import websiteLogo from '../../assets/furniFuture-logo.png';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import loggedIn from '../../redux/actions/logIn.js'; 
+
 
 
 const Navbar = () => {
 
     const[token, setToken]= useState('');
 
-    console.log(token);
+    
+
+    const dispatch = useDispatch();
+
+
+
+    let authorized = useSelector(state=> state.authReducer);
 
     const logOut = async()=>{
 
-      window.localStorage.removeItem('authToken');
-      setToken('');
+      let tokenn = window.localStorage.getItem('authToken');
+      console.log(tokenn);
 
       await axios.post('http://127.0.0.1:8000/api/user/logout',{
-          headers: {"Authorization" : `Bearer ${token}`},
+          headers: {"Authorization" : `Bearer ${tokenn}` },
       })
       .then((response)=>{
-              window.localStorage.removeItem('authToken');
-              console.log(response)
+              // window.localStorage.removeItem('authToken');
+              dispatch(loggedIn());
+              // setToken('');
+              console.log(response);
           })
       .catch(e=>{console.log(e)})
 
   }
 
-  useEffect(()=>{setToken(window.localStorage.getItem('authToken'))},[])
+  useEffect(()=>{setToken(window.localStorage.getItem('authToken'))},[authorized])
 
     return(
         <AppBar position="static" color="inherit" id="app-bar">
@@ -89,7 +100,7 @@ const Navbar = () => {
               </Button>
 
 
-              {!token && 
+              {!authorized && 
               <Box style={{display:"flex"}}>
               <Button component={Link} to="/login" className="toolbar-btn" id="toolbar-signin" color="inherit"
                 key="signin"
@@ -108,12 +119,12 @@ const Navbar = () => {
               </Box>
               }
 
-              {token && 
+              {authorized && 
               <Box style={{display:"flex"}}>
               <Box component={Link} to="/cart" className="toolbar-btn">
                 <ShoppingCartIcon/>
               </Box>
-              <Box component={Link} to="/profile" className="toolbar-btn">
+              <Box component={Link} to="/profile-shipping" className="toolbar-btn">
                 <AccountCircleIcon/>
               </Box>
               <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
