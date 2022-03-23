@@ -40,7 +40,7 @@ const Sell = ()=>{
         await axios.post('http://127.0.0.1:8000/api/user/product/sell',item,{
             headers: {"Authorization" : `Bearer ${token}`} 
         })
-        .then((resp)=>{console.log(resp)})
+        .then((resp)=>{console.log(resp); navigate('/profile')})
         .catch((err)=>{console.log(err)})
        }
        else {
