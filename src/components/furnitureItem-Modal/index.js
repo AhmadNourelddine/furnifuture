@@ -1,6 +1,5 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import img from '../../assets/furniFuture-logo.png';
@@ -62,7 +61,7 @@ const FurnitureModal = (props) => {
                                       fontWeight: 300,
                                       height: 100,
                                   }}
-                variant='subtitle2'>{props.title}</Typography>
+                variant='subtitle2'>{props.description}</Typography>
               </Box>
               <Box>
                 <Typography sx={{fontSize:10}}>{props.phone_number}</Typography>

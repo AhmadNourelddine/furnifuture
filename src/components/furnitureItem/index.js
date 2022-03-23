@@ -2,15 +2,14 @@ import * as React from 'react';
 import {useState ,useEffect} from 'react';
 import axios from 'axios';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, CardActions } from '@mui/material';
+import { Box, Button, CardActionArea } from '@mui/material';
 import '../../css/furnitureItem-sell/furnitureItem-sell.css';
 import img from '../../assets/furniFuture-logo.png';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
 
 export default function FurnitureItem(props) {

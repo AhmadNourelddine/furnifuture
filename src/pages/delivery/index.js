@@ -4,7 +4,6 @@ import SearchBar from "material-ui-search-bar";
 import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
-import FurnitureItem from '../../components/furnitureItem';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
 import { Link } from 'react-router-dom';
 
