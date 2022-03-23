@@ -11,12 +11,15 @@ import img from '../../assets/furniFuture-logo.png';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link, useNavigate } from 'react-router-dom';
+import FurnitureModal from '../furnitureItem-Modal';
 
 export default function FurnitureItem(props) {
 
   let navigate = useNavigate();
 
   let token = window.localStorage.getItem('authToken');
+
+  const[modal, setModal]= useState(false);
 
   const[save, setSave]= useState(false);
 
@@ -35,6 +38,7 @@ export default function FurnitureItem(props) {
 
   const updateItem = ()=>{
     let item={
+      "product_id":props.id,
       "title":props.title,
       "description":props.description,
       "location":props.location,
@@ -50,7 +54,7 @@ export default function FurnitureItem(props) {
 
   const clcikedButton = async()=>{
     if(props.btn === 'save'){
-      await axios.post('http://127.0.0.1:8000/api/user/cart/saveProduct',key,{
+      await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
@@ -59,7 +63,7 @@ export default function FurnitureItem(props) {
     .catch((err)=>{console.log(err)})
     }
     else if(props.btn === 'remove'){
-      await axios.post('http://127.0.0.1:8000/api/user/cart/removeProduct',key,{
+      await axios.post('http://127.0.0.1:8000/api/user/cart/remove-product',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
@@ -69,13 +73,21 @@ export default function FurnitureItem(props) {
     }
   }
   return (
-    <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
-      <CardActionArea style={{display:"flex", flexDirection:"column"}}>
+    <Box>
+       {modal && <FurnitureModal
+                  title={props.title}
+                  description={props.description}
+                  phone_number={props.phone_number}
+                  date={props.date}
+                  price={props.price}
+                  />}
+      <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
+      <CardActionArea onClick={()=>{setModal(true)}}  
+       style={{display:"flex", flexDirection:"column"}}>
 
         {profile && 
         <Box style={{alignSelf:"flex-end"}}>
           <EditIcon onClick={updateItem}
-          //  component={Link} to="/sell"
            sx={{fontSize:30}}/>
           </Box>}
 
@@ -118,5 +130,6 @@ export default function FurnitureItem(props) {
         </Button>
       </div>
     </Card>
+  </Box>
   );
 }
