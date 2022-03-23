@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Product;
+use App\Models\User;
 use Validator;
 
 class CartController extends Controller
@@ -14,6 +14,14 @@ class CartController extends Controller
     public function saveProduct(Request $request)
     {
         $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $product_id = $request->product_id;
         $array = $user->saved_products;
         array_push($array,$product_id);
@@ -25,6 +33,14 @@ class CartController extends Controller
     public function saveShipping(Request $request)
     {
         $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'shipping_id' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $shipping_id = $request->shipping_id;
         $array = $user->saved_shipping;
         array_push($array,$shipping_id);
@@ -36,6 +52,14 @@ class CartController extends Controller
     public function removeProduct(Request $request)
     {
         $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $product_id = $request->product_id;
         $array = $user->saved_products;
         unset($array[array_search($product_id,$array)]);
@@ -48,10 +72,18 @@ class CartController extends Controller
     public function removeShipping(Request $request)
     {
         $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'shipping_id' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $shipping_id = $request->shipping_id;
-        $array = $user->saved_shippings;
+        $array = $user->saved_shipping;
         unset($array[array_search($shipping_id,$array)]);
-        $user->saved_shippings = $array;
+        $user->saved_shipping = $array;
         $user->save();
         return response()->json(["status"=>"removed shipping successfully",
                                   "user"=>$user]);  
