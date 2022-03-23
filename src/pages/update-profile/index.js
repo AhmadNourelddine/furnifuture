@@ -7,6 +7,7 @@ import {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
+import ToastSuccess from '../../components/toast/toast-success';
 
 
 const UpdateProfile = ()=> {
@@ -32,7 +33,9 @@ const UpdateProfile = ()=> {
           'Authorization': 'Bearer '+token
         },
     })
-          .then((response)=>console.log(response))
+          .then((response)=>{
+            ToastSuccess('Updated Profile Successfully');
+            console.log(response)})
           .catch((err)=>{
             console.log(err)
           })

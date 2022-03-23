@@ -1,4 +1,3 @@
-
 import React from 'react';
 import axios from 'axios';
 import "../../css/login/login.css";
@@ -10,7 +9,8 @@ import Box from "@material-ui/core/box";
 import { Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import loggedIn from '../../redux/actions/logIn.js';
-import isShipping from '../../redux/actions/loggedInShipping';  
+import isShipping from '../../redux/actions/loggedInShipping'; 
+import ToastSuccess from '../../components/toast/toast-success';
 
 const Login = ()=> {
 
@@ -42,6 +42,7 @@ const Login = ()=> {
     await axios.post("http://127.0.0.1:8000/api/auth/login",object)
           .then((response)=>{return response.data;})
           .then((result)=>{
+            ToastSuccess('Signed In Successfully');
             let token = result['access_token'];
             window.localStorage.setItem('authToken', token);
             window.localStorage.setItem('user_name', result.user['name']);
@@ -57,7 +58,6 @@ const Login = ()=> {
   return (
 
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-
     <Box className='login-form' id="signin-box">
     <p id="sign-in">Sign In To Your Account</p>
     <TextField className="outlined-basic" label="Email" variant="outlined" margin="normal"

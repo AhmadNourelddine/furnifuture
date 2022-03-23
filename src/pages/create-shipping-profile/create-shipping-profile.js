@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../css/createDelivery-profile/createDelivery-profile.css';
 import "../../css/signup/signup.css";
 import { useNavigate } from 'react-router-dom';
+import ToastSuccess from '../../components/toast/toast-success';
 
 const CreateShippingProfile = ()=>{
 
@@ -40,6 +41,7 @@ const CreateShippingProfile = ()=>{
           }
           await axios.post("http://127.0.0.1:8000/api/auth/register-shipping",object)
                     .then((response)=>{
+                    ToastSuccess('Registerd Successfully');
                     setRedirect(true);
                     console.log(response);
                     })

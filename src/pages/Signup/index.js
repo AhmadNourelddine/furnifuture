@@ -6,6 +6,8 @@ import {useState, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
+import axios from 'axios';
+import ToastSuccess from '../../components/toast/toast-success';
 
 
 const SignUp = ()=> {
@@ -34,19 +36,13 @@ const SignUp = ()=> {
       "password": password,
       "password_confirmation": Cpassword
     }
-    await fetch("http://127.0.0.1:8000/api/auth/register",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(object)
-    })
-          .then((response)=>response.json())
+    await axios.post("http://127.0.0.1:8000/api/auth/register",object)
           .then((result)=>{
+            ToastSuccess('Registered Successfully');
             setRedirect(true)
             console.log(result)
           })
+          .catch((err)=>console.log(err))
   }
   return (
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
