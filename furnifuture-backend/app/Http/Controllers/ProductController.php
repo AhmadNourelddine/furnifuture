@@ -69,10 +69,6 @@ class ProductController extends Controller
         $product_id = $request->product_id;
         $product = Product::find($product_id);
 
-        // $product->update(array_merge(
-        //             $validator->validated(),
-        //         ));
-
         $product->title = $request->title;
         $product->description = $request->description;
         $product->category = $request->category;
@@ -109,50 +105,26 @@ class ProductController extends Controller
 
         $search_term = $request->search;
         $category = $request->category;
-        $results = Product::where('title','LIKE','%'.$search_term.'%')
-                            ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-                            ->orWhere('category', 'LIKE', '%'.$category.'%' )     
-                            ->get();
-        return response()->json([$results]);
-    }
 
-    public function searchShipping(Request $request){
-        
-        $search_term = $request->search;
-        $location = $request->location;
-        $vehicle_load = $request->vehicle_load;
-
-        $results = User::all()->where('is_shipping','=','true')
-                                ->where('name','=',$search_term);
-                        // ->where(function($query) use($search_term, $location, $vehicle_load){
-                        //                     $query->where('name','=',$search_term)
-                        //                         ->orWhere('email','=',$search_term)
-                        //                         ->orWhere('location','=',$location)
-                        //                         ->orWhere('vehicle_load','=',$vehicle_load)
-                        //                         ->get();
-                        //                 });
-                        
-                        // ->where(function ($query) use($search_term, $location, $vehicle_load){
-                        //     $query->where('name','LIKE','%'.$search_term.'%')
-                        //           ->orWhere('email','LIKE','%'.$search_term.'%')
-                        //           ->orWhere('location','LIKE','%'.$location.'%')
-                        //           ->orWhere('vehicle_load','LIKE','%'.$vehicle_load.'%');
-                        // })
-                        // ->get();
-                        
-        return response()->json([$results]);
+        if(!empty(category)){
+            $results = Product::where('title','LIKE','%'.$search_term.'%')
+            ->orWhere('description', 'LIKE', '%'.$search_term.'%')
+            ->Where('category', 'LIKE', '%'.$category.'%' )     
+            ->get();
+            return response()->json([$results]);
+        }
+        else{
+            $results = Product::where('title','LIKE','%'.$search_term.'%')
+            ->orWhere('description', 'LIKE', '%'.$search_term.'%')   
+            ->get();
+            return response()->json([$results]);
+        }
     }
 
     public function allProducts()
     {
         $products = Product::all();
         return response()->json([$products]);
-    }
-
-    public function allShippings()
-    {
-        $shippings = User::all()->where('is_shipping','=','true');
-        return response()->json($shippings);
     }
 
     public function deleteProduct(Request $request)
