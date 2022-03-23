@@ -21,11 +21,11 @@ const ShippingProfileCard = (props)=>{
                  else if (props.btn === 'remove'){setCart(true)}
                 },[]);
 
-  let key = {"product_id": props.id,};
+  let key = {"shipping_id": props.id,};
 
   const clcikedButton = async()=>{
     if(props.btn === 'save'){
-      await axios.post('http://127.0.0.1:8000/api/user/cart/saveShipping',key,{
+      await axios.post('http://127.0.0.1:8000/api/user/cart/save-shipping',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
@@ -34,7 +34,7 @@ const ShippingProfileCard = (props)=>{
     .catch((err)=>{console.log(err)})
     }
     else if(props.btn === 'remove'){
-      await axios.post('http://127.0.0.1:8000/api/user/cart/removeShipping',key,{
+      await axios.post('http://127.0.0.1:8000/api/user/cart/remove-shipping',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
