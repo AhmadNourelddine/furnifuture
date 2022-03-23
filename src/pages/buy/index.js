@@ -22,12 +22,7 @@ const Buy = ()=>{
 
     let token = window.localStorage.getItem('authToken');
   
-    const category = [
-        { label: 'Living Room', id: 1 },
-        { label: 'Dining Room ', id: 2 },
-        { label: 'Bedroom', id: 3 },
-        { label: 'Kids', id: 4 }
-        ];
+    const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Kids'];
     
     let object = {
         "search": search,
