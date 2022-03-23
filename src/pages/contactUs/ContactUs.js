@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import axios from 'axios';
 import "../../css/signup/signup.css";
 import "../../css/contactUs/contactUs.css";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ const ContactUs = ()=> {
 
     if(redirect)
     {
-      Navigate('/dashboard')
+      Navigate('/about')
     }
   },[redirect]);
 
@@ -34,18 +35,13 @@ const ContactUs = ()=> {
         "message": message,
         "subject": subject
     }
-    await fetch("http://127.0.0.1:8000/api/contact-us-message",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: "POST",
-        body: JSON.stringify(object)
-    })
-          .then((response)=>response.json())
-          .then((result)=>{
+    await axios.post("http://127.0.0.1:8000/api/contact-us",object)
+          .then((response)=>{
             setRedirect(true)
-            console.log(result)
+            console.log(response)
+          })
+          .catch((err)=>{
+            console.log(err)
           })
   }
 
