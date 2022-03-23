@@ -79,21 +79,21 @@ const Navbar = () => {
               </Button>
 
               <Button component={Link} to="/buy" className="toolbar-btn" color="inherit"
-                key="signin"
+                key="buy"
                 sx={{ my: 2, display: 'block' }}
               >
                 BUY
               </Button>
 
               <Button component={Link} to="/sell" className="toolbar-btn" color="inherit"
-                key="signin"
+                key="sell"
                 sx={{ my: 2, display: 'block' }}
               >
                 SELL
               </Button>
             
               <Button component={Link} to="/delivery" className="toolbar-btn" color="inherit"
-                key="signin"
+                key="delivery"
                 sx={{ my: 2, display: 'block' }}
               >
                 Delivery
@@ -124,7 +124,7 @@ const Navbar = () => {
               <Box component={Link} to="/cart" className="toolbar-btn">
                 <ShoppingCartIcon/>
               </Box>
-              <Box component={Link} to="/profile-shipping" className="toolbar-btn">
+              <Box component={Link} to="/profile" className="toolbar-btn">
                 <AccountCircleIcon/>
               </Box>
               <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
