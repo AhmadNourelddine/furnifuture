@@ -1,5 +1,6 @@
 
 import React from 'react';
+import axios from 'axios';
 import "../../css/login/login.css";
 import {useState, useEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
@@ -7,8 +8,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
 import { Typography } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
-import loggedIn from '../../redux/actions/logIn.js'; 
+import { useDispatch } from 'react-redux';
+import loggedIn from '../../redux/actions/logIn.js';
+import isShipping from '../../redux/actions/loggedInShipping';  
 
 const Login = ()=> {
 
@@ -27,25 +29,18 @@ const Login = ()=> {
     }
   },[redirect]);
 
- 
 
   const logIn = async()=>{
 
     console.log(email+password)
+
     let object={
       "email" : email,
       "password": password
     }
 
-    await fetch("http://127.0.0.1:8000/api/auth/login",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(object)
-    })
-          .then((response)=>response.json())
+    await axios.post("http://127.0.0.1:8000/api/auth/login",object)
+          .then((response)=>{return response.data;})
           .then((result)=>{
             let token = result['access_token'];
             window.localStorage.setItem('authToken', token);
@@ -53,6 +48,8 @@ const Login = ()=> {
             window.localStorage.setItem('user_email', result.user['email']);
             console.log(result);
             dispatch(loggedIn());
+            if(result.user.is_shipping){
+              dispatch(isShipping());}
             setRedirect(true);
           })
   }
