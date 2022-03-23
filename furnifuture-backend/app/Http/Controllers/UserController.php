@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Shipping_User;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
+use App\Models\Shipping_User;
+use App\Models\User;
 use Validator;
 
 class UserController extends Controller
@@ -38,14 +39,14 @@ class UserController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $user = User::create(array_merge(
-                    $validator->validated(),
-                    ['password' => bcrypt($request->password)],
-                    ['user_products'=>[]],
-                    ['saved_products'=>[]],
-                    ['saved_shipping'=>[]],
-                ));
-
+        $user = new User();
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        $user->user_products = [];
+        $user->saved_products = [];
+        $user->saved_shipping = [];
+        $user->save();
 
         return response()->json([
             'message' => 'User successfully registered',
@@ -54,6 +55,7 @@ class UserController extends Controller
     }
 
     public function registerShipping(Request $request) {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -65,13 +67,16 @@ class UserController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
-        $user = User::create(array_merge(
-                    $validator->validated(),
-                    ['password' => bcrypt($request->password)],
-                    ['is_shipping'=>true],
-                ));
 
+        $user = new User();
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        $user->phone_number = $request->phone_number;
+        $user->location = $request->location;
+        $user->vehicle_load = $request->vehicle_load;
+        $user->is_shipping = true;
+        $user->save();
 
         return response()->json([
             'message' => 'User successfully registered',
@@ -82,9 +87,8 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        if (Auth::check())
-        {
-            $user = Auth::user();
+        
+            $user = Auth::User();
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|between:2,100',
@@ -106,14 +110,12 @@ class UserController extends Controller
                 'user' => $user
             ], 201);
 
-        }
     }
 
      public function updateProfileShipping(Request $request)
         {
-            if (Auth::check())
-            {
-                $user = Auth::user();
+
+                $user = Auth::User();
     
                 $validator = Validator::make($request->all(), [
                     'name' => 'required|string|between:2,100',
@@ -138,7 +140,6 @@ class UserController extends Controller
                     'user' => $user
                 ], 201);
     
-            }
         }
 
 
