@@ -5,12 +5,14 @@ import { Autocomplete, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/buy/buy.css';
 import FurnitureItem from '../../components/furnitureItem';
+import FurnitureModal from '../../components/furnitureItem-Modal';
 
 
 
 const Buy = ()=>{ 
 
     const[searching, setSearching]= useState(false);
+    const[modal, setModal]= useState(false);
 
     const [search, setSearch]= useState('');
     const [categ, setCateg]= useState('');
@@ -82,6 +84,7 @@ const Buy = ()=>{
                 </Button>
             </div>
             <div className='buy-page-items'>
+           
             {!searching &&           
                 data.map((item)=>
                 <FurnitureItem 
@@ -109,7 +112,6 @@ const Buy = ()=>{
                  />) 
             }
             </div>
-            
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
-import { TextField } from '@material-ui/core';
 import '../../css/cart/cart.css';
 import FurnitureItem from '../../components/furnitureItem';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';

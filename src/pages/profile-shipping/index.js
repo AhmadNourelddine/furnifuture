@@ -28,7 +28,9 @@ const ProfileShipping = ()=>{
                     <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
                     <Typography fontWeight={100} fontSize={30}>{email}</Typography>
                 </Box>
-                <Box  component={Link} to="/create-shipping-profile" className='profile-page-edit'><ManageAccountsIcon sx={{fontSize:45}}/> </Box>
+                <Box component={Link} to="/create-shipping-profile" className='profile-page-edit'>
+                    <ManageAccountsIcon sx={{fontSize:45}}/> 
+                </Box>
             </Box>
             <Box sx={{py:10}} 
             style={{paddingLeft:'10rem', display:'flex', flexDirection:'column',
