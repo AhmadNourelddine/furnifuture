@@ -1,7 +1,9 @@
-const logOut = ()=>{
+
+
+const loggedOut = ()=>{
     return{
         type:'LoggedOut',
     };
  };
  
- export default logOut;
+ export default loggedOut;
