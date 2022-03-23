@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
@@ -55,13 +56,19 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::controller(ProductController::class)->group(function () {
   Route::get('/random-products', 'allProducts')->name('all-products');
-  Route::get('/random-shippings', 'allShippings')->name('all-shippings');
   Route::post('/search-products', 'searchProduct')->name('search-products');
+});
+
+Route::controller(ShippingController::class)->group(function () {
+  Route::get('/random-shippings', 'allShippings')->name('all-shippings');
   Route::post('/search-shipping', 'searchShipping')->name('search-shipping');
 });
 
+Route::controller(ContactUsController::class)->group(function () {
+  Route::post('/contact-us', 'contactUsMessage')->name('contact-us-message');
+});
+
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
-Route::post('/contact-us', [ContactUsController::class, 'contactUsMessage'])->name('contact-us-message');
 
  
 // Route::group(['prefix' => 'auth'], function () {
