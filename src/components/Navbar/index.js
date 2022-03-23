@@ -92,7 +92,9 @@ const Navbar = () => {
                <MenuItem key="about" onClick={handleCloseNavMenu}>
                  <Link to="/about"> <Typography textAlign="center">About</Typography></Link>
                 </MenuItem>
-                <MenuItem key="signin" onClick={handleCloseNavMenu}>
+                <MenuItem
+                //  key="signin" 
+                 onClick={handleCloseNavMenu}>
                  <Link to="/login"> <Typography textAlign="center">Sign In</Typography></Link>
                 </MenuItem>
                 <MenuItem key="signup" onClick={handleCloseNavMenu}>
@@ -141,7 +143,7 @@ const Navbar = () => {
             
           
               <Button component={Link} to="/login"
-                key="signin"
+                // key="signin"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
