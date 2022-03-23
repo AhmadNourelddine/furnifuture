@@ -5,7 +5,7 @@ import {Routes, Route} from 'react-router-dom';
 import About from "./pages/about";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
-import Dashboard from "./pages/dashboard";
+import UpdateProfile from "./pages/update-profile";
 import ContactUs from './pages/contactUs/ContactUs';
 import Buy from './pages/buy';
 import Sell from './pages/sell';
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
           <Route exact path="/contact-us" element={<ContactUs/>} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<UpdateProfile />} />
           <Route exact path="/create-shipping-profile" element={<CreateShippingProfile/>} />
           </Routes>
         </div>
