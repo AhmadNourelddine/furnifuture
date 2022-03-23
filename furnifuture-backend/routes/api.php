@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
@@ -20,10 +21,11 @@ Route::group(['middleware' => ['auth:api']], function () {
        });  
 
        Route::group(['prefix' => 'product'], function () {
+
         Route::controller(ProductController::class)->group(function () {  
             Route::post('/sell', 'sellProduct')->name('sell-product');
             Route::post('/edit', 'editProduct')->name('edit-product');
-            Route::post('/created', 'getUserProducts')->name('user-products');
+            Route::get('/created', 'getUserProducts')->name('user-products');
             Route::post('/delete', 'deleteProduct')->name('delete-product');
         });
        });
@@ -31,10 +33,10 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::group(['prefix' => 'cart'], function () {
 
           Route::controller(CartController::class)->group(function () {  
-            Route::post('/saveProduct', 'saveProduct')->name('save-product');
-            Route::post('/saveShipping', 'saveShipping')->name('save-shipping');
-            Route::post('/removeProduct', 'removeProduct')->name('remove-product');
-            Route::post('/removeShipping', 'removeShipping')->name('remove-shipping');
+            Route::post('/save-product', 'saveProduct')->name('save-product');
+            Route::post('/save-shipping', 'saveShipping')->name('save-shipping');
+            Route::post('/remove-product', 'removeProduct')->name('remove-product');
+            Route::post('/remove-shipping', 'removeShipping')->name('remove-shipping');
             Route::get('/get-products', 'getCartProducts')->name('get-products');
             Route::get('/get-shipping', 'getCartShipping')->name('get-shipping');
           });
@@ -51,13 +53,17 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/register-shipping', [UserController::class, 'registerShipping']);
 });
 
+Route::controller(ProductController::class)->group(function () {
+  Route::get('/random-products', 'allProducts')->name('all-products');
+  Route::get('/random-shippings', 'allShippings')->name('all-shippings');
+  Route::post('/search-products', 'searchProduct')->name('search-products');
+  Route::post('/search-shipping', 'searchShipping')->name('search-shipping');
+});
+
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
-Route::get('/random-products', [ProductController::class, 'allProducts'])->name('all-products');
-Route::get('/random-shippings', [ProductController::class, 'allShippings'])->name('all-shippings');
-Route::post('/search-products', [ProductController::class, 'searchProduct'])->name('search-products');
-Route::post('/search-shipping', [ProductController::class, 'searchShipping'])->name('search-shipping');
+Route::post('/contact-us', [ContactUsController::class, 'contactUsMessage'])->name('contact-us-message');
 
-
+ 
 // Route::group(['prefix' => 'auth'], function () {
 //     Route::post('/login', [UserController::class, 'login']);
 //     Route::post('/register', [UserController::class, 'register']);
