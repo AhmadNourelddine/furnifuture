@@ -27,11 +27,16 @@ class ProductController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
-        $product = Product::create(array_merge(
-                    $validator->validated(),
-                    ["user_id"=>$user->id],
-                ));
+
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->category = $request->category;
+        $product->location = $request->location;
+        $product->phone_number = $request->phone_number;
+        $product->price = $request->price;
+        $product->user_id = $user->id;
+        $product->save();
 
         $array = $user->user_products;
         array_push($array,$product->id);
@@ -63,9 +68,18 @@ class ProductController extends Controller
         
         $product_id = $request->product_id;
         $product = Product::find($product_id);
-        $product->update(array_merge(
-                    $validator->validated(),
-                ));
+
+        // $product->update(array_merge(
+        //             $validator->validated(),
+        //         ));
+
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->category = $request->category;
+        $product->location = $request->location;
+        $product->phone_number = $request->phone_number;
+        $product->price = $request->price;
+        $product->save();
 
         return response()->json([
             'message' => 'Product successfully updated',
@@ -84,7 +98,15 @@ class ProductController extends Controller
     }
 
     public function searchProduct(Request $request){
-        
+
+        $validator = Validator::make($request->all(), [
+            'search' => 'required|string',
+            'category' => 'string',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
         $search_term = $request->search;
         $category = $request->category;
         $results = Product::where('title','LIKE','%'.$search_term.'%')
@@ -134,11 +156,18 @@ class ProductController extends Controller
     }
 
     public function deleteProduct(Request $request)
-    {
+    {   
+        $user = Auth::User();
         $product_id = $request->product_id;
+
+        $array = $user->user_products;
+        unset($array[array_search($product_id,$array)]);
+        $user->saved_products = $array;
+        $user->save();
+
         $product = Product::find($product_id);
         $product->delete();
-        // needs removing from user_products
+
         return response()->json(['status'=>'product deleted successfully']);
     }
 }
