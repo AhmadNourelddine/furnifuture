@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Typography } from '@mui/material';
-import { TextField } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 import '../../css/profile/profile.css';
 import FurnitureItem from '../../components/furnitureItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -18,7 +17,7 @@ const Profile = ()=>{
     let user_name = window.localStorage.getItem('user_name');
     let email = window.localStorage.getItem('user_email');
     
-    const getRandomProducts = async()=>{
+    const getUserProducts = async()=>{
 
         await axios.get('http://127.0.0.1:8000/api/user/product/created',{
             headers: {"Authorization" : `Bearer ${token}`} 
@@ -32,7 +31,7 @@ const Profile = ()=>{
 
     
     useEffect(() => {
-            getRandomProducts();
+            getUserProducts();
     },[]);
 
     return(
