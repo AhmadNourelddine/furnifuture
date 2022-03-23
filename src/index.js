@@ -6,13 +6,16 @@ import App from './App';
 import store from './app/store.js';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
 
   <Provider store={store}>
-  <Router>
-    <App />
-  </Router>
+    <Router>
+    <ToastContainer/>
+       <App />
+    </Router>
   </Provider>
 
 ,
