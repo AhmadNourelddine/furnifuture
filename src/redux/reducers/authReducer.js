@@ -3,18 +3,12 @@ const authReducer = (state, action)=>{
     
     if(action.type ==='LoggedIn')
     {return true;}
-    else if(action.type === 'loggedOut')
+    else if(action.type === 'isShipping')
+    {return true;}
+    else if(action.type === 'LoggedOut')
     {return false;}
     else 
     {return false;}
-    // switch(action.type){
-    //     case 'LoggedIn':
-    //         return true
-    //     case 'LoggedOut':
-    //         return false;
-    //     defualt:
-    //         return false;
-    // }
 };
 
 export default authReducer;
