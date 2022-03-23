@@ -114,20 +114,18 @@ const Navbar = () => {
 
               {authorized && 
               <Box style={{display:"flex"}}>
-              <Box component={Link} to="/cart" className="toolbar-btn">
+              <Box component={Link} to="/cart" className="toolbar-btn navbar-icons">
                 <ShoppingCartIcon/>
               </Box>
               <Box component={Link} to={shippingUser ? "profile-shipping" : "profile"}
-               className="toolbar-btn">
+               className="toolbar-btn navbar-icons">
                 <AccountCircleIcon/>
               </Box>
-              <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
+              <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn navbar-icons">
                 <LogoutIcon/>
               </Box>
               </Box>
               }
-              
-
               
           </Box>
               </Toolbar>
