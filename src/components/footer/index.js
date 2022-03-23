@@ -5,23 +5,17 @@ import "../../css/footer/footer.css";
 
 const Footer = ()=>{
 
-    let Navigate = useNavigate()
-
-    const navigateContactUs = ()=>{
-
-        Navigate('/contact-us')
-    }
+    let Navigate = useNavigate();
 
     return(
         <div style={{ width:"100%", backgroundColor:"#6F1A07", color:"white"}}>
            <div style={{padding:"2%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-           <Typography onClick={navigateContactUs} id="footer-contact-us">Contact Us</Typography>
+           <Typography onClick={()=>{Navigate('/contact-us')}} id="footer-contact-us">Contact Us</Typography>
             <Typography>Email</Typography>
             <Typography>Phone Number</Typography>
             <Typography>Services</Typography>
            </div>
         </div>
-
     )
 }
 
