@@ -8,46 +8,39 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import websiteLogo from '../../assets/furniFuture-logo.png';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import loggedIn from '../../redux/actions/logIn.js'; 
-
+import loggedOut from '../../redux/actions/logOut.js'; 
 
 
 const Navbar = () => {
 
     const[token, setToken]= useState('');
 
-    
-
     const dispatch = useDispatch();
 
-
-
     let authorized = useSelector(state=> state.authReducer);
+    let shippingUser = useSelector(state=> state.authShippingReducer);
+
+    console.log(authorized);
+    console.log(shippingUser);
 
     const logOut = async()=>{
 
       let tokenn = window.localStorage.getItem('authToken');
       console.log(tokenn);
+      dispatch(loggedOut());
 
       await axios.post('http://127.0.0.1:8000/api/user/logout',{
           headers: {"Authorization" : `Bearer ${tokenn}` },
       })
       .then((response)=>{
-              // window.localStorage.removeItem('authToken');
-              dispatch(loggedIn());
-              // setToken('');
+              dispatch(loggedOut());
               console.log(response);
           })
       .catch(e=>{console.log(e)})
@@ -124,7 +117,8 @@ const Navbar = () => {
               <Box component={Link} to="/cart" className="toolbar-btn">
                 <ShoppingCartIcon/>
               </Box>
-              <Box component={Link} to="/profile" className="toolbar-btn">
+              <Box component={Link} to={shippingUser ? "profile-shipping" : "profile"}
+               className="toolbar-btn">
                 <AccountCircleIcon/>
               </Box>
               <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn">
