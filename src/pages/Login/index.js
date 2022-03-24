@@ -30,8 +30,9 @@ const Login = ()=> {
   },[redirect]);
 
 
-  const logIn = async()=>{
+  const logIn = async(event)=>{
 
+    event.preventDefault();
     console.log(email+password)
 
     let object={
@@ -57,19 +58,30 @@ const Login = ()=> {
 
   return (
 
-    <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+    <Box component="form" onSubmit={logIn}
+    style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+
     <Box className='login-form' id="signin-box">
     <p id="sign-in">Sign In To Your Account</p>
-    <TextField className="outlined-basic" label="Email" variant="outlined" margin="normal"
+
+    <TextField autoComplete="email" required 
+    className="outlined-basic" label="Email" variant="outlined" margin="normal" type="email" 
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
+    <TextField autoComplete="current-password" required 
+    className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
     onChange = {e=>setPassword(e.target.value)} />
 
-    <Button onClick={logIn}
+    <Button type="submit"
      variant="contained" fullWidth id="signin-btn">
-      Log In</Button>
-      <Typography className='sign-in-page-sign-up-link'>Don’t have an Account? <Button component={Link} to="/signup">Sign Up</Button> </Typography>
+      Log In
+    </Button>
+
+    <Typography className='sign-in-page-sign-up-link'>
+      Do not have an Account? 
+      <Button component={Link} to="/signup">Sign Up</Button> 
+    </Typography>
+
     </Box>
 
   

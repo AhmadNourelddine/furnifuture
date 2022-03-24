@@ -6,6 +6,9 @@ import { TextField } from '@material-ui/core';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
 import img from '../../assets/furniFuture-logo.png';
+import { useSelector } from 'react-redux';
+
+
 
 const Sell = ()=>{
 
@@ -24,17 +27,20 @@ const Sell = ()=>{
 
     let navigate = useNavigate();
 
-    let item ={
-        "product_id": product_id,
-        "title": title,
-        "description": description,
-        "price": price,
-        "location": location,
-        "phone_number": phoneNb,
-        "category": category,
-    };
+    let productToUpdate = useSelector(state=>state.editProductReducer);
+    console.log(productToUpdate);
 
     const sellProduct = async()=>{
+
+        let item ={
+            "product_id": product_id,
+            "title": title,
+            "description": description,
+            "price": price,
+            "location": location,
+            "phone_number": phoneNb,
+            "category": category,
+        };
 
        if(!update){
         await axios.post('http://127.0.0.1:8000/api/user/product/sell',item,{
@@ -53,24 +59,19 @@ const Sell = ()=>{
     }
 
     useEffect(()=>{
-        if(window.localStorage.getItem('product')){
-                        let passedData = window.localStorage.getItem('product');
-                        setProductUpdate(JSON.parse(passedData));
-                        setProduct_id(JSON.parse(passedData).product_id);
-                        setTitle(JSON.parse(passedData).title);
-                        setPrice(JSON.parse(passedData).price);
-                        setCategory(JSON.parse(passedData).category);
-                        setLocation(JSON.parse(passedData).location);
-                        setPhoneNb(JSON.parse(passedData).phone_number);
-                        setDescription(JSON.parse(passedData).description);
-                        console.log(productUpdate);
-                        window.localStorage.removeItem('product');
-                        setUpdate(true);
-                    }},[]);
+        if(productToUpdate){
+        setUpdate(true);
+        setProduct_id(productToUpdate.product_id);
+        setTitle(productToUpdate.title);
+        setPrice(productToUpdate.price);
+        setCategory(productToUpdate.category);
+        setLocation(productToUpdate.location);
+        setPhoneNb(productToUpdate.phone_number);
+        setDescription(productToUpdate.description);
+        } },[]);
 
     return(
         <div className='sell-page'>
-           
             <Typography className='sell-page-title'>Sell Furniture</Typography>
             
             <div className='sell-page-form'>
@@ -80,37 +81,44 @@ const Sell = ()=>{
                             <Typography>Title</Typography>
                             <TextField value={title}
                              onChange={(e)=>{setTitle(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
+                             className="outlined-basic sell-page-input-textfield"
+                             variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Price</Typography>
                         <TextField value={price}
                          onChange={(e)=>{setPrice(e.target.value)}} 
-                         className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
+                         className="outlined-basic sell-page-input-textfield"
+                         variant="outlined" margin="dense"/>
                         </div>
                         <div className='sellpage-input-row'>
                             <Typography>Category</Typography>
                             <TextField value={category}
                              onChange={(e)=>{setCategory(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
+                             className="outlined-basic sell-page-input-textfield" 
+                             variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Location</Typography>
                             <TextField value={location}
                              onChange={(e)=>{setLocation(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
+                             className="outlined-basic sell-page-input-textfield" 
+                             variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Phone Number</Typography>
                             <TextField value={phoneNb} 
                              onChange={(e)=>{setPhoneNb(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense"/>
+                             className="outlined-basic sell-page-input-textfield" 
+                             variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Description</Typography>
                         <TextField defaultValue={description} 
                          onChange={(e)=>{setDescription(e.target.value)}}
-                         multiline={true} rows={5} className="outlined-basic sell-page-input-textfield" variant="outlined" margin="dense" />
+                         multiline={true} rows={5} 
+                         className="outlined-basic sell-page-input-textfield" 
+                         variant="outlined" margin="dense" />
                         </div>
                     </div>
                     <div className='sell-page-form-col2'>

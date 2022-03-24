@@ -27,8 +27,9 @@ const CreateShippingProfile = ()=>{
           }
         },[redirect]);
       
-        const create = async()=>{
-      
+        const create = async(event)=>{
+            
+          event.preventDefault();  
           console.log(email+password)
           let object={
             "name":name,
@@ -45,68 +46,88 @@ const CreateShippingProfile = ()=>{
                     setRedirect(true);
                     console.log(response);
                     })
-                    .catch((err)=>{console.log(err);})
+                    .catch((err)=>{
+                        console.log(err.response);
+                        console.log(err);})
         }
 
     return(
             <Box style={{backgroundColor:'#ECDCCF', height:'100vh'}}>
 
-            <Container className='createdelivery-profile-page'>
+            <Container component="form" onSubmit={create}
+             className='createdelivery-profile-page'>
+
+                <Box style={{display:'flex', flexDirection:'column'}}>
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Name</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField  onChange = {e=>setName(e.target.value)}
+                        <TextField autoComplete='given-name'
+                         required onChange = {e=>setName(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Email</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setEmail(e.target.value)}
+                        <TextField autoComplete='email' type="email"
+                        required onChange = {e=>setEmail(e.target.value)}
                         className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Password</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setPassword(e.target.value)} 
+                        <TextField 
+                        error={password !=='' && !password.match(/^.{6,}$/)}
+                        helperText={password !=='' && !password.match(/^.{6,}$/) && 'Password should be at least 6 character'}
+                        autoComplete='new-password' type="password"
+                        required onChange = {e=>setPassword(e.target.value)} 
                         className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Password Confirm</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setCpassword(e.target.value)}
-                         className='createdelivery-input-textfield'></TextField>
+                        <TextField 
+                        error={Cpassword!=='' && Cpassword !== password} 
+                        helperText={Cpassword!=='' && Cpassword !== password && 'please confrim password'}
+                        autoComplete='new-password' type="password"
+                        required onChange = {e=>setCpassword(e.target.value)}
+                        className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
-                <Box className='createdelivery-input'>
+            </Box>
+            <Box style={{display:'felx', flexDirection:'column'}}>
+
+            <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Location</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setLocation(e.target.value)}
+                        <TextField required onChange = {e=>setLocation(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
-                <Box className='createdelivery-input'>
+            <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Phone Number</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setPhoneNb(e.target.value)}
+                        <TextField required onChange = {e=>setPhoneNb(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Vehicle Load Capacity</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField onChange = {e=>setVehicleLoad(e.target.value)}
+                        <TextField required onChange = {e=>setVehicleLoad(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
                 </Box>
 
-                <Box className='deliveryprofile-cancel-create-btns'>
+                <Box style={{alignSelf:'flex-end'}} className='deliveryprofile-cancel-create-btns'>
                     <Button style={{color:'white ', backgroundColor:'#D86544'}}>Cancel</Button>
-                    <Button onClick={create}
+                    <Button type="submit"
                      sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>Create</Button>
                 </Box>
+            </Box>
+
 
             </Container>
 

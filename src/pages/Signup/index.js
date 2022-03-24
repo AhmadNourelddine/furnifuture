@@ -27,8 +27,8 @@ const SignUp = ()=> {
     }
   },[redirect]);
 
-  const signup = async()=>{
-
+  const signup = async(event)=>{
+    event.preventDefault();
     console.log(email+password)
     let object={
       "name":name,
@@ -45,23 +45,32 @@ const SignUp = ()=> {
           .catch((err)=>console.log(err))
   }
   return (
-    <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+    <Box component="form" onSubmit={signup} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='signup-form' id="signup-box">
     <p id="sign-up">Create An Account</p>
-    <TextField className="outlined-basic" label="Name" variant="outlined" margin="dense"
+
+    <TextField required autoComplete='given-name'
+    className="outlined-basic" label="Name" variant="outlined" margin="dense"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField className="outlined-basic" label="Email" variant="outlined" margin="dense"
+    <TextField required autoComplete='email'
+    className="outlined-basic" label="Email" variant="outlined" margin="dense" type="email"
     onChange = {e=>setEmail(e.target.value)}/>
 
-    <TextField className="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
-    onChange = {e=>setPassword(e.target.value)}/>
+    <TextField required autoComplete='new-password'
+     error={password !=='' && !password.match(/^.{6,}$/)}
+     helperText={password !=='' && !password.match(/^.{6,}$/) && 'Password should be at least 6 character'}
+     className="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
+     onChange = {e=>setPassword(e.target.value)}/>
 
-   <TextField className="outlined-basic" label="Confirm Password" variant="outlined" margin="dense" type="password"
+   <TextField required autoComplete='new-password'
+    error={Cpassword!=='' && Cpassword !== password} 
+    helperText={Cpassword!=='' && Cpassword !== password && 'please confrim password'}
+    className="outlined-basic" label="Confirm Password" variant="outlined" margin="dense" type="password"
     onChange = {e=>setCpassword(e.target.value)}/>
 
-    <Button onClick={signup} variant="contained" id="signup-btn" fullWidth>Sign Up</Button>
+    <Button type="submit" variant="contained" id="signup-btn" fullWidth>Sign Up</Button>
     </Box>
 
     </Box>
