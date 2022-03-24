@@ -7,6 +7,7 @@ import '../../css/delivery/delivery.css';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
 import { Link } from 'react-router-dom';
 
+
 const Delivery = ()=>{
 
     const[searching, setSearching]= useState(false);
@@ -49,9 +50,7 @@ const Delivery = ()=>{
     }
 
     useEffect(() => {
-
             getRandomShippings();
-
             },[]);
 
     return(
@@ -78,7 +77,7 @@ const Delivery = ()=>{
                     disablePortal
                     options={locations}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField
+                    renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
                          label="Location" />}
                     onChange = {(event, value)=>{value && setLocation(value)}}
@@ -87,7 +86,7 @@ const Delivery = ()=>{
                     disablePortal
                     options={Vehicle_loads}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField
+                    renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
                          label="Vehicle Load" />}
                     onChange = {(event, value)=>{value && setVehicle_load(value)}}

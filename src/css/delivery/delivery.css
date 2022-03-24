@@ -49,6 +49,9 @@
     background-color: white;
     padding: auto 1rem;
 }
+.delivery-dropMenu-textfield{
+    top: calc(50% - 28px) !important;
+}
 .buy-search-btn{
     width: 15%;
     border-radius: 10px !important;
