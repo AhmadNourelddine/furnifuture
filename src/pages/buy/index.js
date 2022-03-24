@@ -68,7 +68,7 @@ const Buy = ()=>{
                     disablePortal
                     options={category}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField
+                    renderInput={(params) => <TextField variant="standard"
                         className="buy-page-search-category-textfield"
                          {...params} 
                          label="Category" />}
