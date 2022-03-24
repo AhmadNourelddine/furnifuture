@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: #ECDCCF;
+    width: 20rem;
 }
 
 #signin-box{
@@ -28,6 +29,7 @@
 }
 .outlined-basic{
     background-color: white;
+    width: inherit;
 }
 
 .sign-in-page-sign-up-link{

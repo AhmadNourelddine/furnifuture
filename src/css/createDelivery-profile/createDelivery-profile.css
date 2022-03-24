@@ -3,7 +3,7 @@
     background-color: #ECDCCF;
     display: flex !important;
     flex-direction: row !important; 
-    justify-content: flex-start !important;
+    justify-content: center !important;
     flex-wrap: wrap !important;
     padding: 3rem 2rem;
 }
@@ -26,6 +26,7 @@
 }
 
 .deliveryprofile-cancel-create-btns{
+    padding-top: 5rem;
     width: 30rem !important;
     display: flex;
     flex-direction: row;

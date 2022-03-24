@@ -38,3 +38,8 @@
     font-weight: 900 !important;
     font-size: 90% !important;
 }
+
+.navbar-icons:hover{
+    border-bottom: solid;
+}
+

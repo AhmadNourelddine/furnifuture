@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: #ECDCCF;
+    width: 20rem;
 }
 #sign-up{
     font-size: 200%;
@@ -25,5 +26,6 @@
 }
 .outlined-basic{
     background-color: white;
+    width: inherit;
     margin: 1%;
 }
