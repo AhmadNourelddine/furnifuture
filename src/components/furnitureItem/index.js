@@ -11,6 +11,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
+import { useDispatch } from 'react-redux';
+import { editProduct } from '../../redux/actions/editProduct';
 
 export default function FurnitureItem(props) {
 
@@ -25,6 +27,8 @@ export default function FurnitureItem(props) {
   const[buy, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
   const[profile, setProfile]= useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(()=>{
                  if(props.btn === 'save'){setBuy(true)}
@@ -47,7 +51,9 @@ export default function FurnitureItem(props) {
       "price":props.price,
       "sell-btn": props.sell_btn,
     };
-    window.localStorage.setItem('product',JSON.stringify(item));
+
+    dispatch(editProduct(item));
+    // window.localStorage.setItem('product',JSON.stringify(item));
       navigate("/sell");
   }
 
