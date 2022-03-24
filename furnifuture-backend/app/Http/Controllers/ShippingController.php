@@ -14,8 +14,6 @@ class ShippingController extends Controller
 
         $validator = Validator::make($request->all(), [
             'search' => 'string',
-            'category' => 'string',
-            'location' => 'string',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);

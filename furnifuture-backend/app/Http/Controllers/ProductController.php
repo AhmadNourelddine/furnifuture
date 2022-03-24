@@ -97,7 +97,6 @@ class ProductController extends Controller
 
         $validator = Validator::make($request->all(), [
             'search' => 'required|string',
-            'category' => 'string',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -106,10 +105,11 @@ class ProductController extends Controller
         $search_term = $request->search;
         $category = $request->category;
 
-        if(!empty(category)){
-            $results = Product::where('title','LIKE','%'.$search_term.'%')
+        if(!empty($category)){
+            $results = Product::where('category', '=', $category)
+            ->where('title','LIKE','%'.$search_term.'%')
             ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-            ->Where('category', 'LIKE', '%'.$category.'%' )     
+                 
             ->get();
             return response()->json([$results]);
         }
