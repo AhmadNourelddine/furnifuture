@@ -7,7 +7,7 @@ const ToastSuccess = (message)=>
                     toast.success(message, {
                     position: "top-center",
                     autoClose: 2500,
-                    hideProgressBar: false,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
