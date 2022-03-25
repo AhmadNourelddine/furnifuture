@@ -6,6 +6,8 @@ import { TextField } from '@material-ui/core';
 import '../../css/buy/buy.css';
 import FurnitureItem from '../../components/furnitureItem';
 import FurnitureModal from '../../components/furnitureItem-Modal';
+import { useSelector } from 'react-redux';
+import { ExitToApp } from '@material-ui/icons';
 
 
 
@@ -21,6 +23,13 @@ const Buy = ()=>{
     const [result, setResult]= useState([]);
 
     let token = window.localStorage.getItem('authToken');
+
+    const loggedIn = useSelector(state=>state.authReducer);
+
+    const user = useSelector(state=>state.authUserReducer);
+    const saved_products = user.saved_products;
+    
+    // console.log(saved_products);
   
     const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Kids'];
     
@@ -29,6 +38,18 @@ const Buy = ()=>{
         "category": categ
     };
     
+    const checkProductSaved= (p_id)=>{
+            let chck = false;
+            Object.keys(saved_products).forEach((key)=>{
+                if(saved_products[key] === p_id)
+                {chck = true;}
+            });
+            console.log(chck);
+            return chck;
+    }
+
+    console.log(checkProductSaved("623629dded37000059004254"))
+
     const getRandomProducts = async()=>{
 
         await axios.get('http://127.0.0.1:8000/api/random-products')
@@ -45,7 +66,7 @@ const Buy = ()=>{
             .then((response)=>{
                     setResult(response.data[0]);
                     setSearching(true);
-                    console.log(response);
+                    // console.log(response);
                 })
             .catch(e=>{console.log(e)})
     }
@@ -103,9 +124,9 @@ const Buy = ()=>{
                  location = {item.location}
                  price = {item.price}
                  date={item.created_at}
-                 btn='save'
-                 />) 
-            }
+                 btn={checkProductSaved(item._id) ? 'saved' : 'save'}
+                 />)
+            }   
             </div>
         </div>
     );
