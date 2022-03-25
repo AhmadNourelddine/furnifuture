@@ -72,7 +72,9 @@ const Sell = ()=>{
 
     return(
         <div className='sell-page'>
-            <Typography className='sell-page-title'>Sell Furniture</Typography>
+            <Typography className='sell-page-title'>
+                {update? 'Edit Your Furniture': 'Sell Furniture'}
+            </Typography>
             
             <div className='sell-page-form'>
                 <div className='sell-page-inputs-and-image'>
