@@ -21,9 +21,11 @@ class CartController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-
         $product_id = $request->product_id;
         $array = $user->saved_products;
+        if(array_search($product_id,$array)){
+            return response()->json(["status"=>"product already saved"]); 
+        }
         array_push($array,$product_id);
         $user->saved_products = $array;
         $user->save();
@@ -43,6 +45,9 @@ class CartController extends Controller
 
         $shipping_id = $request->shipping_id;
         $array = $user->saved_shipping;
+        if(array_search($shipping_id,$array)){
+            return response()->json(["status"=>"shipping already saved"]); 
+        }
         array_push($array,$shipping_id);
         $user->saved_shipping = $array;
         $user->save();
@@ -79,7 +84,7 @@ class CartController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-
+        
         $shipping_id = $request->shipping_id;
         $array = $user->saved_shipping;
         unset($array[array_search($shipping_id,$array)]);
