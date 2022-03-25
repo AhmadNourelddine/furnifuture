@@ -68,6 +68,8 @@ Route::controller(ContactUsController::class)->group(function () {
   Route::post('/contact-us', 'contactUsMessage')->name('contact-us-message');
 });
 
+Route::get('/suggest-shipping', [ShippingController::class, 'suggestShippings'])->name('suggest-shipping');
+
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
 
  
