@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
+import InputLabel from '@mui/material/InputLabel';
 import { Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import loggedIn from '../../redux/actions/logIn.js';
@@ -16,6 +17,7 @@ const Login = ()=> {
 
   const [email,setEmail]= useState('');
   const [password,setPassword]= useState('');
+  const [error, setError]= useState(false);
   const [redirect, setRedirect]= useState(false);
   
   const Navigate = useNavigate();
@@ -49,11 +51,15 @@ const Login = ()=> {
             window.localStorage.setItem('user_name', result.user['name']);
             window.localStorage.setItem('user_email', result.user['email']);
             console.log(result);
-            dispatch(loggedIn());
+            console.log(result.user.saved_products);
+            dispatch(loggedIn(result.user));
             if(result.user.is_shipping){
-              dispatch(isShipping());}
+              dispatch(isShipping());} 
             setRedirect(true);
           })
+          .catch((err)=>{
+            setError(true);
+            console.log(err.message);})
   }
 
   return (
@@ -71,7 +77,7 @@ const Login = ()=> {
     <TextField autoComplete="current-password" required 
     className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
     onChange = {e=>setPassword(e.target.value)} />
-
+    <InputLabel>{error && 'Email or/and Password are Wrong'}</InputLabel>
     <Button type="submit"
      variant="contained" fullWidth id="signin-btn">
       Log In
@@ -79,11 +85,12 @@ const Login = ()=> {
 
     <Typography className='sign-in-page-sign-up-link'>
       Do not have an Account? 
-      <Button component={Link} to="/signup">Sign Up</Button> 
+      <Button component={Link} to="/signup">
+        <p style={{borderBottom:'solid 0.5px'}}>Sign Up</p>
+      </Button> 
     </Typography>
 
     </Box>
-
   
 
     </Box>
