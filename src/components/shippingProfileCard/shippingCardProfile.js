@@ -6,15 +6,18 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
+import { useSelector } from 'react-redux';
 
 const ShippingProfileCard = (props)=>{
 
-    let token = window.localStorage.getItem('authToken');
+  let token = window.localStorage.getItem('authToken');
 
   const[save, setSave]= useState(false);
 
   const[shipping, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
+
+  const isloggedIn = useSelector(state=>state.authReducer);
 
   useEffect(()=>{
                  if(props.btn === 'save'){setBuy(true)}
@@ -24,6 +27,7 @@ const ShippingProfileCard = (props)=>{
   let key = {"shipping_id": props.id,};
 
   const clcikedButton = async()=>{
+    if(!isloggedIn){alert('please sign in'); return;}
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-shipping',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
@@ -69,9 +73,10 @@ const ShippingProfileCard = (props)=>{
                 </Box>
 
                 <Box sx={{mx:2, my:3}} className='shippingprofile-delivery-save'>
-                    <Button onClick={clcikedButton}
+                    <Button disabled={save}
+                     onClick={clcikedButton}
                      style={{color: 'white', backgroundColor: '#D86544'}}>
-                         {shipping && (save? 'saved' : props.btn)}
+                         {shipping && (save ? 'saved' : props.btn)}
                          {cart && 'remove'}
                     </Button>
                 </Box>
