@@ -11,14 +11,17 @@ import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
+import { useSelect } from '@mui/base';
 
 export default function FurnitureItem(props) {
 
   let navigate = useNavigate();
 
   let token = window.localStorage.getItem('authToken');
+
+  const loggedIn = useSelector(state=>state.authReducer);
 
   const[modal, setModal]= useState(false);
 
@@ -33,8 +36,8 @@ export default function FurnitureItem(props) {
   useEffect(()=>{
                  if(props.btn === 'save'){setBuy(true)}
                  else if (props.btn === 'remove'){setCart(true)}
-                 else {setProfile(true)
-                }
+                 else if(props.btn === 'saved'){setBuy(true); setSave(true);}
+                 else {setProfile(true)}
                 },[]);
 
   let key = {"product_id": props.id,};
@@ -58,6 +61,7 @@ export default function FurnitureItem(props) {
   }
 
   const clcikedButton = async()=>{
+    if(!loggedIn){alert('please Sign In'); return;}
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
@@ -127,8 +131,9 @@ export default function FurnitureItem(props) {
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
          {props.price}
           </Typography>
-        <Button onClick={clcikedButton}
-         className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
+        <Button disabled={save}
+          onClick={clcikedButton}
+          className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
           {buy && (save? 'saved' : props.btn)}
           {cart && 'remove'}
           {profile && 'delete'}
