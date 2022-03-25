@@ -1,9 +1,11 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import img from '../../assets/furniFuture-logo.png';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import axios from 'axios';
+import SuggestedShipping from '../suggestedShipping/suggestedShipping';
 
 const customStyles = {
   content: {
@@ -23,6 +25,7 @@ const FurnitureModal = (props) => {
 
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(true);
+  const [data, setData]= useState([]);
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
@@ -32,6 +35,19 @@ const FurnitureModal = (props) => {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const suggestShippings = async()=>{
+
+    await axios.get('http://127.0.0.1:8000/api/suggest-shipping')
+    .then((response)=>{
+            setData(response.data)
+            console.log(response)
+        })
+    .catch(e=>{console.log(e)})
+
+}
+
+useEffect(()=>{suggestShippings()},[]);
 
   return (
       <Modal
@@ -80,38 +96,14 @@ const FurnitureModal = (props) => {
               <Box>
                 <Typography sx={{pb:1}}>Suggested Delivery</Typography>
               </Box>
-                <Box style={{display:'flex', flexDirection:'column', justifyContent:'flex-start'}} 
-                className='modal-shipping-profiles'>
-
-                <Box sx={{py:1}} style={{display:'flex', alignContent:'center'}}>
-                <Box><AccountCircleIcon sx={{fontSize:100, pr:1}}/></Box>
-                <Box >
-                    <Typography fontWeight={500} fontSize={10}>name</Typography>
-                    <Typography fontWeight={100} fontSize={10}>location</Typography>
-                    <Typography fontWeight={100} fontSize={10}>phone number</Typography>
-                </Box>
-                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}><CheckBoxOutlinedIcon/></Box>
-                </Box>
-                <Box sx={{py:1}} style={{display:'flex', alignContent:'center'}}>
-                <Box><AccountCircleIcon sx={{fontSize:100, pr:1}}/></Box>
-                <Box>
-                    <Typography fontWeight={500} fontSize={10}>name</Typography>
-                    <Typography fontWeight={100} fontSize={10}>location</Typography>
-                    <Typography fontWeight={100} fontSize={10}>phone number</Typography>
-                </Box>
-                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}><CheckBoxOutlinedIcon/></Box>
-                </Box>
-                <Box sx={{py:1}} style={{display:'flex', alignContent:'center'}}>
-                <Box><AccountCircleIcon sx={{fontSize:100, pr:1}}/></Box>
-                <Box>
-                    <Typography fontWeight={500} fontSize={10}>name</Typography>
-                    <Typography fontWeight={100} fontSize={10}>location</Typography>
-                    <Typography fontWeight={100} fontSize={10}>phone number</Typography>
-                </Box>
-                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}><CheckBoxOutlinedIcon/></Box>
-                </Box>
-
-              </Box>
+             { Object.keys(data).map((key)=> 
+                <SuggestedShipping
+                  name={data[key].name}
+                  location={data[key].location}
+                  phone_number={data[key].phone_number}
+                />
+              
+              )}
             </CardContent>
           </Box>
         </Box>
