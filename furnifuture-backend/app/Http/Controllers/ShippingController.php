@@ -59,6 +59,13 @@ class ShippingController extends Controller
         $shippings = User::all()->where('is_shipping','=','true');
         return response()->json($shippings);
     }
+
+    public function suggestShippings()
+    {
+        $shippings = User::all()->where('is_shipping','=','true')->take(3);
+        return response()->json($shippings);
+    }
+
 }
 
 
