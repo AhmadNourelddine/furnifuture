@@ -6,6 +6,7 @@ import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const Delivery = ()=>{
@@ -19,11 +20,28 @@ const Delivery = ()=>{
     const [data, setData]= useState([]);
     const [result, setResult]= useState([]);
 
+    const loggedIn = useSelector(state=>state.authReducer);
+    const user = useSelector(state=>state.authUserReducer);
+    const saved_shipping = user.saved_shipping;
+
     let object = {
         "search":search,
         "location": location,
         "vehicle_load": vehicle_load
     };
+
+    const checkShippingSaved= (p_id)=>{
+        let chck = false;
+        if(loggedIn)
+        {
+            Object.keys(saved_shipping).forEach((key)=>{
+                if(saved_shipping[key] === p_id)
+                {chck = true;}
+            });
+        }
+        console.log(chck);
+        return chck;
+    }
 
     let locations = ["Beirut", "Saida", "Nabateye", "Zahle"];
     let Vehicle_loads = ["500", "1000", "1500", "2000"];
@@ -65,7 +83,7 @@ const Delivery = ()=>{
                         style={{padding:'0.5rem 2rem'}} size='large' 
                         className='deliverypage-create-deliveryprofile-btn' 
                         sx={{mx:2}}>Create</Button>
-                </div>
+            </div>
 
             <div className='buy-furniture-search'>
                 <SearchBar 
@@ -105,7 +123,7 @@ const Delivery = ()=>{
                 phone_number = {data[key].phone_number}
                 location = {data[key].location}
                 vehicle_load = {data[key].vehicle_load}
-                btn = 'save'
+                btn = {loggedIn && checkShippingSaved(data[key]._id)? 'saved' : 'save'}
                 />)
             }
              {/* {searching && 
@@ -129,7 +147,7 @@ const Delivery = ()=>{
                 phone_number = {data[key].phone_number}
                 location = {data[key].location}
                 vehicle_load = {data[key].vehicle_load}
-                btn = 'save'
+                btn = {checkShippingSaved(data[key]._id)? 'saved' : 'save'}
                 />)
             }
             </div>

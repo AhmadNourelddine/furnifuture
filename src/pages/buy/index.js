@@ -40,10 +40,13 @@ const Buy = ()=>{
     
     const checkProductSaved= (p_id)=>{
             let chck = false;
-            Object.keys(saved_products).forEach((key)=>{
-                if(saved_products[key] === p_id)
-                {chck = true;}
-            });
+            if(loggedIn)
+            {
+                Object.keys(saved_products).forEach((key)=>{
+                    if(saved_products[key] === p_id)
+                    {chck = true;}
+                });
+            }
             console.log(chck);
             return chck;
     }
@@ -111,7 +114,7 @@ const Buy = ()=>{
                 location = {item.location}
                 price = {item.price}
                 date={item.created_at}
-                btn='save'
+                btn={checkProductSaved(item._id)? 'saved' : 'save'}
                 />) 
             }
             {searching && 
