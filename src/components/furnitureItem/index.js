@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
+import { openModal } from '../../redux/actions/modal';
 import { useSelect } from '@mui/base';
 
 export default function FurnitureItem(props) {
@@ -22,8 +23,9 @@ export default function FurnitureItem(props) {
   let token = window.localStorage.getItem('authToken');
 
   const loggedIn = useSelector(state=>state.authReducer);
+  const checkModal = useSelector(state=>state.modalReducer);
 
-  const[modal, setModal]= useState(false);
+  const[toggleModal, setToggleModal]= useState(false);
 
   const[save, setSave]= useState(false);
 
@@ -56,12 +58,13 @@ export default function FurnitureItem(props) {
     };
 
     dispatch(editProduct(item));
-    // window.localStorage.setItem('product',JSON.stringify(item));
-      navigate("/sell");
+    navigate("/sell");
   }
 
   const clcikedButton = async()=>{
+
     if(!loggedIn){alert('please Sign In'); return;}
+
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
@@ -71,6 +74,7 @@ export default function FurnitureItem(props) {
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
+
     else if(props.btn === 'remove'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/remove-product',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
@@ -81,17 +85,20 @@ export default function FurnitureItem(props) {
     .catch((err)=>{console.log(err)})
     }
   }
+
   return (
     <Box>
-       {modal && <FurnitureModal
-                  title={props.title}
-                  description={props.description}
-                  phone_number={props.phone_number}
-                  date={props.date}
-                  price={props.price}
-                  />}
+       {checkModal && <FurnitureModal
+                        id = {props.id}
+                        title={props.title}
+                        description={props.description}
+                        phone_number={props.phone_number}
+                        date={props.date}
+                        price={props.price}
+                        btn={save? 'saved' : 'save'}
+                        />}
       <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
-      <CardActionArea onClick={()=>{setModal(true)}}  
+      <CardActionArea onClick={()=>{dispatch(openModal())}}  
        style={{display:"flex", flexDirection:"column"}}>
 
         {profile && 
