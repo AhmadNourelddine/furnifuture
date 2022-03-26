@@ -1,11 +1,11 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import img from '../../assets/furniFuture-logo.png';
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import axios from 'axios';
 import SuggestedShipping from '../suggestedShipping/suggestedShipping';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from '../../redux/actions/modal';
 
 const customStyles = {
   content: {
@@ -18,21 +18,26 @@ const customStyles = {
   },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
 const FurnitureModal = (props) => {
 
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(true);
+
+  const dispatch = useDispatch();
+  const [modalIsOpen, setIsOpen] = useState(true);
   const [data, setData]= useState([]);
 
+  let token = window.localStorage.getItem('authToken');
+
+  const loggedIn = useSelector(state=>state.authReducer);
+
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = '#f00';
   }
 
-  function closeModal() {
+  function closeTheModal() {
+    dispatch(closeModal());
     setIsOpen(false);
   }
 
@@ -47,13 +52,30 @@ const FurnitureModal = (props) => {
 
 }
 
+const clcikedButton = async()=>{
+
+  if(!loggedIn){
+    alert('please log in'); return;}
+
+ if(props.btn === 'save'){
+      let product_id = {"product_id":props.id};
+      await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',product_id,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+    })
+    .then((resp)=>{
+      setIsOpen(false);
+      console.log(resp);})
+    .catch((err)=>{console.log(err)})
+    }
+}
+
 useEffect(()=>{suggestShippings()},[]);
 
   return (
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
+        onRequestClose={closeTheModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
@@ -86,12 +108,14 @@ useEffect(()=>{suggestShippings()},[]);
               <Box style={{width:'18rem', position:'absolute', bottom:'1.5rem'}}>
               <Box style={{display:'flex', justifyContent:'space-between', alignItems:'baseline'}}>
                 <Typography variant='h5' sx={{py:2}}>{props.price}</Typography>
-                <Button className='sell-furniture-item-button'>Save</Button>
+                <Button disabled={props.btn==='saved' ? true: false} 
+                onClick={clcikedButton} 
+                className='sell-furniture-item-button'>{props.btn}</Button>
               </Box>
               </Box>
             </CardContent>
           </Box>
-          <Box sx={{m:1}} style={{borderRadius:'10px', color:'white', backgroundColor:'#304451'}}>
+          <Box sx={{m:1}} style={{height:'15rem', borderRadius:'10px', color:'white', backgroundColor:'#304451'}}>
             <CardContent style={{paddingBottom:'0'}}>
               <Box>
                 <Typography sx={{pb:1}}>Suggested Delivery</Typography>
