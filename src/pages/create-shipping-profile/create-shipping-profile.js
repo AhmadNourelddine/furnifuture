@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, TextField, Typography, Autocomplete } from '@mui/material';
 import axios from 'axios';
 import '../../css/createDelivery-profile/createDelivery-profile.css';
 import "../../css/signup/signup.css";
@@ -17,6 +17,12 @@ const CreateShippingProfile = ()=>{
         const [vehicleLoad, setVehicleLoad]= useState('');
 
         const [redirect, setRedirect]= useState(false);
+
+        const locations = ["Beirut", "Tripoli", "Sidon", "Tyre",
+                     "Jounieh", "Byblos", "Aley", "Nabatieh",
+                     "Baalbeck", "Zahle", "Zhgarta-Ehden", "Batroun"];
+
+        const Vehicle_loads = ["500", "1000", "1500", "2000"];
       
         let Navigate = useNavigate()
         useEffect(() => {
@@ -100,26 +106,44 @@ const CreateShippingProfile = ()=>{
             <Box style={{display:'felx', flexDirection:'column'}}>
 
             <Box className='createdelivery-input'>
-                    <Typography variant='h4' sx={{my:2}}>Location</Typography>
-                    <Box className='createdelivery-input-section'>
-                        <TextField required onChange = {e=>setLocation(e.target.value)}
-                         className='createdelivery-input-textfield'></TextField>
-                    </Box>
-                </Box>
+                <Typography variant='h4' sx={{my:2}}>Location</Typography>
+                        <Box className='createdelivery-input-section'>
+                            <Autocomplete className='createdelivery-autocomplete-section'
+                                disablePortal
+                                options={locations}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => 
+                                <TextField className='delivery-dropMenu-textfield'
+                                    {...params} 
+                                     />}
+                                onChange = {(event, value)=>{value && setLocation(value)}}
+                                />
+                        </Box>
+            </Box>
+
+            <Box className='createdelivery-input'>
+                <Typography variant='h4' sx={{my:2}}>Vehicle Load</Typography>
+                        <Box className='createdelivery-input-section'>
+                            <Autocomplete className='createdelivery-autocomplete-section'
+                                disablePortal
+                                options={Vehicle_loads}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => 
+                                <TextField className='delivery-dropMenu-textfield'
+                                    {...params} 
+                                     />}
+                                onChange = {(event, value)=>{value && setVehicleLoad(value)}}
+                                />
+                        </Box>
+            </Box>
+
             <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Phone Number</Typography>
                     <Box className='createdelivery-input-section'>
                         <TextField required onChange = {e=>setPhoneNb(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
-                </Box>
-                <Box className='createdelivery-input'>
-                    <Typography variant='h4' sx={{my:2}}>Vehicle Load Capacity</Typography>
-                    <Box className='createdelivery-input-section'>
-                        <TextField required onChange = {e=>setVehicleLoad(e.target.value)}
-                         className='createdelivery-input-textfield'></TextField>
-                    </Box>
-                </Box>
+            </Box>
 
                 <Box style={{alignSelf:'flex-end'}} className='deliveryprofile-cancel-create-btns'>
                     <Button style={{color:'white ', backgroundColor:'#D86544'}}>Cancel</Button>
