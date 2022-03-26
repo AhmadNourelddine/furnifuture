@@ -22,6 +22,8 @@ const Sell = ()=>{
     const [category, setCategory]= useState('');
     const [phoneNb, setPhoneNb]= useState('');
     const [product_id, setProduct_id]= useState('');
+    const [imageEncoded, setImageEncoded]= useState('');
+    const [imagePreview, setImagePreview]= useState(null);
 
     let token = window.localStorage.getItem('authToken');
 
@@ -29,6 +31,20 @@ const Sell = ()=>{
 
     let productToUpdate = useSelector(state=>state.editProductReducer);
     console.log(productToUpdate);
+
+    const handleImage = (e)=>{
+        const file = e.target.files[0];
+        setImagePreview(URL.createObjectURL(file));
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = function (){
+            setImageEncoded(fileReader.result);
+            console.log(imageEncoded);
+        }
+        fileReader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
 
     const sellProduct = async()=>{
 
@@ -128,12 +144,12 @@ const Sell = ()=>{
                         <CardMedia
                         component="img"
                         height='100%'
-                        image={img}
+                        image={imagePreview? imagePreview : img}
                         alt="furniture"
                         /></div>
                         <Divider sx={{my:3}} light/>
                         <div className='sellpage-upload-image-section'>
-                            <Button><CameraAltIcon color="error"/></Button>
+                           <input type='file' onChange={(e)=>handleImage(e)} /> <Button><CameraAltIcon color="error"/></Button>
                             <Typography>Upload Image</Typography>
                             </div>
                         <div>
