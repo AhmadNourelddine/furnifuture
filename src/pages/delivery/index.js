@@ -43,7 +43,10 @@ const Delivery = ()=>{
         return chck;
     }
 
-    let locations = ["Beirut", "Saida", "Nabateye", "Zahle"];
+    let locations = ["Beirut", "Tripoli", "Sidon", "Tyre",
+                     "Jounieh", "Byblos", "Aley", "Nabatieh",
+                     "Baalbeck", "Zahle", "Zhgarta-Ehden", "Batroun"];
+                     
     let Vehicle_loads = ["500", "1000", "1500", "2000"];
 
     const getRandomShippings = async()=>{
