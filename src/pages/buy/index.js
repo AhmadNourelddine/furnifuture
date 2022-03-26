@@ -31,7 +31,7 @@ const Buy = ()=>{
     
     // console.log(saved_products);
   
-    const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Kids'];
+    const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom', 'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
     
     let object = {
         "search": search,
