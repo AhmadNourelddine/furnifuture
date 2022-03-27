@@ -32,6 +32,7 @@ export default function FurnitureItem(props) {
   const[buy, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
   const[profile, setProfile]= useState(false);
+  const [image, setImage]= useState(null);
 
   const dispatch = useDispatch();
 
@@ -80,10 +81,20 @@ export default function FurnitureItem(props) {
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
+      console.log(resp);})
+    .catch((err)=>{console.log(err)})
+    }
+
+    else if(props.btn === 'delete'){
+      await axios.post('http://127.0.0.1:8000/api/user/product/delete',key,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+    })
+    .then((resp)=>{ 
       // window.location.reload(false)
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
+
   }
 
   return (
@@ -110,7 +121,7 @@ export default function FurnitureItem(props) {
         <CardMedia style={{padding:"2rem 5rem"}}
           component="img"
           height="140"
-          image={img}
+          image={props.img_base64_decoded? props.img_base64_decoded: img}
           alt="furniture"
         />
         <div style={{padding:"1rem 2rem"}}>
