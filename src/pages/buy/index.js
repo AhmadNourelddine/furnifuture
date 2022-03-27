@@ -31,7 +31,8 @@ const Buy = ()=>{
     
     // console.log(saved_products);
   
-    const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom', 'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
+    const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
+     'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
     
     let object = {
         "search": search,
@@ -115,6 +116,7 @@ const Buy = ()=>{
                 price = {item.price}
                 date={item.created_at}
                 btn={checkProductSaved(item._id)? 'saved' : 'save'}
+                img_base64_decoded = {item.image}
                 />) 
             }
             {searching && 
@@ -128,6 +130,7 @@ const Buy = ()=>{
                  price = {item.price}
                  date={item.created_at}
                  btn={checkProductSaved(item._id) ? 'saved' : 'save'}
+                 img_base64_decoded = {item.image}
                  />)
             }   
             </div>
