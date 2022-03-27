@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -36,6 +37,28 @@ class ProductController extends Controller
         $product->phone_number = $request->phone_number;
         $product->price = $request->price;
         $product->user_id = $user->id;
+
+        if($request->image){
+
+            $base64_image = $request->image;
+
+            @list($type, $file_data) = explode(';', $base64_image);
+            @list(, $file_data) = explode(',', $file_data);
+
+            $ext = explode(';base64',$base64_image);
+            $ext = explode('/',$ext[0]);			
+            $ext = $ext[1];
+
+            $img_url = $request->title.time().'.'.$ext;
+            Storage::put($img_url, base64_decode($file_data));
+            $product->image = $img_url;
+
+        }
+        else{
+            $product->image = '';
+        }
+        
+
         $product->save();
 
         $array = $user->user_products;
@@ -47,6 +70,30 @@ class ProductController extends Controller
             'message' => 'Product successfully created',
             'product' => $product
         ], 201);
+    }
+
+    public function getProductImage(Request $request){
+
+        $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|string',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+
+        $img_url = $product->image;
+        $image = base64_encode(Storage::get($img_url));
+
+        return response()->json([
+            'image' => $image,
+        ], 201);
+
     }
 
     public function editProduct(Request $request){
@@ -75,6 +122,24 @@ class ProductController extends Controller
         $product->location = $request->location;
         $product->phone_number = $request->phone_number;
         $product->price = $request->price;
+
+        if($request->image){
+
+            $base64_image = $request->image;
+
+            @list($type, $file_data) = explode(';', $base64_image);
+            @list(, $file_data) = explode(',', $file_data);
+
+            $ext = explode(';base64',$base64_image);
+            $ext = explode('/',$ext[0]);			
+            $ext = $ext[1];
+
+            $img_url = $request->title.time().'.'.$ext;
+            Storage::put($img_url, base64_decode($file_data));
+            $product->image = $img_url;
+
+        }
+
         $product->save();
 
         return response()->json([
@@ -89,7 +154,13 @@ class ProductController extends Controller
         $user = Auth::User();
         $userProducts_ids = $user->user_products;
         $userProducts = Product::find($userProducts_ids);
-
+        foreach($userProducts as $product){
+            if($product->image){
+                $ext = pathinfo($product->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($product->image));
+                $product->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
         return response()->json(["user_products"=>$userProducts]);
     }
 
@@ -124,6 +195,13 @@ class ProductController extends Controller
     public function allProducts()
     {
         $products = Product::all();
+        foreach($products as $product){
+            if($product->image){
+                $ext = pathinfo($product->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($product->image));
+                $product->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
         return response()->json([$products]);
     }
 
