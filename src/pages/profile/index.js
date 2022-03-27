@@ -60,6 +60,7 @@ const Profile = ()=>{
                 date={item.created_at}
                 btn='delete'
                 sell_btn='update'
+                img_base64_decoded = {item.image}
                 />) 
             }
             </div>
