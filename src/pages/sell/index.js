@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import { Button, CardMedia, Divider, Typography } from '@mui/material';
+import { Autocomplete, Button, CardMedia, Divider, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
@@ -26,6 +26,15 @@ const Sell = ()=>{
     const [imagePreview, setImagePreview]= useState(null);
 
     let token = window.localStorage.getItem('authToken');
+
+    const locations = ["Beirut", "Tripoli", "Sidon", "Tyre",
+    "Jounieh", "Byblos", "Aley", "Nabatieh",
+    "Baalbeck", "Zahle", "Zhgarta-Ehden", "Batroun"];
+
+    const categories = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
+     'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
+
+    const currency =['$', 'LBP'];
 
     let navigate = useNavigate();
 
@@ -56,6 +65,7 @@ const Sell = ()=>{
             "location": location,
             "phone_number": phoneNb,
             "category": category,
+            "image": imageEncoded,
         };
 
        if(!update){
@@ -104,24 +114,64 @@ const Sell = ()=>{
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Price</Typography>
-                        <TextField value={price}
-                         onChange={(e)=>{setPrice(e.target.value)}} 
-                         className="outlined-basic sell-page-input-textfield"
-                         variant="outlined" margin="dense"/>
+                            <div style={{display:'flex'}}>
+                            <TextField value={price}
+                                onChange={(e)=>{setPrice(e.target.value)}} 
+                                className="outlined-basic sell-page-input-textfield"
+                                variant="outlined" margin="dense"/>
+                            {/* <Autocomplete
+                                // className='outlined-basic sell-page-input-textfield'
+                                disablePortal
+                                options={currency}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => 
+                                <TextField 
+                                margin="dense" variant="outlined"
+                                value={category} 
+                                    {...params} 
+                                     />}
+                                onChange = {(event, value)=>{value && setCategory(value)}}
+                                /> */}
+                            </div>
                         </div>
                         <div className='sellpage-input-row'>
                             <Typography>Category</Typography>
-                            <TextField value={category}
+                            <Autocomplete
+                                className='outlined-basic sell-page-input-textfield'
+                                disablePortal
+                                options={categories}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => 
+                                <TextField 
+                                margin="dense" variant="outlined"
+                                value={category} 
+                                    {...params} 
+                                     />}
+                                onChange = {(event, value)=>{value && setCategory(value)}}
+                                />
+                            {/* <TextField value={category}
                              onChange={(e)=>{setCategory(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/>
+                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Location</Typography>
-                            <TextField value={location}
+                            <Autocomplete style={{padding:'0'}}
+                            className='outlined-basic sell-page-input-textfield'
+                                disablePortal
+                                options={locations}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => 
+                                <TextField margin="dense" variant="outlined"
+                                value={location} 
+                                    {...params} 
+                                     />}
+                                onChange = {(event, value)=>{value && setLocation(value)}}
+                                />
+                            {/* <TextField value={location}
                              onChange={(e)=>{setLocation(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/>
+                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Phone Number</Typography>
@@ -149,9 +199,19 @@ const Sell = ()=>{
                         /></div>
                         <Divider sx={{my:3}} light/>
                         <div className='sellpage-upload-image-section'>
-                           <input type='file' onChange={(e)=>handleImage(e)} /> <Button><CameraAltIcon color="error"/></Button>
+                                                        
+                            <Button for='sell-upload-btn'>
+                            <label for='sell-upload-btn'>
+                            <CameraAltIcon color="error"/>
+                            </label>
+                            </Button>
+                            
+                            <input style={{opacity:'0', width:'0px'}} 
+                            id='sell-upload-btn' type='file' accept=".jpeg, .png, .jpg"
+                            onChange={(e)=>handleImage(e)} />
                             <Typography>Upload Image</Typography>
-                            </div>
+
+                        </div>
                         <div>
                         <Button onClick={sellProduct}
                          sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>
