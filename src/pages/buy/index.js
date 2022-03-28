@@ -83,7 +83,8 @@ const Buy = ()=>{
     return(
 
         <div className='buy-page'>
-            <Typography className='buy-page-title'>Find Furniture</Typography>
+            <Typography style={{paddingLeft:'2rem'}} 
+            className='buy-page-title'>Find Furniture</Typography>
             <div className='buy-furniture-search'>
                 <SearchBar 
                  className='buy-search-bar'
@@ -115,6 +116,7 @@ const Buy = ()=>{
                 description = {item.description}
                 location = {item.location}
                 phone_number = {item.phone_number}
+                category ={item.category}
                 price = {item.price}
                 date={item.created_at}
                 btn={checkProductSaved(item._id)? 'saved' : 'save'}
@@ -130,6 +132,7 @@ const Buy = ()=>{
                  description = {item.description}
                  location = {item.location}
                  phone_number = {item.phone_number}
+                 category ={item.category}
                  price = {item.price}
                  date={item.created_at}
                  btn={checkProductSaved(item._id) ? 'saved' : 'save'}
