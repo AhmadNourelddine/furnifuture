@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import img from '../../assets/furniFuture-logo.png';
@@ -6,6 +6,8 @@ import axios from 'axios';
 import SuggestedShipping from '../suggestedShipping/suggestedShipping';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/actions/modal';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Link } from 'react-router-dom';
 
 const customStyles = {
   content: {
@@ -83,7 +85,7 @@ useEffect(()=>{suggestShippings()},[]);
         <CardMedia style={{padding:"2rem 5rem", width:"auto", margin:"auto"}}
           component="img"
           height="200"
-          image={img}
+          image={props.img_base64_decoded? props.img_base64_decoded: img}
           alt="furniture"
         />
         <Box style={{display:'flex', justifyContent:'space-between', alignItems:'baseline'}}>
@@ -102,8 +104,20 @@ useEffect(()=>{suggestShippings()},[]);
                 variant='subtitle2'>{props.description}</Typography>
               </Box>
               <Box>
-                <Typography sx={{fontSize:10}}>{props.phone_number}</Typography>
-                <Typography sx={{fontSize:10, fontWeight:'light'}}>{props.date}</Typography>
+              
+                <Box sx={{display:'flex'}}>
+                  
+                <a target='_blank' rel="noopener noreferrer" 
+                href={'https://wa.me/+961'+props.phone_number}>
+                  <WhatsAppIcon/>
+                </a>
+
+                <Typography sx={{fontSize:15}}>
+                  {props.phone_number}
+                </Typography>
+                </Box>
+                <Typography sx={{pb:5, fontSize:10, fontWeight:'light'}}>{props.date}</Typography>
+                
               </Box>
               <Box style={{width:'18rem', position:'absolute', bottom:'1.5rem'}}>
               <Box style={{display:'flex', justifyContent:'space-between', alignItems:'baseline'}}>
