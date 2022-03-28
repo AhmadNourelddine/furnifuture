@@ -1,7 +1,8 @@
 
-export const openModal = ()=>{
+export const openModal = (product)=>{
     return{
         type:'OpenModal',
+        payload: product
     };
  };
  
