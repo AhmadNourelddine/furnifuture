@@ -5,7 +5,7 @@ import { Autocomplete, Button, CardMedia, Divider, Typography } from '@mui/mater
 import { TextField } from '@material-ui/core';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
-import img from '../../assets/furniFuture-logo.png';
+import img from '../../assets/missing-image.jpg';
 import { useSelector } from 'react-redux';
 
 
@@ -137,12 +137,10 @@ const Sell = ()=>{
                         <div className='sellpage-input-row'>
                             <Typography>Category</Typography>
                             <Autocomplete
-                                className='outlined-basic sell-page-input-textfield'
                                 disablePortal
                                 options={categories}
-                                sx={{ width: 300 }}
                                 renderInput={(params) => 
-                                <TextField 
+                                <TextField className='sell-page-input-textfield'
                                 margin="dense" variant="outlined"
                                 value={category} 
                                     {...params} 
@@ -156,13 +154,12 @@ const Sell = ()=>{
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Location</Typography>
-                            <Autocomplete style={{padding:'0'}}
-                            className='outlined-basic sell-page-input-textfield'
+                            <Autocomplete
                                 disablePortal
                                 options={locations}
-                                sx={{ width: 300 }}
                                 renderInput={(params) => 
-                                <TextField margin="dense" variant="outlined"
+                                <TextField className='sell-page-input-textfield'
+                                margin="dense" variant="outlined"
                                 value={location} 
                                     {...params} 
                                      />}
@@ -189,9 +186,13 @@ const Sell = ()=>{
                          variant="outlined" margin="dense" />
                         </div>
                     </div>
+
                     <div className='sell-page-form-col2'>
+
+                        <div className='sell-page-image-upload-btn'>
+
                         <div className='sellpage-image'>
-                        <CardMedia
+                        <CardMedia style={{borderRadius:'10px'}}
                         component="img"
                         height='100%'
                         image={imagePreview? imagePreview : img}
@@ -212,15 +213,24 @@ const Sell = ()=>{
                             <Typography>Upload Image</Typography>
 
                         </div>
-                        <div>
+                        </div>
+
+                        <div className='sell-page-create-btn'>
+
                         <Button onClick={sellProduct}
                          sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>
                         {update? 'Update' : 'Create'}
                         </Button>
+
                         </div>
+
                     </div>
+
+                  
             
                 </div>
+
+
             </div>
             
         </div>
