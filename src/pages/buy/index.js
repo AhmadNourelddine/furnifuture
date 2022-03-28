@@ -27,8 +27,9 @@ const Buy = ()=>{
     const loggedIn = useSelector(state=>state.authReducer);
 
     const user = useSelector(state=>state.authUserReducer);
-    const saved_products = user.saved_products;
-    
+    // const saved_products = user.saved_products;
+    const saved_products = useSelector(state=>state.cartProductReducer);
+   
     // console.log(saved_products);
   
     const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
@@ -113,6 +114,7 @@ const Buy = ()=>{
                 title = {item.title} 
                 description = {item.description}
                 location = {item.location}
+                phone_number = {item.phone_number}
                 price = {item.price}
                 date={item.created_at}
                 btn={checkProductSaved(item._id)? 'saved' : 'save'}
@@ -127,6 +129,7 @@ const Buy = ()=>{
                  title = {item.title} 
                  description = {item.description}
                  location = {item.location}
+                 phone_number = {item.phone_number}
                  price = {item.price}
                  date={item.created_at}
                  btn={checkProductSaved(item._id) ? 'saved' : 'save'}
