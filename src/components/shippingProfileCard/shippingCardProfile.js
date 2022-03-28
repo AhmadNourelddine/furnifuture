@@ -6,7 +6,8 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartShipping, removeCartShipping } from '../../redux/actions/cart';
 
 const ShippingProfileCard = (props)=>{
 
@@ -14,14 +15,19 @@ const ShippingProfileCard = (props)=>{
 
   const[save, setSave]= useState(false);
 
-  const[shipping, setBuy]= useState(false);
+  const[shipping, setShipping]= useState(false);
   const[cart, setCart]= useState(false);
 
   const isloggedIn = useSelector(state=>state.authReducer);
 
+  const dispatch =  useDispatch();
+
+  console.log(props.btn);
+
   useEffect(()=>{
-                 if(props.btn === 'save'){setBuy(true)}
-                 else if (props.btn === 'remove'){setCart(true)}
+                 if (props.btn === 'remove'){setCart(true)}
+                 else if (props.btn === 'saved'){setShipping(true); setSave(true);}
+                 else{setShipping(true)}
                 },[]);
 
   let key = {"shipping_id": props.id,};
@@ -34,6 +40,7 @@ const ShippingProfileCard = (props)=>{
     })
     .then((resp)=>{
       setSave(true);
+      dispatch(addCartShipping(props.id));
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
@@ -43,6 +50,7 @@ const ShippingProfileCard = (props)=>{
     })
     .then((resp)=>{
       // window.location.reload(false)
+      dispatch(removeCartShipping(props.id));
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
