@@ -74,6 +74,7 @@ const Cart = ()=>{
                 location = {item.location}
                 price = {item.price}
                 date={item.created_at}
+                img_base64_decoded = {item.image}
                 btn = 'remove'
                 />
                 ) }
