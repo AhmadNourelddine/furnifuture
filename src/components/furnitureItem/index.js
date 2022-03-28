@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 import '../../css/furnitureItem-sell/furnitureItem-sell.css';
-import img from '../../assets/furniFuture-logo.png';
+import img from '../../assets/missing-image.jpg';
 import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
@@ -35,9 +35,12 @@ export default function FurnitureItem(props) {
   const[profile, setProfile]= useState(false);
   const [image, setImage]= useState(null);
 
+  const [date, setDate]= useState('');
   const dispatch = useDispatch();
 
   useEffect(()=>{
+                 const splitDate = props.date.split('T');
+                 setDate(splitDate[0]);
                  if(props.btn === 'save'){setBuy(true)}
                  else if (props.btn === 'remove'){setCart(true)}
                  else if(props.btn === 'saved'){setBuy(true); setSave(true);}
@@ -102,18 +105,23 @@ export default function FurnitureItem(props) {
 
   return (
     <Box>
-       {buy && checkModal && <FurnitureModal
+       {buy && checkModal===props.id && <FurnitureModal
                         id = {props.id}
                         title={props.title}
                         description={props.description}
                         phone_number={props.phone_number}
-                        date={props.date}
+                        location = {props.location}
+                        date={date}
+                        category={props.category}
                         price={props.price}
                         btn={save? 'saved' : 'save'}
                         img_base64_decoded = {props.img_base64_decoded}
                         />}
-      <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
-      <CardActionArea onClick={()=>{dispatch(openModal())}}  
+
+      <Card className="furniture-item-card" sx={{ maxWidth: 345 }} 
+      style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
+
+      <CardActionArea onClick={()=>{dispatch(openModal(props.id))}}  
        style={{display:"flex", flexDirection:"column"}}>
 
         {profile && 
@@ -122,44 +130,48 @@ export default function FurnitureItem(props) {
            sx={{fontSize:30}}/>
           </Box>}
 
-        <CardMedia style={{padding:"2rem 5rem"}}
+        <CardMedia style={{borderRadius:'10px !important'}}
           component="img"
           height="140"
+          width="300"
           image={props.img_base64_decoded? props.img_base64_decoded: img}
           alt="furniture"
         />
-        <div style={{padding:"1rem 2rem"}}>
+        <div style={{alignSelf:"flex-start", padding:"1rem"}}>
           <Typography style={{fontWeight:"900"}} gutterBottom variant="h5" component="div">
             {props.title}
           </Typography>
-          <Typography className='content-box' variant="body2" color="text.secondary">
+          <Typography className='sell-furniture-item-content-box' 
+          variant="body2" color="text.secondary">
           {props.description}
           </Typography>
 
           <div className="sell-furniture-item-date-location">         
             
-           <Typography className="sell-furniture-item-location content-box" variant="h6" component="div" color="text.secondary">
+           {/* <Typography className="sell-furniture-item-location content-box" variant="h6" component="div" color="text.secondary">
            {props.location}
-          </Typography>
+          </Typography> */}
 
           <Typography className="sell-furniture-item-date content-box" variant="h6" component="div" color="text.secondary">
-          {props.date}
+          {date}
           </Typography></div>
 
         </div>
       </CardActionArea>
-      <div style={{padding: "0 2rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+      <div style={{padding: "0 1rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
 
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
          {props.price}
-          </Typography>
-        <Button disabled={save}
-          onClick={clcikedButton}
-          className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
-          {buy && (save? 'saved' : props.btn)}
-          {cart && 'remove'}
-          {profile && 'delete'}
-        </Button>
+      </Typography>
+
+      <Button disabled={save}
+        onClick={clcikedButton}
+        className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
+        {buy && (save? 'saved' : props.btn)}
+        {cart && 'remove'}
+        {profile && 'delete'}
+      </Button>
+
       </div>
     </Card>
   </Box>
