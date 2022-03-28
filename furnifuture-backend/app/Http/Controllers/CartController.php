@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -99,6 +100,13 @@ class CartController extends Controller
         $user = Auth::User();
         $savedProducts_ids = $user->saved_products;
         $savedProducts = Product::find($savedProducts_ids);
+        foreach($savedProducts as $product){
+            if($product->image){
+                $ext = pathinfo($product->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($product->image));
+                $product->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
         return response()->json([$savedProducts]);
     }
 
