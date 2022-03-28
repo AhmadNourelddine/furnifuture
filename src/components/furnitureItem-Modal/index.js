@@ -1,13 +1,15 @@
 import { Box, Button, Card, CardContent, CardMedia, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import img from '../../assets/furniFuture-logo.png';
+import img from '../../assets/missing-image.jpg';
 import axios from 'axios';
 import SuggestedShipping from '../suggestedShipping/suggestedShipping';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/actions/modal';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from 'react-router-dom';
+import { addCartProduct } from '../../redux/actions/cart';
+import '../../css/furnitureItem-modal/furnitureItem-modal.css';
 
 const customStyles = {
   content: {
@@ -17,14 +19,14 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    padding:'0px',
+    borderRadius:'35px',
   },
 };
 
 Modal.setAppElement('#root');
 
 const FurnitureModal = (props) => {
-
-  let subtitle;
 
   const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(true);
@@ -34,9 +36,6 @@ const FurnitureModal = (props) => {
 
   const loggedIn = useSelector(state=>state.authReducer);
 
-  function afterOpenModal() {
-    subtitle.style.color = '#f00';
-  }
 
   function closeTheModal() {
     dispatch(closeModal());
@@ -65,7 +64,8 @@ const clcikedButton = async()=>{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
-      setIsOpen(false);
+      dispatch(addCartProduct(props.id));
+      closeTheModal();
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
@@ -76,12 +76,11 @@ useEffect(()=>{suggestShippings()},[]);
   return (
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeTheModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Furniture Modal"
       >
-        <Card style={{width:'35rem'}}>
+        <Card style={{width:'35rem', borderRadius:'35px', padding:'1rem'}}>
         <CardMedia style={{padding:"2rem 5rem", width:"auto", margin:"auto"}}
           component="img"
           height="200"
@@ -92,7 +91,12 @@ useEffect(()=>{suggestShippings()},[]);
           <Box sx={{px:2}}>
             <CardContent>
               <Box>
+                <Box style={{display:'flex', alignItems:'baseline'}}>
                 <Typography fontWeight={'900'} fontSize={25}>{props.title}</Typography>
+                <Typography sx={{pl:4}} fontWeight={'600'} fontSize={25}>
+                  "{props.category}"
+                </Typography>
+                </Box>
                 <Typography  sx={{
                                       display: '-webkit-box',
                                       overflow: 'hidden',
@@ -100,6 +104,7 @@ useEffect(()=>{suggestShippings()},[]);
                                       WebkitLineClamp: 4,
                                       fontWeight: 300,
                                       height: 100,
+                                      pt:2,
                                   }}
                 variant='subtitle2'>{props.description}</Typography>
               </Box>
@@ -116,7 +121,11 @@ useEffect(()=>{suggestShippings()},[]);
                   {props.phone_number}
                 </Typography>
                 </Box>
-                <Typography sx={{pb:5, fontSize:10, fontWeight:'light'}}>{props.date}</Typography>
+                <Box sx={{pb:5}} style={{display:'flex'}}>
+                <Typography sx={{pr:5, fontSize:12, fontWeight:'light'}}>{props.date}</Typography>
+                <Typography sx={{fontSize:12, fontWeight:'light'}}>{props.location}</Typography>
+                </Box>
+
                 
               </Box>
               <Box style={{width:'18rem', position:'absolute', bottom:'1.5rem'}}>
@@ -129,10 +138,13 @@ useEffect(()=>{suggestShippings()},[]);
               </Box>
             </CardContent>
           </Box>
-          <Box sx={{m:1}} style={{height:'15rem', borderRadius:'10px', color:'white', backgroundColor:'#304451'}}>
+          <Box sx={{m:1}} 
+          style={{alignSelf:'flex-end', height:'15rem', borderRadius:'10px', color:'white', backgroundColor:'#304451'}}>
             <CardContent style={{paddingBottom:'0'}}>
               <Box>
-                <Typography sx={{pb:1}}>Suggested Delivery</Typography>
+                <Typography style={{whiteSpace:'nowrap'}} sx={{pb:1}}>
+                  Suggested Delivery
+                </Typography>
               </Box>
              { Object.keys(data).map((key)=> 
                 <SuggestedShipping
