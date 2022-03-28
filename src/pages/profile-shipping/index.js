@@ -6,7 +6,11 @@ import '../../css/profile/profile.css';
 import '../../css/profile-shipping/profile-shipping.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
@@ -17,7 +21,8 @@ const ProfileShipping = ()=>{
     let token = window.localStorage.getItem('authToken');
     let user_name = window.localStorage.getItem('user_name');
     let email = window.localStorage.getItem('user_email');
-    
+
+    const userInfo = useSelector(state=>state.authUserReducer);
 
     return(
 
@@ -35,17 +40,17 @@ const ProfileShipping = ()=>{
             <Box sx={{py:10}} 
             style={{paddingLeft:'10rem', display:'flex', flexDirection:'column',
              justifyContent:'flex-start', alignItems:'flex-start'}}>
-                <Box style={{display:'flex'}}>
-                    <AccountCircleIcon sx={{fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>phone number</Typography>
+                <Box sx={{my:2}} style={{display:'flex'}}>
+                    <PhoneIphoneIcon sx={{pr:2, fontSize:50}}/>
+                    <Typography fontWeight={100} fontSize={30}>{userInfo.phone_number}</Typography>
                 </Box>
-                <Box style={{display:'flex'}}>
-                    <AccountCircleIcon sx={{fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>location</Typography>
+                <Box sx={{my:2}} style={{display:'flex'}}>
+                    <LocationOnIcon sx={{pr:2, fontSize:50}}/>
+                    <Typography fontWeight={100} fontSize={30}>{userInfo.location}</Typography>
                 </Box>
-                <Box style={{display:'flex'}}>
-                    <AccountCircleIcon sx={{fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>vehicle load</Typography>
+                <Box sx={{my:2}} style={{display:'flex'}}>
+                    <LocalShippingIcon sx={{pr:2, fontSize:50}}/>
+                    <Typography fontWeight={100} fontSize={30}>{userInfo.vehicle_load}</Typography>
                 </Box>
             </Box>
         </div>
