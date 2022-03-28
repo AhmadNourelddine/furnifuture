@@ -3,6 +3,8 @@ import authUserReducer from './authUserReducer';
 import authShippingReducer from './authShippingReducer';
 import editProductReducer from './editProductReducer';
 import modalReducer from './modalReducer';
+import cartProductReducer from './cartProductReducer';
+import cartShippingReducer from './cartShippingReducer';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -11,6 +13,8 @@ const allReducers = combineReducers({
     editProductReducer,
     authUserReducer,
     modalReducer,
+    cartProductReducer,
+    cartShippingReducer,  
 });
 
 export default allReducers;
