@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import axios from 'axios';
 import "../../css/update-profile/update-profile.css";
 import { useNavigate } from "react-router-dom";
@@ -40,16 +40,21 @@ const UpdateProfile = ()=> {
             console.log(err)
           })
   }
+
+  useEffect(()=>{
+    setName(window.localStorage.getItem('user_name'));
+    setEmail(window.localStorage.getItem('user_email'));
+  },[]);
   
   return (
     <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='update-profile-form' id="update-profile-box">
     <p id="update-profile">Update Account Info</p>
-    <TextField className="outlined-basic" label="Name" variant="outlined" margin="dense"
+    <TextField value={name} className="outlined-basic" label="Name" variant="outlined" margin="dense"
     onChange = {e=>setName(e.target.value)}/>
 
-    <TextField className="outlined-basic" label="Email" variant="outlined" margin="dense"
+    <TextField value={email} className="outlined-basic" label="Email" variant="outlined" margin="dense"
     onChange = {e=>setEmail(e.target.value)}/>
 
     <TextField className="outlined-basic" label="Password" variant="outlined" margin="dense" type="password"
