@@ -7,9 +7,9 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
-    padding: 3rem 2rem 1rem;
+    padding: 1rem;
 }
-
+ 
 .buy-page-title{
     padding-right: 1rem;
     font-size: 3rem !important;

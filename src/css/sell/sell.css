@@ -3,7 +3,6 @@
     height: max-content;
 }
 .sell-page-title{
-
     font-size: 3rem !important;
     padding: 3% 2% 2% 2rem !important;
     font-weight: 700 !important;
@@ -12,10 +11,6 @@
 .sell-page-form{
     margin: 2rem 2rem 0;
     height: max-content;
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center; */
     background-color: #D4C6BA;
     border-radius: 10px;
     padding: 2rem;
@@ -24,25 +19,39 @@
 .sell-page-inputs-and-image{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .sell-page-form-col1{
+    width: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
     background-color: white;
-    padding: 2rem;
+    padding: 2rem 3rem;
     border-radius: 10px;
+    margin: 0 1rem;
 }
 .sellpage-input-row{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: baseline;
-    margin: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    width: inherit;
 }
+.sellpage-input-row .MuiFormControl-fullWidth {
+    width:14rem;
+}
+
+.sellpage-input-row .css-ahj2mt-MuiTypography-root{
+    white-space: nowrap;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
 .sellpage-input-row-textinput{
     background-color: gray;
     color: white !important;
@@ -64,6 +73,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: -webkit-fill-available;
+    border-radius: 10px;
+    margin: 0 1rem;
+}
+
+.sell-page-image-upload-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 2rem;
     background-color: white;
     border-radius: 10px;
@@ -78,9 +96,14 @@
 }
 
 .sellpage-upload-image-section{
-    margin: 2rem 0;
+    margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.sell-page-create-btn{
+    align-self: flex-end;
+    padding: 3rem;
 }

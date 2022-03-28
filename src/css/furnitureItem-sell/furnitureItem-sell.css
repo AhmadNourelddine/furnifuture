@@ -2,7 +2,11 @@
     height: fit-content;
 }
 
-.content-box{
+.furniture-item-card .css-o69gx8-MuiCardMedia-root{
+    width:300px !important;
+}
+
+.sell-furniture-item-content-box{
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -13,7 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 2rem 0;
+    padding-top: 1rem;
 }
 
 .sell-furniture-item-date{

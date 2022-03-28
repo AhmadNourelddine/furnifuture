@@ -29,9 +29,8 @@
 }
 
 .buy-search-category{
-    margin-right: 1rem !important;
-    width: 15%;
-    border-radius: 10px;
+    width: 15% !important;
+    border-radius: 10px !important;
     margin: 2rem 0;
     background-color: white;
     padding: 0 1rem !important;
@@ -43,7 +42,7 @@
 }
 
 .buy-search-btn{
-    width: 15%;
+    width: 10% !important;
     border-radius: 10px !important;
     margin: auto 1rem !important;
     height: 3rem;

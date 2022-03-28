@@ -15,7 +15,7 @@
 }
 
 .createdelivery-input-section{
-    background-color: #F2F4F8 ;
+    /* background-color: #F2F4F8 ; */
     border-radius: 10px ;
     width: 30rem !important;
 }
@@ -23,6 +23,13 @@
 .createdelivery-input-textfield{
     width: 30rem;
     margin: 1rem;
+    background-color: #F2F4F8 ;
+    border-radius: 25px;
+    box-shadow:rgb(0 0 0 / 25%) 0px 5px 4px 0px;
+}
+
+.createdelivery-input .css-ue75iy-MuiTypography-root{
+    margin-bottom: 0px !important;
 }
 
 .deliveryprofile-cancel-create-btns{
@@ -36,10 +43,16 @@
 
 .createdelivery-autocomplete-section{
     width: inherit !important;
-    border-radius: 10px;
-    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    background-color: #F2F4F8 ;
+    border-radius: 25px;
+    box-shadow:rgb(0 0 0 / 25%) 0px 5px 4px 0px;
 }
 
 .createdelivery-autocomplete-section .css-1q60rmi-MuiAutocomplete-endAdornment{
     top: calc(50% - 15px) !important;
+    overflow: visible !important;
+}
+
+.createdelivery-input-section .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: none !important;
 }
