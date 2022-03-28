@@ -22,7 +22,8 @@ const Delivery = ()=>{
 
     const loggedIn = useSelector(state=>state.authReducer);
     const user = useSelector(state=>state.authUserReducer);
-    const saved_shipping = user.saved_shipping;
+    // const saved_shipping = user.saved_shipping;
+    const saved_shipping = useSelector(state=>state.cartShippingReducer);
 
     let object = {
         "search":search,
