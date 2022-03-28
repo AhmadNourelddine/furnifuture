@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
 import { openModal } from '../../redux/actions/modal';
 import { useSelect } from '@mui/base';
+import { addCartProduct, removeCartProduct } from '../../redux/actions/cart';
 
 export default function FurnitureItem(props) {
 
@@ -72,6 +73,7 @@ export default function FurnitureItem(props) {
     })
     .then((resp)=>{
       setSave(true);
+      dispatch(addCartProduct(props.id));
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
@@ -81,6 +83,7 @@ export default function FurnitureItem(props) {
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
+      dispatch(removeCartProduct(props.id));
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
@@ -99,7 +102,7 @@ export default function FurnitureItem(props) {
 
   return (
     <Box>
-       {checkModal && <FurnitureModal
+       {buy && checkModal && <FurnitureModal
                         id = {props.id}
                         title={props.title}
                         description={props.description}
@@ -107,6 +110,7 @@ export default function FurnitureItem(props) {
                         date={props.date}
                         price={props.price}
                         btn={save? 'saved' : 'save'}
+                        img_base64_decoded = {props.img_base64_decoded}
                         />}
       <Card className="furniture-item-card" sx={{ maxWidth: 345 }} style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
       <CardActionArea onClick={()=>{dispatch(openModal())}}  
