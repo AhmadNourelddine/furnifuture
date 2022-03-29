@@ -1,13 +1,14 @@
 
 import * as React from 'react';
 import "../../css/signup/signup.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/button";
 import Box from "@material-ui/core/box";
 import axios from 'axios';
 import ToastSuccess from '../../components/toast/toast-success';
+import { Typography } from '@mui/material';
 
 
 const SignUp = ()=> {
@@ -71,6 +72,15 @@ const SignUp = ()=> {
     onChange = {e=>setCpassword(e.target.value)}/>
 
     <Button type="submit" variant="contained" id="signup-btn" fullWidth>Sign Up</Button>
+
+    
+    <Typography className='sign-in-page-sign-up-link'>
+      Already Have An Account? 
+      <Button component={Link} to="/login">
+        <p style={{borderBottom:'solid 0.5px'}}>Sign In</p>
+      </Button> 
+    </Typography>
+
     </Box>
 
     </Box>
