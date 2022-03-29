@@ -33,6 +33,7 @@ export default function FurnitureItem(props) {
   const[buy, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
   const[profile, setProfile]= useState(false);
+
   const [image, setImage]= useState(null);
 
   const [date, setDate]= useState('');
@@ -131,7 +132,7 @@ export default function FurnitureItem(props) {
            sx={{fontSize:30}}/>
           </Box>}
 
-        <CardMedia style={{borderRadius:'10px !important'}}
+        <CardMedia style={{borderRadius:'10px'}}
           component="img"
           height="140"
           width="300"
@@ -153,7 +154,8 @@ export default function FurnitureItem(props) {
            {props.location}
           </Typography> */}
 
-          <Typography className="sell-furniture-item-date content-box" variant="h6" component="div" color="text.secondary">
+          <Typography sx={{fontSize:13, fontWeight:'light'}} 
+          className="sell-furniture-item-date content-box" component="div" color="text.secondary">
           {date}
           </Typography></div>
 
