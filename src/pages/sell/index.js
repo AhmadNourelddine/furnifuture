@@ -7,6 +7,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
 import img from '../../assets/missing-image.jpg';
 import { useSelector } from 'react-redux';
+import MuiPhoneNumber from 'material-ui-phone-number';
 
 
 
@@ -22,6 +23,7 @@ const Sell = ()=>{
     const [category, setCategory]= useState('');
     const [phoneNb, setPhoneNb]= useState('');
     const [product_id, setProduct_id]= useState('');
+    const [currency, setCurrency]= useState('LBP');
     const [imageEncoded, setImageEncoded]= useState('');
     const [imagePreview, setImagePreview]= useState(null);
 
@@ -34,7 +36,7 @@ const Sell = ()=>{
     const categories = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
      'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
 
-    const currency =['$', 'LBP'];
+    const currencies =['$', 'LBP'];
 
     let navigate = useNavigate();
 
@@ -61,7 +63,7 @@ const Sell = ()=>{
             "product_id": product_id,
             "title": title,
             "description": description,
-            "price": price,
+            "price": price+' '+currency,
             "location": location,
             "phone_number": phoneNb,
             "category": category,
@@ -114,24 +116,23 @@ const Sell = ()=>{
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Price</Typography>
-                            <div style={{display:'flex'}}>
+                            <div style={{display:'flex', width:'14rem'}}>
                             <TextField value={price}
                                 onChange={(e)=>{setPrice(e.target.value)}} 
                                 className="outlined-basic sell-page-input-textfield"
                                 variant="outlined" margin="dense"/>
-                            {/* <Autocomplete
-                                // className='outlined-basic sell-page-input-textfield'
+                            <Autocomplete
+                                className='sell-page-currency-textfield'
                                 disablePortal
-                                options={currency}
-                                sx={{ width: 300 }}
+                                options={currencies}
+                                value={currency}
                                 renderInput={(params) => 
-                                <TextField 
+                                <TextField className="sell-page-currency-autocomplete"
                                 margin="dense" variant="outlined"
-                                value={category} 
                                     {...params} 
                                      />}
-                                onChange = {(event, value)=>{value && setCategory(value)}}
-                                /> */}
+                                onChange = {(event, value)=>{value && setCurrency(value)}}
+                                />
                             </div>
                         </div>
                         <div className='sellpage-input-row'>
@@ -139,43 +140,38 @@ const Sell = ()=>{
                             <Autocomplete
                                 disablePortal
                                 options={categories}
+                                value={category}
                                 renderInput={(params) => 
                                 <TextField className='sell-page-input-textfield'
                                 margin="dense" variant="outlined"
-                                value={category} 
                                     {...params} 
                                      />}
                                 onChange = {(event, value)=>{value && setCategory(value)}}
                                 />
-                            {/* <TextField value={category}
-                             onChange={(e)=>{setCategory(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Location</Typography>
                             <Autocomplete
                                 disablePortal
                                 options={locations}
+                                value={location}
                                 renderInput={(params) => 
                                 <TextField className='sell-page-input-textfield'
-                                margin="dense" variant="outlined"
-                                value={location} 
+                                margin="dense" variant="outlined" 
                                     {...params} 
                                      />}
                                 onChange = {(event, value)=>{value && setLocation(value)}}
                                 />
-                            {/* <TextField value={location}
-                             onChange={(e)=>{setLocation(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Phone Number</Typography>
-                            <TextField value={phoneNb} 
+                            <MuiPhoneNumber variant="outlined" className="outlined-basic sell-page-input-textfield" 
+                            value={phoneNb} defaultCountry={'lb'} 
+                            onChange={(e)=>{console.log(e);setPhoneNb(e)}}/>
+                            {/* <TextField value={phoneNb} 
                              onChange={(e)=>{setPhoneNb(e.target.value)}}
                              className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/>
+                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Description</Typography>
@@ -195,7 +191,7 @@ const Sell = ()=>{
                         <CardMedia style={{borderRadius:'10px'}}
                         component="img"
                         height='100%'
-                        image={imagePreview? imagePreview : img}
+                        image={imagePreview? imagePreview : productToUpdate.image || img}
                         alt="furniture"
                         /></div>
                         <Divider sx={{my:3}} light/>
