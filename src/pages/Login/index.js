@@ -51,10 +51,9 @@ const Login = ()=> {
             window.localStorage.setItem('user_name', result.user['name']);
             window.localStorage.setItem('user_email', result.user['email']);
             console.log(result);
-            console.log(result.user.saved_products);
             dispatch(loggedIn(result.user));
             if(result.user.is_shipping){
-              dispatch(isShipping());} 
+              dispatch(isShipping());}
             setRedirect(true);
           })
           .catch((err)=>{
@@ -68,7 +67,7 @@ const Login = ()=> {
     style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
     <Box className='login-form' id="signin-box">
-    <p id="sign-in">Sign In To Your Account</p>
+    <Typography id="sign-in">Sign In To Your Account</Typography>
 
     <TextField autoComplete="email" required 
     className="outlined-basic" label="Email" variant="outlined" margin="normal" type="email" 
