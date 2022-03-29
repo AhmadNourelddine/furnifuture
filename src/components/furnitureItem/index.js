@@ -60,6 +60,7 @@ export default function FurnitureItem(props) {
       "date":props.date,
       "price":props.price,
       "sell-btn": props.sell_btn,
+      "image":props.img_base64_decoded,
     };
 
     dispatch(editProduct(item));
