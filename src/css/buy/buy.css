@@ -10,7 +10,8 @@
     font-weight: 700 !important;
 }
 .buy-furniture-search{
-    margin: auto 2rem;
+    padding: 0 1rem;
+    margin: 0 2rem;
     display: flex;
     flex-direction: row;
     background-color: #D4C6BA;
@@ -19,6 +20,7 @@
 }
 
 .buy-search-bar{
+    flex-grow: 1;
     border-radius: 10px !important;
     width: 50%;
     margin: 2rem 1rem ;
@@ -29,6 +31,7 @@
 }
 
 .buy-search-category{
+    flex-grow: 1;
     width: 15% !important;
     border-radius: 10px !important;
     margin: 2rem 0;
@@ -42,6 +45,7 @@
 }
 
 .buy-search-btn{
+    flex-grow: 1;
     width: 10% !important;
     border-radius: 10px !important;
     margin: auto 1rem !important;
@@ -51,15 +55,15 @@
     background-color: #D86544 !important;
 }
 .buy-page-items{
-    height: 100vh;
-    overflow-y: scroll;
+    padding: 0 1rem;
+    height: 100%;
     margin: 2rem 2rem 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #D4C6BA;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .css-1q60rmi-MuiAutocomplete-endAdornment{
