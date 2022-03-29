@@ -89,22 +89,22 @@ const Delivery = ()=>{
                         sx={{mx:2}}>Create</Button>
             </div>
 
-            <div className='buy-furniture-search'>
+            <div className='delivery-furniture-search'>
                 <SearchBar 
-                 className='buy-search-bar'
+                 className='delivery-search-bar'
                  onChange={(newValue) => setSearch(newValue)}
                 //  onRequestSearch={() => doSomethingWith(this.state.value)}
                  />
-                 <Autocomplete className='buy-search-category'
+                 <Autocomplete className='delivery-search-category'
                     disablePortal
                     options={locations}
-                    sx={{ width: 300 }}
+                    sx={{ width: 300, mr:2 }}
                     renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
                          label="Location" />}
                     onChange = {(event, value)=>{value && setLocation(value)}}
                     />
-                     <Autocomplete className='buy-search-category'
+                     <Autocomplete className='delivery-search-category'
                     disablePortal
                     options={Vehicle_loads}
                     sx={{ width: 300 }}
@@ -113,7 +113,7 @@ const Delivery = ()=>{
                          label="Vehicle Load" />}
                     onChange = {(event, value)=>{value && setVehicle_load(value)}}
                     />
-                <Button onClick = {searchShipping} className='buy-search-btn'>
+                <Button onClick = {searchShipping} className='delivery-search-btn'>
                     Search
                 </Button>
             </div>
