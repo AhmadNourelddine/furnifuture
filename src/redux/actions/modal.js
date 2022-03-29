@@ -2,7 +2,7 @@
 export const openModal = (product)=>{
     return{
         type:'OpenModal',
-        payload: product
+        payload: product,
     };
  };
  
@@ -12,3 +12,40 @@ export const openModal = (product)=>{
     };
  };
  
+ export const openLogInModal = (product)=>{
+    return{
+        type:'OpenLogInModal',
+        payload: product,
+    };
+ };
+ 
+ export const closeLogInModal = ()=>{
+    return{
+        type:'CloseLogInModal',
+    };
+ };
+ 
+ export const openSignUpModal = (product)=>{
+    return{
+        type:'OpenSignUpModal',
+        payload: product,
+    };
+ };
+ 
+ export const closeSignUpModal = ()=>{
+    return{
+        type:'CloseSignUpModal',
+    };
+ };
+ 
+ export const openUpdateProfileModal = ()=>{
+    return{
+        type:'OpenUpdateProfileModal',
+    };
+ };
+ 
+ export const closeUpdateProfileModal = ()=>{
+    return{
+        type:'CloseUpdateProfileModal',
+    };
+ };
