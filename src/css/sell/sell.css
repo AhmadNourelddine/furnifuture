@@ -65,9 +65,9 @@
 }
 
 .sell-page-currency-textfield{
-    background-color: #F2F4F8 ;
     width: 7rem ;
     padding: 0px !important;
+    margin-top: 8px;
 }
 
 .sell-page-input-textfield .css-1q60rmi-MuiAutocomplete-endAdornment{
@@ -75,11 +75,13 @@
 }
 
 .sell-page-currency-autocomplete.MuiFormControl-marginDense{
-    padding:0px !important;
+    margin: 0px !important;
 }
 
 .sell-page-currency-autocomplete .MuiOutlinedInput-root{
+    background-color: #F2F4F8 ;
     padding:0px !important;
+    height: 2.5rem;
     width: 7rem !important;
 }
 
