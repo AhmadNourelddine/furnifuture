@@ -60,7 +60,7 @@ class UserController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
-            'phone_number' => 'required|regex:/[0-9]{8}/',
+            'phone_number' => 'required|string|max:12',
             'location' => 'required|string',
             'vehicle_load' => 'required|string',
         ]);
