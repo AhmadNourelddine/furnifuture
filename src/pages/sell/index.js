@@ -91,7 +91,9 @@ const Sell = ()=>{
         setUpdate(true);
         setProduct_id(productToUpdate.product_id);
         setTitle(productToUpdate.title);
-        setPrice(productToUpdate.price);
+        const priceArray = productToUpdate.price.split(" ");
+        setPrice(priceArray[0]);
+        setCurrency(priceArray[1]);
         setCategory(productToUpdate.category);
         setLocation(productToUpdate.location);
         setPhoneNb(productToUpdate.phone_number);
@@ -122,13 +124,14 @@ const Sell = ()=>{
                                 className="outlined-basic sell-page-input-textfield"
                                 variant="outlined" margin="dense"/>
                             <Autocomplete
+                                style={{width:'7rem'}}
                                 className='sell-page-currency-textfield'
                                 disablePortal
                                 options={currencies}
                                 value={currency}
                                 renderInput={(params) => 
                                 <TextField className="sell-page-currency-autocomplete"
-                                margin="dense" variant="outlined"
+                                margin='dense' variant="outlined"
                                     {...params} 
                                      />}
                                 onChange = {(event, value)=>{value && setCurrency(value)}}
@@ -168,10 +171,6 @@ const Sell = ()=>{
                             <MuiPhoneNumber variant="outlined" className="outlined-basic sell-page-input-textfield" 
                             value={phoneNb} defaultCountry={'lb'} 
                             onChange={(e)=>{console.log(e);setPhoneNb(e)}}/>
-                            {/* <TextField value={phoneNb} 
-                             onChange={(e)=>{setPhoneNb(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield" 
-                             variant="outlined" margin="dense"/> */}
                             </div>
                         <div className='sellpage-input-row'>
                         <Typography>Description</Typography>
