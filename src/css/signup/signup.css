@@ -28,4 +28,11 @@
     background-color: white;
     width: inherit;
     margin: 1%;
+    padding: 2rem;
+    border-radius: 15px;
+    border: none !important;
+}
+
+.outlined-basic .MuiFormControl-root{
+    border: none !important;
 }
