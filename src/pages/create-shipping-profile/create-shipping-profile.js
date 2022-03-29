@@ -24,7 +24,7 @@ const CreateShippingProfile = ()=>{
 
         const Vehicle_loads = ["500", "1000", "1500", "2000"];
       
-        let Navigate = useNavigate()
+        const Navigate = useNavigate()
         useEffect(() => {
       
           if(redirect)
@@ -146,9 +146,13 @@ const CreateShippingProfile = ()=>{
             </Box>
 
                 <Box style={{alignSelf:'flex-end'}} className='deliveryprofile-cancel-create-btns'>
-                    <Button style={{color:'white ', backgroundColor:'#D86544'}}>Cancel</Button>
+                    <Button onClick={()=>{Navigate('/delivery')}}
+                    style={{width:'7rem', border: 'solid 0.5px black', color:'black ', backgroundColor:'#D86544'}}>
+                        Cancel
+                    </Button>
                     <Button type="submit"
-                     sx={{mx:2}} style={{color:'white ', backgroundColor:'#5094AA'}}>Create</Button>
+                     sx={{mx:2}} 
+                     style={{width:'7rem', border: 'solid 0.5px black', color:'white ', backgroundColor:'#5094AA'}}>Create</Button>
                 </Box>
             </Box>
 
