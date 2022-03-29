@@ -5,6 +5,9 @@ import editProductReducer from './editProductReducer';
 import modalReducer from './modalReducer';
 import cartProductReducer from './cartProductReducer';
 import cartShippingReducer from './cartShippingReducer';
+import modalLoginReducer from './modalLoginReducer';
+import modalSignUpReducer from './modalSignUpReducer';
+import modalUpdateProfileReducer from './modalUpdateProfileReducer';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -14,7 +17,10 @@ const allReducers = combineReducers({
     authUserReducer,
     modalReducer,
     cartProductReducer,
-    cartShippingReducer,  
+    cartShippingReducer, 
+    modalLoginReducer, 
+    modalSignUpReducer,
+    modalUpdateProfileReducer,
 });
 
 export default allReducers;
