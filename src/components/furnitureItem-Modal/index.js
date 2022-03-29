@@ -113,7 +113,7 @@ useEffect(()=>{suggestShippings()},[]);
                 <Box sx={{display:'flex'}}>
                   
                 <a target='_blank' rel="noopener noreferrer" 
-                href={'https://wa.me/+961'+props.phone_number}>
+                href={'https://wa.me/'+props.phone_number}>
                   <WhatsAppIcon/>
                 </a>
 
