@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Container, TextField, Typography, Autocomplete } from '@mui/material';
+import { Box, Button, Container, TextField, Typography, Autocomplete, Divider } from '@mui/material';
 import axios from 'axios';
 import '../../css/createDelivery-profile/createDelivery-profile.css';
 import "../../css/signup/signup.css";
@@ -58,7 +58,17 @@ const CreateShippingProfile = ()=>{
         }
 
     return(
-            <Box style={{backgroundColor:'#ECDCCF', height:'100vh'}}>
+            <Box style={{backgroundColor:'#ECDCCF', height:'100%'}}>
+
+            <div className='create-delivery-title-section'>
+
+            <Typography className='create-delivery-page-title'>
+            Create Your Delivery Profile
+            </Typography>
+
+            </div>
+
+            <Divider sx={{my:3, mx:3}} light/>
 
             <Container component="form" onSubmit={create}
              className='createdelivery-profile-page'>
