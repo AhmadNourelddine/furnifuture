@@ -27,10 +27,9 @@ const Buy = ()=>{
     const loggedIn = useSelector(state=>state.authReducer);
 
     const user = useSelector(state=>state.authUserReducer);
-    // const saved_products = user.saved_products;
+
     const saved_products = useSelector(state=>state.cartProductReducer);
-   
-    // console.log(saved_products);
+
   
     const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
      'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
@@ -109,7 +108,7 @@ const Buy = ()=>{
            
             {!searching &&           
                 data.map((item)=>
-                <FurnitureItem 
+                <FurnitureItem  style={{flexGrow:'1'}}
                 key = {item._id}
                 id = {item._id}
                 title = {item.title} 
