@@ -4,6 +4,7 @@ import { Button, Typography } from '@mui/material';
 import '../../css/cart/cart.css';
 import FurnitureItem from '../../components/furnitureItem';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
+import { useSelector } from 'react-redux';
 
 const Cart = ()=>{
 
@@ -13,6 +14,37 @@ const Cart = ()=>{
 
     const[savedProducts, setSavedProducts]= useState([]);
     const[savedShipping, setShipping]= useState([]);
+
+    const loggedIn = useSelector(state=>state.authReducer);
+
+    const saved_products = useSelector(state=>state.cartProductReducer);
+    const saved_shipping = useSelector(state=>state.cartShippingReducer);
+
+        const checkProductSaved= (p_id)=>{
+            let chck = false;
+            if(loggedIn)
+            {
+                Object.keys(saved_products).forEach((key)=>{
+                    if(saved_products[key] === p_id)
+                    {chck = true;}
+                });
+            }
+            console.log(chck);
+            return chck;
+        }
+
+        const checkShippingSaved= (p_id)=>{
+            let chck = false;
+            if(loggedIn)
+            {
+                Object.keys(saved_shipping).forEach((key)=>{
+                    if(saved_shipping[key] === p_id)
+                    {chck = true;}
+                });
+            }
+            console.log(chck);
+            return chck;
+        }
 
 
     const getSavedProducts = async()=>{
@@ -66,6 +98,7 @@ const Cart = ()=>{
             </div>
             <div className='buy-page-items'>
             {toggle &&  savedProducts.map((item)=>
+                checkProductSaved(item._id) && 
                 <FurnitureItem 
                 key = {item._id}
                 id = {item._id}
@@ -79,6 +112,7 @@ const Cart = ()=>{
                 />
                 ) }
             {!toggle &&  savedShipping.map((item)=>
+                checkShippingSaved(item._id) &&
                 <ShippingProfileCard 
                 key = {item._id}
                 id = {item._id}
@@ -89,6 +123,7 @@ const Cart = ()=>{
                 btn = 'remove'
                 />
                 ) }
+                
             </div>
             
         </div>
