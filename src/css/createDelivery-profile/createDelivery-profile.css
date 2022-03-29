@@ -5,8 +5,23 @@
     flex-direction: row !important; 
     justify-content: center !important;
     flex-wrap: wrap !important;
-    padding: 3rem 2rem;
+    padding: 0rem 2rem 3rem 2rem;
 }
+
+.create-delivery-title-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+}
+ 
+.create-delivery-page-title{
+    padding-right: 1rem;
+    font-size: 3rem !important;
+    font-weight: 700 !important;
+}
+
 .createdelivery-input{
     display: flex;
     flex-direction: column; 
