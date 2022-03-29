@@ -16,16 +16,22 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import loggedOut from '../../redux/actions/logOut.js'; 
+import LoginModal from '../LoginModal'; 
+import { openLogInModal, openSignUpModal } from '../../redux/actions/modal';
+import SignUpModal from '../signUpModal';
 
 
 const Navbar = () => {
 
     const[token, setToken]= useState('');
+    const[signupModal, setSignupModal]= useState(false);
 
     const dispatch = useDispatch();
 
     let authorized = useSelector(state=> state.authReducer);
     let shippingUser = useSelector(state=> state.authShippingReducer);
+    let loginModal = useSelector(state=> state.modalLoginReducer);
+    let signUpModal = useSelector(state=> state.modalSignUpReducer);
 
     console.log(authorized);
     console.log(shippingUser);
@@ -51,6 +57,10 @@ const Navbar = () => {
 
     return(
         <AppBar position="static" color="inherit" id="app-bar">
+
+          {loginModal && <LoginModal/>}
+          {signUpModal && <SignUpModal/>}
+
         <Container id="toolbar-container">
           <Toolbar disableGutters >
 
@@ -95,7 +105,9 @@ const Navbar = () => {
 
               {!authorized && 
               <Box style={{display:"flex"}}>
-              <Button component={Link} to="/login" className="toolbar-btn" id="toolbar-signin" color="inherit"
+              <Button onClick={()=>{dispatch(openLogInModal())}}
+              //  component={Link} to="/login" 
+               className="toolbar-btn" id="toolbar-signin" color="inherit"
                 key="signin"
                 sx={{ my: 2, display: 'block' }}
               >
@@ -103,7 +115,9 @@ const Navbar = () => {
               </Button>
               
               <div id="line-between"></div>
-              <Button component={Link} to="/signup" className="toolbar-btn" id="toolbar-signup" color="inherit"
+              <Button onClick={()=>{dispatch(openSignUpModal())}}
+              // component={Link} to="/signup" 
+              className="toolbar-btn" id="toolbar-signup" color="inherit"
                 key="signup"
                 sx={{ my: 2, display: 'block' }}
               >
