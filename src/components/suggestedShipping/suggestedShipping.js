@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 
@@ -14,7 +14,9 @@ const SuggestedShipping=(props)=>{
                     <Typography fontWeight={100} fontSize={10}>{props.location}</Typography>
                     <Typography fontWeight={100} fontSize={10}>{props.phone_number}</Typography>
                 </Box>
-                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}><CheckBoxOutlinedIcon/></Box>
+                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}>
+                    <Checkbox  iconStyle={{fill: 'white'}}/>
+                </Box>
                 </Box>
 
               </Box>
