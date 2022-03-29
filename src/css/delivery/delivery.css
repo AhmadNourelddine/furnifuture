@@ -26,8 +26,9 @@
     border-radius: 10px !important;
 }
 
-.buy-furniture-search{
-    margin: auto 2rem;
+.delivery-furniture-search{
+    padding: 0 1rem;
+    margin: 0 2rem;
     display: flex;
     flex-direction: row;
     background-color: #D4C6BA;
@@ -35,25 +36,32 @@
     justify-content: center;
 }
 
-.buy-search-bar{
+.delivery-search-bar{
+    flex:5;
+    border-radius: 10px !important;
     width: 50%;
     margin: 2rem 1rem ;
 }
+
 .ForwardRef-searchIconButton-17{
     display: none !important;
 }
-.buy-search-category{
-    width: 20%;
-    border-radius: 10px;
+
+.delivery-search-category{
+    flex:2;
+    width: 15% !important;
+    border-radius: 10px !important;
     margin: 2rem 0;
     background-color: white;
-    padding: auto 1rem;
+    padding: 0 1rem !important;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 .delivery-dropMenu-textfield{
     top: calc(50% - 28px) !important;
 }
-.buy-search-btn{
-    width: 15%;
+.delivery-search-btn{
+    flex:1;
+    width: 10% !important;
     border-radius: 10px !important;
     margin: auto 1rem !important;
     height: 3rem;
@@ -63,12 +71,11 @@
 }
 .delivery-page-items{
     height: 100vh;
-    overflow-y: scroll;
     margin: 2rem 2rem 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: #D4C6BA;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: space-around;
 }
