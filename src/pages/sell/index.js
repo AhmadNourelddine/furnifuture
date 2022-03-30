@@ -125,7 +125,7 @@ const Sell = ()=>{
                             <Typography>Title</Typography>
                             <TextField value={title}
                              onChange={(e)=>{setTitle(e.target.value)}}
-                             className="outlined-basic sell-page-input-textfield"
+                             className="sell-page-input-textfield"
                              variant="outlined" margin="dense"/>
                             </div>
                         <div className='sellpage-input-row'>
@@ -133,7 +133,7 @@ const Sell = ()=>{
                             <div style={{display:'flex', width:'14rem'}}>
                             <TextField value={price}
                                 onChange={(e)=>{setPrice(e.target.value)}} 
-                                className="outlined-basic sell-page-input-textfield"
+                                className="sell-page-input-textfield"
                                 variant="outlined" margin="dense"/>
                             <Autocomplete
                                 style={{width:'7rem'}}
@@ -180,7 +180,8 @@ const Sell = ()=>{
                             </div>
                         <div className='sellpage-input-row'>
                             <Typography>Phone Number</Typography>
-                            <MuiPhoneNumber variant="outlined" className="outlined-basic sell-page-input-textfield" 
+                            <MuiPhoneNumber variant="outlined" 
+                            className="sell-page-input-textfield" 
                             value={phoneNb} defaultCountry={'lb'} 
                             onChange={(e)=>{console.log(e);setPhoneNb(e)}}/>
                             </div>
@@ -189,7 +190,7 @@ const Sell = ()=>{
                         <TextField defaultValue={description} 
                          onChange={(e)=>{setDescription(e.target.value)}}
                          multiline={true} rows={5} 
-                         className="outlined-basic sell-page-input-textfield" 
+                         className="sell-page-input-textfield" 
                          variant="outlined" margin="dense" />
                         </div>
                     </div>
