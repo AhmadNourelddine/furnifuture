@@ -6,8 +6,10 @@ import { TextField } from '@material-ui/core';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import '../../css/sell/sell.css';
 import img from '../../assets/missing-image.jpg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MuiPhoneNumber from 'material-ui-phone-number';
+import { createNewProduct } from '../../redux/actions/userProducts';
+import { removeProduct } from '../../redux/actions/editProduct';
 
 
 
@@ -38,7 +40,8 @@ const Sell = ()=>{
 
     const currencies =['$', 'LBP'];
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     let productToUpdate = useSelector(state=>state.editProductReducer);
     console.log(productToUpdate);
@@ -74,14 +77,22 @@ const Sell = ()=>{
         await axios.post('http://127.0.0.1:8000/api/user/product/sell',item,{
             headers: {"Authorization" : `Bearer ${token}`} 
         })
-        .then((resp)=>{console.log(resp); navigate('/profile')})
+        .then((resp)=>{
+            console.log(resp.data); 
+            dispatch(createNewProduct(resp.data.product._id));
+            navigate('/profile');     
+        })
         .catch((err)=>{console.log(err)})
        }
        else {
         await axios.post('http://127.0.0.1:8000/api/user/product/edit',item,{
             headers: {"Authorization" : `Bearer ${token}`} 
         })
-        .then((resp)=>{console.log(resp); navigate('/profile');})
+        .then((resp)=>{
+            console.log(resp); 
+            navigate('/profile');
+            dispatch(removeProduct());
+        })
         .catch((err)=>{console.log(err)})
        }
     }
@@ -98,6 +109,7 @@ const Sell = ()=>{
         setLocation(productToUpdate.location);
         setPhoneNb(productToUpdate.phone_number);
         setDescription(productToUpdate.description);
+        dispatch(removeProduct());
         } },[]);
 
     return(
