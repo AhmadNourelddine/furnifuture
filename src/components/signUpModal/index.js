@@ -106,7 +106,9 @@ const SignUpModal = (props) => {
 
         <Typography className='sign-in-page-sign-up-link'>
         Already Have An Account? 
-        <Button component={Link} to="/login">
+        <Button onClick={()=>{closeTheModal(); dispatch(openLogInModal());}}
+        // component={Link} to="/login"
+        >
             <p style={{borderBottom:'solid 0.5px'}}>Sign In</p>
         </Button> 
         </Typography>
