@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, Typography } from '@mui/material';
+import { Avatar, Box, Button, Typography } from '@mui/material';
 import '../../css/profile/profile.css';
 import FurnitureItem from '../../components/furnitureItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -9,12 +9,17 @@ import { Link } from 'react-router-dom';
 import UpdateProfileModal from '../../components/updateAccountModal/updateAccountModal';
 import { openUpdateProfileModal } from '../../redux/actions/modal';
 import { useDispatch, useSelector } from 'react-redux';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import img from '../../assets/furniFuture-logo.png'
+import { uploadProfileImage } from '../../redux/actions/logIn';
 
 
 
 const Profile = ()=>{ 
 
     const [data, setData]= useState([]);
+    const [encodedImage, setEncodedImage]= useState('');
+    const [profileImage, setProfileImage]= useState(null);
     const dispatch = useDispatch();
     let token = window.localStorage.getItem('authToken');
     let user_name = window.localStorage.getItem('user_name');
@@ -22,6 +27,32 @@ const Profile = ()=>{
 
     let openUpdateModal = useSelector(state=>state.modalUpdateProfileReducer);
     const user_products = useSelector(state=>state.userProductsReducer);
+    const user = useSelector(state=>state.authUserReducer);
+    const user_image = user.image;
+
+
+    const handleImage = async(e)=>{
+
+        const file = e.target.files[0];
+        setProfileImage(URL.createObjectURL(file));
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = function (){
+            setEncodedImage(fileReader.result);
+        }
+        fileReader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+        let image ={'image': encodedImage,};
+        await axios.post('http://127.0.0.1:8000/api/user/upload-profile-image',image,{
+            headers: {"Authorization" : `Bearer ${token}`} 
+        })
+        .then((resp)=>{
+            console.log(resp.data); 
+            dispatch(uploadProfileImage(fileReader.result));     
+        })
+        .catch((err)=>{console.log(err)})
+    }
 
     const checkProductExists= (p_id)=>{
         let chck = false;
@@ -48,6 +79,9 @@ const Profile = ()=>{
     
     useEffect(() => {
             getUserProducts();
+            if(user_image){
+                setProfileImage(user_image);
+            }
     },[]);
 
     return(
@@ -55,7 +89,21 @@ const Profile = ()=>{
         <div className='profile-page'>
             {openUpdateModal && <UpdateProfileModal/>}
             <Box className='profile-page-info'>
-                <Box><AccountCircleIcon sx={{fontSize:150}}/></Box>
+                <Box style={{position:'relative', top:'25px'}}>
+                <Avatar sx={{mr:2, width: 96, height: 96 }} alt="PP" 
+                src={profileImage} />
+               
+                <Button style={{position:'relative', top:'-25px'}}
+                for='sell-upload-btn'>
+                            <label for='sell-upload-btn'>
+                            <AddPhotoAlternateIcon/>
+                            </label>
+                            </Button>
+                <input style={{opacity:'0', width:'0px'}} 
+                id='sell-upload-btn' type='file' accept=".jpeg, .png, .jpg"
+                onChange={(e)=>handleImage(e)} />
+    
+                </Box>
                 <Box className='profile-page-name-email'>
                     <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
                     <Typography fontWeight={100} fontSize={30}>{email}</Typography>
