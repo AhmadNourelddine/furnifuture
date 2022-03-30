@@ -17,8 +17,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import loggedOut from '../../redux/actions/logOut.js'; 
 import LoginModal from '../LoginModal'; 
-import { openLogInModal, openSignUpModal } from '../../redux/actions/modal';
+import { openLogInModal, openShippingProfileModal, openSignUpModal } from '../../redux/actions/modal';
 import SignUpModal from '../signUpModal';
+import ShippingprofileModal from '../ShippingProfileModal/shippingProfileModal';
 
 
 const Navbar = () => {
@@ -32,6 +33,7 @@ const Navbar = () => {
     let shippingUser = useSelector(state=> state.authShippingReducer);
     let loginModal = useSelector(state=> state.modalLoginReducer);
     let signUpModal = useSelector(state=> state.modalSignUpReducer);
+    let shippingprofileModal = useSelector(state=> state.modalShippingProfileReducer);
 
     console.log(authorized);
     console.log(shippingUser);
@@ -60,6 +62,7 @@ const Navbar = () => {
 
           {loginModal && <LoginModal/>}
           {signUpModal && <SignUpModal/>}
+          {shippingprofileModal && <ShippingprofileModal/>}
 
         <Container id="toolbar-container">
           <Toolbar disableGutters >
@@ -81,26 +84,38 @@ const Navbar = () => {
                 ABOUT
               </Button>
 
-              <Button component={Link} to="/buy" className="toolbar-btn" color="inherit"
+             {!shippingUser && 
+             <Button component={Link} to="/buy" className="toolbar-btn" color="inherit"
                 key="buy"
                 sx={{ my: 2, display: 'block' }}
               >
                 BUY
-              </Button>
+              </Button> 
+              }
+              
 
+            {!shippingUser &&
               <Button component={Link} to="/sell" className="toolbar-btn" color="inherit"
                 key="sell"
                 sx={{ my: 2, display: 'block' }}
               >
                 SELL
               </Button>
+            }
+             
             
+            {!shippingUser &&
               <Button component={Link} to="/delivery" className="toolbar-btn" color="inherit"
                 key="delivery"
                 sx={{ my: 2, display: 'block' }}
               >
                 Delivery
               </Button>
+          
+            }
+
+             
+             
 
 
               {!authorized && 
@@ -128,13 +143,25 @@ const Navbar = () => {
 
               {authorized && 
               <Box style={{display:"flex"}}>
-              <Box component={Link} to="/cart" className="toolbar-btn navbar-icons">
-                <ShoppingCartIcon/>
-              </Box>
-              <Box component={Link} to={shippingUser ? "profile-shipping" : "profile"}
-               className="toolbar-btn navbar-icons">
-                <AccountCircleIcon/>
-              </Box>
+              {!shippingUser && 
+                  <Box component={Link} to="/cart" className="toolbar-btn navbar-icons">
+                    <ShoppingCartIcon/>
+                  </Box>
+              } 
+              {!shippingUser && 
+                <Box component={Link} to={"profile"}
+                  className="toolbar-btn navbar-icons">
+                    <AccountCircleIcon/>
+                  </Box>
+              }
+              
+              
+              {shippingUser &&  
+                <Box onClick={()=>{dispatch(openShippingProfileModal())}}
+                className="toolbar-btn navbar-icons">
+                  <AccountCircleIcon/>
+                </Box>
+              }
               <Box component={Link} to="/about" onClick={logOut} className="toolbar-btn navbar-icons">
                 <LogoutIcon/>
               </Box>
