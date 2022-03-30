@@ -28,6 +28,7 @@ const Sell = ()=>{
     const [currency, setCurrency]= useState('LBP');
     const [imageEncoded, setImageEncoded]= useState('');
     const [imagePreview, setImagePreview]= useState(null);
+    const [imageProductToUpdate, setImageProductToUpdate]= useState(null);
 
     let token = window.localStorage.getItem('authToken');
 
@@ -70,8 +71,9 @@ const Sell = ()=>{
             "location": location,
             "phone_number": phoneNb,
             "category": category,
-            "image": imageEncoded,
         };
+
+       if(imageEncoded){item.image = imageEncoded;}
 
        if(!update){
         await axios.post('http://127.0.0.1:8000/api/user/product/sell',item,{
@@ -100,6 +102,7 @@ const Sell = ()=>{
     useEffect(()=>{
         if(productToUpdate){
         setUpdate(true);
+        console.log(productToUpdate);
         setProduct_id(productToUpdate.product_id);
         setTitle(productToUpdate.title);
         const priceArray = productToUpdate.price.split(" ");
@@ -109,6 +112,7 @@ const Sell = ()=>{
         setLocation(productToUpdate.location);
         setPhoneNb(productToUpdate.phone_number);
         setDescription(productToUpdate.description);
+        setImageProductToUpdate(productToUpdate.image);
         dispatch(removeProduct());
         } },[]);
 
@@ -203,7 +207,7 @@ const Sell = ()=>{
                         <CardMedia style={{borderRadius:'10px'}}
                         component="img"
                         height='100%'
-                        image={imagePreview? imagePreview : productToUpdate.image || img}
+                        image={imagePreview? imagePreview : imageProductToUpdate || img}
                         alt="furniture"
                         /></div>
                         <Divider sx={{my:3}} light/>
