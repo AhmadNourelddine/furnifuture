@@ -1,9 +1,9 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeLogInModal, closeSignUpModal, closeUpdateProfileModal, openLogInModal } from '../../redux/actions/modal';
+import { useDispatch } from 'react-redux';
+import { closeUpdateProfileModal } from '../../redux/actions/modal';
 import "../../css/profile/profile.css";
 import "../../css/profileModal/profileModal.css";
 import ToastSuccess from '../toast/toast-success';
@@ -55,6 +55,7 @@ const UpdateProfileModal = (props) => {
         },
     })
           .then((response)=>{
+            closeTheModal();
             ToastSuccess('Updated Profile Successfully');
             console.log(response)})
           .catch((err)=>{
@@ -73,7 +74,7 @@ const UpdateProfileModal = (props) => {
         isOpen={modalIsOpen}
         onRequestClose={closeTheModal}
         style={customStyles}
-        contentLabel="Furniture Modal"
+        contentLabel="Update Profile Modal"
       >
         <Box style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
 
