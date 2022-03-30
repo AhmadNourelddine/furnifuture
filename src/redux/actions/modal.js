@@ -49,3 +49,15 @@ export const openModal = (product)=>{
         type:'CloseUpdateProfileModal',
     };
  };
+
+ export const openShippingProfileModal = ()=>{
+    return{
+        type:'OpenShippingProfileModal',
+    };
+ };
+ 
+ export const closeShippingProfileModal = ()=>{
+    return{
+        type:'CloseShippingProfileModal',
+    };
+ };
