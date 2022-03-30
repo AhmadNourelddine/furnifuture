@@ -12,7 +12,6 @@ import Delivery from './pages/delivery';
 import CreateShippingProfile from './pages/create-shipping-profile/create-shipping-profile';
 import Cart from './pages/cart';
 import Profile from './pages/profile';
-import ProfileShipping from './pages/profile-shipping';
 import ProtectedRoutes from './protectedRoutes';
 
 function App() {
@@ -24,8 +23,8 @@ function App() {
           <Route element={<ProtectedRoutes/>}>
             <Route exact path="/sell" element={<Sell/>} />
             <Route exact path="/profile" element={<Profile/>} />
-            <Route exact path="/profile-shipping" element={<ProfileShipping/>} />
-            <Route path="/dashboard" element={<UpdateProfile />} />
+            {/* <Route exact path="/profile-shipping" element={<ProfileShipping/>} /> */}
+            <Route path="/updateProfile" element={<UpdateProfile />} />
             <Route exact path="/cart" element={<Cart/>} />
           </Route>
           <Route exact path="/*" element={<About/>} />
