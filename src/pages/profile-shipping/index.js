@@ -3,21 +3,22 @@ import axios from 'axios';
 import { Box, Button, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/profile/profile.css';
-import '../../css/profile-shipping/profile-shipping.css';
+import '../../css/profileShipping-modal/profileShipping-modal.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeShippingProfileModal } from '../../redux/actions/modal';
 
 
 
 const ProfileShipping = ()=>{ 
 
     const [data, setData]= useState([]);
-
+    const dispatch = useDispatch();
     let token = window.localStorage.getItem('authToken');
     let user_name = window.localStorage.getItem('user_name');
     let email = window.localStorage.getItem('user_email');
@@ -26,14 +27,15 @@ const ProfileShipping = ()=>{
 
     return(
 
-        <div className='profile-page-shipping'>
+        <Box className='profile-page-shipping'>
             <Box className='profile-page-info'>
                 <Box><AccountCircleIcon sx={{fontSize:150}}/></Box>
                 <Box className='profile-page-name-email'>
                     <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
                     <Typography fontWeight={100} fontSize={30}>{email}</Typography>
                 </Box>
-                <Box component={Link} to="/create-shipping-profile" className='profile-page-edit'>
+                <Box onClick={()=>{dispatch(closeShippingProfileModal())}}
+                component={Link} to="/create-shipping-profile" className='profile-page-edit'>
                     <ManageAccountsIcon sx={{fontSize:45}}/> 
                 </Box>
             </Box>
@@ -53,7 +55,7 @@ const ProfileShipping = ()=>{
                     <Typography fontWeight={100} fontSize={30}>{userInfo.vehicle_load}</Typography>
                 </Box>
             </Box>
-        </div>
+        </Box>
     );
 }
 
