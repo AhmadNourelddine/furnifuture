@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/update-shipping-profile', 'updateProfileShipping')->name('update-shipping-profile');
         Route::post('/logout', 'logout')->name('logout');
         Route::post('/refresh', 'refresh')->name('refresh');
+        Route::post('/upload-profile-image', 'uploadProfileImage')->name('upload-profile-image');
         Route::get('/profile', 'userProfile')->name('user-profile');
        });  
 
