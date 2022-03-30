@@ -4,6 +4,12 @@ const authUserReducer = (state=false, action)=>{
     {return action.payload;}
     else if(action.type === 'LoggedOut')
     {return false;}
+    else if(action.type === 'UploadProfileImage')
+    {   
+        let editState = state;
+        editState.image = action.payload;
+        return editState;
+    }
     else return state;
 };
 
