@@ -1,10 +1,15 @@
 
 
-const loggedIn = (user)=>{
+export const loggedIn = (user)=>{
    return{
        type:'LoggedIn',
        payload:user,
    };
 };
 
-export default loggedIn;
+export const uploadProfileImage = (image)=>{
+    return{
+        type:'UploadProfileImage',
+        payload: image,
+    };
+ };
