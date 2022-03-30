@@ -93,7 +93,8 @@ useEffect(()=>{suggestShippings()},[]);
               <Box>
                 <Box style={{display:'flex', alignItems:'baseline'}}>
                 <Typography fontWeight={'900'} fontSize={25}>{props.title}</Typography>
-                <Typography sx={{pl:4}} fontWeight={'600'} fontSize={25}>
+                <Typography  
+                sx={{pl:4}} fontWeight={'600'} fontSize={15}>
                   "{props.category}"
                 </Typography>
                 </Box>
@@ -122,8 +123,12 @@ useEffect(()=>{suggestShippings()},[]);
                 </Typography>
                 </Box>
                 <Box sx={{pb:5}} style={{display:'flex'}}>
-                <Typography sx={{pr:5, fontSize:12, fontWeight:'light'}}>{props.date}</Typography>
-                <Typography sx={{fontSize:12, fontWeight:'light'}}>{props.location}</Typography>
+                <Typography sx={{pr:5, fontSize:12, fontWeight:'light'}}>
+                  Date: {props.date}
+                </Typography>
+                <Typography sx={{fontSize:12, fontWeight:'light'}}>
+                 Location: {props.location}
+                </Typography>
                 </Box>
 
                 
