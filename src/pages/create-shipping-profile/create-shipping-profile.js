@@ -5,6 +5,8 @@ import '../../css/createDelivery-profile/createDelivery-profile.css';
 import "../../css/signup/signup.css";
 import { useNavigate } from 'react-router-dom';
 import ToastSuccess from '../../components/toast/toast-success';
+import { useSelector } from 'react-redux';
+import MuiPhoneNumber from 'material-ui-phone-number';
 
 const CreateShippingProfile = ()=>{
 
@@ -17,6 +19,8 @@ const CreateShippingProfile = ()=>{
         const [vehicleLoad, setVehicleLoad]= useState('');
 
         const [redirect, setRedirect]= useState(false);
+
+        const userToUpdate = useSelector(state=>state.authUserReducer);
 
         const locations = ["Beirut", "Tripoli", "Sidon", "Tyre",
                      "Jounieh", "Byblos", "Aley", "Nabatieh",
@@ -32,6 +36,16 @@ const CreateShippingProfile = ()=>{
             Navigate('/login');
           }
         },[redirect]);
+
+        useEffect(()=>{
+            if(userToUpdate && userToUpdate.is_shipping){
+                setName(userToUpdate.name);
+                setEmail(userToUpdate.email);
+                setPhoneNb(userToUpdate.phone_number);
+                setLocation(userToUpdate.location);
+                setVehicleLoad(userToUpdate.vehicle_load);
+            }
+        },[]);
       
         const create = async(event)=>{
             
@@ -77,7 +91,7 @@ const CreateShippingProfile = ()=>{
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Name</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField autoComplete='given-name'
+                        <TextField value={name} autoComplete='given-name'
                          required onChange = {e=>setName(e.target.value)}
                          className='createdelivery-input-textfield'></TextField>
                     </Box>
@@ -85,7 +99,7 @@ const CreateShippingProfile = ()=>{
                 <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Email</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField autoComplete='email' type="email"
+                        <TextField value={email} autoComplete='email' type="email"
                         required onChange = {e=>setEmail(e.target.value)}
                         className='createdelivery-input-textfield'></TextField>
                     </Box>
@@ -121,6 +135,7 @@ const CreateShippingProfile = ()=>{
                             <Autocomplete className='createdelivery-autocomplete-section'
                                 disablePortal
                                 options={locations}
+                                value={location}
                                 sx={{ width: 300 }}
                                 renderInput={(params) => 
                                 <TextField className='delivery-dropMenu-textfield'
@@ -137,6 +152,7 @@ const CreateShippingProfile = ()=>{
                             <Autocomplete className='createdelivery-autocomplete-section'
                                 disablePortal
                                 options={Vehicle_loads}
+                                value={vehicleLoad}
                                 sx={{ width: 300 }}
                                 renderInput={(params) => 
                                 <TextField className='delivery-dropMenu-textfield'
@@ -150,13 +166,15 @@ const CreateShippingProfile = ()=>{
             <Box className='createdelivery-input'>
                     <Typography variant='h4' sx={{my:2}}>Phone Number</Typography>
                     <Box className='createdelivery-input-section'>
-                        <TextField required onChange = {e=>setPhoneNb(e.target.value)}
-                         className='createdelivery-input-textfield'></TextField>
+                    <MuiPhoneNumber 
+                    variant="outlined" className="createdelivery-input-textfield" 
+                    value={phoneNb} defaultCountry={'lb'} 
+                    onChange={(e)=>{setPhoneNb(e)}}/>
                     </Box>
             </Box>
 
                 <Box style={{alignSelf:'flex-end'}} className='deliveryprofile-cancel-create-btns'>
-                    <Button onClick={()=>{Navigate('/delivery')}}
+                    <Button onClick={()=>{Navigate('/about')}}
                     style={{width:'7rem', border: 'solid 0.5px black', color:'black ', backgroundColor:'#D86544'}}>
                         Cancel
                     </Button>
