@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeLogInModal } from '../../redux/actions/modal';
+import { closeLogInModal, openSignUpModal } from '../../redux/actions/modal';
 import loggedIn from '../../redux/actions/logIn';
 import "../../css/login/login.css";
 
@@ -116,7 +116,9 @@ const LoginModal = (props) => {
 
     <Typography className='sign-in-page-sign-up-link'>
       Do not have an Account? 
-      <Button component={Link} to="/signup">
+      <Button onClick={()=>{closeTheModal(); dispatch(openSignUpModal());}}
+      // component={Link} to="/signup"
+      >
         <p style={{borderBottom:'solid 0.5px'}}>Sign Up</p>
       </Button> 
     </Typography>
