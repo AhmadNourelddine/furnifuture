@@ -5,6 +5,7 @@ import { Box } from '@mui/system';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartShipping, removeCartShipping } from '../../redux/actions/cart';
@@ -49,32 +50,32 @@ const ShippingProfileCard = (props)=>{
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{
-      // window.location.reload(false)
       dispatch(removeCartShipping(props.id));
-      console.log(resp);})
+      console.log(resp);}) 
     .catch((err)=>{console.log(err)})
     }
   }
 
      return(   <Card className='shipping-profile-delivery-card' sx={{mx:5, my:3}}>
                 <Box sx={{mx:2, my:3}} className='avatar-and-name'>
-                <Avatar variant='square'>PP</Avatar>
+                  <AccountCircleIcon style={{fontSize:'60'}}/>
+                {/* <Avatar variant='square'>PP</Avatar> */}
                 <Typography variant='h1' fontSize='large' sx={{mx:2}}>{props.name}</Typography>
                 </Box>
                 <Divider light/>
 
-                <Box sx={{mx:2, my:3}}>
+                <Box sx={{mx:4, my:3}}>
 
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
-                <Avatar><LocalPhoneIcon/></Avatar>
+                <LocalPhoneIcon/>
                 <Typography sx={{mx:2}}>{props.phone_number}</Typography>
                 </Box>
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
-                <Avatar><LocationOnIcon/></Avatar>
+                <LocationOnIcon/>
                 <Typography sx={{mx:2}}>{props.location}</Typography>
                 </Box>
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
-                <Avatar><LocalShippingIcon/></Avatar>
+                <LocalShippingIcon/>
                 <Typography sx={{mx:2}}>{props.vehicle_load}</Typography>
                 </Box>
 
