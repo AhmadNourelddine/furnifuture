@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
 use App\Models\Product;
 use App\Models\User;
 use Validator;
@@ -19,7 +19,7 @@ class ProductController extends Controller
             'title' => 'required|string|between:2,100',
             'description' => 'required|string|max:100',
             'location' => 'required|string|max:100',
-            'phone_number' => 'required|string|max:100',
+            'phone_number' => 'required|string|max:12',
             'category' => 'required|string',
             'price' => 'required|string',
             'image' => 'string',
@@ -103,9 +103,9 @@ class ProductController extends Controller
             'title' => 'required|string|between:2,100',
             'description' => 'required|string|max:100',
             'location' => 'required|string|max:100',
-            'phone_number' => 'required|string|max:100',
+            'phone_number' => 'required|string|max:12',
             'category' => 'required|string',
-            'price' => 'required|numeric',
+            'price' => 'required|string',
             'image' => 'string',
         ]);
 
@@ -180,7 +180,6 @@ class ProductController extends Controller
             $results = Product::where('category', '=', $category)
             ->where('title','LIKE','%'.$search_term.'%')
             ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-                 
             ->get();
             return response()->json([$results]);
         }
