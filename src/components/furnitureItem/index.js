@@ -13,9 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
-import { openModal } from '../../redux/actions/modal';
+import { openLogInModal, openModal } from '../../redux/actions/modal';
 import { useSelect } from '@mui/base';
 import { addCartProduct, removeCartProduct } from '../../redux/actions/cart';
+import { deleteCreatedProduct } from '../../redux/actions/userProducts';
 
 export default function FurnitureItem(props) {
 
@@ -26,15 +27,11 @@ export default function FurnitureItem(props) {
   const loggedIn = useSelector(state=>state.authReducer);
   const checkModal = useSelector(state=>state.modalReducer);
 
-  const[toggleModal, setToggleModal]= useState(false);
-
   const[save, setSave]= useState(false);
 
   const[buy, setBuy]= useState(false);
   const[cart, setCart]= useState(false);
   const[profile, setProfile]= useState(false);
-
-  const [image, setImage]= useState(null);
 
   const [date, setDate]= useState('');
   const dispatch = useDispatch();
@@ -70,7 +67,7 @@ export default function FurnitureItem(props) {
 
   const clcikedButton = async()=>{
 
-    if(!loggedIn){alert('please Sign In'); return;}
+    if(!loggedIn){dispatch(openLogInModal()); return;}
 
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',key,{
@@ -98,7 +95,7 @@ export default function FurnitureItem(props) {
         headers: {"Authorization" : `Bearer ${token}`} 
     })
     .then((resp)=>{ 
-      // window.location.reload(false)
+      dispatch(deleteCreatedProduct(props.id));
       console.log(resp);})
     .catch((err)=>{console.log(err)})
     }
