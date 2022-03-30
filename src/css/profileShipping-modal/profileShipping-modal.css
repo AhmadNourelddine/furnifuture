@@ -1,5 +1,10 @@
-.profile-page-shipping{
-    margin: auto;
+.profile-page-shipping-modal{
+    border-radius: 25px;
+    background-color: #ECDCCF;
+}
+
+.profile-shipping-modal{
+    padding: 3rem 1rem;
     border-radius: 25px;
     background-color: #ECDCCF;
 }

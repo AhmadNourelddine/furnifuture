@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeShippingProfileModal, closeUpdateProfileModal } from '../../redux/actions/modal';
 import '../../css/profile/profile.css';
-import '../../css/profile-shipping/profile-shipping.css';
+import '../../css/profileShipping-modal/profileShipping-modal.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
@@ -52,9 +52,9 @@ const ShippingprofileModal = (props) => {
         isOpen={modalIsOpen}
         onRequestClose={closeTheModal}
         style={customStyles}
-        contentLabel="Update Profile Modal"
+        contentLabel="Shipping Profile Modal"
       >
-        <Box className='profile-page-shipping'>
+        <Box className='profile-shipping-modal'>
             <Box className='profile-page-info'>
                 <Box><AccountCircleIcon sx={{fontSize:150}}/></Box>
                 <Box className='profile-page-name-email'>
@@ -65,7 +65,7 @@ const ShippingprofileModal = (props) => {
                     <ManageAccountsIcon sx={{fontSize:45}}/> 
                 </Box>
             </Box>
-            <Box sx={{py:10}} 
+            <Box sx={{my:2, mx:1}}
             style={{paddingLeft:'10rem', display:'flex', flexDirection:'column',
              justifyContent:'flex-start', alignItems:'flex-start'}}>
                 <Box sx={{my:2}} style={{display:'flex'}}>

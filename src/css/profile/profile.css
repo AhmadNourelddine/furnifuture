@@ -25,6 +25,7 @@
 }
 
 .profile-page-items{
+    min-height: 100vh;
     height: 100%;
     margin: 2rem 2rem 0;
     display: flex;
