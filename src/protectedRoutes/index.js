@@ -6,7 +6,8 @@ import Login from '../pages/Login';
 const ProtectedRoutes = ()=>{
         const navigate = useNavigate();
         let auth = useSelector(state=>state.authReducer);
-        return auth? <Outlet/> : <Login/>;
+        let checkShipping = useSelector(state=>state.authShippingReducer);
+        return (auth && !checkShipping)? <Outlet/> : <Login/>;
 };
 
 export default ProtectedRoutes;
