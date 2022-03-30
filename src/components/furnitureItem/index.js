@@ -117,7 +117,7 @@ export default function FurnitureItem(props) {
                         img_base64_decoded = {props.img_base64_decoded}
                         />}
 
-      <Card className="furniture-item-card" sx={{ maxWidth: 345 }} 
+      <Card className="furniture-item-card" sx={{ maxWidth: 345}} 
       style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
 
       <CardActionArea onClick={()=>{dispatch(openModal(props.id))}}  
@@ -131,7 +131,7 @@ export default function FurnitureItem(props) {
 
         <CardMedia style={{borderRadius:'10px'}}
           component="img"
-          height="140"
+          height="200"
           width="300"
           image={props.img_base64_decoded? props.img_base64_decoded: img}
           alt="furniture"
@@ -158,7 +158,8 @@ export default function FurnitureItem(props) {
 
         </div>
       </CardActionArea>
-      <div style={{padding: "0 1rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+      <div 
+      style={{padding: "0 1rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
 
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
          {props.price}
