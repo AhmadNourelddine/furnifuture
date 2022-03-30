@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -46,10 +46,44 @@ class UserController extends Controller
         $user->user_products = [];
         $user->saved_products = [];
         $user->saved_shipping = [];
+        $user->image = "";
         $user->save();
 
         return response()->json([
             'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
+    }
+
+    public function uploadProfileImage(Request $request) {
+
+        $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $base64_image = $request->image;
+
+        @list($type, $file_data) = explode(';', $base64_image);
+        @list(, $file_data) = explode(',', $file_data);
+
+        $ext = explode(';base64',$base64_image);
+        $ext = explode('/',$ext[0]);			
+        $ext = $ext[1];
+
+        $img_url = time().'.'.$ext;
+        Storage::put($img_url, base64_decode($file_data));
+
+        $user->image = $img_url;
+        
+        $user->save();
+
+        return response()->json([
+            'message' => 'Uploaded Profile Image Successfully',
             'user' => $user
         ], 201);
     }
@@ -76,6 +110,7 @@ class UserController extends Controller
         $user->location = $request->location;
         $user->vehicle_load = $request->vehicle_load;
         $user->is_shipping = true;
+        $user->image = "";
         $user->save();
 
         return response()->json([
@@ -83,7 +118,6 @@ class UserController extends Controller
             'user' => $user
         ], 201);
     }
-
 
     public function updateProfile(Request $request)
     {
@@ -157,11 +191,18 @@ class UserController extends Controller
     }
 
     protected function createNewToken($token){
+
+        $user = auth()->user();
+        if($user->image){
+            $ext = pathinfo($user->image, PATHINFO_EXTENSION);
+            $encoded_image = base64_encode(Storage::get($user->image));
+            $user->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+        }
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'user' => $user,
         ]);
     }
 }
