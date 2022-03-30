@@ -21,7 +21,18 @@ const Profile = ()=>{
     let email = window.localStorage.getItem('user_email');
 
     let openUpdateModal = useSelector(state=>state.modalUpdateProfileReducer);
-    
+    const user_products = useSelector(state=>state.userProductsReducer);
+
+    const checkProductExists= (p_id)=>{
+        let chck = false;
+        Object.keys(user_products).forEach((key)=>{
+                        if(user_products[key] === p_id)
+                        {chck = true;}
+                    });
+        console.log(chck);
+        return chck;
+    }
+
     const getUserProducts = async()=>{
 
         await axios.get('http://127.0.0.1:8000/api/user/product/created',{
@@ -56,6 +67,7 @@ const Profile = ()=>{
             <div className='profile-page-items'>
             {         
                 data.map((item)=>
+                checkProductExists(item._id) &&
                 <FurnitureItem 
                 key = {item._id}
                 id = {item._id}
