@@ -26,8 +26,6 @@ const Buy = ()=>{
 
     const loggedIn = useSelector(state=>state.authReducer);
 
-    const user = useSelector(state=>state.authUserReducer);
-
     const saved_products = useSelector(state=>state.cartProductReducer);
 
   
@@ -48,11 +46,8 @@ const Buy = ()=>{
                     {chck = true;}
                 });
             }
-            console.log(chck);
             return chck;
     }
-
-    console.log(checkProductSaved("623629dded37000059004254"))
 
     const getRandomProducts = async()=>{
 
@@ -70,7 +65,7 @@ const Buy = ()=>{
             .then((response)=>{
                     setResult(response.data[0]);
                     setSearching(true);
-                    // console.log(response);
+                    console.log(response);
                 })
             .catch(e=>{console.log(e)})
     }
@@ -88,7 +83,6 @@ const Buy = ()=>{
                 <SearchBar 
                  className='buy-search-bar'
                  onChange={(newValue) => setSearch(newValue)}
-                //  onRequestSearch={() => doSomethingWith(this.state.value)}
                  />
                  <Autocomplete className='buy-search-category'
                     disablePortal
