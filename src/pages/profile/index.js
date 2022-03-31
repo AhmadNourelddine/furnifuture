@@ -36,11 +36,11 @@ const Profile = ()=>{
         const file = e.target.files[0];
         setProfileImage(URL.createObjectURL(file));
         const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = function (){
-            setEncodedImage(fileReader.result);
+        await fileReader.readAsDataURL(file);
+         fileReader.onload =  async function(){
+            await setEncodedImage(fileReader.result);
         }
-        fileReader.onerror = function (error) {
+         fileReader.onerror =  function (error) {
             console.log('Error: ', error);
         };
         let image ={'image': encodedImage,};

@@ -9,7 +9,7 @@ import Box from "@material-ui/core/box";
 import InputLabel from '@mui/material/InputLabel';
 import { Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import loggedIn from '../../redux/actions/logIn.js';
+import { loggedIn } from '../../redux/actions/logIn';
 import isShipping from '../../redux/actions/loggedInShipping'; 
 import ToastSuccess from '../../components/toast/toast-success';
 
@@ -69,7 +69,8 @@ const Login = ()=> {
     <Box className='login-form' id="signin-box">
     <Typography id="sign-in">Sign In To Your Account</Typography>
 
-    <TextField autoComplete="email" required 
+    <TextField inputProps={{border:'none'}}
+    autoComplete="email" required 
     className="outlined-basic" label="Email" variant="outlined" margin="normal" type="email" 
     onChange = {e=>setEmail(e.target.value)}/>
 

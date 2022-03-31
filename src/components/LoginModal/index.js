@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLogInModal, openSignUpModal } from '../../redux/actions/modal';
-import loggedIn from '../../redux/actions/logIn';
+import { loggedIn } from '../../redux/actions/logIn';
 import "../../css/login/login.css";
 
 import { Link, useNavigate } from 'react-router-dom';
