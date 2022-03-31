@@ -33,5 +33,5 @@
     flex-wrap: wrap;
     background-color: #D4C6BA;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: space-around;
 }

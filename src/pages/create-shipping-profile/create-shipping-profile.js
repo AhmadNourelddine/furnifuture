@@ -72,7 +72,7 @@ const CreateShippingProfile = ()=>{
         }
 
     return(
-            <Box style={{backgroundColor:'#ECDCCF', height:'100%'}}>
+            <Box style={{backgroundColor:'#ECDCCF', height:'100%', minHeight:'100vh'}}>
 
             <div className='create-delivery-title-section'>
 
