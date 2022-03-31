@@ -9,6 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartShipping, removeCartShipping } from '../../redux/actions/cart';
+import { openLogInModal } from '../../redux/actions/modal';
 
 const ShippingProfileCard = (props)=>{
 
@@ -23,8 +24,6 @@ const ShippingProfileCard = (props)=>{
 
   const dispatch =  useDispatch();
 
-  console.log(props.btn);
-
   useEffect(()=>{
                  if (props.btn === 'remove'){setCart(true)}
                  else if (props.btn === 'saved'){setShipping(true); setSave(true);}
@@ -34,7 +33,7 @@ const ShippingProfileCard = (props)=>{
   let key = {"shipping_id": props.id,};
 
   const clcikedButton = async()=>{
-    if(!isloggedIn){alert('please sign in'); return;}
+    if(!isloggedIn){dispatch(openLogInModal()); return;}
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-shipping',key,{
         headers: {"Authorization" : `Bearer ${token}`} 
@@ -58,8 +57,9 @@ const ShippingProfileCard = (props)=>{
 
      return(   <Card className='shipping-profile-delivery-card' sx={{mx:5, my:3}}>
                 <Box sx={{mx:2, my:3}} className='avatar-and-name'>
-                  <AccountCircleIcon style={{fontSize:'60'}}/>
-                {/* <Avatar variant='square'>PP</Avatar> */}
+                <Avatar sx={{mr:2, width: 76, height: 76 }} alt="PP" 
+                src={props.image_encoded} />
+                  {/* <AccountCircleIcon style={{fontSize:'60'}}/> */}
                 <Typography variant='h1' fontSize='large' sx={{mx:2}}>{props.name}</Typography>
                 </Box>
                 <Divider light/>
