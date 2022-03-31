@@ -128,6 +128,7 @@ const Delivery = ()=>{
                 location = {data[key].location}
                 vehicle_load = {data[key].vehicle_load}
                 btn = {loggedIn && checkShippingSaved(data[key]._id)? 'saved' : 'save'}
+                image_encoded={data[key].image}
                 />)
             }
              {/* {searching && 
