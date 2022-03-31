@@ -191,9 +191,10 @@ class ProductController extends Controller
         }
     }
 
-    public function allProducts()
+    public function randomProducts()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $products = Product::all()->random(7);
         foreach($products as $product){
             if($product->image){
                 $ext = pathinfo($product->image, PATHINFO_EXTENSION);

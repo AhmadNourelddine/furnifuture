@@ -54,9 +54,10 @@ class ShippingController extends Controller
 
     }
 
-    public function allShippings()
+    public function randomShippings()
     {
-        $shippings = User::all()->where('is_shipping','=','true');
+        // $shippings = User::all()->where('is_shipping','=','true');
+        $shippings = User::all()->where('is_shipping','=','true')->random(4);
         foreach($shippings as $shipping){
             if($shipping->image){
                 $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
