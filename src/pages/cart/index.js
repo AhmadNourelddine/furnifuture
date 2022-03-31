@@ -29,7 +29,6 @@ const Cart = ()=>{
                     {chck = true;}
                 });
             }
-            console.log(chck);
             return chck;
         }
 
@@ -42,7 +41,6 @@ const Cart = ()=>{
                     {chck = true;}
                 });
             }
-            console.log(chck);
             return chck;
         }
 
@@ -121,6 +119,7 @@ const Cart = ()=>{
                 location = {item.location}
                 vehicle_load = {item.vehicle_load}
                 btn = 'remove'
+                image_encoded = {item.image}
                 />
                 ) }
                 
