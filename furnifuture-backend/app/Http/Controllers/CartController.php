@@ -115,6 +115,13 @@ class CartController extends Controller
         $user = Auth::User();
         $savedShipping_ids = $user->saved_shipping;
         $savedShipping = User::find($savedShipping_ids);
+        foreach($savedShipping as $shipping){
+            if($shipping->image){
+                $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($shipping->image));
+                $shipping->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
         return response()->json([$savedShipping]);
     }
 
