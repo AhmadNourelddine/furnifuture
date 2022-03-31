@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -25,8 +25,8 @@ class ShippingController extends Controller
 
         if(empty($location) && empty($vehicle_load)){
             $results = User::all()->where('is_shipping','=','true')
-            ->where('name','=',$search_term)
-            ->orWhere('email','=',$search_term);   
+            ->where('name','=',$search_term);
+            // ->orwhere('email','=',$search_term);   
             return response()->json([$results]);
         }
         else if(empty($category)){
@@ -57,6 +57,13 @@ class ShippingController extends Controller
     public function allShippings()
     {
         $shippings = User::all()->where('is_shipping','=','true');
+        foreach($shippings as $shipping){
+            if($shipping->image){
+                $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($shipping->image));
+                $shipping->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
         return response()->json($shippings);
     }
 
