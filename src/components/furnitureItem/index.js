@@ -58,7 +58,7 @@ export default function FurnitureItem(props) {
       "date":props.date,
       "price":props.price,
       "sell-btn": props.sell_btn,
-      "image":props.img_base64_decoded,
+      "image":props.img_base64_encoded,
     };
 
     dispatch(editProduct(item));
@@ -114,7 +114,7 @@ export default function FurnitureItem(props) {
                         category={props.category}
                         price={props.price}
                         btn={save? 'saved' : 'save'}
-                        img_base64_decoded = {props.img_base64_decoded}
+                        img_base64_encoded = {props.img_base64_encoded}
                         />}
 
       <Card className="furniture-item-card" sx={{ maxWidth: 345}} 
@@ -133,7 +133,7 @@ export default function FurnitureItem(props) {
           component="img"
           height="200"
           width="300"
-          image={props.img_base64_decoded? props.img_base64_decoded: img}
+          image={props.img_base64_encoded? props.img_base64_encoded: img}
           alt="furniture"
         />
         <div style={{alignSelf:"flex-start", padding:"1rem"}}>
