@@ -97,7 +97,9 @@ class UserController extends Controller
             'phone_number' => 'required|string|max:12',
             'location' => 'required|string',
             'vehicle_load' => 'required|string',
+            'image' => 'string',
         ]);
+
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
@@ -110,7 +112,25 @@ class UserController extends Controller
         $user->location = $request->location;
         $user->vehicle_load = $request->vehicle_load;
         $user->is_shipping = true;
-        $user->image = "";
+
+        if(!empty($request->image)){
+            $base64_image = $request->image;
+
+            @list($type, $file_data) = explode(';', $base64_image);
+            @list(, $file_data) = explode(',', $file_data);
+    
+            $ext = explode(';base64',$base64_image);
+            $ext = explode('/',$ext[0]);			
+            $ext = $ext[1];
+    
+            $img_url = time().'.'.$ext;
+            Storage::put($img_url, base64_decode($file_data));
+    
+            $user->image = $img_url;    
+        }
+        else{
+            $user->image = "";
+        }
         $user->save();
 
         return response()->json([
