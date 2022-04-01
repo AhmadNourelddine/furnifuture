@@ -14,6 +14,9 @@ import FurnitureModal from '../furnitureItem-Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
 import { openLogInModal, openModal } from '../../redux/actions/modal';
+import DoneIcon from '@mui/icons-material/Done';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useSelect } from '@mui/base';
 import { addCartProduct, removeCartProduct } from '../../redux/actions/cart';
 import { deleteCreatedProduct } from '../../redux/actions/userProducts';
@@ -158,20 +161,45 @@ export default function FurnitureItem(props) {
 
         </div>
       </CardActionArea>
-      <div 
-      style={{padding: "0 1rem", display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+      <div className="sell-furniture-item-price-button">
 
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
          {props.price}
       </Typography>
-
+      
+      {  buy &&    
       <Button disabled={save}
+      onClick={clcikedButton}
+      className="sell-furniture-item-button"
+      style={{color: 'white', backgroundColor: '#5094AA',
+      opacity:(save || props.btn==='saved')? '1' : '0.7'}} 
+       variant="outlined" endIcon={(save || props.btn==='saved') && <DoneIcon />}>
+      {(save || props.btn==='saved')? 'Added' : 'Add to Cart'}
+      </Button>
+      }
+      {  cart &&    
+      <Button onClick={clcikedButton}
+      className="sell-furniture-item-button" 
+      style={{color: 'white', backgroundColor: '#D86544'}} 
+       variant="outlined">
+         Remove
+      </Button>
+      }
+      {  profile &&    
+      <Button onClick={clcikedButton}
+      className="sell-furniture-item-button" 
+      style={{color: 'white', backgroundColor: '#D86544'}} 
+       variant="outlined" endIcon={<DeleteOutlineIcon />}>
+         Delete
+      </Button>
+      }
+      {/* <Button disabled={save}
         onClick={clcikedButton}
         className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
         {buy && (save? 'saved' : props.btn)}
         {cart && 'remove'}
         {profile && 'delete'}
-      </Button>
+      </Button> */}
 
       </div>
     </Card>
