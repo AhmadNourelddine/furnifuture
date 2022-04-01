@@ -20,12 +20,10 @@ import LoginModal from '../LoginModal';
 import { openLogInModal, openShippingProfileModal, openSignUpModal } from '../../redux/actions/modal';
 import SignUpModal from '../signUpModal';
 import ShippingprofileModal from '../ShippingProfileModal/shippingProfileModal';
+import { setLocation } from '../../redux/actions/location';
 
 
 const Navbar = () => {
-
-    const[token, setToken]= useState('');
-    const[signupModal, setSignupModal]= useState(false);
 
     const dispatch = useDispatch();
 
@@ -35,17 +33,13 @@ const Navbar = () => {
     let signUpModal = useSelector(state=> state.modalSignUpReducer);
     let shippingprofileModal = useSelector(state=> state.modalShippingProfileReducer);
 
-    console.log(authorized);
-    console.log(shippingUser);
-
     const logOut = async()=>{
 
-      let tokenn = window.localStorage.getItem('authToken');
-      console.log(tokenn);
+      let token = window.localStorage.getItem('authToken');
       dispatch(loggedOut());
 
       await axios.post('http://127.0.0.1:8000/api/user/logout',{
-          headers: {"Authorization" : `Bearer ${tokenn}` },
+          headers: {"Authorization" : `Bearer ${token}` },
       })
       .then((response)=>{
               dispatch(loggedOut());
@@ -55,7 +49,9 @@ const Navbar = () => {
 
   }
 
-  useEffect(()=>{setToken(window.localStorage.getItem('authToken'))},[authorized])
+  useEffect(()=>{
+      dispatch(setLocation());
+  },[]);
 
     return(
         <AppBar position="static" color="inherit" id="app-bar">
