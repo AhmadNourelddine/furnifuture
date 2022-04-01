@@ -19,6 +19,13 @@ export const addCartProduct = (product)=>{
         payload: shipping,
     };
  };
+
+ export const addCartSuggestedShipping = (shippings)=>{
+    return{
+        type:'AddCartSuggestedShipping',
+        payload: shippings,
+    };
+ };
  
  export const removeCartShipping = (shipping)=>{
     return{
