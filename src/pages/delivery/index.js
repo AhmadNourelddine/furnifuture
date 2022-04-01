@@ -6,7 +6,9 @@ import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import CreateDeliveryProfileModal from '../../components/create-delivery-profile-modal';
+import { openCreateShippingProfileModal } from '../../redux/actions/modal';
 
 
 const Delivery = ()=>{
@@ -23,7 +25,11 @@ const Delivery = ()=>{
     const loggedIn = useSelector(state=>state.authReducer);
     const user = useSelector(state=>state.authUserReducer);
 
+    const dispatch = useDispatch();
+
     const saved_shipping = useSelector(state=>state.cartShippingReducer);
+
+    const openCreateModal = useSelector(state=>state.modalCreateShipping);
 
     const checkShippingSaved= (p_id)=>{
         let chck = false;
@@ -76,13 +82,15 @@ const Delivery = ()=>{
 
     return(
         <div className='buy-page'>
+
             <div className='deliverypage-title-section'>
 
                 <Typography className='buy-page-title'>
                     Create Your Delivery Profile
                     </Typography>
 
-                <Button component={Link} to="/create-shipping-profile" 
+                <Button onClick={()=>{dispatch(openCreateShippingProfileModal())}}
+                // component={Link} to="/create-shipping-profile" 
                         style={{padding:'0.5rem 2rem'}} size='large' 
                         className='deliverypage-create-deliveryprofile-btn' 
                         sx={{mx:2}}>Create</Button>
@@ -154,6 +162,7 @@ const Delivery = ()=>{
                 location = {result[key].location}
                 vehicle_load = {result[key].vehicle_load}
                 btn = {checkShippingSaved(result[key]._id)? 'saved' : 'save'}
+                image_encoded={data[key].image}
                 />)
             }
             </div>
