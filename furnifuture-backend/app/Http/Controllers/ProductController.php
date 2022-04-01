@@ -167,7 +167,8 @@ class ProductController extends Controller
     public function searchProduct(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'search' => 'required|string',
+            'search' => 'string|nullable',
+            'category' => 'string|nullable',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -176,24 +177,37 @@ class ProductController extends Controller
         $search_term = $request->search;
         $category = $request->category;
 
-        if(!empty($category)){
-            $results = Product::where('category', '=', $category)
-            ->where('title','LIKE','%'.$search_term.'%')
-            ->orWhere('description', 'LIKE', '%'.$search_term.'%')
-            ->get();
-            return response()->json([$results]);
+        if(!empty($category) && !empty($search_term)){
+            $products = Product::where('category', '=', $category)
+            ->where(function ($query) use($search_term){
+                return $query 
+                ->where('title','LIKE','%'.$search_term.'%')
+                ->orWhere('description','LIKE','%'.$search_term.'%');
+            })->get();
+        }
+        else if(!empty($category) && empty($search_term)){
+            $products = Product::where('category', '=', $category)->get();
         }
         else{
-            $results = Product::where('title','LIKE','%'.$search_term.'%')
+            $products = Product::where('title','LIKE','%'.$search_term.'%')
             ->orWhere('description', 'LIKE', '%'.$search_term.'%')   
             ->get();
-            return response()->json([$results]);
         }
+
+        foreach($products as $product){
+            if($product->image){
+                $ext = pathinfo($product->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($product->image));
+                $product->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
+
+        return response()->json([$products]);
+
     }
 
     public function randomProducts()
     {
-        // $products = Product::all();
         $products = Product::all()->random(7);
         foreach($products as $product){
             if($product->image){
