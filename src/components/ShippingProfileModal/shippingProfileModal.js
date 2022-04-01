@@ -63,17 +63,29 @@ const ShippingprofileModal = (props) => {
       }
        fileReader.onerror =  function (error) {
           console.log('Error: ', error);
-      };
-      let image ={'image': encodedImage,};
-      await axios.post('http://127.0.0.1:8000/api/user/upload-profile-image',image,{
-          headers: {"Authorization" : `Bearer ${token}`} 
-      })
-      .then((resp)=>{
-          console.log(resp.data); 
-          dispatch(uploadProfileImage(fileReader.result));     
-      })
-      .catch((err)=>{console.log(err)})
+      }
     }
+
+    useEffect( ()=>{
+
+      if(encodedImage){
+        
+          let image={"image": encodedImage,};
+          const uploadImage = async()=>{
+          await axios.post('http://127.0.0.1:8000/api/user/upload-profile-image',image,{
+          headers: {"Authorization" : `Bearer ${token}`} 
+          })
+          .then((resp)=>{
+          console.log(resp.data); 
+          dispatch(uploadProfileImage(encodedImage));     
+          })
+          .catch((err)=>{console.log(err)})
+          }
+          uploadImage();
+
+      }
+
+  },[encodedImage]);
 
     useEffect(() => {
       if(user_image){
