@@ -10,6 +10,7 @@ import modalSignUpReducer from './modalSignUpReducer';
 import modalUpdateProfileReducer from './modalUpdateProfileReducer';
 import modalShippingProfileReducer from './modalShippingProfileReducer';
 import userProductsReducer from './userProductsReducer';
+import locationReducer from './locationReducer';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -25,6 +26,7 @@ const allReducers = combineReducers({
     modalUpdateProfileReducer,
     modalShippingProfileReducer,
     userProductsReducer,
+    locationReducer,
 });
 
 export default allReducers;
