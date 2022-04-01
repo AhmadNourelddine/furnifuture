@@ -26,3 +26,15 @@
     flex-direction: row;
     justify-content: flex-end;
 }
+
+.shipping-furniture-card-button{
+    white-space: nowrap;
+    border-radius: 5px !important;
+    height: 2rem;
+    width: 7.5rem;
+    color: white !important;
+}
+
+.shipping-furniture-card-button:hover{
+    opacity: 1 !important;
+}

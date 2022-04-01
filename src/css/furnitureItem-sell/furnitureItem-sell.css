@@ -29,10 +29,22 @@
     font-weight: 900 !important;
 }
 
+.sell-furniture-item-price-button{
+     padding: 0rem 1rem;
+     display:flex;
+     flex-direction: row; 
+     justify-content: space-between;
+     align-items: flex-end;
+}
+
 .sell-furniture-item-button{
+    white-space: nowrap;
+    border-radius: 5px !important;
     height: 2rem;
-    width: 8rem;
-    background-color: #5094AA !important;
+    width: 7.5rem;
     color: white !important;
-    border-radius: 5px;
+}
+
+.sell-furniture-item-button:hover{
+    opacity: 1 !important;
 }
