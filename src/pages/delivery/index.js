@@ -22,14 +22,8 @@ const Delivery = ()=>{
 
     const loggedIn = useSelector(state=>state.authReducer);
     const user = useSelector(state=>state.authUserReducer);
-    // const saved_shipping = user.saved_shipping;
-    const saved_shipping = useSelector(state=>state.cartShippingReducer);
 
-    let object = {
-        "search":search,
-        "location": location,
-        "vehicle_load": vehicle_load
-    };
+    const saved_shipping = useSelector(state=>state.cartShippingReducer);
 
     const checkShippingSaved= (p_id)=>{
         let chck = false;
@@ -40,7 +34,6 @@ const Delivery = ()=>{
                 {chck = true;}
             });
         }
-        console.log(chck);
         return chck;
     }
 
@@ -62,6 +55,12 @@ const Delivery = ()=>{
     }
     const searchShipping = async()=>{
 
+        let object = {
+            "search":search,
+            "location": location,
+            "vehicle_load": vehicle_load
+        };
+        console.log(object);
         await axios.post('http://127.0.0.1:8000/api/search-shipping', object)
             .then((response)=>{
                     setResult(response.data[0]);
@@ -92,8 +91,8 @@ const Delivery = ()=>{
             <div className='delivery-furniture-search'>
                 <SearchBar 
                  className='delivery-search-bar'
-                 onChange={(newValue) => setSearch(newValue)}
-                //  onRequestSearch={() => doSomethingWith(this.state.value)}
+                 onChange={(newValue) => {console.log(newValue); setSearch(newValue)}}
+                 value={search}
                  />
                  <Autocomplete className='delivery-search-category'
                     disablePortal
@@ -102,7 +101,8 @@ const Delivery = ()=>{
                     renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
                          label="Location" />}
-                    onChange = {(event, value)=>{value && setLocation(value)}}
+                    value={location}
+                    onChange = {(event, value)=>{setLocation(value)}}
                     />
                      <Autocomplete className='delivery-search-category'
                     disablePortal
@@ -111,7 +111,8 @@ const Delivery = ()=>{
                     renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
                          label="Vehicle Load" />}
-                    onChange = {(event, value)=>{value && setVehicle_load(value)}}
+                    value={vehicle_load}
+                    onChange = {(event, value)=>{setVehicle_load(value)}}
                     />
                 <Button onClick = {searchShipping} className='delivery-search-btn'>
                     Search
@@ -146,13 +147,13 @@ const Delivery = ()=>{
             {searching &&  
                 Object.keys(result).map((key)=>
                 <ShippingProfileCard 
-                key = {data[key]._id}
-                id = {data[key]._id}
-                name = {data[key].name} 
-                phone_number = {data[key].phone_number}
-                location = {data[key].location}
-                vehicle_load = {data[key].vehicle_load}
-                btn = {checkShippingSaved(data[key]._id)? 'saved' : 'save'}
+                key = {result[key]._id}
+                id = {result[key]._id}
+                name = {result[key].name} 
+                phone_number = {result[key].phone_number}
+                location = {result[key].location}
+                vehicle_load = {result[key].vehicle_load}
+                btn = {checkShippingSaved(result[key]._id)? 'saved' : 'save'}
                 />)
             }
             </div>
