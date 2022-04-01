@@ -30,7 +30,6 @@ class ShippingController extends Controller
                             ->where('name','LIKE','%'.$search_term.'%')
                             ->where('email','LIKE','%'.$search_term.'%')
                             ->get();   
-            return response()->json([$results]);
         }
         else if(empty($vehicle_load) && !empty($search_term)){
             $results = User::where('is_shipping','=',true)
@@ -40,7 +39,6 @@ class ShippingController extends Controller
                                 ->where('name','LIKE','%'.$search_term.'%')
                                 ->orWhere('email','LIKE','%'.$search_term.'%');
                             })->get();
-            return response()->json([$results]);
         }
         else if(empty($location) && !empty($search_term)){
             $results = User::where('is_shipping','=',true)
@@ -50,14 +48,12 @@ class ShippingController extends Controller
                 ->where('name','LIKE','%'.$search_term.'%')
                 ->orWhere('email','LIKE','%'.$search_term.'%');
             })->get();
-            return response()->json([$results]);
         }
         else if(!empty($location) && !empty($vehicle_load) && empty($search_term)){
             $results = User::where('is_shipping','=',true)
             ->where('location', '=', $location)  
             ->where('vehicle_load', '=', $vehicle_load)
             ->get();   
-            return response()->json([$results]);
         }
         else if(!empty($location) && !empty($vehicle_load) && !empty($search_term)){
             $results = User::where('is_shipping','=',true)
@@ -68,20 +64,27 @@ class ShippingController extends Controller
                 ->where('name','LIKE','%'.$search_term.'%')
                 ->orWhere('email','LIKE','%'.$search_term.'%');
             })->get();   
-            return response()->json([$results]);
         }
         else if(!empty($location) && empty($vehicle_load) && empty($search_term)){
             $results = User::where('is_shipping','=',true)
             ->where('location', '=', $location)
             ->get();   
-            return response()->json([$results]);
         }
         else{
             $results = User::where('is_shipping','=',true)
             ->where('vehicle_load', '=', $vehicle_load)
             ->get();   
-            return response()->json([$results]);
         }
+
+        foreach($results as $shipping){
+            if($shipping->image){
+                $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($shipping->image));
+                $shipping->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
+        }
+
+        return response()->json([$results]);
 
     }
 
