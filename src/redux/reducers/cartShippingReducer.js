@@ -14,6 +14,13 @@ const cartShippingReducer = (state=false, action)=>{
         state.push(action.payload);
         return state;
     } 
+    else if(action.type === 'AddCartSuggestedShipping'){
+        let saved_shippings = action.payload;
+        saved_shippings.map(shipping=>{
+            state.push(shipping);
+        })
+        return state;
+    } 
     else if(action.type === 'LoggedOut'){
         return false;} 
     else return state;
