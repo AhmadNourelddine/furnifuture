@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:api']], function () {
           Route::controller(CartController::class)->group(function () {  
             Route::post('/save-product', 'saveProduct')->name('save-product');
             Route::post('/save-shipping', 'saveShipping')->name('save-shipping');
+            Route::post('/save-suggested-shipping', 'saveSuggestedShippings')->name('save-suggested-shipping');
             Route::post('/remove-product', 'removeProduct')->name('remove-product');
             Route::post('/remove-shipping', 'removeShipping')->name('remove-shipping');
             Route::get('/get-products', 'getCartProducts')->name('get-products');
@@ -69,7 +70,7 @@ Route::controller(ContactUsController::class)->group(function () {
   Route::post('/contact-us', 'contactUsMessage')->name('contact-us-message');
 });
 
-Route::get('/suggest-shipping', [ShippingController::class, 'suggestShippings'])->name('suggest-shipping');
+Route::post('/suggest-shipping', [ShippingController::class, 'suggestShippings'])->name('suggest-shipping');
 
 Route::get('/notfound', [UserController::class, 'notFound'])->name('not-found');
 
