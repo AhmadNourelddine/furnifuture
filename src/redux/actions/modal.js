@@ -61,3 +61,15 @@ export const openModal = (product)=>{
         type:'CloseShippingProfileModal',
     };
  };
+
+ export const openCreateShippingProfileModal = ()=>{
+    return{
+        type:'OpenCreateShippingProfileModal',
+    };
+ };
+ 
+ export const closeCreateShippingProfileModal = ()=>{
+    return{
+        type:'CloseCreateShippingProfileModal',
+    };
+ };
