@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardMedia, Divider, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, Checkbox, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import img from '../../assets/missing-image.jpg';
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/actions/modal';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from 'react-router-dom';
-import { addCartProduct } from '../../redux/actions/cart';
+import { addCartProduct, addCartShipping, addCartSuggestedShipping } from '../../redux/actions/cart';
 import '../../css/furnitureItem-modal/furnitureItem-modal.css';
 
 const customStyles = {
@@ -30,21 +30,47 @@ const FurnitureModal = (props) => {
 
   const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(true);
+  const [city, setCity] = useState('');
+  const [savedShippings, setSavedShippings]= useState([]);
   const [data, setData]= useState([]);
 
   let token = window.localStorage.getItem('authToken');
 
   const loggedIn = useSelector(state=>state.authReducer);
-
+  
+  // const location = useSelector(state=>state.locationReducer);
+ 
+  // console.log(location);
 
   function closeTheModal() {
     dispatch(closeModal());
     setIsOpen(false);
   }
 
-  const suggestShippings = async()=>{
+  const getUserCity = async()=>{
+    await axios.get('https://geolocation-db.com/json/')
+          .then((response)=>{
+            console.log(response.data);
+            setCity(response.data.city);
+          })
+          .catch((err)=>{console.log(err)})
+  }
 
-    await axios.get('http://127.0.0.1:8000/api/suggest-shipping')
+  const handleSavedShipping = (shipping_id)=>{
+
+      if(savedShippings.includes(shipping_id)){
+        setSavedShippings(savedShippings.filter(item => item !== shipping_id));
+      }
+      else{
+        setSavedShippings(students => [...savedShippings, shipping_id]);
+      }
+  }
+
+  const suggestShippings = async()=>{
+    console.log(city);
+    let location={"city_user": city || "",
+                  "city_product": props.location,};
+    await axios.post('http://127.0.0.1:8000/api/suggest-shipping',location)
     .then((response)=>{
             setData(response.data)
             console.log(response)
@@ -60,18 +86,40 @@ const clcikedButton = async()=>{
 
  if(props.btn === 'save'){
       let product_id = {"product_id":props.id};
+      let shippings = {"saved_shippings": savedShippings};
+
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-product',product_id,{
         headers: {"Authorization" : `Bearer ${token}`} 
-    })
-    .then((resp)=>{
-      dispatch(addCartProduct(props.id));
-      closeTheModal();
-      console.log(resp);})
-    .catch((err)=>{console.log(err)})
+      })
+      .then((resp)=>{
+        dispatch(addCartProduct(props.id));
+        closeTheModal();
+        console.log(resp);})
+      .catch((err)=>{console.log(err)})
+
+      if(savedShippings){
+        await axios.post('http://127.0.0.1:8000/api/user/cart/save-suggested-shipping',shippings,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+      })
+      .then((resp)=>{
+        dispatch(addCartSuggestedShipping(savedShippings));
+        closeTheModal();
+        console.log(resp);})
+      .catch((err)=>{console.log(err)})
+      }
+
     }
 }
 
-useEffect(()=>{suggestShippings()},[]);
+    useEffect(()=>{
+      if(city){
+        suggestShippings();
+      }
+      },[city]);
+      
+    useEffect(()=>{
+      getUserCity();
+      },[]);
 
   return (
       <Modal
@@ -84,7 +132,7 @@ useEffect(()=>{suggestShippings()},[]);
         <CardMedia style={{padding:"2rem 5rem", width:"auto", margin:"auto"}}
           component="img"
           height="200"
-          image={props.img_base64_decoded? props.img_base64_decoded: img}
+          image={props.img_base64_encoded? props.img_base64_encoded: img}
           alt="furniture"
         />
         <Box style={{display:'flex', justifyContent:'space-between', alignItems:'baseline'}}>
@@ -111,26 +159,30 @@ useEffect(()=>{suggestShippings()},[]);
               </Box>
               <Box>
               
+                <Box sx={{pb:2}}>
+
                 <Box sx={{display:'flex'}}>
                   
-                <a target='_blank' rel="noopener noreferrer" 
-                href={'https://wa.me/'+props.phone_number}>
-                  <WhatsAppIcon/>
-                </a>
+                  <a target='_blank' rel="noopener noreferrer" 
+                  href={'https://wa.me/'+props.phone_number}>
+                    <WhatsAppIcon/>
+                  </a>
+  
+                  <Typography sx={{fontSize:15}}>
+                    {props.phone_number}
+                  </Typography>
+                  </Box>
 
-                <Typography sx={{fontSize:15}}>
-                  {props.phone_number}
-                </Typography>
+                  <Box sx={{pb:5}} style={{display:'flex'}}>
+                  <Typography sx={{pr:5, fontSize:12, fontWeight:'light'}}>
+                    Date: {props.date}
+                  </Typography>
+                  <Typography sx={{fontSize:12, fontWeight:'light'}}>
+                   Location: {props.location}
+                  </Typography>
+                  </Box>
+  
                 </Box>
-                <Box sx={{pb:5}} style={{display:'flex'}}>
-                <Typography sx={{pr:5, fontSize:12, fontWeight:'light'}}>
-                  Date: {props.date}
-                </Typography>
-                <Typography sx={{fontSize:12, fontWeight:'light'}}>
-                 Location: {props.location}
-                </Typography>
-                </Box>
-
                 
               </Box>
               <Box style={{width:'18rem', position:'absolute', bottom:'1.5rem'}}>
@@ -152,11 +204,15 @@ useEffect(()=>{suggestShippings()},[]);
                 </Typography>
               </Box>
              { Object.keys(data).map((key)=> 
-                <SuggestedShipping
+               <Box style={{display:'flex', justifyContent:'space-between'}}>
+                  <SuggestedShipping
                   name={data[key].name}
                   location={data[key].location}
                   phone_number={data[key].phone_number}
                 />
+                <Checkbox onChange={()=>{handleSavedShipping(data[key]._id)}}/>
+               </Box> 
+
               
               )}
             </CardContent>
