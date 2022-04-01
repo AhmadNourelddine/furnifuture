@@ -55,6 +55,31 @@ class CartController extends Controller
         return response()->json(["status"=>"saved shipping successfully"]);
     }
 
+    public function saveSuggestedShippings(Request $request)
+    {
+        $user = Auth::User();
+
+        $validator = Validator::make($request->all(), [
+            'saved_shippings' => 'required|array',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $shipping_ids = $request->saved_shippings;
+        $array = $user->saved_shipping;
+        foreach($shipping_ids as $shipping_id)
+        {
+            if(!array_search($shipping_id,$array)){
+                array_push($array,$shipping_id);
+            }
+        } 
+      
+        $user->saved_shipping = $array;
+        $user->save();
+        return response()->json(["status"=>"saved shippings successfully"]);
+    }
+
     public function removeProduct(Request $request)
     {
         $user = Auth::User();
