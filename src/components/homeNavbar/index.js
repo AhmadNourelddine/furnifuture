@@ -20,6 +20,7 @@ import LoginModal from '../LoginModal';
 import { openLogInModal, openShippingProfileModal, openSignUpModal } from '../../redux/actions/modal';
 import SignUpModal from '../signUpModal';
 import ShippingprofileModal from '../ShippingProfileModal/shippingProfileModal';
+import CreateDeliveryProfileModal from '../create-delivery-profile-modal'; 
 import { setLocation } from '../../redux/actions/location';
 
 
@@ -32,6 +33,7 @@ const Navbar = () => {
     let loginModal = useSelector(state=> state.modalLoginReducer);
     let signUpModal = useSelector(state=> state.modalSignUpReducer);
     let shippingprofileModal = useSelector(state=> state.modalShippingProfileReducer);
+    let openCreateShippingModal = useSelector(state=>state.modalCreateShipping);
 
     const logOut = async()=>{
 
@@ -57,8 +59,10 @@ const Navbar = () => {
         <AppBar position="static" color="inherit" id="app-bar">
 
           {loginModal && <LoginModal/>}
-          {signUpModal && <SignUpModal/>}
+          {signUpModal && <SignUpModal/>} 
           {shippingprofileModal && <ShippingprofileModal/>}
+          {openCreateShippingModal && <CreateDeliveryProfileModal/>}
+          
 
         <Container id="toolbar-container">
           <Toolbar disableGutters >
