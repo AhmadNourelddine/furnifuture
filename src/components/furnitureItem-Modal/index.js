@@ -38,9 +38,9 @@ const FurnitureModal = (props) => {
 
   const loggedIn = useSelector(state=>state.authReducer);
   
-  // const location = useSelector(state=>state.locationReducer);
+  const location = useSelector(state=>state.locationReducer);
  
-  // console.log(location);
+  console.log(location);
 
   function closeTheModal() {
     dispatch(closeModal());
@@ -67,7 +67,7 @@ const FurnitureModal = (props) => {
   }
 
   const suggestShippings = async()=>{
-    console.log(city);
+    // console.log(city);
     let location={"city_user": city || "",
                   "city_product": props.location,};
     await axios.post('http://127.0.0.1:8000/api/suggest-shipping',location)
