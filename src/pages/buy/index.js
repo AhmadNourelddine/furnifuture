@@ -32,10 +32,6 @@ const Buy = ()=>{
     const category = ['Living Room', 'Dining Room ', 'Bedroom', 'Bathroom',
      'kitchen', 'Garden & Outdoor', 'Home Decoration & Acceessories'];
     
-    let object = {
-        "search": search,
-        "category": categ
-    };
     
     const checkProductSaved= (p_id)=>{
             let chck = false;
@@ -61,6 +57,11 @@ const Buy = ()=>{
 
     const searchFurniture = async()=>{
 
+        let object = {
+            "search": search,
+            "category": categ
+        };
+        console.log(object);
         await axios.post('http://127.0.0.1:8000/api/search-products', object)
             .then((response)=>{
                     setResult(response.data[0]);
@@ -82,7 +83,8 @@ const Buy = ()=>{
             <div className='buy-furniture-search'>
                 <SearchBar 
                  className='buy-search-bar'
-                 onChange={(newValue) => setSearch(newValue)}
+                 value={search}
+                 onChange={(newValue) =>{setSearch(newValue); console.log(newValue)}}
                  />
                  <Autocomplete className='buy-search-category'
                     disablePortal
@@ -90,9 +92,10 @@ const Buy = ()=>{
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField variant="standard"
                         className="buy-page-search-category-textfield"
-                         {...params} 
+                         {...params}
+                         value={categ}
                          label="Category" />}
-                    onChange = {(event, value)=>{value && setCateg(value.label)}}
+                    onChange = {(event, value)=>{setCateg(value)}}
                     />
                 <Button onClick={searchFurniture} className='buy-search-btn'>
                     Search
@@ -113,7 +116,7 @@ const Buy = ()=>{
                 price = {item.price}
                 date={item.created_at}
                 btn={checkProductSaved(item._id)? 'saved' : 'save'}
-                img_base64_decoded = {item.image}
+                img_base64_encoded = {item.image}
                 />) 
             }
             {searching && 
@@ -129,7 +132,7 @@ const Buy = ()=>{
                  price = {item.price}
                  date={item.created_at}
                  btn={checkProductSaved(item._id) ? 'saved' : 'save'}
-                 img_base64_decoded = {item.image}
+                 img_base64_encoded = {item.image}
                  />)
             }   
             </div>
