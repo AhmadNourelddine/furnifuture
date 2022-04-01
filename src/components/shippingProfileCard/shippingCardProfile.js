@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DoneIcon from '@mui/icons-material/Done';
 import '../../css/shippingProfile-delivery/shippingProfile-delivery.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartShipping, removeCartShipping } from '../../redux/actions/cart';
@@ -82,12 +82,32 @@ const ShippingProfileCard = (props)=>{
                 </Box>
 
                 <Box sx={{mx:2, my:3}} className='shippingprofile-delivery-save'>
+
+                    { shipping &&    
                     <Button disabled={save}
+                    className="shipping-furniture-card-button"
+                    onClick={clcikedButton}
+                    style={{color: 'white', backgroundColor: '#5094AA', 
+                    opacity:(save || props.btn==='saved')? '1' : '0.7'}} 
+                    variant="outlined" endIcon={(save || props.btn==='saved') && <DoneIcon />}>
+                    {(save || props.btn==='saved')? 'Added' : 'Add to Cart'}
+                    </Button>
+                    }
+                    { cart &&
+                        <Button disabled={save}
+                        className="shipping-furniture-card-button"
+                        onClick={clcikedButton}
+                        style={{color: 'white', backgroundColor: '#D86544'}} 
+                        variant="outlined" >
+                          remove
+                        </Button>
+                    }
+                    {/* <Button disabled={save}
                      onClick={clcikedButton}
                      style={{color: 'white', backgroundColor: '#D86544'}}>
                          {shipping && (save ? 'saved' : props.btn)}
                          {cart && 'remove'}
-                    </Button>
+                    </Button> */}
                 </Box>
         </Card>
      );
