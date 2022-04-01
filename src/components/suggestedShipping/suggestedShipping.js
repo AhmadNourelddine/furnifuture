@@ -14,9 +14,6 @@ const SuggestedShipping=(props)=>{
                     <Typography fontWeight={100} fontSize={10}>{props.location}</Typography>
                     <Typography fontWeight={100} fontSize={10}>{props.phone_number}</Typography>
                 </Box>
-                <Box sx={{pl:3}} style={{alignSelf:'flex-start'}}>
-                    <Checkbox  iconStyle={{fill: 'white'}}/>
-                </Box>
                 </Box>
 
               </Box>
