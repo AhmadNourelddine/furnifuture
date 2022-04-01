@@ -104,7 +104,6 @@ const ShippingprofileModal = (props) => {
         <Box className='profile-shipping-modal'>
             <Box className='profile-page-info'>
                 <Box sx={{pt:3}}>
-                  {/* <AccountCircleIcon sx={{fontSize:150}}/> */}
                 <Avatar sx={{mr:2, width: 96, height: 96 }} alt="PP" 
                 src={profileImage} />
                
@@ -122,7 +121,8 @@ const ShippingprofileModal = (props) => {
                     <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
                     <Typography fontWeight={100} fontSize={30}>{email}</Typography>
                 </Box>
-                <Box component={Link} to="/create-shipping-profile" className='profile-page-edit'>
+                <Box onClick = {closeTheModal} 
+                component={Link} to="/create-shipping-profile" className='profile-page-edit'>
                     <ManageAccountsIcon sx={{fontSize:45}}/> 
                 </Box>
             </Box>
