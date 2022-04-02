@@ -7,6 +7,7 @@ import SuggestedShipping from '../suggestedShipping/suggestedShipping';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/actions/modal';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import DoneIcon from '@mui/icons-material/Done';
 import { Link } from 'react-router-dom';
 import { addCartProduct, addCartShipping, addCartSuggestedShipping } from '../../redux/actions/cart';
 import '../../css/furnitureItem-modal/furnitureItem-modal.css';
@@ -190,7 +191,12 @@ const clcikedButton = async()=>{
                 <Typography variant='h5' sx={{py:2}}>{props.price}</Typography>
                 <Button disabled={props.btn==='saved' ? true: false} 
                 onClick={clcikedButton} 
-                className='sell-furniture-item-button'>{props.btn}</Button>
+                style={{color: 'white', backgroundColor: '#5094AA',
+                opacity:(props.btn==='saved')? '1' : '0.7'}}
+                endIcon={(props.btn==='saved') && <DoneIcon/>}
+                className='sell-furniture-item-button'>
+                  {(props.btn==='saved')? 'Added' : 'Add to Cart'}
+                </Button>
               </Box>
               </Box>
             </CardContent>
@@ -212,8 +218,6 @@ const clcikedButton = async()=>{
                 />
                 <Checkbox onChange={()=>{handleSavedShipping(data[key]._id)}}/>
                </Box> 
-
-              
               )}
             </CardContent>
           </Box>
