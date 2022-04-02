@@ -24,17 +24,17 @@ function App() {
             <Route exact path="/sell" element={<Sell/>} />
             <Route exact path="/profile" element={<Profile/>} />
             {/* <Route exact path="/profile-shipping" element={<ProfileShipping/>} /> */}
-            <Route path="/updateProfile" element={<UpdateProfile />} />
+            {/* <Route path="/updateProfile" element={<UpdateProfile />} /> */}
             <Route exact path="/cart" element={<Cart/>} />
           </Route>
           <Route exact path="/*" element={<About/>} />
           <Route exact path="/about" element={<About/>} />
           <Route exact path="/buy" element={<Buy/>} />
           <Route exact path="/delivery" element={<Delivery/>} />
-          <Route exact path="/login" element={<Login/>} />
+          {/* <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<SignUp/>} />
+          <Route exact path="/create-shipping-profile" element={<CreateShippingProfile/>} /> */}
           <Route exact path="/contact-us" element={<ContactUs/>} />
-          <Route exact path="/create-shipping-profile" element={<CreateShippingProfile/>} />
           </Routes>
         </div>
       }
