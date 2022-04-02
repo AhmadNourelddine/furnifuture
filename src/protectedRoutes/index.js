@@ -1,13 +1,12 @@
 import {Outlet} from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import Login from '../pages/Login';
+import LoginModal from '../components/LoginModal';
+
 
 const ProtectedRoutes = ()=>{
-        const navigate = useNavigate();
         let auth = useSelector(state=>state.authReducer);
         let checkShipping = useSelector(state=>state.authShippingReducer);
-        return (auth && !checkShipping)? <Outlet/> : <Login/>;
+        return (auth && !checkShipping)? <Outlet/> : <LoginModal/>;
 };
 
 export default ProtectedRoutes;
