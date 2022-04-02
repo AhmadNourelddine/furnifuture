@@ -102,11 +102,11 @@ const LoginModal = (props) => {
     <Typography id="sign-in">Sign In To Your Account</Typography>
 
     <TextField autoComplete="email" required 
-    className="outlined-basic" label="Email" variant="outlined" margin="normal" type="email" 
+    className="outlined-basic" label="Email"  margin="normal" type="email" 
     onChange = {e=>setEmail(e.target.value)}/>
 
     <TextField autoComplete="current-password" required 
-    className="outlined-basic" label="Password" variant="outlined" margin="normal" type="password" 
+    className="outlined-basic" label="Password"  margin="normal" type="password" 
     onChange = {e=>setPassword(e.target.value)} />
     <InputLabel>{error && 'Email or/and Password are Wrong'}</InputLabel>
     <Button type="submit"
