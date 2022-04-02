@@ -73,3 +73,15 @@ export const openModal = (product)=>{
         type:'CloseCreateShippingProfileModal',
     };
  };
+
+ export const openContactUsModal = ()=>{
+    return{
+        type:'OpenContactUsModal',
+    };
+ };
+ 
+ export const closeContactUsModal = ()=>{
+    return{
+        type:'CloseContactUsModal',
+    };
+ };

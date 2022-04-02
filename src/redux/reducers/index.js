@@ -12,6 +12,7 @@ import modalShippingProfileReducer from './modalShippingProfileReducer';
 import userProductsReducer from './userProductsReducer';
 import locationReducer from './locationReducer';
 import modalCreateShipping from './modalCreateShipping';
+import modalContactUs from './modalContactUsreducer';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -29,6 +30,7 @@ const allReducers = combineReducers({
     userProductsReducer,
     locationReducer,
     modalCreateShipping,
+    modalContactUs,
 });
 
 export default allReducers;
