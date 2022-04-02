@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from "material-ui-search-bar";
-import { Autocomplete, Button, Typography } from '@mui/material';
+import { Autocomplete, Button, Grid, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/delivery/delivery.css';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
@@ -129,6 +129,7 @@ const Delivery = ()=>{
             <div className='delivery-page-items'>
             {!searching &&  
                 Object.keys(data).map((key)=>
+                <Grid xs={6}>
                 <ShippingProfileCard 
                 key = {data[key]._id}
                 id = {data[key]._id}
@@ -138,7 +139,9 @@ const Delivery = ()=>{
                 vehicle_load = {data[key].vehicle_load}
                 btn = {loggedIn && checkShippingSaved(data[key]._id)? 'saved' : 'save'}
                 image_encoded={data[key].image}
-                />)
+                />
+                </Grid>
+                )
             }
              {/* {searching && 
                  result.map((item)=>

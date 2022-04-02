@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Avatar, Box, Button, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import '../../css/profile/profile.css';
 import FurnitureItem from '../../components/furnitureItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -128,6 +128,7 @@ const Profile = ()=>{
             {         
                 data.map((item)=>
                 checkProductExists(item._id) &&
+                <Grid xs={3} md={4} sm={12}>
                 <FurnitureItem 
                 key = {item._id}
                 id = {item._id}
@@ -141,7 +142,9 @@ const Profile = ()=>{
                 btn='delete'
                 sell_btn='update'
                 img_base64_encoded = {item.image}
-                />) 
+                />
+                </Grid>
+                ) 
             }
             </div>
             

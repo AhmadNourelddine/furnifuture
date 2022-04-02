@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import '../../css/cart/cart.css';
 import FurnitureItem from '../../components/furnitureItem';
 import ShippingProfileCard from '../../components/shippingProfileCard/shippingCardProfile';
@@ -96,7 +96,8 @@ const Cart = ()=>{
             </div>
             <div className='buy-page-items'>
             {toggle &&  savedProducts.map((item)=>
-                checkProductSaved(item._id) && 
+                checkProductSaved(item._id) &&
+                <Grid xs={3} md={4} sm={12}>
                 <FurnitureItem 
                 key = {item._id}
                 id = {item._id}
@@ -108,10 +109,12 @@ const Cart = ()=>{
                 img_base64_encoded = {item.image}
                 btn = 'remove'
                 />
+                </Grid> 
                 ) }
             {!toggle &&  savedShipping.map((item)=>
                 checkShippingSaved(item._id) &&
-                <ShippingProfileCard 
+                <Grid xs={4} md={6} sm={12}>
+                <ShippingProfileCard
                 key = {item._id}
                 id = {item._id}
                 name = {item.name} 
@@ -121,6 +124,7 @@ const Cart = ()=>{
                 btn = 'remove'
                 image_encoded = {item.image}
                 />
+                </Grid>
                 ) }
                 
             </div>

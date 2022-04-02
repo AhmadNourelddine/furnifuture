@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBar from "material-ui-search-bar";
-import { Autocomplete, Button, Typography } from '@mui/material';
+import { Autocomplete, Button, Grid, Typography } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import '../../css/buy/buy.css';
 import FurnitureItem from '../../components/furnitureItem';
@@ -105,7 +105,8 @@ const Buy = ()=>{
            
             {!searching &&           
                 data.map((item)=>
-                <FurnitureItem  style={{flexGrow:'1'}}
+                <Grid xs={3} md={4} sm={12}>
+                <FurnitureItem
                 key = {item._id}
                 id = {item._id}
                 title = {item.title} 
@@ -117,10 +118,12 @@ const Buy = ()=>{
                 date={item.created_at}
                 btn={checkProductSaved(item._id)? 'saved' : 'save'}
                 img_base64_encoded = {item.image}
-                />) 
+                />
+                </Grid>) 
             }
             {searching && 
                  result.map((item)=>
+                 <Grid xs={3} md={4} sm={12}>
                  <FurnitureItem 
                  key = {item._id}
                  id = {item._id}
@@ -133,7 +136,9 @@ const Buy = ()=>{
                  date={item.created_at}
                  btn={checkProductSaved(item._id) ? 'saved' : 'save'}
                  img_base64_encoded = {item.image}
-                 />)
+                 />
+                 </Grid>
+                 )
             }   
             </div>
         </div>
