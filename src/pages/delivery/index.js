@@ -118,7 +118,7 @@ const Delivery = ()=>{
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField className='delivery-dropMenu-textfield'
                          {...params} 
-                         label="Vehicle Load" />}
+                         label="Vehicle Load 'kg' " />}
                     value={vehicle_load}
                     onChange = {(event, value)=>{setVehicle_load(value)}}
                     />
@@ -157,6 +157,7 @@ const Delivery = ()=>{
             } */}
             {searching &&  
                 Object.keys(result).map((key)=>
+                <Grid xs={6}>
                 <ShippingProfileCard 
                 key = {result[key]._id}
                 id = {result[key]._id}
@@ -166,7 +167,9 @@ const Delivery = ()=>{
                 vehicle_load = {result[key].vehicle_load}
                 btn = {checkShippingSaved(result[key]._id)? 'saved' : 'save'}
                 image_encoded={data[key].image}
-                />)
+                />
+                </Grid>
+                )
             }
             </div>
             
