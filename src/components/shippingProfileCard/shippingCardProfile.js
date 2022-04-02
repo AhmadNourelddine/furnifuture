@@ -16,6 +16,7 @@ const ShippingProfileCard = (props)=>{
   let token = window.localStorage.getItem('authToken');
 
   const[save, setSave]= useState(false);
+  const[key, setKey]= useState({});
 
   const[shipping, setShipping]= useState(false);
   const[cart, setCart]= useState(false);
@@ -25,14 +26,16 @@ const ShippingProfileCard = (props)=>{
   const dispatch =  useDispatch();
 
   useEffect(()=>{
+                 setKey({"shipping_id": props.id,});
                  if (props.btn === 'remove'){setCart(true)}
                  else if (props.btn === 'saved'){setShipping(true); setSave(true);}
                  else{setShipping(true)}
                 },[]);
 
-  let key = {"shipping_id": props.id,};
-
   const clcikedButton = async()=>{
+    
+    // let key = {"shipping_id": props.id,};
+
     if(!isloggedIn){dispatch(openLogInModal()); return;}
     if(props.btn === 'save'){
       await axios.post('http://127.0.0.1:8000/api/user/cart/save-shipping',key,{
@@ -76,7 +79,7 @@ const ShippingProfileCard = (props)=>{
                 </Box>
                 <Box sx={{my:2}} className='shippingprofile-info-row'>
                 <LocalShippingIcon/>
-                <Typography sx={{mx:2}}>{props.vehicle_load}</Typography>
+                <Typography sx={{mx:2}}>{props.vehicle_load} kg</Typography>
                 </Box>
 
                 </Box>
