@@ -157,12 +157,14 @@ const CreateDeliveryProfileModal = (props) => {
 
         <Grid container direction="row" sx={{py:1}}>
         <Grid xs={6} sx={{pr:2}}>
-        <TextField value={name} autoComplete='given-name'
+        <TextField  className='fix-modal-textfield'
+                    value={name} autoComplete='given-name'
                     required onChange = {e=>setName(e.target.value)} 
                     label="name"/>
         </Grid>
         <Grid xs={6} sx={{pl:2}}>
-        <TextField value={email} autoComplete='email' type="email"
+        <TextField className='fix-modal-textfield'
+        value={email} autoComplete='email' type="email"
                         required onChange = {e=>setEmail(e.target.value)} 
                         label="email" />
         </Grid>
@@ -170,7 +172,8 @@ const CreateDeliveryProfileModal = (props) => {
 
         <Grid container direction="row"  sx={{py:1}}>
         <Grid xs={6} sx={{pr:2}}>
-        <TextField label="password"
+        <TextField className='fix-modal-textfield'
+        label="password"
                 error={password !=='' && !password.match(/^.{6,}$/)}
                 helperText={password !=='' && !password.match(/^.{6,}$/) && 
                 'Password should be at least 6 character'}
@@ -178,7 +181,8 @@ const CreateDeliveryProfileModal = (props) => {
                 required onChange = {e=>setPassword(e.target.value)}/>
         </Grid>
         <Grid xs={6} sx={{pl:2}}>
-        <TextField label="confirm password"
+        <TextField className='fix-modal-textfield'
+        label="confirm password"
                 error={Cpassword!=='' && Cpassword !== password} 
                 helperText={Cpassword!=='' && Cpassword !== password && 'please confrim password'}
                 autoComplete='new-password' type="password"
@@ -188,15 +192,16 @@ const CreateDeliveryProfileModal = (props) => {
 
         <Box>
 
-        <Grid xs={12}  sx={{py:1, pr:1}}>
-        <Autocomplete label="Location" required
+        <Grid xs={12}  sx={{py:1, pr:2}}>
+        <Autocomplete required
         className='createdelivery-modal-autocomplete-section' 
         style={{width:'auto'}}
         disablePortal
         options={locations}
         value={location}
         renderInput={(params) => 
-        <TextField fullwidth
+        <TextField label="Location" className='fix-modal-textfield'
+        fullwidth
         {...params} 
         />}
         onChange = {(event, value)=>{value && setLocation(value)}}
@@ -206,15 +211,16 @@ const CreateDeliveryProfileModal = (props) => {
         </Box>
         <Box>
 
-        <Grid xs={12}  sx={{py:1, pr:1}}>
-        <Autocomplete label="Vehicle Load"
+        <Grid xs={12}  sx={{py:1, pr:2}}>
+        <Autocomplete required
         className='createdelivery-modal-autocomplete-section'
         style={{width:'auto'}}
         disablePortal
         options={Vehicle_loads}
         value={vehicleLoad}
         renderInput={(params) => 
-        <TextField fullwidth required
+        <TextField label="Vehicle Load" className='fix-modal-textfield'
+        fullwidth required
         {...params} 
         />}
         onChange = {(event, value)=>{value && setVehicleLoad(value)}}
@@ -224,18 +230,21 @@ const CreateDeliveryProfileModal = (props) => {
         </Box>
         <Grid container sx={{py:2}} direction="row" alignItems="center">
         <Grid xs={6} >
-        <MuiPhoneNumber label="phone_number"
+        <MuiPhoneNumber required className='fix-modal-textfield'
+        label="phone_number"
         variant="outlined"
         value={phoneNb} defaultCountry={'lb'} 
         onChange={(e)=>{setPhoneNb(e)}}/>
         </Grid>
         <Grid xs={6} sx={{pl:8}}>
-        <Button style={{color:'black', backgroundColor:'#D86544'}}
+        <Button style={{padding:'5px 15px', borderRadius:'5px', marginLeft:'8px',
+         color:'black', backgroundColor:'#D86544'}}
         onClick={()=>{closeTheModal()}}
         variant="outlined" sx={{mr:1}}>
             Cancel
         </Button>
-        <Button style={{color:'white', backgroundColor:'#5094AA'}}
+        <Button style={{padding:'5px 15px', borderRadius:'5px', marginLeft:'8px',
+         color:'white', backgroundColor:'#5094AA'}}
         type="submit"
         variant="contained">Create</Button>
         </Grid>
