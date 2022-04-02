@@ -26,6 +26,7 @@
 }
 
 .sell-furniture-item-price{
+    white-space: nowrap;
     font-weight: 900 !important;
 }
 
