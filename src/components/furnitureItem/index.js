@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 import '../../css/furnitureItem-sell/furnitureItem-sell.css';
 import img from '../../assets/missing-image.jpg';
-import CheckIcon from '@mui/icons-material/Check';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import FurnitureModal from '../furnitureItem-Modal';
@@ -15,9 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editProduct } from '../../redux/actions/editProduct';
 import { openLogInModal, openModal } from '../../redux/actions/modal';
 import DoneIcon from '@mui/icons-material/Done';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useSelect } from '@mui/base';
 import { addCartProduct, removeCartProduct } from '../../redux/actions/cart';
 import { deleteCreatedProduct } from '../../redux/actions/userProducts';
 
@@ -30,6 +27,8 @@ export default function FurnitureItem(props) {
   const loggedIn = useSelector(state=>state.authReducer);
   const checkModal = useSelector(state=>state.modalReducer);
 
+  const[lbpPrice, setLbpPrice]= useState('');
+
   const[save, setSave]= useState(false);
 
   const[buy, setBuy]= useState(false);
@@ -41,6 +40,11 @@ export default function FurnitureItem(props) {
 
   useEffect(()=>{
                  const splitDate = props.date.split('T');
+                 const splitPrice = props.price.split(' ');
+                 if(splitPrice[1]==='LBP'){
+                   const newPrice = Number(splitPrice[0])/1000;
+                   setLbpPrice(newPrice + 'K' + ' LBP');
+                 }
                  setDate(splitDate[0]);
                  if(props.btn === 'save'){setBuy(true)}
                  else if (props.btn === 'remove'){setCart(true)}
@@ -164,7 +168,7 @@ export default function FurnitureItem(props) {
       <div className="sell-furniture-item-price-button">
 
       <Typography className="sell-furniture-item-price" variant="h5" color="text.secondary">
-         {props.price}
+         {lbpPrice || props.price}
       </Typography>
       
       {  buy &&    
