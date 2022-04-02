@@ -15,7 +15,7 @@
     text-align: left;
 }
 #signup-box{
-    padding:1% 5% 2%;
+    padding:1% 8% 2% !important;
     border-radius:30px;
     box-shadow:rgb(0 0 0 / 50%) 0px 6px 12px;
 }
@@ -23,6 +23,8 @@
     margin-top:8%;
     background-color:#304451;
     color:white;
+    padding: 10px 16px !important;
+    border-radius: 4px !important;
 }
 .outlined-basic{
     background-color: white;

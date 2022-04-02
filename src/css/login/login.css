@@ -26,6 +26,8 @@
     margin-top:5%;
     background-color:#304451;
     color:white;
+    padding: 6px 16px !important;
+    border-radius: 4px !important;
 }
 .outlined-basic{
     background-color: white;
@@ -34,4 +36,13 @@
 
 .sign-in-page-sign-up-link{
     font-size: 80% !important;
+}
+
+.outlined-basic .MuiInputBase-input{
+    height: auto !important;
+    padding: 18px !important;
+}
+
+.outlined-basic .MuiOutlinedInput-notchedOutline{
+    border: none;
 }
