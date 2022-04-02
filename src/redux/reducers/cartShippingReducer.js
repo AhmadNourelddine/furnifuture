@@ -7,19 +7,22 @@ const cartShippingReducer = (state=false, action)=>{
        else return state;
     }
     else if(action.type === 'RemoveCartShipping'){
-        let filteredSavedShipping = state.filter(item => item !== action.payload);
+        let array = state;
+        let filteredSavedShipping = array.filter(item => item !== action.payload);
         return filteredSavedShipping;
     }
     else if(action.type === 'AddCartShipping'){
-        state.push(action.payload);
-        return state;
+        let array = state;
+        array.push(action.payload);
+        return array;
     } 
     else if(action.type === 'AddCartSuggestedShipping'){
+        let array = state;
         let saved_shippings = action.payload;
         saved_shippings.map(shipping=>{
-            state.push(shipping);
+            array.push(shipping);
         })
-        return state;
+        return array;
     } 
     else if(action.type === 'LoggedOut'){
         return false;} 
