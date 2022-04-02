@@ -93,7 +93,11 @@ class CartController extends Controller
 
         $product_id = $request->product_id;
         $array = $user->saved_products;
-        unset($array[array_search($product_id,$array)]);
+        if(array_search($product_id,$array))
+        {
+            unset($array[array_search($product_id,$array)]);
+            $array = array_values($array);
+        }
         $user->saved_products = $array;
         $user->save();
         return response()->json(["status"=>"removed product successfully",
@@ -113,7 +117,11 @@ class CartController extends Controller
         
         $shipping_id = $request->shipping_id;
         $array = $user->saved_shipping;
-        unset($array[array_search($shipping_id,$array)]);
+        if(array_search($shipping_id,$array))
+        {
+            unset($array[array_search($shipping_id,$array)]);
+            $array = array_values($array);
+        }
         $user->saved_shipping = $array;
         $user->save();
         return response()->json(["status"=>"removed shipping successfully",
