@@ -23,8 +23,9 @@ const AboutHome = ()=>{
                 <div id='about-buy-sell-getstarted'>
                     <p className="getstarted-title">Buy & Sell Furniture</p>
                     <p className="getstarted-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <Button onClick={()=>{!loggedIn && dispatch(openLogInModal())}}
-                    component={Link} to={loggedIn && '/buy'}
+                    <Button 
+                    onClick={()=>{!loggedIn && dispatch(openLogInModal())}}
+                    component={Link} to={loggedIn && !shippingUser && '/buy'}
                     className="getstarted-buysell-button">Get Started</Button>
                 </div>
                 <div id='about-deliver-getstarted'>
