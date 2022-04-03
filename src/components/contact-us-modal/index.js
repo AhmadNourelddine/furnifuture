@@ -66,8 +66,9 @@ const ContactUsModal = (props) => {
     }
     await axios.post("http://127.0.0.1:8000/api/contact-us",object)
           .then((response)=>{
-            setRedirect(true)
-            console.log(response)
+            setRedirect(true);
+            closeTheModal();
+            console.log(response);
           })
           .catch((err)=>{
             console.log(err)
