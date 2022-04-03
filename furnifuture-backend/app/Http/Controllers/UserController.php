@@ -146,7 +146,7 @@ class UserController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|between:2,100',
-                'email' => ['required','string','email','max:100', Rule::unique('users')->ignore($user->id)],
+                'email' => ['required','string','email','max:100', Rule::unique('user')->ignore($user->id)],
                 'password' => 'required|string|confirmed|min:6',
             ]);
 
@@ -157,6 +157,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
+
             $user->save();
 
             return response()->json([
@@ -173,11 +174,12 @@ class UserController extends Controller
     
                 $validator = Validator::make($request->all(), [
                     'name' => 'required|string|between:2,100',
-                    'email' => ['required','string','email','max:100', Rule::unique('users')->ignore($user->id)],
+                    'email' => ['required','string','email','max:100', Rule::unique('user')->ignore($user->id)],
                     'password' => 'required|string|confirmed|min:6',
                     'phone_number' => 'required|string|between:2,100',
                     'location' => 'required|string',
                     'vehicle_load' => 'required|string',
+                    'image' => 'string|nullable',
                 ]);
     
                 if($validator->fails()){
@@ -186,9 +188,30 @@ class UserController extends Controller
                 
                 $user->name = $request->name;
                 $user->email = $request->email;
+                $user->location = $request->location;
+                $user->vehicle_load = $request->vehicle_load;
+                $user->phone_number = $request->phone_number;
+                $user->location = $request->location;
                 $user->password = bcrypt($request->password);
+
+                if(!empty($request->image)){
+                    $base64_image = $request->image;
+        
+                    @list($type, $file_data) = explode(';', $base64_image);
+                    @list(, $file_data) = explode(',', $file_data);
+            
+                    $ext = explode(';base64',$base64_image);
+                    $ext = explode('/',$ext[0]);			
+                    $ext = $ext[1];
+            
+                    $img_url = time().'.'.$ext;
+                    Storage::put($img_url, base64_decode($file_data));
+            
+                    $user->image = $img_url;    
+                }
+
                 $user->save();
-    
+
                 return response()->json([
                     'message' => 'User successfully updated',
                     'user' => $user
