@@ -2,11 +2,12 @@ import { Box, Button, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeUpdateProfileModal } from '../../redux/actions/modal';
 import "../../css/profile/profile.css";
 import "../../css/profileModal/profileModal.css";
 import ToastSuccess from '../toast/toast-success';
+import { loggedIn } from '../../redux/actions/logIn';
 
 const customStyles = {
   content: {
@@ -38,6 +39,8 @@ const UpdateProfileModal = (props) => {
     setIsOpen(false);
   }
 
+  const user = useSelector(state=>state.authUserReducer);
+
   let token = window.localStorage.getItem('authToken');
 
   const update = async()=>{
@@ -56,6 +59,7 @@ const UpdateProfileModal = (props) => {
     })
           .then((response)=>{
             closeTheModal();
+            dispatch(loggedIn(response.data.user));
             ToastSuccess('Updated Profile Successfully');
             console.log(response)})
           .catch((err)=>{
@@ -64,9 +68,9 @@ const UpdateProfileModal = (props) => {
   }
 
   useEffect(()=>{
-    setName(window.localStorage.getItem('user_name'));
-    setEmail(window.localStorage.getItem('user_email'));
-  },[]);
+    setName(user.name);
+    setEmail(user.email);
+  },[user]);
 
   return (
 
