@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeShippingProfileModal, closeUpdateProfileModal } from '../../redux/actions/modal';
+import { closeShippingProfileModal, closeUpdateProfileModal, openCreateShippingProfileModal } from '../../redux/actions/modal';
 import '../../css/profile/profile.css';
 import '../../css/profileShipping-modal/profileShipping-modal.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -33,18 +33,15 @@ Modal.setAppElement('#root');
 const ShippingprofileModal = (props) => {
 
   const dispatch = useDispatch();
+
   const [modalIsOpen, setIsOpen] = useState(true);
+  const [imageChanged, setImageChanged] = useState(false);
 
   const [encodedImage, setEncodedImage]= useState('');
-  const [profileImage, setProfileImage]= useState(null);
+
   const user = useSelector(state=>state.authUserReducer);
-  const user_image = user.image;
 
   let token = window.localStorage.getItem('authToken');
-  let user_name = window.localStorage.getItem('user_name');
-  let email = window.localStorage.getItem('user_email');
-
-  const userInfo = useSelector(state=>state.authUserReducer);
 
 
   function closeTheModal() {
@@ -55,11 +52,11 @@ const ShippingprofileModal = (props) => {
     const handleImage = async(e)=>{
 
       const file = e.target.files[0];
-      setProfileImage(URL.createObjectURL(file));
       const fileReader = new FileReader();
       await fileReader.readAsDataURL(file);
        fileReader.onload =  async function(){
           await setEncodedImage(fileReader.result);
+          setImageChanged(true);
       }
        fileReader.onerror =  function (error) {
           console.log('Error: ', error);
@@ -68,7 +65,7 @@ const ShippingprofileModal = (props) => {
 
     useEffect( ()=>{
 
-      if(encodedImage){
+      if(encodedImage && imageChanged){
         
           let image={"image": encodedImage,};
           const uploadImage = async()=>{
@@ -85,13 +82,13 @@ const ShippingprofileModal = (props) => {
 
       }
 
-  },[encodedImage]);
+    },[encodedImage, imageChanged]);
 
     useEffect(() => {
-      if(user_image){
-          setProfileImage(user_image);
+      if(user.image){
+          setEncodedImage(user.image);
       }
-    },[]);
+    },[user]);
 
   return (
 
@@ -105,7 +102,7 @@ const ShippingprofileModal = (props) => {
             <Box className='profile-page-info'>
                 <Box sx={{pt:3}}>
                 <Avatar sx={{mr:2, width: 96, height: 96 }} alt="PP" 
-                src={profileImage} />
+                src={encodedImage} />
                
                 <Button style={{position:'relative', top:'-25px'}}
                 for='sell-upload-btn'>
@@ -118,11 +115,16 @@ const ShippingprofileModal = (props) => {
                 onChange={(e)=>handleImage(e)} />
                   </Box>
                 <Box className='profile-page-name-email'>
-                    <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
-                    <Typography fontWeight={100} fontSize={30}>{email}</Typography>
+                    <Typography fontWeight={900} fontSize={50}>{user.name}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{user.email}</Typography>
                 </Box>
-                <Box onClick = {closeTheModal} 
-                component={Link} to="/create-shipping-profile" className='profile-page-edit'>
+                <Box onClick = {()=>{
+                  closeTheModal();
+                  dispatch(openCreateShippingProfileModal()); 
+                }} 
+
+                // component={Link} to="/create-shipping-profile" 
+                className='profile-page-edit'>
                     <ManageAccountsIcon sx={{fontSize:45}}/> 
                 </Box>
             </Box>
@@ -131,15 +133,15 @@ const ShippingprofileModal = (props) => {
              justifyContent:'flex-start', alignItems:'flex-start'}}>
                 <Box sx={{my:2}} style={{display:'flex'}}>
                     <PhoneIphoneIcon sx={{pr:2, fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>{userInfo.phone_number}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{user.phone_number}</Typography>
                 </Box>
                 <Box sx={{my:2}} style={{display:'flex'}}>
                     <LocationOnIcon sx={{pr:2, fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>{userInfo.location}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{user.location}</Typography>
                 </Box>
                 <Box sx={{my:2}} style={{display:'flex'}}>
                     <LocalShippingIcon sx={{pr:2, fontSize:50}}/>
-                    <Typography fontWeight={100} fontSize={30}>{userInfo.vehicle_load}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{user.vehicle_load}</Typography>
                 </Box>
             </Box>
         </Box>
