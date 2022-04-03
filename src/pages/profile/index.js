@@ -20,12 +20,15 @@ const Profile = ()=>{
     const [data, setData]= useState([]);
     const [encodedImage, setEncodedImage]= useState('');
     const [profileImage, setProfileImage]= useState(null);
+
     const dispatch = useDispatch();
+
     let token = window.localStorage.getItem('authToken');
     let user_name = window.localStorage.getItem('user_name');
     let email = window.localStorage.getItem('user_email');
 
     let openUpdateModal = useSelector(state=>state.modalUpdateProfileReducer);
+
     const user_products = useSelector(state=>state.userProductsReducer);
     const user = useSelector(state=>state.authUserReducer);
     const user_image = user.image;
@@ -53,7 +56,7 @@ const Profile = ()=>{
             const uploadImage = async()=>{
             await axios.post('http://127.0.0.1:8000/api/user/upload-profile-image',image,{
             headers: {"Authorization" : `Bearer ${token}`} 
-            })
+            })  
             .then((resp)=>{
             console.log(resp.data); 
             dispatch(uploadProfileImage(encodedImage));     
@@ -91,10 +94,12 @@ const Profile = ()=>{
     
     useEffect(() => {
             getUserProducts();
-            if(user_image){
-                setProfileImage(user_image);
-            }
     },[]);
+
+    useEffect(() => {
+        setProfileImage(user.image);
+    },[user]);
+
 
     return(
 
@@ -103,7 +108,7 @@ const Profile = ()=>{
             <Box className='profile-page-info'>
                 <Box style={{position:'relative', top:'25px'}}>
                 <Avatar sx={{mr:2, width: 96, height: 96 }} alt="PP" 
-                src={profileImage} />
+                src={encodedImage} />
                
                 <Button style={{position:'relative', top:'-25px'}}
                 for='sell-upload-btn'>
@@ -117,8 +122,8 @@ const Profile = ()=>{
     
                 </Box>
                 <Box className='profile-page-name-email'>
-                    <Typography fontWeight={900} fontSize={50}>{user_name}</Typography>
-                    <Typography fontWeight={100} fontSize={30}>{email}</Typography>
+                    <Typography fontWeight={900} fontSize={50}>{user.name}</Typography>
+                    <Typography fontWeight={100} fontSize={30}>{user.email}</Typography>
                 </Box>
                 <Button onClick={()=>{dispatch(openUpdateProfileModal())}}
                 // component={Link} to="/dashboard" 
