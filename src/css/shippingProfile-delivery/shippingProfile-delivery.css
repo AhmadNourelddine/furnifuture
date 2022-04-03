@@ -1,6 +1,7 @@
 
 .shipping-profile-delivery-card{
     flex-basis: 250px;
+    /* max-width: 400px; */
     border-radius: 10px !important;
     border-radius: 10px;
     padding: 0 2rem;

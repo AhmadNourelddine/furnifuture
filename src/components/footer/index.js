@@ -17,7 +17,7 @@ const Footer = ()=>{
 
     return(
         <div style={{display:'flex', flexDirection:'column', justifyContent:'center', 
-        alignItems:'center', width:"100%", padding:'2%', backgroundColor:"#6F1A07", color:"white"}}>
+        alignItems:'center', padding:'2%', backgroundColor:"#6F1A07", color:"white"}}>
         <div>
         <FacebookRoundedIcon sx={{px:1}}/>
         <TwitterIcon sx={{px:1}}/>
