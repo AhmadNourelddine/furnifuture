@@ -9,6 +9,7 @@ import '../../css/signUp-shipping-modal/signUp-shipping-modal.css';
 import MuiPhoneNumber from 'material-ui-phone-number';
 import ToastSuccess from '../toast/toast-success';
 import { PhotoCamera } from '@material-ui/icons';
+import { loggedIn, uploadProfileImage } from '../../redux/actions/logIn';
 
 const customStyles = {
   content: {
@@ -36,10 +37,11 @@ const CreateDeliveryProfileModal = (props) => {
   const [location, setLocation]= useState('');
   const [vehicleLoad, setVehicleLoad]= useState('');
   const [imageEncoded, setImageEncoded]= useState('');
-  const [imagePreview, setImagePreview]= useState(null);
 
   const [redirect, setRedirect]= useState(false);
   const [modalIsOpen, setIsOpen] = useState(true);
+
+  let token = window.localStorage.getItem('authToken');
 
   const locations = ["Beirut", "Tripoli", "Sidon", "Tyre",
                     "Jounieh", "Byblos", "Aley", "Nabatieh",
@@ -60,7 +62,6 @@ const CreateDeliveryProfileModal = (props) => {
 
   const handleImage = (e)=>{
     const file = e.target.files[0];
-    setImagePreview(URL.createObjectURL(file));
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = function (){
@@ -87,8 +88,9 @@ const CreateDeliveryProfileModal = (props) => {
           setPhoneNb(userToUpdate.phone_number);
           setLocation(userToUpdate.location);
           setVehicleLoad(userToUpdate.vehicle_load);
+          setImageEncoded(userToUpdate.image);
       }
-  },[]);
+  },[userToUpdate]);
 
   const createShippingProfile = async(event)=>{
       
@@ -107,7 +109,24 @@ const CreateDeliveryProfileModal = (props) => {
 
     if(imageEncoded){object.image = imageEncoded}
 
-    await axios.post("http://127.0.0.1:8000/api/auth/register-shipping",object)
+    if(userToUpdate.is_shipping){
+      await axios.post("http://127.0.0.1:8000/api/user/update-shipping-profile",object,{
+        headers: {"Authorization" : `Bearer ${token}`} 
+              })
+              .then((response)=>{
+              ToastSuccess('Updated Successfully');
+              setRedirect(true);
+              dispatch(loggedIn(object));
+              dispatch(uploadProfileImage(imageEncoded));
+              closeTheModal();
+              console.log(response);
+              })
+              .catch((err)=>{
+                  console.log(err.response);
+                  console.log(err);})
+      }
+      else{
+        await axios.post("http://127.0.0.1:8000/api/auth/register-shipping",object)
               .then((response)=>{
               ToastSuccess('Registerd Successfully');
               setRedirect(true);
@@ -118,7 +137,9 @@ const CreateDeliveryProfileModal = (props) => {
               .catch((err)=>{
                   console.log(err.response);
                   console.log(err);})
-  }
+      }
+
+    }
 
   
 
@@ -138,7 +159,7 @@ const CreateDeliveryProfileModal = (props) => {
         <Grid xs="auto">
         <Avatar
         alt="Profile Picture"
-        src={imagePreview}
+        src={imageEncoded}
         sx={{ width: 76, height: 76 }}
         />
         </Grid>
@@ -246,7 +267,9 @@ const CreateDeliveryProfileModal = (props) => {
         <Button style={{padding:'5px 15px', borderRadius:'5px', marginLeft:'8px',
          color:'white', backgroundColor:'#5094AA'}}
         type="submit"
-        variant="contained">Create</Button>
+        variant="contained">
+           {userToUpdate.is_shipping? 'Update' : 'Create'}
+        </Button>
         </Grid>
         </Grid>
 
