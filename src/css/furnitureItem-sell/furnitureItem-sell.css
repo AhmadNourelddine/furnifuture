@@ -1,10 +1,12 @@
 .furniture-item-card{
     height: fit-content;
+    width: 300px;
+    max-width:300px;
 }
 
-.furniture-item-card .css-o69gx8-MuiCardMedia-root{
+/* .furniture-item-card .css-o69gx8-MuiCardMedia-root{
     width:300px !important;
-}
+} */
 
 .sell-furniture-item-content-box{
     overflow: hidden;
