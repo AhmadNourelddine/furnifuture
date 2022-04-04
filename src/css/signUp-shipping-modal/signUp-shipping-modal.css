@@ -1,9 +1,9 @@
-.createdelivery-modal-autocomplete-section .css-1q60rmi-MuiAutocomplete-endAdornment{
-    top: calc(50% - 25px) !important;
+.createdelivery-modal-autocomplete-section
+  .css-1q60rmi-MuiAutocomplete-endAdornment {
+  top: calc(50% - 25px) !important;
 }
 
-
-.fix-modal-textfield .MuiInputBase-input{
-    height: auto !important;
-    padding: 18px !important;
+.fix-modal-textfield .MuiInputBase-input {
+  height: auto !important;
+  padding: 18px !important;
 }

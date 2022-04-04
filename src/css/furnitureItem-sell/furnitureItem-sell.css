@@ -1,53 +1,49 @@
-.furniture-item-card{
-    height: fit-content;
-    width: 300px;
-    max-width:300px;
+.furniture-item-card {
+  height: fit-content;
+  width: 300px;
+  max-width: 300px;
 }
 
-/* .furniture-item-card .css-o69gx8-MuiCardMedia-root{
-    width:300px !important;
-} */
-
-.sell-furniture-item-content-box{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+.sell-furniture-item-content-box {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
-.sell-furniture-item-date-location{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 1rem;
+.sell-furniture-item-date-location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1rem;
 }
 
-.sell-furniture-item-date{
-    font-weight: 100;
-    font-size: 150%;
+.sell-furniture-item-date {
+  font-weight: 100;
+  font-size: 150%;
 }
 
-.sell-furniture-item-price{
-    white-space: nowrap;
-    font-weight: 900 !important;
+.sell-furniture-item-price {
+  white-space: nowrap;
+  font-weight: 900 !important;
 }
 
-.sell-furniture-item-price-button{
-     padding: 0rem 1rem;
-     display:flex;
-     flex-direction: row; 
-     justify-content: space-between;
-     align-items: flex-end;
+.sell-furniture-item-price-button {
+  padding: 0rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.sell-furniture-item-button{
-    white-space: nowrap;
-    border-radius: 5px !important;
-    height: 2rem;
-    width: 7.5rem;
-    color: white !important;
+.sell-furniture-item-button {
+  white-space: nowrap;
+  border-radius: 5px !important;
+  height: 2rem;
+  width: 7.5rem;
+  color: white !important;
 }
 
-.sell-furniture-item-button:hover{
-    opacity: 1 !important;
+.sell-furniture-item-button:hover {
+  opacity: 1 !important;
 }

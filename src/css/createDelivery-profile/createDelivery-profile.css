@@ -1,75 +1,74 @@
-
-.createdelivery-profile-page{
-    background-color: #ECDCCF;
-    display: flex !important;
-    flex-direction: row !important; 
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-    padding: 0rem 2rem 3rem 2rem;
+.createdelivery-profile-page {
+  background-color: #ecdccf;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  padding: 0rem 2rem 3rem 2rem;
 }
 
-.create-delivery-title-section{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
-}
- 
-.create-delivery-page-title{
-    padding-right: 1rem;
-    font-size: 3rem !important;
-    font-weight: 700 !important;
+.create-delivery-title-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
 }
 
-.createdelivery-input{
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    margin: auto 2rem;
+.create-delivery-page-title {
+  padding-right: 1rem;
+  font-size: 3rem !important;
+  font-weight: 700 !important;
 }
 
-.createdelivery-input-section{
-    /* background-color: #F2F4F8 ; */
-    border-radius: 10px ;
-    width: 30rem !important;
+.createdelivery-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: auto 2rem;
 }
 
-.createdelivery-input-textfield{
-    width: 30rem;
-    margin: 1rem;
-    background-color: #F2F4F8 ;
-    border-radius: 25px;
-    box-shadow:rgb(0 0 0 / 25%) 0px 5px 4px 0px;
-    padding-left: 25px !important;
+.createdelivery-input-section {
+  /* background-color: #F2F4F8 ; */
+  border-radius: 10px;
+  width: 30rem !important;
 }
 
-.createdelivery-input .css-ue75iy-MuiTypography-root{
-    margin-bottom: 0px !important;
+.createdelivery-input-textfield {
+  width: 30rem;
+  margin: 1rem;
+  background-color: #f2f4f8;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 5px 4px 0px;
+  padding-left: 25px !important;
 }
 
-.deliveryprofile-cancel-create-btns{
-    padding-top: 5rem;
-    width: 30rem !important;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
+.createdelivery-input .css-ue75iy-MuiTypography-root {
+  margin-bottom: 0px !important;
 }
 
-.createdelivery-autocomplete-section{
-    width: 29.5rem !important;
-    background-color: #F2F4F8 ;
-    border-radius: 25px;
-    box-shadow:rgb(0 0 0 / 25%) 0px 5px 4px 0px;
-    padding-left: 25px !important;
+.deliveryprofile-cancel-create-btns {
+  padding-top: 5rem;
+  width: 30rem !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
-.createdelivery-autocomplete-section .css-1q60rmi-MuiAutocomplete-endAdornment{
-    top: calc(50% - 15px) !important;
+.createdelivery-autocomplete-section {
+  width: 29.5rem !important;
+  background-color: #f2f4f8;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 5px 4px 0px;
+  padding-left: 25px !important;
+}
+
+.createdelivery-autocomplete-section .css-1q60rmi-MuiAutocomplete-endAdornment {
+  top: calc(50% - 15px) !important;
 }
 
 .createdelivery-input-section .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border: none !important;
-    padding-left: 25px !important;
+  border: none !important;
+  padding-left: 25px !important;
 }

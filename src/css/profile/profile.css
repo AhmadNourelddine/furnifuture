@@ -1,38 +1,37 @@
-
-.profile-page{
-    background-color: #ECDCCF;
-    height: max-content;
+.profile-page {
+  background-color: #ecdccf;
+  height: max-content;
 }
-.profile-page-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 2rem ;
-    padding-top: 2rem ;
-}
-
-.profile-page-name-email{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.profile-page-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2rem;
+  padding-top: 2rem;
 }
 
-.profile-page-edit{
-    align-self: flex-start;
-    padding: 0 2rem;
+.profile-page-name-email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.profile-page-items{
-    padding: 1rem;
-    min-height: 100vh;
-    height: 100%;
-    margin: 2rem 2rem 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: #D4C6BA;
-    border-radius: 10px;
-    justify-content: flex-start;
+.profile-page-edit {
+  align-self: flex-start;
+  padding: 0 2rem;
+}
+
+.profile-page-items {
+  padding: 1rem;
+  min-height: 100vh;
+  height: 100%;
+  margin: 2rem 2rem 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #d4c6ba;
+  border-radius: 10px;
+  justify-content: flex-start;
 }

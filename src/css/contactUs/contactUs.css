@@ -1,14 +1,14 @@
-#contact-us-box{
-    padding:2% 5% 5%;
-    border-radius:30px;
-    box-shadow:rgb(0 0 0 / 50%) 0px 6px 12px;
+#contact-us-box {
+  padding: 2% 5% 5%;
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 6px 12px;
 }
 
-#contact-us{
-    font-size: 200%;
-    font-weight: 700;
-    text-align: left !important;
-    margin: 1rem;
-    max-width: fit-content;
-    text-align: left; 
+#contact-us {
+  font-size: 200%;
+  font-weight: 700;
+  text-align: left !important;
+  margin: 1rem;
+  max-width: fit-content;
+  text-align: left;
 }

@@ -1,41 +1,40 @@
-
-.shipping-profile-delivery-card{
-    flex-basis: 250px;
-    /* max-width: 400px; */
-    border-radius: 10px !important;
-    border-radius: 10px;
-    padding: 0 2rem;
-    height: fit-content;
+.shipping-profile-delivery-card {
+  flex-basis: 250px;
+  /* max-width: 400px; */
+  border-radius: 10px !important;
+  border-radius: 10px;
+  padding: 0 2rem;
+  height: fit-content;
 }
 
-.avatar-and-name{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.avatar-and-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.shippingprofile-info-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.shippingprofile-info-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.shippingprofile-delivery-save{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.shippingprofile-delivery-save {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
-.shipping-furniture-card-button{
-    white-space: nowrap;
-    border-radius: 5px !important;
-    height: 2rem;
-    width: 7.5rem;
-    color: white !important;
+.shipping-furniture-card-button {
+  white-space: nowrap;
+  border-radius: 5px !important;
+  height: 2rem;
+  width: 7.5rem;
+  color: white !important;
 }
 
-.shipping-furniture-card-button:hover{
-    opacity: 1 !important;
+.shipping-furniture-card-button:hover {
+  opacity: 1 !important;
 }

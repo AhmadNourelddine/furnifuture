@@ -1,48 +1,48 @@
-.login-form{
-    margin-top: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ECDCCF;
-    width: 20rem;
+.login-form {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecdccf;
+  width: 20rem;
 }
 
-#signin-box{
-    padding:1% 5% 3%;
-    border-radius:30px;
-    box-shadow:rgb(0 0 0 / 50%) 0px 6px 12px;
+#signin-box {
+  padding: 1% 5% 3%;
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 6px 12px;
 }
 
-#sign-in{
-    font-size: 200%;
-    font-weight: 700;
-    text-align: left !important;
-    margin: 1% auto 10% auto;
-    max-width: fit-content;
-    text-align: center;
+#sign-in {
+  font-size: 200%;
+  font-weight: 700;
+  text-align: left !important;
+  margin: 1% auto 10% auto;
+  max-width: fit-content;
+  text-align: center;
 }
-#signin-btn{
-    margin-top:5%;
-    background-color:#304451;
-    color:white;
-    padding: 6px 16px !important;
-    border-radius: 4px !important;
+#signin-btn {
+  margin-top: 5%;
+  background-color: #304451;
+  color: white;
+  padding: 6px 16px !important;
+  border-radius: 4px !important;
 }
-.outlined-basic{
-    background-color: white;
-    width: inherit;
-}
-
-.sign-in-page-sign-up-link{
-    font-size: 80% !important;
+.outlined-basic {
+  background-color: white;
+  width: inherit;
 }
 
-.outlined-basic .MuiInputBase-input{
-    height: auto !important;
-    padding: 18px !important;
+.sign-in-page-sign-up-link {
+  font-size: 80% !important;
 }
 
-.outlined-basic .MuiOutlinedInput-notchedOutline{
-    border: none;
+.outlined-basic .MuiInputBase-input {
+  height: auto !important;
+  padding: 18px !important;
+}
+
+.outlined-basic .MuiOutlinedInput-notchedOutline {
+  border: none;
 }
