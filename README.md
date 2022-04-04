@@ -31,7 +31,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 | Landing  | Buy  |
 | -----------------| -----|
-| ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/Landing-Page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/buy-page.png) |
+| ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/Landing-Page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/buy-page-small-screen.png) |
 
 | Delivery  | Cart  |
 | -----------------| -----|
