@@ -2,7 +2,7 @@
 
 <div align="center">
 
-> Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
+>FurniFuture is a website to buy and sell furniture online while being able to connect with shipping services.  
 
 **[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
 
@@ -18,9 +18,9 @@
 > There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
 
 ### User Stories
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
-- As a user, I want to browsse ablums, so that I can find quick links
+- As a user, I want to browse furniture, so that I can find the best product
+- As a user, I want to sell my used furniture find a purchase
+- As a user, I want to promote my furniture shipping service, so that I can find more clients online
 
 <br><br>
 
