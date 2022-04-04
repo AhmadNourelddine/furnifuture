@@ -93,13 +93,13 @@ const ContactUsModal = (props) => {
 
         <Box className='contact-us-form-modal' id="contact-us-box">
         <p id="contact-us">Feel Free To Contact Us</p>
-        <TextField fullWidth
+        <TextField required fullWidth
         className="outlined-basic" label="Email" variant="outlined" margin="dense"
         onChange = {e=>setEmail(e.target.value)}/> 
-        <TextField fullWidth
+        <TextField required fullWidth
         className="outlined-basic" label="Subject" variant="outlined" margin="dense"
         onChange = {e=>setSubject(e.target.value)}/>
-        <TextField fullWidth 
+        <TextField required fullWidth 
         multiline={true} rows={5} label="Message" className="outlined-basic" variant="outlined" margin="dense"
         onChange = {e=>setMessage(e.target.value)}/>
 

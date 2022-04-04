@@ -156,7 +156,7 @@ const CreateDeliveryProfileModal = (props) => {
         <Grid container direction="column">
         
         <Grid container direction="column" alignItems="center">
-        <Grid xs="auto">
+        <Grid xs="auto" sx={{pr:2}}>
         <Avatar
         alt="Profile Picture"
         src={imageEncoded}
@@ -164,7 +164,7 @@ const CreateDeliveryProfileModal = (props) => {
         />
         </Grid>
         <Grid xs="auto">
-        <Button for='sell-upload-btn' style={{position:'absolute', top:'90px'}}>
+        <Button for='sell-upload-btn' style={{position:'absolute',left:'290px', top:'95px'}}>
         <label for='sell-upload-btn'>
         <PhotoCamera/>
         </label>

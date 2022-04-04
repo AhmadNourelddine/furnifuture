@@ -124,8 +124,8 @@ export default function FurnitureItem(props) {
                         img_base64_encoded = {props.img_base64_encoded}
                         />}
 
-      <Card className="furniture-item-card" sx={{ maxWidth: 345}} 
-      style={{margin:"1.5rem 1rem", padding:"3rem 1rem", borderRadius:"20px"}}>
+      <Card className="furniture-item-card"
+      style={{margin: "1.5rem auto", padding:"3rem 1rem", borderRadius:"20px"}}>
 
       <CardActionArea onClick={()=>{dispatch(openModal(props.id))}}  
        style={{display:"flex", flexDirection:"column"}}>
