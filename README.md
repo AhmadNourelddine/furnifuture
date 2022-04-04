@@ -19,7 +19,7 @@
 
 ### User Stories
 - As a user, I want to browse furniture, so that I can find the best product
-- As a user, I want to sell my used furniture find a purchase
+- As a user, I want to sell my used furniture to find a quick purchase
 - As a user, I want to promote my furniture shipping service, so that I can find more clients online
 
 <br><br>
