@@ -7,7 +7,7 @@ import { closeUpdateProfileModal } from '../../redux/actions/modal';
 import "../../css/profile/profile.css";
 import "../../css/profileModal/profileModal.css";
 import ToastSuccess from '../toast/toast-success';
-import { loggedIn } from '../../redux/actions/logIn';
+import { loggedIn, updateUser } from '../../redux/actions/logIn';
 
 const customStyles = {
   content: {
@@ -59,7 +59,7 @@ const UpdateProfileModal = (props) => {
     })
           .then((response)=>{
             closeTheModal();
-            dispatch(loggedIn(response.data.user));
+            dispatch(updateUser(response.data.user));
             ToastSuccess('Updated Profile Successfully');
             console.log(response)})
           .catch((err)=>{
