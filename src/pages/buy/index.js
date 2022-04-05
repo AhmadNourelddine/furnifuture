@@ -6,6 +6,7 @@ import { TextField } from "@material-ui/core";
 import "../../css/buy/buy.css";
 import FurnitureItem from "../../components/furnitureItem";
 import { useSelector } from "react-redux";
+import { category } from "../../drop-down-list";
 
 const Buy = () => {
   const [searching, setSearching] = useState(false);
@@ -15,20 +16,11 @@ const Buy = () => {
 
   const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
+  const [resultFound, setResultFound] = useState(true);
 
   const loggedIn = useSelector((state) => state.authReducer);
 
   const saved_products = useSelector((state) => state.cartProductReducer);
-
-  const category = [
-    "Living Room",
-    "Dining Room ",
-    "Bedroom",
-    "Bathroom",
-    "kitchen",
-    "Garden & Outdoor",
-    "Home Decoration & Acceessories",
-  ];
 
   const checkProductSaved = (p_id) => {
     let chck = false;
@@ -64,6 +56,11 @@ const Buy = () => {
       .post("http://127.0.0.1:8000/api/search-products", object)
       .then((response) => {
         setResult(response.data[0]);
+        if (response.data[0].length === 0) {
+          setResultFound(false);
+        } else {
+          setResultFound(true);
+        }
         setSearching(true);
         console.log(response);
       })
@@ -132,6 +129,7 @@ const Buy = () => {
             </Grid>
           ))}
         {searching &&
+          result &&
           result.map((item) => (
             <Grid xs={3} md={4} sm={12}>
               <FurnitureItem
@@ -149,6 +147,11 @@ const Buy = () => {
               />
             </Grid>
           ))}
+        {!resultFound && (
+          <Typography fontSize={40} style={{ padding: "2rem 3rem" }}>
+            No Results Found ...
+          </Typography>
+        )}
       </div>
     </div>
   );

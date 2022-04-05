@@ -7,6 +7,7 @@ import "../../css/delivery/delivery.css";
 import ShippingProfileCard from "../../components/shippingProfileCard/shippingCardProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { openCreateShippingProfileModal } from "../../redux/actions/modal";
+import { locations, Vehicle_loads } from "../../drop-down-list";
 
 const Delivery = () => {
   const [searching, setSearching] = useState(false);
@@ -17,6 +18,8 @@ const Delivery = () => {
 
   const [data, setData] = useState([]);
   const [result, setResult] = useState([]);
+
+  const [resultFound, setResultFound] = useState(true);
 
   const loggedIn = useSelector((state) => state.authReducer);
 
@@ -35,23 +38,6 @@ const Delivery = () => {
     }
     return chck;
   };
-
-  let locations = [
-    "Beirut",
-    "Tripoli",
-    "Sidon",
-    "Tyre",
-    "Jounieh",
-    "Byblos",
-    "Aley",
-    "Nabatieh",
-    "Baalbeck",
-    "Zahle",
-    "Zhgarta-Ehden",
-    "Batroun",
-  ];
-
-  let Vehicle_loads = ["500", "1000", "1500", "2000"];
 
   const getRandomShippings = async () => {
     await axios
@@ -76,6 +62,11 @@ const Delivery = () => {
       .then((response) => {
         setResult(response.data[0]);
         setSearching(true);
+        if (response.data[0].length === 0) {
+          setResultFound(false);
+        } else {
+          setResultFound(true);
+        }
         console.log(response);
       })
       .catch((e) => {
@@ -190,6 +181,11 @@ const Delivery = () => {
               />
             </Grid>
           ))}
+        {!resultFound && (
+          <Typography fontSize={40} style={{ padding: "2rem 3rem" }}>
+            No Results Found ...
+          </Typography>
+        )}
       </div>
     </div>
   );
