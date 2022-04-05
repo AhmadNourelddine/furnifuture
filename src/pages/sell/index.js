@@ -255,8 +255,8 @@ const Sell = () => {
               </div>
               <Divider sx={{ my: 3 }} light />
               <div className="sellpage-upload-image-section">
-                <Button for="sell-upload-btn">
-                  <label for="sell-upload-btn">
+                <Button htmlfor="sell-upload-btn">
+                  <label htmlFor="sell-upload-btn">
                     <CameraAltIcon color="error" />
                   </label>
                 </Button>
