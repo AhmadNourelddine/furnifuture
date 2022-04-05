@@ -13,12 +13,12 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> The FurniFuture is an efficient website that connects furniture buyers and sellers online. FurniFuture is more than just a buy and sell website; it offers a great oppurtinity for users to connect with shipping services.
 > 
-> There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
+> The website encourges people who can work in shipping furniture to create their own profiles so that they have greater chances in finding nearby clients.
 
 ### User Stories
-- As a user, I want to browse furniture, so that I can find the best product
+- As a user, I want to browse furniture for sale, so that I can find the best product
 - As a user, I want to sell my used furniture to find a quick purchase
 - As a user, I want to promote my furniture shipping service, so that I can find more clients online
 
