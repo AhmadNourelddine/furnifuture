@@ -16,11 +16,14 @@ import { useDispatch, useSelector } from "react-redux";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { createNewProduct } from "../../redux/actions/userProducts";
 import { removeProduct } from "../../redux/actions/editProduct";
+import {
+  locations,
+  category as categories,
+  currencies,
+} from "../../drop-down-list";
 
 const Sell = () => {
   const [update, setUpdate] = useState(false);
-  const [productUpdate, setProductUpdate] = useState({});
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -34,33 +37,6 @@ const Sell = () => {
   const [imageProductToUpdate, setImageProductToUpdate] = useState(null);
 
   let token = window.localStorage.getItem("authToken");
-
-  const locations = [
-    "Beirut",
-    "Tripoli",
-    "Sidon",
-    "Tyre",
-    "Jounieh",
-    "Byblos",
-    "Aley",
-    "Nabatieh",
-    "Baalbeck",
-    "Zahle",
-    "Zhgarta-Ehden",
-    "Batroun",
-  ];
-
-  const categories = [
-    "Living Room",
-    "Dining Room ",
-    "Bedroom",
-    "Bathroom",
-    "kitchen",
-    "Garden & Outdoor",
-    "Home Decoration & Acceessories",
-  ];
-
-  const currencies = ["$", "LBP"];
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
