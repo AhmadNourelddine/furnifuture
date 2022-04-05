@@ -15,7 +15,7 @@
 
 > The FurniFuture is an efficient website that connects furniture buyers and sellers online. FurniFuture is more than just a buy and sell website; it offers a great oppurtinity for users to connect with shipping services.
 > 
-> The website encourges people who can work in shipping furniture to create their own profiles so that they have greater chances in finding nearby clients.
+> The website encourges people who can work in shipping furniture to create their own profiles so that they can have greater chances in finding nearby clients.
 
 ### User Stories
 - As a user, I want to browse furniture for sale, so that I can find the best product
