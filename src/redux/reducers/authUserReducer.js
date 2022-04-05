@@ -10,6 +10,13 @@ const authUserReducer = (state=false, action)=>{
         editState.image = action.payload;
         return editState;
     }
+    else if(action.type === 'UpdateUser')
+    {   
+        let updatedUser = state;
+        updatedUser.name = action.payload.name;
+        updatedUser.email = action.payload.email;
+        return updatedUser;
+    }
     else return state;
 };
 

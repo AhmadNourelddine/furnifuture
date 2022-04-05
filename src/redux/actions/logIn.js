@@ -7,9 +7,24 @@ export const loggedIn = (user)=>{
    };
 };
 
+export const updateUser = (user)=>{
+    return{
+        type:'UpdateUser',
+        payload:user,
+    };
+ };
+
 export const uploadProfileImage = (image)=>{
     return{
         type:'UploadProfileImage',
         payload: image,
+    };
+ };
+
+
+ export const setFirebaseToken = (token)=>{
+    return{
+        type:'SetFirebaseToken',
+        payload: token,
     };
  };

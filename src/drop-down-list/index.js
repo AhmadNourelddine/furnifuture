@@ -17,7 +17,7 @@ export const locations = [
   "Jezzine",
   "Saida",
   "Nabatiye",
-  "Sour",
+  "Tyre",
   "Bent Jbail",
   "Marjaayoun",
   "Hasbaya",
@@ -33,7 +33,7 @@ export const locations = [
   "Zhgarta",
   "Koura",
   "Bcharre",
-  "Jbeil",
+  "Byblos",
   "Kesrouan",
   "Batroun",
 ];
