@@ -24,6 +24,10 @@ const Profile = () => {
   const user_products = useSelector((state) => state.userProductsReducer);
   const user = useSelector((state) => state.authUserReducer);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   const handleImage = async (e) => {
     const file = e.target.files[0];
     setProfileImage(URL.createObjectURL(file));
@@ -119,17 +123,16 @@ const Profile = () => {
         </Box>
         <Box className="profile-page-name-email">
           <Typography fontWeight={900} fontSize={50}>
-            {user.name}
+            {capitalizeFirstLetter(user.name)}
           </Typography>
           <Typography fontWeight={100} fontSize={30}>
-            {user.email}
+            {capitalizeFirstLetter(user.email)}
           </Typography>
         </Box>
         <Button
           onClick={() => {
             dispatch(openUpdateProfileModal());
           }}
-          // component={Link} to="/dashboard"
           className="profile-page-edit"
         >
           <ManageAccountsIcon sx={{ fontSize: 45 }} />{" "}

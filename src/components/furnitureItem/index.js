@@ -37,6 +37,10 @@ export default function FurnitureItem(props) {
   const [date, setDate] = useState("");
   const dispatch = useDispatch();
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   useEffect(() => {
     const splitDate = props.date.split("T");
     const splitPrice = props.price.split(" ");
@@ -166,7 +170,7 @@ export default function FurnitureItem(props) {
             component="img"
             height="200"
             width="300"
-            image={props.img_base64_encoded ? props.img_base64_encoded : img}
+            image={props.img_base64_encoded || img}
             alt="furniture"
           />
           <div style={{ alignSelf: "flex-start", padding: "1rem" }}>
@@ -176,14 +180,14 @@ export default function FurnitureItem(props) {
               variant="h5"
               component="div"
             >
-              {props.title}
+              {capitalizeFirstLetter(props.title)}
             </Typography>
             <Typography
               className="sell-furniture-item-content-box"
               variant="body2"
               color="text.secondary"
             >
-              {props.description}
+              {capitalizeFirstLetter(props.description)}
             </Typography>
 
             <div className="sell-furniture-item-date-location">
@@ -248,13 +252,6 @@ export default function FurnitureItem(props) {
               Delete
             </Button>
           )}
-          {/* <Button disabled={save}
-        onClick={clcikedButton}
-        className="sell-furniture-item-button" size="small" style={{padding:"auto"}}>
-        {buy && (save? 'saved' : props.btn)}
-        {cart && 'remove'}
-        {profile && 'delete'}
-      </Button> */}
         </div>
       </Card>
     </Box>
