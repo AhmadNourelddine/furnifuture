@@ -23,11 +23,22 @@
 }
 #about-getstarted {
   display: flex;
+  flex-wrap: wrap;
 }
+
+#about-buy-sell-getstarted {
+  height: 500px;
+}
+
+#about-deliver-getstarted {
+  height: 500px;
+}
+
 .getstarted-title {
   font-size: 2rem;
   font-weight: 900;
 }
+
 .getstarted-buysell-button {
   background-color: #6f1a07 !important;
   color: white !important;
@@ -40,12 +51,12 @@
   color: white !important;
   height: 3rem !important;
   width: 15rem !important;
-  margin: 2rem !important;
+  margin: 3.5rem 2rem 2rem !important;
 }
 #about-buy-sell-getstarted {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #d86544;
   color: white;
@@ -55,9 +66,16 @@
 #about-deliver-getstarted {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #5094aa;
   color: white;
   padding: 5%;
+}
+
+.getstarted-description {
+  overflow: initial;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
