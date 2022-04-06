@@ -201,7 +201,7 @@ const CreateDeliveryProfileModal = (props) => {
                 autoComplete="given-name"
                 required
                 onChange={(e) => setName(e.target.value)}
-                label="name"
+                label="Name"
               />
             </Grid>
             <Grid xs={6} sx={{ pl: 2 }}>
@@ -212,7 +212,7 @@ const CreateDeliveryProfileModal = (props) => {
                 type="email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                label="email"
+                label="Email"
               />
             </Grid>
           </Grid>
@@ -221,7 +221,7 @@ const CreateDeliveryProfileModal = (props) => {
             <Grid xs={6} sx={{ pr: 2 }}>
               <TextField
                 className="fix-modal-textfield"
-                label="password"
+                label="Password"
                 error={password !== "" && !password.match(/^.{6,}$/)}
                 helperText={
                   password !== "" &&
@@ -237,7 +237,7 @@ const CreateDeliveryProfileModal = (props) => {
             <Grid xs={6} sx={{ pl: 2 }}>
               <TextField
                 className="fix-modal-textfield"
-                label="confirm password"
+                label="Confirm Password"
                 error={Cpassword !== "" && Cpassword !== password}
                 helperText={
                   Cpassword !== "" &&
@@ -305,7 +305,7 @@ const CreateDeliveryProfileModal = (props) => {
               <MuiPhoneNumber
                 required
                 className="fix-modal-textfield"
-                label="phone_number"
+                label="Phone Number"
                 variant="outlined"
                 value={phoneNb}
                 defaultCountry={"lb"}

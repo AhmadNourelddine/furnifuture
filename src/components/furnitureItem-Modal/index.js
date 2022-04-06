@@ -53,6 +53,10 @@ const FurnitureModal = (props) => {
 
   console.log(location);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   function closeTheModal() {
     dispatch(closeModal());
     setIsOpen(false);
@@ -173,10 +177,10 @@ const FurnitureModal = (props) => {
               <Box>
                 <Box style={{ display: "flex", alignItems: "baseline" }}>
                   <Typography fontWeight={"900"} fontSize={25}>
-                    {props.title}
+                    {capitalizeFirstLetter(props.title)}
                   </Typography>
                   <Typography sx={{ pl: 4 }} fontWeight={"600"} fontSize={15}>
-                    "{props.category}"
+                    "{capitalizeFirstLetter(props.category)}"
                   </Typography>
                 </Box>
                 <Typography
@@ -191,7 +195,7 @@ const FurnitureModal = (props) => {
                   }}
                   variant="subtitle2"
                 >
-                  {props.description}
+                  {capitalizeFirstLetter(props.description)}
                 </Typography>
               </Box>
               <Box>
@@ -217,7 +221,7 @@ const FurnitureModal = (props) => {
                       Date: {props.date}
                     </Typography>
                     <Typography sx={{ fontSize: 12, fontWeight: "light" }}>
-                      Location: {props.location}
+                      Location: {capitalizeFirstLetter(props.location)}
                     </Typography>
                   </Box>
                 </Box>
