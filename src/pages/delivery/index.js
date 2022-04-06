@@ -116,7 +116,7 @@ const Delivery = () => {
             <TextField
               className="delivery-dropMenu-textfield"
               {...params}
-              label="Location"
+              placeholder="Location"
             />
           )}
           value={location}
@@ -133,7 +133,7 @@ const Delivery = () => {
             <TextField
               className="delivery-dropMenu-textfield"
               {...params}
-              label="Vehicle Load 'kg' "
+              placeholder="Vehicle Load 'kg'"
             />
           )}
           value={vehicle_load}

@@ -98,7 +98,7 @@ const Buy = () => {
               className="buy-page-search-category-textfield"
               {...params}
               value={categ}
-              label="Category"
+              placeholder="Category"
             />
           )}
           onChange={(event, value) => {

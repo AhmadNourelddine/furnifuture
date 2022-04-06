@@ -43,6 +43,10 @@
   top: calc(50% - 28px) !important;
 }
 
+.buy-page-search-category-textfield .MuiInput-input {
+  padding: 15px 4px 4px 0px !important;
+}
+
 .buy-search-btn {
   flex-grow: 1;
   width: 10% !important;
@@ -67,7 +71,7 @@
 }
 
 .css-1q60rmi-MuiAutocomplete-endAdornment {
-  top: calc(50% - 28px) !important;
+  top: calc(50% - 20px) !important;
 }
 
 .MuiInput-underline:before {
