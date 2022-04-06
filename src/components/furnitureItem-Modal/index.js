@@ -6,6 +6,10 @@ import {
   CardMedia,
   Checkbox,
   Divider,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -19,9 +23,11 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import DoneIcon from "@mui/icons-material/Done";
 import {
   addCartProduct,
+  addCartShipping,
   addCartSuggestedShipping,
 } from "../../redux/actions/cart";
 import "../../css/furnitureItem-modal/furnitureItem-modal.css";
+import { Link } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -43,6 +49,7 @@ const FurnitureModal = (props) => {
   const [modalIsOpen, setIsOpen] = useState(true);
   const [city, setCity] = useState("");
   const [savedShippings, setSavedShippings] = useState([]);
+  const [chosenShipping, setChosenShipping] = useState("");
   const [data, setData] = useState([]);
 
   let token = window.localStorage.getItem("authToken");
@@ -51,7 +58,7 @@ const FurnitureModal = (props) => {
 
   const location = useSelector((state) => state.locationReducer);
 
-  console.log(location);
+  // console.log(location);
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -104,7 +111,8 @@ const FurnitureModal = (props) => {
 
     if (props.btn === "save") {
       let product_id = { product_id: props.id };
-      let shippings = { saved_shippings: savedShippings };
+      let shipping = { shipping_id: chosenShipping };
+      // let shippings = { saved_shippings: savedShippings };
 
       await axios
         .post("http://127.0.0.1:8000/api/user/cart/save-product", product_id, {
@@ -119,18 +127,13 @@ const FurnitureModal = (props) => {
           console.log(err);
         });
 
-      if (savedShippings) {
+      if (chosenShipping) {
         await axios
-          .post(
-            "http://127.0.0.1:8000/api/user/cart/save-suggested-shipping",
-            shippings,
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          )
+          .post("http://127.0.0.1:8000/api/user/cart/save-shipping", shipping, {
+            headers: { Authorization: `Bearer ${token}` },
+          })
           .then((resp) => {
-            dispatch(addCartSuggestedShipping(savedShippings));
-            closeTheModal();
+            dispatch(addCartShipping(chosenShipping));
             console.log(resp);
           })
           .catch((err) => {
@@ -138,6 +141,25 @@ const FurnitureModal = (props) => {
           });
       }
     }
+    //   if (savedShippings) {
+    //     await axios
+    //       .post(
+    //         "http://127.0.0.1:8000/api/user/cart/save-suggested-shipping",
+    //         shippings,
+    //         {
+    //           headers: { Authorization: `Bearer ${token}` },
+    //         }
+    //       )
+    //       .then((resp) => {
+    //         dispatch(addCartSuggestedShipping(savedShippings));
+    //         closeTheModal();
+    //         console.log(resp);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   }
+    // }
   };
 
   useEffect(() => {
@@ -159,7 +181,12 @@ const FurnitureModal = (props) => {
     >
       <Card style={{ width: "35rem", borderRadius: "35px", padding: "1rem" }}>
         <CardMedia
-          style={{ padding: "2rem 5rem", width: "auto", margin: "auto" }}
+          className="furniture-modal-image"
+          style={{
+            padding: "2rem 5rem",
+            width: "fit-content",
+            margin: "auto",
+          }}
           component="img"
           height="200"
           image={props.img_base64_encoded || img}
@@ -183,6 +210,7 @@ const FurnitureModal = (props) => {
                     "{capitalizeFirstLetter(props.category)}"
                   </Typography>
                 </Box>
+                <Divider />
                 <Typography
                   sx={{
                     display: "-webkit-box",
@@ -200,32 +228,49 @@ const FurnitureModal = (props) => {
               </Box>
               <Box>
                 <Box sx={{ pb: 2 }}>
-                  <Box sx={{ display: "flex" }}>
+                  <Button className="whatsapp-btn">
                     <a
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        textDecoration: "none",
+                        color: "white",
+                      }}
                       target="_blank"
                       rel="noopener noreferrer"
                       href={"https://wa.me/" + props.phone_number}
                     >
-                      <WhatsAppIcon />
-                    </a>
+                      <WhatsAppIcon sx={{ mr: 1, color: "inherit" }} />
 
-                    <Typography sx={{ fontSize: 15 }}>
-                      {props.phone_number}
-                    </Typography>
-                  </Box>
+                      <Typography
+                        sx={{
+                          fontWeight: 300,
+                          color: "white",
+                        }}
+                        variant="subtitle2"
+                      >
+                        {props.phone_number}
+                      </Typography>
+                    </a>
+                  </Button>
 
                   <Box sx={{ pb: 5 }} style={{ display: "flex" }}>
                     <Typography
-                      sx={{ pr: 5, fontSize: 12, fontWeight: "light" }}
+                      sx={{ pr: 5, fontWeight: "light" }}
+                      variant="subtitle2"
                     >
                       Date: {props.date}
                     </Typography>
-                    <Typography sx={{ fontSize: 12, fontWeight: "light" }}>
+                    <Typography
+                      sx={{ fontWeight: "light" }}
+                      variant="subtitle2"
+                    >
                       Location: {capitalizeFirstLetter(props.location)}
                     </Typography>
                   </Box>
                 </Box>
               </Box>
+
               <Box
                 style={{
                   width: "18rem",
@@ -276,22 +321,42 @@ const FurnitureModal = (props) => {
                   Suggested Delivery
                 </Typography>
               </Box>
-              {Object.keys(data).map((key) => (
-                <Box
-                  style={{ display: "flex", justifyContent: "space-between" }}
+
+              <FormControl>
+                <RadioGroup
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setChosenShipping(e.target.value);
+                  }}
                 >
-                  <SuggestedShipping
-                    name={data[key].name}
-                    location={data[key].location}
-                    phone_number={data[key].phone_number}
-                  />
-                  <Checkbox
+                  {Object.keys(data).map((key) => (
+                    <Box
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <SuggestedShipping
+                        name={data[key].name}
+                        location={data[key].location}
+                        phone_number={data[key].phone_number}
+                      />
+                      {/* <Checkbox
                     onChange={() => {
                       handleSavedShipping(data[key]._id);
                     }}
-                  />
-                </Box>
-              ))}
+                  /> */}
+                      <FormControlLabel
+                        sx={{ pl: 4, pb: 2, m: 0 }}
+                        value={data[key]._id}
+                        control={<Radio />}
+                        label=""
+                        color="inherit"
+                      />
+                    </Box>
+                  ))}
+                </RadioGroup>
+              </FormControl>
             </CardContent>
           </Box>
         </Box>
