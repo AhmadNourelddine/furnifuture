@@ -27,6 +27,7 @@ import {
   addCartSuggestedShipping,
 } from "../../redux/actions/cart";
 import "../../css/furnitureItem-modal/furnitureItem-modal.css";
+import SavedShipping from "../savedShipping";
 import { Link } from "react-router-dom";
 
 const customStyles = {
@@ -48,7 +49,6 @@ const FurnitureModal = (props) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(true);
   const [city, setCity] = useState("");
-  const [savedShippings, setSavedShippings] = useState([]);
   const [chosenShipping, setChosenShipping] = useState("");
   const [data, setData] = useState([]);
 
@@ -58,7 +58,23 @@ const FurnitureModal = (props) => {
 
   const location = useSelector((state) => state.locationReducer);
 
+  const userInfo = useSelector((state) => state.authUserReducer);
+
+  const saved_shipping = userInfo.saved_shipping;
+
   // console.log(location);
+
+  const checkShippingSaved = (p_id) => {
+    let chck = false;
+    if (loggedIn) {
+      Object.keys(saved_shipping).forEach((key) => {
+        if (saved_shipping[key] === p_id) {
+          chck = true;
+        }
+      });
+    }
+    return chck;
+  };
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -79,14 +95,6 @@ const FurnitureModal = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const handleSavedShipping = (shipping_id) => {
-    if (savedShippings.includes(shipping_id)) {
-      setSavedShippings(savedShippings.filter((item) => item !== shipping_id));
-    } else {
-      setSavedShippings((students) => [...savedShippings, shipping_id]);
-    }
   };
 
   const suggestShippings = async () => {
@@ -112,7 +120,6 @@ const FurnitureModal = (props) => {
     if (props.btn === "save") {
       let product_id = { product_id: props.id };
       let shipping = { shipping_id: chosenShipping };
-      // let shippings = { saved_shippings: savedShippings };
 
       await axios
         .post("http://127.0.0.1:8000/api/user/cart/save-product", product_id, {
@@ -141,25 +148,6 @@ const FurnitureModal = (props) => {
           });
       }
     }
-    //   if (savedShippings) {
-    //     await axios
-    //       .post(
-    //         "http://127.0.0.1:8000/api/user/cart/save-suggested-shipping",
-    //         shippings,
-    //         {
-    //           headers: { Authorization: `Bearer ${token}` },
-    //         }
-    //       )
-    //       .then((resp) => {
-    //         dispatch(addCartSuggestedShipping(savedShippings));
-    //         closeTheModal();
-    //         console.log(resp);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }
-    // }
   };
 
   useEffect(() => {
@@ -256,12 +244,14 @@ const FurnitureModal = (props) => {
 
                   <Box sx={{ pb: 5 }} style={{ display: "flex" }}>
                     <Typography
+                      style={{ whiteSpace: "nowrap" }}
                       sx={{ pr: 5, fontWeight: "light" }}
                       variant="subtitle2"
                     >
                       Date: {props.date}
                     </Typography>
                     <Typography
+                      style={{ whiteSpace: "nowrap" }}
                       sx={{ fontWeight: "light" }}
                       variant="subtitle2"
                     >
@@ -299,7 +289,9 @@ const FurnitureModal = (props) => {
                     endIcon={props.btn === "saved" && <DoneIcon />}
                     className="sell-furniture-item-button"
                   >
-                    {props.btn === "saved" ? "Added" : "Add to Cart"}
+                    {(props.btn !== "cart" &&
+                      (props.btn === "saved" ? "Added" : "Add to Cart")) ||
+                      "Purchase"}
                   </Button>
                 </Box>
               </Box>
@@ -313,50 +305,92 @@ const FurnitureModal = (props) => {
               borderRadius: "10px",
               color: "white",
               backgroundColor: "#304451",
+              overflowY: "scroll",
             }}
           >
             <CardContent style={{ paddingBottom: "0" }}>
               <Box>
-                <Typography style={{ whiteSpace: "nowrap" }} sx={{ pb: 1 }}>
-                  Suggested Delivery
+                <Typography
+                  style={{ whiteSpace: "nowrap", textAlign: "center" }}
+                  sx={{ pb: 1 }}
+                >
+                  {props.btn !== "cart"
+                    ? "Suggested Delivery"
+                    : "Saved Delivery"}
                 </Typography>
               </Box>
 
-              <FormControl>
-                <RadioGroup
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    setChosenShipping(e.target.value);
-                  }}
-                >
-                  {Object.keys(data).map((key) => (
-                    <Box
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <SuggestedShipping
-                        name={data[key].name}
-                        location={data[key].location}
-                        phone_number={data[key].phone_number}
-                      />
-                      {/* <Checkbox
-                    onChange={() => {
-                      handleSavedShipping(data[key]._id);
+              {props.btn !== "cart" && (
+                <FormControl>
+                  <RadioGroup
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setChosenShipping(e.target.value);
                     }}
-                  /> */}
-                      <FormControlLabel
-                        sx={{ pl: 4, pb: 2, m: 0 }}
-                        value={data[key]._id}
-                        control={<Radio />}
-                        label=""
-                        color="inherit"
-                      />
-                    </Box>
-                  ))}
-                </RadioGroup>
-              </FormControl>
+                  >
+                    {Object.keys(data).map((key) => (
+                      <Box
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <SuggestedShipping
+                          name={data[key].name}
+                          location={data[key].location}
+                          phone_number={data[key].phone_number}
+                        />
+                        <FormControlLabel
+                          sx={{ pl: 4, pb: 2, m: 0 }}
+                          value={data[key]._id}
+                          control={<Radio />}
+                          label=""
+                          color="inherit"
+                        />
+                      </Box>
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              )}
+              {props.btn === "cart" && (
+                <FormControl>
+                  <RadioGroup
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setChosenShipping(e.target.value);
+                    }}
+                  >
+                    {props.saved_shippings.map(
+                      (item) =>
+                        checkShippingSaved(item._id) && (
+                          <Box>
+                            <Box
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <SavedShipping
+                                name={item.name}
+                                location={item.location}
+                                phone_number={item.phone_number}
+                                image={item.image}
+                              />
+                              <FormControlLabel
+                                sx={{ pl: 4, pb: 2, m: 0 }}
+                                value={item._id}
+                                control={<Radio />}
+                                label=""
+                                style={{ color: "white" }}
+                                color="inherit"
+                              />
+                            </Box>
+                          </Box>
+                        )
+                    )}
+                  </RadioGroup>
+                </FormControl>
+              )}
             </CardContent>
           </Box>
         </Box>
