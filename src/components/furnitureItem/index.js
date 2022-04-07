@@ -129,7 +129,7 @@ export default function FurnitureItem(props) {
 
   return (
     <Box>
-      {buy && checkModal === props.id && (
+      {(buy || cart) && checkModal === props.id && (
         <FurnitureModal
           key={props.id}
           id={props.id}
@@ -140,8 +140,9 @@ export default function FurnitureItem(props) {
           date={date}
           category={props.category}
           price={props.price}
-          btn={save ? "saved" : "save"}
+          btn={(!cart && (save ? "saved" : "save")) || "cart"}
           img_base64_encoded={props.img_base64_encoded}
+          saved_shippings={props.saved_shippings || ""}
         />
       )}
 
@@ -191,10 +192,6 @@ export default function FurnitureItem(props) {
             </Typography>
 
             <div className="sell-furniture-item-date-location">
-              {/* <Typography className="sell-furniture-item-location content-box" variant="h6" component="div" color="text.secondary">
-           {props.location}
-          </Typography> */}
-
               <Typography
                 sx={{ fontSize: 13, fontWeight: "light" }}
                 className="sell-furniture-item-date content-box"

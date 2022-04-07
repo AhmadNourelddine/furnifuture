@@ -122,10 +122,13 @@ const Cart = () => {
                     title={item["title"]}
                     description={item.description}
                     location={item.location}
+                    phone_number={item.phone_number}
+                    category={item.category}
                     price={item.price}
                     date={item.created_at}
                     img_base64_encoded={item.image}
                     btn="remove"
+                    saved_shippings={savedShipping}
                   />
                 </Grid>
               )
