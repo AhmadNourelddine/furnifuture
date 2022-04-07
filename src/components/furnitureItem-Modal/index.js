@@ -18,17 +18,19 @@ import img from "../../assets/missing-image.jpg";
 import axios from "axios";
 import SuggestedShipping from "../suggestedShipping/suggestedShipping";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../redux/actions/modal";
+import { closeModal, openLogInModal } from "../../redux/actions/modal";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import DoneIcon from "@mui/icons-material/Done";
 import {
   addCartProduct,
   addCartShipping,
   addCartSuggestedShipping,
+  removeCartProduct,
 } from "../../redux/actions/cart";
 import "../../css/furnitureItem-modal/furnitureItem-modal.css";
 import SavedShipping from "../savedShipping";
 import { Link } from "react-router-dom";
+import ToastSuccess from "../toast/toast-success";
 
 const customStyles = {
   content: {
@@ -112,15 +114,15 @@ const FurnitureModal = (props) => {
   };
 
   const clcikedButton = async () => {
+    let product_id = { product_id: props.id };
+    let shipping = { shipping_id: chosenShipping };
+
     if (!loggedIn) {
-      alert("please log in");
+      dispatch(openLogInModal());
       return;
     }
 
     if (props.btn === "save") {
-      let product_id = { product_id: props.id };
-      let shipping = { shipping_id: chosenShipping };
-
       await axios
         .post("http://127.0.0.1:8000/api/user/cart/save-product", product_id, {
           headers: { Authorization: `Bearer ${token}` },
@@ -141,12 +143,30 @@ const FurnitureModal = (props) => {
           })
           .then((resp) => {
             dispatch(addCartShipping(chosenShipping));
+            closeTheModal();
             console.log(resp);
           })
           .catch((err) => {
             console.log(err);
           });
       }
+    } else if (props.btn === "cart") {
+      await axios
+        .post(
+          "http://127.0.0.1:8000/api/user/cart/remove-product",
+          product_id,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((resp) => {
+          dispatch(removeCartProduct(props.id));
+          console.log(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      ToastSuccess("Purchased Successfully");
     }
   };
 
