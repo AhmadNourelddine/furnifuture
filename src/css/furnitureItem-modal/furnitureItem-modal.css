@@ -20,3 +20,8 @@
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
   color: white !important;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
