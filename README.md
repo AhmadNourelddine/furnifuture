@@ -72,17 +72,13 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 <img src="./readme/pages-gif/delivery-page-gif.gif"/>
 
-### Sell 
-
-
-
-https://user-images.githubusercontent.com/97585878/162544728-161f73c3-ac90-423e-9c3a-e935b45631f2.mp4
-
-
-
 ### Cart 
 
 <img src="./readme/pages-gif/cart-gif-gif.gif"/>
+
+### Sell 
+
+![sell-page-gif](https://user-images.githubusercontent.com/97585878/162545262-d0d3422b-2efa-4359-bebd-913df24d210a.gif)
 
 <br><br>
 <img src="./readme/title6.svg"/>
