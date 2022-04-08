@@ -13,6 +13,7 @@ import userProductsReducer from './userProductsReducer';
 import locationReducer from './locationReducer';
 import modalCreateShipping from './modalCreateShipping';
 import modalContactUs from './modalContactUsreducer';
+import firebaseReducer from './firebaseReducer';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -31,6 +32,7 @@ const allReducers = combineReducers({
     locationReducer,
     modalCreateShipping,
     modalContactUs,
+    firebaseReducer,
 });
 
 export default allReducers;
