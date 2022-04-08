@@ -1,25 +1,25 @@
-import axios from 'axios';
+import axios from "axios";
 
-const getLocation = async()=>{
-
+const getLocation = async () => {
   let location;
-  await axios.get('https://geolocation-db.com/json/')
-  .then(result=>{
-    console.log(result);
-    location = result.data;
-  })
-  .catch((err)=>{console.log(err)})
-  return location;
-}
-
-const locationReducer = (state=false, action)=>{
-    
-    if(action.type ==='SetLocation')
-    {
-        const location = getLocation();
-        return location;
-    }
-    else return state;
+  await axios
+    .get("https://geolocation-db.com/json/")
+    .then((result) => {
+      console.log(result);
+      location = result.data;
+      window.localStorage.setItem("city", location.city);
+      return location;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
+const locationReducer = (state = false, action) => {
+  if (action.type === "SetLocation") {
+    return getLocation();
+  } else {
+    return state;
+  }
+};
 export default locationReducer;
