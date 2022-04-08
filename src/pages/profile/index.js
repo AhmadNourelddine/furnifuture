@@ -106,11 +106,15 @@ const Profile = () => {
           />
 
           <Button
-            style={{ position: "relative", top: "-25px" }}
+            className="profile-page-btn"
+            style={{
+              position: "relative",
+              top: "-25px",
+            }}
             for="sell-upload-btn"
           >
             <label for="sell-upload-btn">
-              <AddPhotoAlternateIcon />
+              <AddPhotoAlternateIcon color="inherit" />
             </label>
           </Button>
           <input
@@ -130,10 +134,10 @@ const Profile = () => {
           </Typography>
         </Box>
         <Button
+          className="profile-page-btn profile-page-edit"
           onClick={() => {
             dispatch(openUpdateProfileModal());
           }}
-          className="profile-page-edit"
         >
           <ManageAccountsIcon sx={{ fontSize: 45 }} />{" "}
         </Button>
