@@ -1,5 +1,5 @@
 import { Button, Typography, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -8,12 +8,16 @@ import {
 } from "../../redux/actions/modal";
 
 import "../../css/aboutHome/aboutHome.css";
+import { setFirebaseToken } from "../../redux/actions/logIn";
+import axios from "axios";
 
 const AboutHome = () => {
   const dispatch = useDispatch();
 
   const loggedIn = useSelector((state) => state.authReducer);
   let shippingUser = useSelector((state) => state.authShippingReducer);
+  let firebaseToken = window.localStorage.getItem("firebaseToken");
+  dispatch(setFirebaseToken(firebaseToken));
 
   return (
     <div id="about-page-home">
