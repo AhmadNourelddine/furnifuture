@@ -82,7 +82,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 <div align="center">
-  <div style="display: flex; align-items: flex-start;">
+  <div>
     
    <div>
      ### Create Shipping Profile
