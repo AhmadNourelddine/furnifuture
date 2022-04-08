@@ -5,8 +5,9 @@ import { Autocomplete, Button, Grid, Typography } from "@mui/material";
 import { TextField } from "@material-ui/core";
 import "../../css/buy/buy.css";
 import FurnitureItem from "../../components/furnitureItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { category } from "../../drop-down-list";
+import { setLocation } from "../../redux/actions/location";
 
 const Buy = () => {
   const [searching, setSearching] = useState(false);
@@ -21,6 +22,8 @@ const Buy = () => {
   const loggedIn = useSelector((state) => state.authReducer);
 
   const saved_products = useSelector((state) => state.cartProductReducer);
+
+  const dispatch = useDispatch();
 
   const checkProductSaved = (p_id) => {
     let chck = false;
@@ -71,6 +74,7 @@ const Buy = () => {
 
   useEffect(() => {
     getRandomProducts();
+    dispatch(setLocation());
   }, []);
 
   return (
