@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
@@ -19,6 +20,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         Route::post('/logout', 'logout')->name('logout');
         Route::post('/refresh', 'refresh')->name('refresh');
         Route::post('/upload-profile-image', 'uploadProfileImage')->name('upload-profile-image');
+        Route::post('/save-firebase-token', 'saveFirebaseToken')->name('save-firebase-token');
         Route::get('/profile', 'userProfile')->name('user-profile');
        });  
 
@@ -44,6 +46,10 @@ Route::group(['middleware' => ['auth:api']], function () {
             Route::get('/get-shipping', 'getCartShipping')->name('get-shipping');
           });
         });
+
+        Route::controller(PurchaseController::class)->group(function () {  
+          Route::post('/save-purchase', 'savePurchase')->name('save-purchase');
+         });  
 
     });
 
