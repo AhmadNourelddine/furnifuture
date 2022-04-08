@@ -248,4 +248,23 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+    public function saveFirebaseToken(Request $request){
+
+        $user = Auth::User();
+        $validator = Validator::make($request->all(), [
+            'firebaseToken' => 'required|string',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user->firebaseToken = $request->firebaseToken;
+        $user->save();
+        return response()->json([
+            'message' => 'Token successfully saved',
+            'user' => $user,
+        ]);
+    }
 }
