@@ -9,7 +9,7 @@ use App\Models\User;
 use Validator;
 
 class ShippingController extends Controller
-{
+{ 
     public function searchShipping(Request $request){
 
         $validator = Validator::make($request->all(), [
@@ -115,6 +115,13 @@ class ShippingController extends Controller
         }
         if(!$shippings->count() || (empty($city_product) && empty($city_user)) ){
             $shippings = User::all()->where('is_shipping','=','true')->random(3);
+        }
+        foreach($shippings as $shipping){
+            if($shipping->image){
+                $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
+                $encoded_image = base64_encode(Storage::get($shipping->image));
+                $shipping->image = 'data:image/'.$ext.';base64,'.$encoded_image;
+            }
         }
         return response()->json($shippings);
     }
