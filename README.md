@@ -82,7 +82,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
  ### Create Shipping Profile
-  ![create-shipping-profile](https://user-images.githubusercontent.com/97585878/162547047-419bfd2b-2a59-4964-839e-ed2fc3ea0873.gif)
+  ![create-shipping-gif](https://user-images.githubusercontent.com/97585878/162547901-d1b92c94-fb78-4d33-a6b9-878605d2e3a4.gif)
 
  ### Shipping Profile
   ![shipping-profile-gif](https://user-images.githubusercontent.com/97585878/162547055-873890d8-f0b3-428f-b2e0-2a4b7a67dbde.gif)
