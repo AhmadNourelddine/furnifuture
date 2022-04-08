@@ -80,9 +80,25 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ![sell-page-gif](https://user-images.githubusercontent.com/97585878/162545262-d0d3422b-2efa-4359-bebd-913df24d210a.gif)
 
+
+<div align="center">
+  <div style="display: flex; align-items: flex-start;">
+    
+   <div>
+     ### Create Shipping Profile
+      ![create-shipping-profile](https://user-images.githubusercontent.com/97585878/162547047-419bfd2b-2a59-4964-839e-ed2fc3ea0873.gif)
+   </div>
+       <div>
+     ### Shipping Profile
+      ![shipping-profile-gif](https://user-images.githubusercontent.com/97585878/162547055-873890d8-f0b3-428f-b2e0-2a4b7a67dbde.gif)
+   </div>
+
+  </div>
+</div>
 <br><br>
 <img src="./readme/title6.svg"/>
 
+### Create Shipping Profile      ### Shipping Profile 
 
 > This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
