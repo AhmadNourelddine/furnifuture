@@ -35,7 +35,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 | Delivery  | Cart  |
 | -----------------| -----|
-| ![Delivery](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/delivery-page.png) | ![Cart](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/cart-page.png) |
+| ![Delivery](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/delivery-page-figma.png) | ![Cart](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/cart-page-figma.png) |
 
 
 <br><br>
