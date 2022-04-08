@@ -2,6 +2,7 @@
   height: fit-content;
   width: 300px;
   max-width: 300px;
+  box-shadow: 0px 7px 16px 1px rgb(0 0 0 / 50%) !important;
 }
 
 .sell-furniture-item-content-box {
@@ -10,6 +11,7 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
 .sell-furniture-item-date-location {
   display: flex;
   flex-direction: column;
