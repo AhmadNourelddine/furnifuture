@@ -78,7 +78,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 ### Cart 
 
-<img src="./readme/pages-gif/cart-page-gif.gif"/>
+<img src="./readme/pages-gif/cart-gif-gif.gif"/>
 
 <br><br>
 <img src="./readme/title6.svg"/>
