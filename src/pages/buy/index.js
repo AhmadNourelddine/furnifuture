@@ -125,6 +125,7 @@ const Buy = () => {
                 date={item.created_at}
                 btn={checkProductSaved(item._id) ? "saved" : "save"}
                 img_base64_encoded={item.image}
+                is_sold={item.is_sold || false}
               />
             </Grid>
           ))}
@@ -144,6 +145,7 @@ const Buy = () => {
                 date={item.created_at}
                 btn={checkProductSaved(item._id) ? "saved" : "save"}
                 img_base64_encoded={item.image}
+                is_sold={item.is_sold || false}
               />
             </Grid>
           ))}
