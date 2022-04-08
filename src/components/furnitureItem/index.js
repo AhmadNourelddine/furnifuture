@@ -17,6 +17,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { addCartProduct, removeCartProduct } from "../../redux/actions/cart";
 import { deleteCreatedProduct } from "../../redux/actions/userProducts";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default function FurnitureItem(props) {
   let navigate = useNavigate();
@@ -41,14 +42,22 @@ export default function FurnitureItem(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  const reversDate = (date) => {
+    const arrayStrings = date.split("-");
+    const reverseArray = arrayStrings.reverse();
+    const joinArray = reverseArray.join("-");
+    return joinArray;
+  };
+
   useEffect(() => {
     const splitDate = props.date.split("T");
+    const date = reversDate(splitDate[0]);
     const splitPrice = props.price.split(" ");
     if (splitPrice[1] === "LBP") {
       const newPrice = Number(splitPrice[0]) / 1000;
       setLbpPrice(newPrice + "K" + " LBP");
     }
-    setDate(splitDate[0]);
+    setDate(date);
     if (props.btn === "save") {
       setBuy(true);
     } else if (props.btn === "remove") {
@@ -157,7 +166,7 @@ export default function FurnitureItem(props) {
       >
         <CardActionArea
           onClick={() => {
-            dispatch(openModal(props.id));
+            (buy || cart) && dispatch(openModal(props.id));
           }}
           style={{ display: "flex", flexDirection: "column" }}
         >
@@ -214,7 +223,7 @@ export default function FurnitureItem(props) {
           </Typography>
           {props.is_sold && (
             <Button
-              disabled="true"
+              disabled={true}
               className="sell-furniture-item-button"
               style={{
                 color: "white",

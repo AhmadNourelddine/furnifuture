@@ -95,7 +95,6 @@ const LoginModal = (props) => {
         ToastSuccess("Signed In Successfully");
         closeTheModal();
         setRedirect(true);
-        dispatch(setLocation());
       })
       .catch((err) => {
         setError(true);

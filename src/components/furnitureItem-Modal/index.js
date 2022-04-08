@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Checkbox,
   Divider,
   FormControl,
   FormControlLabel,
@@ -21,16 +20,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openLogInModal } from "../../redux/actions/modal";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import DoneIcon from "@mui/icons-material/Done";
-import {
-  addCartProduct,
-  addCartShipping,
-  addCartSuggestedShipping,
-  removeCartProduct,
-} from "../../redux/actions/cart";
+import { addCartProduct, addCartShipping } from "../../redux/actions/cart";
 import "../../css/furnitureItem-modal/furnitureItem-modal.css";
 import SavedShipping from "../savedShipping";
-import { Link } from "react-router-dom";
-import ToastSuccess from "../toast/toast-success";
 import PaymentModal from "../payment";
 
 const customStyles = {
@@ -61,13 +53,9 @@ const FurnitureModal = (props) => {
 
   const loggedIn = useSelector((state) => state.authReducer);
 
-  const location = useSelector((state) => state.locationReducer);
-
   const userInfo = useSelector((state) => state.authUserReducer);
 
   const saved_shipping = userInfo.saved_shipping;
-
-  // console.log(location);
 
   const checkShippingSaved = (p_id) => {
     let chck = false;
@@ -90,20 +78,7 @@ const FurnitureModal = (props) => {
     setIsOpen(false);
   }
 
-  const getUserCity = async () => {
-    await axios
-      .get("https://geolocation-db.com/json/")
-      .then((response) => {
-        // console.log(response.data);
-        setCity(response.data.city);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const suggestShippings = async () => {
-    // console.log(city);
     let location = { city_user: city || "", city_product: props.location };
     await axios
       .post("http://127.0.0.1:8000/api/suggest-shipping", location)
@@ -165,7 +140,8 @@ const FurnitureModal = (props) => {
   }, [city]);
 
   useEffect(() => {
-    getUserCity();
+    const user_city = window.localStorage.getItem("city");
+    setCity(user_city);
   }, []);
 
   return (
@@ -224,6 +200,7 @@ const FurnitureModal = (props) => {
                     WebkitLineClamp: 4,
                     fontWeight: 300,
                     height: 100,
+                    width: 300,
                     pt: 2,
                   }}
                   variant="subtitle2"
@@ -340,6 +317,8 @@ const FurnitureModal = (props) => {
               color: "white",
               backgroundColor: "#304451",
               overflowY: "scroll",
+              position: "absolute",
+              right: "1rem",
             }}
           >
             <CardContent style={{ paddingBottom: "0" }}>
