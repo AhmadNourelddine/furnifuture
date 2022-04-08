@@ -64,6 +64,9 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|
 | ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/delivery-page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/cart-page.png) |
 
+### Buy Page
+
+<img src="./readme/pages-gif/buy-page-gif.gif"/>
 
 <br><br>
 <img src="./readme/title6.svg"/>
