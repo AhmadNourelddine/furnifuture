@@ -58,7 +58,7 @@ class ShippingController extends Controller
         else if(!empty($location) && !empty($vehicle_load) && !empty($search_term)){
             $results = User::where('is_shipping','=',true)
             ->where('location', '=', $location)  
-            ->where('category', '=', $category)
+            ->where('vehicle_load', '=', $vehicle_load)
             ->where(function ($query) use($search_term){
                 return $query 
                 ->where('name','LIKE','%'.$search_term.'%')
@@ -90,7 +90,8 @@ class ShippingController extends Controller
 
     public function randomShippings()
     {
-        $shippings = User::all()->where('is_shipping','=','true')->random(4);
+        // $shippings = User::all()->where('is_shipping','=','true')->random(4);
+        $shippings = User::all()->where('is_shipping','=','true')->random(2);
         foreach($shippings as $shipping){
             if($shipping->image){
                 $ext = pathinfo($shipping->image, PATHINFO_EXTENSION);
