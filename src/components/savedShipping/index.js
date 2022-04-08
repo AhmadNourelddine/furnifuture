@@ -17,7 +17,6 @@ const SavedShipping = (props) => {
     >
       <Box sx={{ py: 1 }} style={{ display: "flex", alignContent: "center" }}>
         <Box>
-          {/* <AccountCircleIcon sx={{ fontSize: 25, pr: 1 }} /> */}
           <Avatar
             sx={{ mr: 1, width: 26, height: 26 }}
             alt="PP"
