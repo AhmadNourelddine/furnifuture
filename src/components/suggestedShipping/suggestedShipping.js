@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const SuggestedShipping = (props) => {
@@ -17,7 +17,11 @@ const SuggestedShipping = (props) => {
     >
       <Box sx={{ py: 1 }} style={{ display: "flex", alignContent: "center" }}>
         <Box>
-          <AccountCircleIcon sx={{ fontSize: 100, pr: 1 }} />
+          <Avatar
+            sx={{ mr: 1, width: 26, height: 26 }}
+            alt="PP"
+            src={props.image}
+          />
         </Box>
         <Box>
           <Typography fontWeight={500} fontSize={10}>
