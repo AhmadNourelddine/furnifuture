@@ -25,6 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'user_products',
         'saved_products',
         'saved_shipping',
+        'firebaseToken',
     ];
     /**
      * The attributes that should be hidden for arrays.
