@@ -31,6 +31,7 @@ import "../../css/furnitureItem-modal/furnitureItem-modal.css";
 import SavedShipping from "../savedShipping";
 import { Link } from "react-router-dom";
 import ToastSuccess from "../toast/toast-success";
+import PaymentModal from "../payment";
 
 const customStyles = {
   content: {
@@ -52,7 +53,9 @@ const FurnitureModal = (props) => {
   const [modalIsOpen, setIsOpen] = useState(true);
   const [city, setCity] = useState("");
   const [chosenShipping, setChosenShipping] = useState("");
+  const [chosenShippingToken, setChosenShippingToken] = useState("");
   const [data, setData] = useState([]);
+  const [openPayment, setOpenPayment] = useState(false);
 
   let token = window.localStorage.getItem("authToken");
 
@@ -151,22 +154,7 @@ const FurnitureModal = (props) => {
           });
       }
     } else if (props.btn === "cart") {
-      await axios
-        .post(
-          "http://127.0.0.1:8000/api/user/cart/remove-product",
-          product_id,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .then((resp) => {
-          dispatch(removeCartProduct(props.id));
-          console.log(resp);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      ToastSuccess("Purchased Successfully");
+      setOpenPayment(true);
     }
   };
 
@@ -187,6 +175,15 @@ const FurnitureModal = (props) => {
       style={customStyles}
       contentLabel="Furniture Modal"
     >
+      {openPayment && (
+        <PaymentModal
+          product_id={props.id}
+          user_id={userInfo._id}
+          shipping_id={chosenShipping}
+          shipping_token={chosenShippingToken}
+          price={props.price}
+        />
+      )}
       <Card style={{ width: "35rem", borderRadius: "35px", padding: "1rem" }}>
         <CardMedia
           className="furniture-modal-image"
@@ -298,21 +295,38 @@ const FurnitureModal = (props) => {
                   <Typography variant="h5" sx={{ py: 2 }}>
                     {props.price}
                   </Typography>
-                  <Button
-                    disabled={props.btn === "saved" ? true : false}
-                    onClick={clcikedButton}
-                    style={{
-                      color: "white",
-                      backgroundColor: "#5094AA",
-                      opacity: props.btn === "saved" ? "1" : "0.7",
-                    }}
-                    endIcon={props.btn === "saved" && <DoneIcon />}
-                    className="sell-furniture-item-button"
-                  >
-                    {(props.btn !== "cart" &&
-                      (props.btn === "saved" ? "Added" : "Add to Cart")) ||
-                      "Purchase"}
-                  </Button>
+                  {props.is_sold && (
+                    <Button
+                      disabled="true"
+                      className="sell-furniture-item-button"
+                      style={{
+                        color: "white",
+                        backgroundColor: "#5094AA",
+                        opacity: "1",
+                      }}
+                      variant="outlined"
+                      endIcon={<DoneIcon />}
+                    >
+                      Sold
+                    </Button>
+                  )}
+                  {!props.is_sold && (
+                    <Button
+                      disabled={props.btn === "saved" ? true : false}
+                      onClick={clcikedButton}
+                      style={{
+                        color: "white",
+                        backgroundColor: "#5094AA",
+                        opacity: props.btn === "saved" ? "1" : "0.7",
+                      }}
+                      endIcon={props.btn === "saved" && <DoneIcon />}
+                      className="sell-furniture-item-button"
+                    >
+                      {(props.btn !== "cart" &&
+                        (props.btn === "saved" ? "Added" : "Add to Cart")) ||
+                        "Purchase"}
+                    </Button>
+                  )}
                 </Box>
               </Box>
             </CardContent>
@@ -359,6 +373,7 @@ const FurnitureModal = (props) => {
                           name={data[key].name}
                           location={data[key].location}
                           phone_number={data[key].phone_number}
+                          image={data[key].image}
                         />
                         <FormControlLabel
                           sx={{ pl: 4, pb: 2, m: 0 }}
@@ -377,7 +392,9 @@ const FurnitureModal = (props) => {
                   <RadioGroup
                     onChange={(e) => {
                       console.log(e.target.value);
+                      console.log(e.target.name);
                       setChosenShipping(e.target.value);
+                      setChosenShippingToken(e.target.name);
                     }}
                   >
                     {props.saved_shippings.map(
@@ -399,9 +416,9 @@ const FurnitureModal = (props) => {
                               <FormControlLabel
                                 sx={{ pl: 4, pb: 2, m: 0 }}
                                 value={item._id}
-                                control={<Radio />}
+                                name={item.firebaseToken || ""}
+                                control={<Radio style={{ color: "white" }} />}
                                 label=""
-                                style={{ color: "white" }}
                                 color="inherit"
                               />
                             </Box>

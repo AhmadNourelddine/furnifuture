@@ -143,6 +143,7 @@ export default function FurnitureItem(props) {
           btn={(!cart && (save ? "saved" : "save")) || "cart"}
           img_base64_encoded={props.img_base64_encoded}
           saved_shippings={props.saved_shippings || ""}
+          is_sold={props.is_sold}
         />
       )}
 
@@ -211,8 +212,22 @@ export default function FurnitureItem(props) {
           >
             {lbpPrice || props.price}
           </Typography>
-
-          {buy && (
+          {props.is_sold && (
+            <Button
+              disabled="true"
+              className="sell-furniture-item-button"
+              style={{
+                color: "white",
+                backgroundColor: "#5094AA",
+                opacity: "1",
+              }}
+              variant="outlined"
+              endIcon={<DoneIcon />}
+            >
+              Sold
+            </Button>
+          )}
+          {!props.is_sold && buy && (
             <Button
               disabled={save}
               onClick={clcikedButton}
@@ -228,7 +243,7 @@ export default function FurnitureItem(props) {
               {save || props.btn === "saved" ? "Added" : "Add to Cart"}
             </Button>
           )}
-          {cart && (
+          {!props.is_sold && cart && (
             <Button
               onClick={clcikedButton}
               className="sell-furniture-item-button"
@@ -238,7 +253,7 @@ export default function FurnitureItem(props) {
               Remove
             </Button>
           )}
-          {profile && (
+          {!props.is_sold && profile && (
             <Button
               onClick={clcikedButton}
               className="sell-furniture-item-button"
