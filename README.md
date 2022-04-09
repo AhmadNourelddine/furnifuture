@@ -68,7 +68,6 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 <img src="./readme/pages-gif/buy-page-gif.gif"/>
 
-## Pop Up Furniture
 ![open-furniture-modal](https://user-images.githubusercontent.com/97585878/162550805-da2e5d2b-eb2c-4cef-b960-23ff555f5fd9.gif)
 
 
