@@ -67,7 +67,8 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 ### Buy
 
 <img src="./readme/pages-gif/buy-page-gif.gif"/>
- ![open-furniture-modal](https://user-images.githubusercontent.com/97585878/162550734-8f612987-d970-4ef5-aa3b-e36836b84c6e.gif)
+![open-furniture-modal](https://user-images.githubusercontent.com/97585878/162550805-da2e5d2b-eb2c-4cef-b960-23ff555f5fd9.gif)
+
 
 ### Delivery 
 
