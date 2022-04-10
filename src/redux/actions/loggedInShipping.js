@@ -1,8 +1,7 @@
+const isShipping = () => {
+  return {
+    type: "isShipping",
+  };
+};
 
-const isShipping = ()=>{
-    return{
-        type:'isShipping',
-    };
- };
- 
- export default isShipping;
+export default isShipping;

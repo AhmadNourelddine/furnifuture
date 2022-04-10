@@ -33,7 +33,6 @@
   white-space: nowrap;
 }
 .toolbar-btn:hover {
-  /* opacity: 0.6; */
   font-weight: 900 !important;
   font-size: 90% !important;
 }
