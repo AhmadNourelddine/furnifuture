@@ -69,6 +69,7 @@ const Navbar = () => {
 
   return (
     <AppBar position="static" color="inherit" id="app-bar">
+      {/* open the modal when state is true */}
       {loginModal && <LoginModal />}
       {signUpModal && <SignUpModal />}
       {shippingprofileModal && <ShippingprofileModal />}
@@ -143,7 +144,6 @@ const Navbar = () => {
                   onClick={() => {
                     dispatch(openLogInModal());
                   }}
-                  //  component={Link} to="/login"
                   className="toolbar-btn"
                   id="toolbar-signin"
                   color="inherit"
@@ -158,7 +158,6 @@ const Navbar = () => {
                   onClick={() => {
                     dispatch(openSignUpModal());
                   }}
-                  // component={Link} to="/signup"
                   className="toolbar-btn"
                   id="toolbar-signup"
                   color="inherit"

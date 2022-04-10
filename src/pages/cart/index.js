@@ -57,7 +57,7 @@ const Cart = () => {
       });
   };
 
-  const getShipping = async () => {
+  const getSavedShipping = async () => {
     await axios
       .get("http://127.0.0.1:8000/api/user/cart/get-shipping", {
         headers: { Authorization: `Bearer ${token}` },
@@ -73,7 +73,7 @@ const Cart = () => {
 
   useEffect(() => {
     getSavedProducts();
-    getShipping();
+    getSavedShipping();
   }, []);
 
   return (
@@ -119,7 +119,7 @@ const Cart = () => {
                   <FurnitureItem
                     key={item._id}
                     id={item._id}
-                    title={item["title"]}
+                    title={item.title}
                     description={item.description}
                     location={item.location}
                     phone_number={item.phone_number}

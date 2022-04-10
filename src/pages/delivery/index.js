@@ -146,6 +146,7 @@ const Delivery = () => {
         </Button>
       </div>
       <div className="delivery-page-items">
+        {/* when user first enter the page */}
         {!searching &&
           Object.keys(data).map((key) => (
             <Grid xs={6}>
@@ -165,7 +166,7 @@ const Delivery = () => {
               />
             </Grid>
           ))}
-
+        {/* when user searches and result found */}
         {searching &&
           Object.keys(result).map((key) => (
             <Grid xs={6}>
@@ -181,6 +182,7 @@ const Delivery = () => {
               />
             </Grid>
           ))}
+        {/* when user searches and result not found */}
         {!resultFound && (
           <Typography fontSize={40} style={{ padding: "2rem 3rem" }}>
             No Results Found ...

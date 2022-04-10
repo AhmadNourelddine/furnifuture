@@ -25,6 +25,7 @@ const Buy = () => {
 
   const dispatch = useDispatch();
 
+  // check the saved to cart products before displaying them for logged in users
   const checkProductSaved = (p_id) => {
     let chck = false;
     if (loggedIn) {
@@ -37,6 +38,7 @@ const Buy = () => {
     return chck;
   };
 
+  // get random furniture items when user enters the page
   const getRandomProducts = async () => {
     await axios
       .get("http://127.0.0.1:8000/api/random-products")
@@ -114,6 +116,7 @@ const Buy = () => {
         </Button>
       </div>
       <div className="buy-page-items">
+        {/* when user enters the page*/}
         {!searching &&
           data.map((item) => (
             <Grid xs={3} md={4} sm={12}>
@@ -133,6 +136,7 @@ const Buy = () => {
               />
             </Grid>
           ))}
+        {/* when user searches and result found*/}
         {searching &&
           result &&
           result.map((item) => (
@@ -153,6 +157,7 @@ const Buy = () => {
               />
             </Grid>
           ))}
+        {/* when user searches and result not found */}
         {!resultFound && (
           <Typography fontSize={40} style={{ padding: "2rem 3rem" }}>
             No Results Found ...

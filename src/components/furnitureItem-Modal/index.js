@@ -52,9 +52,7 @@ const FurnitureModal = (props) => {
   let token = window.localStorage.getItem("authToken");
 
   const loggedIn = useSelector((state) => state.authReducer);
-
   const userInfo = useSelector((state) => state.authUserReducer);
-
   const saved_shipping = useSelector((state) => state.cartShippingReducer);
 
   const checkShippingSaved = (p_id) => {
@@ -225,8 +223,6 @@ const FurnitureModal = (props) => {
                         props.phone_number +
                         "&text"
                       }
-
-                      // href={"https://wa.me/" + props.phone_number}
                     >
                       <WhatsAppIcon sx={{ mr: 1, color: "inherit" }} />
 
@@ -278,6 +274,7 @@ const FurnitureModal = (props) => {
                   <Typography variant="h5" sx={{ py: 2 }}>
                     {props.price}
                   </Typography>
+                  {/* when furniture item is sold */}
                   {props.is_sold && (
                     <Button
                       disabled="true"
@@ -293,6 +290,7 @@ const FurnitureModal = (props) => {
                       Sold
                     </Button>
                   )}
+                  {/* when furniture item is nt sold */}
                   {!props.is_sold && (
                     <Button
                       disabled={props.btn === "saved" ? true : false}
@@ -305,6 +303,8 @@ const FurnitureModal = (props) => {
                       endIcon={props.btn === "saved" && <DoneIcon />}
                       className="sell-furniture-item-button"
                     >
+                      {/* when use is not in cart page button show "added" or "added to cart" */}
+                      {/* else when use in cart page show "purchase button" */}
                       {(props.btn !== "cart" &&
                         (props.btn === "saved" ? "Added" : "Add to Cart")) ||
                         "Purchase"}
@@ -333,12 +333,14 @@ const FurnitureModal = (props) => {
                   style={{ whiteSpace: "nowrap", textAlign: "center" }}
                   sx={{ pb: 1 }}
                 >
+                  {/* when user opens modal in buy page show suggested delivery */}
+                  {/* when user opens modal in cart page show saved delivery */}
                   {props.btn !== "cart"
                     ? "Suggested Delivery"
                     : "Saved Delivery"}
                 </Typography>
               </Box>
-
+              {/* when user opens modal in buy page show the suggested delivery */}
               {props.btn !== "cart" && (
                 <FormControl>
                   <RadioGroup
@@ -372,6 +374,7 @@ const FurnitureModal = (props) => {
                   </RadioGroup>
                 </FormControl>
               )}
+              {/* when user opens modal in buy page show the saved delivery */}
               {props.btn === "cart" && (
                 <FormControl>
                   <RadioGroup

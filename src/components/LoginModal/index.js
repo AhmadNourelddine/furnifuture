@@ -1,14 +1,4 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Divider,
-  InputLabel,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
@@ -16,15 +6,11 @@ import { useDispatch } from "react-redux";
 import { closeLogInModal, openSignUpModal } from "../../redux/actions/modal";
 import { loggedIn } from "../../redux/actions/logIn";
 import "../../css/login/login.css";
-
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import "../../css/loginModal/loginModal.css";
-
 import ToastSuccess from "../toast/toast-success";
 import isShipping from "../../redux/actions/loggedInShipping";
 import { getUserToken } from "../../firebase";
-import { setLocation } from "../../redux/actions/location";
 
 const customStyles = {
   content: {
@@ -45,8 +31,6 @@ const LoginModal = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = useState(true);
-  const [data, setData] = useState([]);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);

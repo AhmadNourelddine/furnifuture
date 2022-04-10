@@ -8,7 +8,7 @@ import "../../css/profile/profile.css";
 import "../../css/profileModal/profileModal.css";
 import "../../css/update-profile/update-profile.css";
 import ToastSuccess from "../toast/toast-success";
-import { loggedIn, updateUser } from "../../redux/actions/logIn";
+import { updateUser } from "../../redux/actions/logIn";
 
 const customStyles = {
   content: {

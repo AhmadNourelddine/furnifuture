@@ -29,6 +29,7 @@ export const getUserToken = (setTokenFound) => {
         window.localStorage.setItem("firebaseToken", currentToken);
         setTokenFound(true);
         let token = window.localStorage.getItem("authToken");
+        // save user's token in the database
         axios
           .post(
             "http://127.0.0.1:8000/api/user/save-firebase-token",

@@ -17,28 +17,23 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { addCartProduct, removeCartProduct } from "../../redux/actions/cart";
 import { deleteCreatedProduct } from "../../redux/actions/userProducts";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default function FurnitureItem(props) {
-  let navigate = useNavigate();
-
-  let token = window.localStorage.getItem("authToken");
+  const token = window.localStorage.getItem("authToken");
 
   const loggedIn = useSelector((state) => state.authReducer);
   const checkModal = useSelector((state) => state.modalReducer);
-
-  const [lbpPrice, setLbpPrice] = useState("");
+  const saved_products = useSelector((state) => state.cartProductReducer);
 
   const [save, setSave] = useState(false);
-
   const [buy, setBuy] = useState(false);
   const [cart, setCart] = useState(false);
   const [profile, setProfile] = useState(false);
-
   const [date, setDate] = useState("");
-  const dispatch = useDispatch();
+  const [lbpPrice, setLbpPrice] = useState("");
 
-  const saved_products = useSelector((state) => state.cartProductReducer);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const checkProductSaved = (p_id) => {
     let chck = false;
@@ -56,7 +51,7 @@ export default function FurnitureItem(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  const reversDate = (date) => {
+  const adjustDate = (date) => {
     const arrayStrings = date.split("-");
     const reverseArray = arrayStrings.reverse();
     const joinArray = reverseArray.join("-");
@@ -65,21 +60,25 @@ export default function FurnitureItem(props) {
 
   useEffect(() => {
     const splitDate = props.date.split("T");
-    const date = reversDate(splitDate[0]);
+    const date = adjustDate(splitDate[0]);
     const splitPrice = props.price.split(" ");
     if (splitPrice[1] === "LBP") {
       const newPrice = Number(splitPrice[0]) / 1000;
-      setLbpPrice(newPrice + "K" + " LBP");
+      setLbpPrice(newPrice + "K  LBP");
     }
     setDate(date);
     if (props.btn === "save") {
+      // the user is the buy page
       setBuy(true);
     } else if (props.btn === "remove") {
+      // the user is the cart page
       setCart(true);
     } else if (props.btn === "saved") {
+      // the user is the buy page and product is already saved
       setBuy(true);
       setSave(true);
     } else {
+      // the user is the profile page
       setProfile(true);
     }
   }, []);
@@ -100,7 +99,7 @@ export default function FurnitureItem(props) {
       image: props.img_base64_encoded,
     };
 
-    dispatch(editProduct(item));
+    dispatch(editProduct(item)); //add product to be edited to the redux state
     navigate("/sell");
   };
 
@@ -235,6 +234,7 @@ export default function FurnitureItem(props) {
           >
             {lbpPrice || props.price}
           </Typography>
+          {/* when the furniture item is sold */}
           {props.is_sold && (
             <Button
               disabled={true}
@@ -250,6 +250,7 @@ export default function FurnitureItem(props) {
               Sold
             </Button>
           )}
+          {/* when user in buy page */}
           {!props.is_sold && buy && (
             <Button
               disabled={save}
@@ -259,22 +260,26 @@ export default function FurnitureItem(props) {
                 color: "white",
                 backgroundColor: "#5094AA",
                 opacity:
+                  // opacity is 1 when furniture item is already in the cart or is sold
                   save || props.btn === "saved" || checkProductSaved(props.id)
                     ? "1"
                     : "0.7",
               }}
               variant="outlined"
+              // show endIcon when furniture item is already in the cart or is sold
               endIcon={
                 (save ||
                   props.btn === "saved" ||
                   checkProductSaved(props.id)) && <DoneIcon />
               }
             >
+              {/* when furniture item is added to  cart show "added" else "add to cart" */}
               {save || props.btn === "saved" || checkProductSaved(props.id)
                 ? "Added"
                 : "Add to Cart"}
             </Button>
           )}
+          {/* when use is in cart page */}
           {!props.is_sold && cart && (
             <Button
               onClick={clcikedButton}
@@ -285,6 +290,7 @@ export default function FurnitureItem(props) {
               Remove
             </Button>
           )}
+          {/* when use is in profile page */}
           {!props.is_sold && profile && (
             <Button
               onClick={clcikedButton}
