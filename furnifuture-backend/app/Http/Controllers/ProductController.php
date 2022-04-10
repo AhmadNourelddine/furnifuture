@@ -98,6 +98,8 @@ class ProductController extends Controller
 
     public function editProduct(Request $request){
 
+        $user = Auth::User();
+
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|string',
             'title' => 'required|string|between:2,100',
@@ -135,6 +137,7 @@ class ProductController extends Controller
             $ext = $ext[1];
 
             $img_url = $request->title.time().'.'.$ext;
+            Storage::delete($product->image);
             Storage::put($img_url, base64_decode($file_data));
             $product->image = $img_url;
 
@@ -225,7 +228,11 @@ class ProductController extends Controller
         $product_id = $request->product_id;
 
         $array = $user->user_products;
-        unset($array[array_search($product_id,$array)]);
+        if(array_search($product_id,$array))
+        {
+            unset($array[array_search($product_id,$array)]);
+            $array = array_values($array);
+        }
         $user->saved_products = $array;
         $user->save();
 

@@ -76,6 +76,9 @@ class UserController extends Controller
         $ext = $ext[1];
 
         $img_url = time().'.'.$ext;
+        if($user->image){
+            Storage::delete($user->image);
+        }
         Storage::put($img_url, base64_decode($file_data));
 
         $user->image = $img_url;
@@ -205,6 +208,9 @@ class UserController extends Controller
                     $ext = $ext[1];
             
                     $img_url = time().'.'.$ext;
+                    if($user->image){
+                        Storage::delete($user->image);
+                    }
                     Storage::put($img_url, base64_decode($file_data));
             
                     $user->image = $img_url;    
