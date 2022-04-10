@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "../../css/navbar/navbar.css";
 import { Link } from "react-router-dom";
@@ -25,8 +25,6 @@ import {
 import SignUpModal from "../signUpModal";
 import ShippingprofileModal from "../ShippingProfileModal/shippingProfileModal";
 import CreateDeliveryProfileModal from "../create-delivery-profile-modal";
-import { setLocation } from "../../redux/actions/location";
-import { getUserToken } from "../../firebase";
 import { onMessageListener } from "../../firebase";
 import ToastSuccess from "../toast/toast-success";
 
@@ -44,20 +42,10 @@ const Navbar = () => {
     (state) => state.modalCreateShipping
   );
 
-  const [showNotification, setShowNotification] = useState(false);
-  const [notification, setNotification] = useState({ title: "", body: "" });
-
-  const UserToken = useSelector((state) => state.firebaseReducer);
-
   onMessageListener()
     .then((payload) => {
       console.log("recieved");
-      setShowNotification(true);
-      ToastSuccess("Someone noticed you");
-      setNotification({
-        title: payload.notification.title,
-        body: payload.notification.body,
-      });
+      shippingUser && ToastSuccess("New Order to Deliver");
       console.log(payload);
     })
     .catch((err) => console.log("failed: ", err));
@@ -85,7 +73,6 @@ const Navbar = () => {
       {signUpModal && <SignUpModal />}
       {shippingprofileModal && <ShippingprofileModal />}
       {openCreateShippingModal && <CreateDeliveryProfileModal />}
-      {showNotification && ToastSuccess("Someone noticed you")}
 
       <Container id="toolbar-container">
         <Toolbar disableGutters>

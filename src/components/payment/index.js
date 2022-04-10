@@ -40,43 +40,43 @@ const PaymentModal = (props) => {
       cardInfo: cardInfo,
       price: props.price,
     };
-    // await axios
-    //   .post("http://127.0.0.1:8000/api/user/cart/remove-product", product_id, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((resp) => {
-    //     dispatch(removeCartProduct(props.product_id));
-    //     console.log(resp);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    await axios
+      .post("http://127.0.0.1:8000/api/user/cart/remove-product", product_id, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resp) => {
+        dispatch(removeCartProduct(props.product_id));
+        console.log(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    // await axios
-    //   .post("http://127.0.0.1:8000/api/user/save-purchase", purchase, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((resp) => {
-    //     const message = {
-    //       data: {
-    //         score: "850",
-    //         time: "2:45",
-    //       },
-    //       token: props.shipping_token,
-    //     };
-    //     sendNotification(message);
-    //     console.log(resp);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    // const message = {
-    //   data: {
-    //     score: "850",
-    //     time: "2:45",
-    //   },
-    //   token: props.shipping_token,
-    // };
+    await axios
+      .post("http://127.0.0.1:8000/api/user/save-purchase", purchase, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((resp) => {
+        const message = {
+          data: {
+            score: "850",
+            time: "2:45",
+          },
+          token: props.shipping_token,
+        };
+        sendNotification(message);
+        console.log(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    const message = {
+      data: {
+        score: "850",
+        time: "2:45",
+      },
+      token: props.shipping_token,
+    };
     sendNotification(props.shipping_token, userInfo.name);
     ToastSuccess("Purchased Successfully");
     closeTheModal();

@@ -38,6 +38,20 @@ export default function FurnitureItem(props) {
   const [date, setDate] = useState("");
   const dispatch = useDispatch();
 
+  const saved_products = useSelector((state) => state.cartProductReducer);
+
+  const checkProductSaved = (p_id) => {
+    let chck = false;
+    if (loggedIn) {
+      Object.keys(saved_products).forEach((key) => {
+        if (saved_products[key] === p_id) {
+          chck = true;
+        }
+      });
+    }
+    return chck;
+  };
+
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -244,12 +258,21 @@ export default function FurnitureItem(props) {
               style={{
                 color: "white",
                 backgroundColor: "#5094AA",
-                opacity: save || props.btn === "saved" ? "1" : "0.7",
+                opacity:
+                  save || props.btn === "saved" || checkProductSaved(props.id)
+                    ? "1"
+                    : "0.7",
               }}
               variant="outlined"
-              endIcon={(save || props.btn === "saved") && <DoneIcon />}
+              endIcon={
+                (save ||
+                  props.btn === "saved" ||
+                  checkProductSaved(props.id)) && <DoneIcon />
+              }
             >
-              {save || props.btn === "saved" ? "Added" : "Add to Cart"}
+              {save || props.btn === "saved" || checkProductSaved(props.id)
+                ? "Added"
+                : "Add to Cart"}
             </Button>
           )}
           {!props.is_sold && cart && (

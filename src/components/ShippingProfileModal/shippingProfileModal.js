@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography, Divider } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -111,6 +111,7 @@ const ShippingprofileModal = (props) => {
             />
 
             <Button
+              className="shipping-profile-page-btn"
               style={{ position: "relative", top: "-25px" }}
               for="sell-upload-btn"
             >
@@ -144,6 +145,7 @@ const ShippingprofileModal = (props) => {
             <ManageAccountsIcon sx={{ fontSize: 45 }} />
           </Box>
         </Box>
+        <Divider />
         <Box
           sx={{ my: 2, mr: 2 }}
           style={{

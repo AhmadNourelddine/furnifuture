@@ -55,7 +55,7 @@ const FurnitureModal = (props) => {
 
   const userInfo = useSelector((state) => state.authUserReducer);
 
-  const saved_shipping = userInfo.saved_shipping;
+  const saved_shipping = useSelector((state) => state.cartShippingReducer);
 
   const checkShippingSaved = (p_id) => {
     let chck = false;
@@ -220,7 +220,13 @@ const FurnitureModal = (props) => {
                       }}
                       target="_blank"
                       rel="noopener noreferrer"
-                      href={"https://wa.me/" + props.phone_number}
+                      href={
+                        "https://web.whatsapp.com/send/?phone=" +
+                        props.phone_number +
+                        "&text"
+                      }
+
+                      // href={"https://wa.me/" + props.phone_number}
                     >
                       <WhatsAppIcon sx={{ mr: 1, color: "inherit" }} />
 
