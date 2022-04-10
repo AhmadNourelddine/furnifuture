@@ -44,10 +44,12 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
-- This project uses ReactJs Library for the frontend (https://reactjs.org/). ReactJS is a free and open-source front-end JavaScript library for building user interfaces based on UI components.
-- For persistent storage (database), the app uses MongoDB (https://www.mongodb.com/) database management program which allows the app to manage document-oriented information, store or retrieve information.
-- This project uses Laravel FrameWork for the backend (https://laravel.com/)
-- The app uses the font ["poppins"](https://fonts.google.com/specimen/Poppins) as its main font, and the design of the app adheres to the material design guidelines.
+- This project uses ["ReactJs"](https://reactjs.org/) Library for the frontend.
+- For persistent storage (database), the app uses ["MongoDB"](https://www.mongodb.com/).
+- This project uses ["Laravel"](https://laravel.com/) FrameWork for the backend.
+- To query and manipulate data from MongoDB, this project uses ["Jenssengers"](https://jenssegers.com/) This library extends the original Laravel classes, so it uses exactly the same methods.
+- For Push notification, this project uses ["Firebase Cloud Messaging"](http://firebase.google.com/) for realtime database.                
+- The website uses the font ["Poppins"](https://fonts.google.com/specimen/Poppins) as its main font, and the design of the app adheres to the material design guidelines.
 
 
 
@@ -55,6 +57,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <img src="./readme/title5.svg"/>
 
 > Uing the above mentioned tech stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+
 
 | Landing  | Buy  |
 | -----------------| -----|
@@ -67,29 +70,33 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 
 
-<table>
-  <tr>
-    <td><img src="./readme/pages-gif/buy-page-gif.gif"/></td>
-    <td><img src="readme/pages-gif/open-furniture-modal.gif"/></td>
-  </tr>
-  <tr>
-    <td><img src="./readme/pages-gif/cart-gif-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/purchase-gif.gif"/></td>
-  </tr>
-  <tr>
-    <td><img src="./readme/pages-gif/delivery-page-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/click-create-delivery-profile.gif"/></td>
-  </tr>
-   <tr>
-    <td><img src="./readme/pages-gif/create-shipping-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/shipping-profile-gif.gif"/></td>
-  </tr>
-</table>
+<hr/>
+
+
+
+<div align="center">
+
+  <p>Search Furniture in Buy Page and Purchase in Cart Page</p>
+  <img src="./readme/pages-gif/buy-page-gif.gif" width="33%"/>
+  <img src="./readme/pages-gif/open-furniture-modal.gif" width="33%"/>
+  <img src="./readme/pages-gif/purchase-gif.gif" width="33%"/>
+ 
+  <p>Delivery Page</p>
+  <img src="./readme/pages-gif/delivery-page-gif.gif" width="45%"/>
+  <img src="./readme/pages-gif/click-create-delivery-profile.gif"  width="45%"/>
+  
+  <p>Cart Page</p>
+  <img src="./readme/pages-gif/cart-gif-gif.gif"  width="45%"/>
+  <img src="./readme/pages-gif/navigate-cart-gif.gif"  width="45%"/>
+   
+  <p>Shipping Profile</p>
+  <img src="./readme/pages-gif/create-shipping-profile-gif.gif"  width="45%"/>
+  <img src="./readme/pages-gif/shipping-profile-gif.gif"  width="45%"/>
+
+</div>
 
 <br><br>
 <img src="./readme/title6.svg"/>
-
-### Create Shipping Profile      ### Shipping Profile 
 
 > This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
@@ -109,7 +116,7 @@ _Below is an example of how you can instruct your audience on installing and set
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/AhmadNourelddine/furnifuture.git
    ```
 3. Install NPM packages
    ```sh
@@ -120,4 +127,21 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
+<!-- <table align="center">
+  <tr>
+    <td><img src="./readme/pages-gif/buy-page-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/open-furniture-modal.gif"/></td>
+    <td><img src="./readme/pages-gif/purchase-gif.gif"/></td>
+  </tr>
+ 
+  <tr>
+    <td><img src="./readme/pages-gif/delivery-page-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/cart-gif-gif.gif" /></td>
+  </tr>
 
+   <tr>
+    <td><img src="./readme/pages-gif/click-create-delivery-profile.gif"/></td>
+    <td><img src="./readme/pages-gif/create-shipping-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/shipping-profile-gif.gif"/></td>
+  </tr>
+</table> -->
