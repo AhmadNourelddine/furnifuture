@@ -31,11 +31,11 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 | Landing  | Buy  |
 | -----------------| -----|
-| ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/figma-about-page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/buy-page-figma.png) |
+| ![Landing](./readme/pages-figma/figma-about-page.png) | ![Buy](./readme/pages-figma/buy-page-figma.png) |
 
 | Delivery  | Cart  |
 | -----------------| -----|
-| ![Delivery](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/delivery-page-figma.png) | ![Cart](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/cart-page-figma.png) |
+| ![Delivery](./readme/pages-figma/delivery-page-figma.png) | ![Cart](./readme/pages-figma/cart-page-figma.png) |
 
 
 <br><br>
@@ -58,37 +58,33 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Landing  | Buy  |
 | -----------------| -----|
-| ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/About-page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/buy-page-latest.png) |
+| ![Landing](./readme/pages/About-page.png) | ![Buy](./readme/pages/buy-page.png) |
 
 | Delivery  | Cart  |
 | -----------------| -----|
-| ![Landing](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/delivery-page.png) | ![Buy](https://github.com/AhmadNourelddine/furnifuture/blob/main/readme/pages/cart-page.png) |
-
-### Buy
-
-<img src="./readme/pages-gif/buy-page-gif.gif"/>
-
-![open-furniture-modal](https://user-images.githubusercontent.com/97585878/162550805-da2e5d2b-eb2c-4cef-b960-23ff555f5fd9.gif)
+| ![Delivery](./readme/pages/delivery-page.png) | ![Cart](./readme/pages/cart-page.png) |
 
 
-### Delivery 
-
-<img src="./readme/pages-gif/delivery-page-gif.gif"/>
-
-### Cart 
-
-<img src="./readme/pages-gif/cart-gif-gif.gif"/>
-
-### Sell 
-
-![sell-page-gif](https://user-images.githubusercontent.com/97585878/162545262-d0d3422b-2efa-4359-bebd-913df24d210a.gif)
 
 
- ### Create Shipping Profile
-  ![create-shipping-gif](https://user-images.githubusercontent.com/97585878/162547901-d1b92c94-fb78-4d33-a6b9-878605d2e3a4.gif)
-
- ### Shipping Profile
-  ![shipping-profile-gif](https://user-images.githubusercontent.com/97585878/162547055-873890d8-f0b3-428f-b2e0-2a4b7a67dbde.gif)
+<table>
+  <tr>
+    <td><img src="./readme/pages-gif/buy-page-gif.gif"/></td>
+    <td><img src="readme/pages-gif/open-furniture-modal.gif"/></td>
+  </tr>
+  <tr>
+    <td><img src="./readme/pages-gif/cart-gif-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/purchase-gif.gif"/></td>
+  </tr>
+  <tr>
+    <td><img src="./readme/pages-gif/delivery-page-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/click-create-delivery-profile.gif"/></td>
+  </tr>
+   <tr>
+    <td><img src="./readme/pages-gif/create-shipping-gif.gif"/></td>
+    <td><img src="./readme/pages-gif/shipping-profile-gif.gif"/></td>
+  </tr>
+</table>
 
 <br><br>
 <img src="./readme/title6.svg"/>
