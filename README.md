@@ -127,21 +127,3 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<!-- <table align="center">
-  <tr>
-    <td><img src="./readme/pages-gif/buy-page-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/open-furniture-modal.gif"/></td>
-    <td><img src="./readme/pages-gif/purchase-gif.gif"/></td>
-  </tr>
- 
-  <tr>
-    <td><img src="./readme/pages-gif/delivery-page-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/cart-gif-gif.gif" /></td>
-  </tr>
-
-   <tr>
-    <td><img src="./readme/pages-gif/click-create-delivery-profile.gif"/></td>
-    <td><img src="./readme/pages-gif/create-shipping-gif.gif"/></td>
-    <td><img src="./readme/pages-gif/shipping-profile-gif.gif"/></td>
-  </tr>
-</table> -->
