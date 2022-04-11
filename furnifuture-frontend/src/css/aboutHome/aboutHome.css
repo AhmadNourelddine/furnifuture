@@ -1,0 +1,81 @@
+#about-page-home {
+  display: flex;
+  flex-direction: column;
+  background-color: #6f1a07;
+}
+
+#about-welcome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5%;
+  height: 40vh;
+}
+.about-welcome-to-the {
+  font-size: 4rem !important;
+  font-weight: 900 !important;
+  color: white;
+}
+.about-welcome-furnifuture {
+  font-size: 4rem !important;
+  font-weight: 900 !important;
+  color: #d86544;
+}
+#about-getstarted {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#about-buy-sell-getstarted {
+  height: 500px;
+}
+
+#about-deliver-getstarted {
+  height: 500px;
+}
+
+.getstarted-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.getstarted-buysell-button {
+  background-color: #6f1a07 !important;
+  color: white !important;
+  height: 3rem !important;
+  width: 15rem !important;
+  margin: 2rem !important;
+}
+.getstarted-delivery-button {
+  background-color: #304451 !important;
+  color: white !important;
+  height: 3rem !important;
+  width: 15rem !important;
+  margin: 3.5rem 2rem 2rem !important;
+}
+#about-buy-sell-getstarted {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #d86544;
+  color: white;
+  padding: 5%;
+}
+
+#about-deliver-getstarted {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #5094aa;
+  color: white;
+  padding: 5%;
+}
+
+.getstarted-description {
+  overflow: initial;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}

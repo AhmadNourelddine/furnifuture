@@ -1,0 +1,40 @@
+.signup-form {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecdccf;
+  width: 20rem;
+}
+#sign-up {
+  font-size: 200%;
+  font-weight: 700;
+  margin: 1% auto 10% auto;
+  max-width: fit-content;
+  text-align: left;
+}
+#signup-box {
+  padding: 1% 8% 2% !important;
+  border-radius: 30px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 6px 12px;
+}
+#signup-btn {
+  margin-top: 8%;
+  background-color: #304451;
+  color: white;
+  padding: 10px 16px !important;
+  border-radius: 4px !important;
+}
+.outlined-basic {
+  background-color: white;
+  width: inherit;
+  margin: 1%;
+  padding: 2rem;
+  border-radius: 15px;
+  border: none !important;
+}
+
+.outlined-basic .MuiFormControl-root {
+  border: none !important;
+}

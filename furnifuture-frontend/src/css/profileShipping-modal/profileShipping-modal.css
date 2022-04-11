@@ -1,0 +1,14 @@
+.profile-page-shipping-modal {
+  border-radius: 25px;
+  background-color: #ecdccf;
+}
+
+.profile-shipping-modal {
+  padding: 3rem 4rem;
+  border-radius: 25px;
+  background-color: #ecdccf;
+}
+
+.shipping-profile-page-btn.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: black !important;
+}

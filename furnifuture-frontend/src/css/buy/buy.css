@@ -1,0 +1,79 @@
+.buy-page {
+  background-color: #ecdccf;
+  height: max-content;
+}
+.buy-page-title {
+  font-size: 3rem !important;
+  padding: 3% 2% 2% 2rem !important;
+  font-weight: 700 !important;
+}
+.buy-furniture-search {
+  padding: 0 2rem;
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  background-color: #d4c6ba;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.buy-search-bar {
+  flex-grow: 1;
+  border-radius: 10px !important;
+  width: 50%;
+  margin: 2rem 1rem;
+}
+
+.ForwardRef-searchIconButton-17 {
+  display: none !important;
+}
+
+.buy-search-category {
+  flex-grow: 1;
+  width: 15% !important;
+  border-radius: 10px !important;
+  margin: 2rem 0;
+  background-color: white;
+  padding: 0 1rem !important;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.buy-page-search-category-textfield .MuiInputLabel-formControl {
+  top: calc(50% - 28px) !important;
+}
+
+.buy-page-search-category-textfield .MuiInput-input {
+  padding: 15px 4px 4px 0px !important;
+}
+
+.buy-search-btn {
+  flex-grow: 1;
+  width: 10% !important;
+  border-radius: 10px !important;
+  margin: auto 1rem !important;
+  height: 3rem;
+  align-self: center;
+  color: white !important;
+  background-color: #d86544 !important;
+}
+.buy-page-items {
+  padding: 1rem 0rem;
+  min-height: 100vh;
+  height: 100%;
+  margin: 2rem 2rem 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #d4c6ba;
+  border-radius: 10px;
+  justify-content: flex-start;
+}
+
+.css-1q60rmi-MuiAutocomplete-endAdornment {
+  top: calc(50% - 20px) !important;
+}
+
+.MuiInput-underline:before {
+  border-bottom: none !important;
+}
