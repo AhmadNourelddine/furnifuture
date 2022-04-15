@@ -19,8 +19,12 @@
 
 ### User Stories
 - As a user, I want to browse furniture for sale, so that I can find the product I seek for
-- As a user, I want to sell my used furniture to find a quick purchase
+- As a user, I want to search for furniture and add it to my cart
+- As a user, I want to search for shipping and save it to my cart
+- As a user, I want to sell my furniture
+- As a user, I want to find a shipping service to deliver the furniture I purchase
 - As a user, I want to promote my furniture shipping service, so that I can find more clients online
+- As a user, I want to customize my profile
 
 <br><br>
 
@@ -40,12 +44,12 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
-- This project uses ["ReactJs"](https://reactjs.org/) Library for the frontend.
-- For persistent storage (database), the app uses ["MongoDB"](https://www.mongodb.com/).
-- This project uses ["Laravel"](https://laravel.com/) FrameWork for the backend.
-- To query and manipulate data from MongoDB, this project uses ["Jenssengers"](https://jenssegers.com/) This library extends the original Laravel classes, so it uses exactly the same methods.
-- For Push notification, this project uses ["Firebase Cloud Messaging"](http://firebase.google.com/) for realtime database.                
-- The website uses the font ["Poppins"](https://fonts.google.com/specimen/Poppins) as its main font, and the design of the app adheres to the material design guidelines.
+- This project uses [ReactJs](https://reactjs.org/) Library for the frontend.
+- For persistent storage (database), the app uses [MongoDB](https://www.mongodb.com/).
+- This project uses [Laravel](https://laravel.com/) FrameWork for the backend.
+- To query and manipulate data from MongoDB, this project uses [Jenssengers](https://jenssegers.com/) This library extends the original Laravel classes, so it uses exactly the same methods.
+- For Push notification, this project uses [Firebase Cloud Messaging](http://firebase.google.com/) for realtime database.                
+- The website uses the font [Poppins](https://fonts.google.com/specimen/Poppins) as its main font, and the design of the app adheres to the material design guidelines.
 
 
 
@@ -91,7 +95,7 @@ To get a local copy up and running follow these simple example steps.
 
 This is an example of how to list things you need to use the software and how to install them.
 
-* download and install ["ReactJs"](https://reactjs.org/)
+* download and install [ReactJs](https://reactjs.org/)
 
 * update npm
 
