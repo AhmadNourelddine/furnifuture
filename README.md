@@ -13,12 +13,12 @@
 
 <img src="./readme/title2.svg"/>
 
-> The FurniFuture is an efficient website that connects furniture buyers and sellers online. FurniFuture is more than just a buy and sell website; it offers a great oppurtinity for users to connect with shipping services.
-> 
-> The website encourges people who can work in shipping furniture to create their own profiles so that they can have greater chances in finding nearby clients.
+>Users can search for furniture and shipping services, both of which can be added to the cart.
+>
+>The website gives space to those who provide shipping services to create shipping accounts, taking part in the available shipping services on the website.
 
 ### User Stories
-- As a user, I want to browse furniture for sale, so that I can find the best product
+- As a user, I want to browse furniture for sale, so that I can find the product I seek for
 - As a user, I want to sell my used furniture to find a quick purchase
 - As a user, I want to promote my furniture shipping service, so that I can find more clients online
 
@@ -31,11 +31,7 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 
 | Landing  | Buy  |
 | -----------------| -----|
-| ![Landing](./readme/pages-figma/figma-about-page.png) | ![Buy](./readme/pages-figma/buy-page-figma.png) |
-
-| Delivery  | Cart  |
-| -----------------| -----|
-| ![Delivery](./readme/pages-figma/delivery-page-figma.png) | ![Cart](./readme/pages-figma/cart-page-figma.png) |
+| ![Landing](./readme/pages-figma/figma-about-page.png)| ![Buy](./readme/pages-figma/buy-page-figma.png) |
 
 
 <br><br>
@@ -63,18 +59,30 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|
 | ![Landing](./readme/pages/About-page.png) | ![Buy](./readme/pages/buy-page.png) |
 
-| Delivery  | Cart  |
-| -----------------| -----|
-| ![Delivery](./readme/pages/delivery-page.png) | ![Cart](./readme/pages/cart-page.png) |
-
-
 
 
 <hr/>
 
 
+| Buy  | Add to Cart  |
+| -----------------| -----|
+| ![Buy](./readme/pages-gif/buy-page-gif.gif)| ![Add to Cart](./readme/pages-gif/open-furniture-modal.gif) |
 
-<div align="center">
+| Cart  | Purchase |
+| -----------------| -----|
+| ![Cart](./readme/pages-gif/navigate-cart-gif.gif) | ![Purchase](./readme/pages-gif/navigate-cart-gif.gif) |
+
+| Delivery  | Click Create Button  |
+| -----------------| -----|
+| ![Delivery](./readme/pages-gif/click-create-delivery-profile.gif) | ![Click Create Button](./readme/pages-gif/delivery-page-gif.gif) |
+
+| Create Shipping Profile |  Shipping Profile  |
+| -----------------| -----|
+| ![Create Shipping Profile](./readme/pages-gif/create-shipping-profile-gif.gif) | ![Shipping Profile](./readme/pages-gif/shipping-profile-gif.gif) |
+
+
+
+<!-- <div align="center">
 
   <p>Search Furniture in Buy Page and Purchase in Cart Page</p>
   <img src="./readme/pages-gif/buy-page-gif.gif" width="33%"/>
@@ -93,7 +101,7 @@ Here's a brief high-level overview of the tech stack the Well app uses:
   <img src="./readme/pages-gif/create-shipping-profile-gif.gif"  width="45%"/>
   <img src="./readme/pages-gif/shipping-profile-gif.gif"  width="45%"/>
 
-</div>
+</div> -->
 
 <br><br>
 <img src="./readme/title6.svg"/>
