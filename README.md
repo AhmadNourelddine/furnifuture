@@ -64,44 +64,22 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 <hr/>
 
 
-| Buy  | Add to Cart  |
+| Buy  | Open Modal |
 | -----------------| -----|
-| ![Buy](./readme/pages-gif/buy-page-gif.gif)| ![Add to Cart](./readme/pages-gif/open-furniture-modal.gif) |
+| ![Buy](./readme/pages-gif/buy-page-gif.gif)| ![Open Modal](./readme/pages-gif/open-furniture-modal.gif) |
 
 | Cart  | Purchase |
 | -----------------| -----|
-| ![Cart](./readme/pages-gif/navigate-cart-gif.gif) | ![Purchase](./readme/pages-gif/navigate-cart-gif.gif) |
+| ![Cart](./readme/pages-gif/navigate-cart-gif.gif) | ![Purchase](./readme/pages-gif/purchase-gif.gif) |
 
 | Delivery  | Click Create Button  |
 | -----------------| -----|
-| ![Delivery](./readme/pages-gif/click-create-delivery-profile.gif) | ![Click Create Button](./readme/pages-gif/delivery-page-gif.gif) |
+| ![Delivery](./readme/pages-gif/delivery-page-gif.gif) | ![Click Create Button](./readme/pages-gif/click-create-button-gif.gif) |
 
 | Create Shipping Profile |  Shipping Profile  |
 | -----------------| -----|
 | ![Create Shipping Profile](./readme/pages-gif/create-shipping-profile-gif.gif) | ![Shipping Profile](./readme/pages-gif/shipping-profile-gif.gif) |
 
-
-
-<!-- <div align="center">
-
-  <p>Search Furniture in Buy Page and Purchase in Cart Page</p>
-  <img src="./readme/pages-gif/buy-page-gif.gif" width="33%"/>
-  <img src="./readme/pages-gif/open-furniture-modal.gif" width="33%"/>
-  <img src="./readme/pages-gif/purchase-gif.gif" width="33%"/>
- 
-  <p>Delivery Page</p>
-  <img src="./readme/pages-gif/delivery-page-gif.gif" width="45%"/>
-  <img src="./readme/pages-gif/click-create-delivery-profile.gif"  width="45%"/>
-  
-  <p>Cart Page</p>
-  <img src="./readme/pages-gif/cart-gif-gif.gif"  width="45%"/>
-  <img src="./readme/pages-gif/navigate-cart-gif.gif"  width="45%"/>
-   
-  <p>Shipping Profile</p>
-  <img src="./readme/pages-gif/create-shipping-profile-gif.gif"  width="45%"/>
-  <img src="./readme/pages-gif/shipping-profile-gif.gif"  width="45%"/>
-
-</div> -->
 
 <br><br>
 <img src="./readme/title6.svg"/>
@@ -112,26 +90,31 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+
+* download and install ["ReactJs"](https://reactjs.org/)
+
+* update npm
+
+```sh
+npm install npm@latest -g
+```
+
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/AhmadNourelddine/furnifuture.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
+   cd furnifuture/furnifuture-frontend
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Run the start up command
+   ```sh
+   npm start
    ```
 
